@@ -7,7 +7,7 @@ class CreateEvents < ActiveRecord::Migration
       t.float  :duration
       t.string  :description
       t.belongs_to  :organization
-      t.string :type
+      t.string :event_type
 
 
       t.timestamps null: false
