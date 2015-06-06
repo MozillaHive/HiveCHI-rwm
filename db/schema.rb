@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150605210630) do
     t.float    "duration"
     t.string   "description"
     t.integer  "organization_id"
+    t.string   "event_type"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
