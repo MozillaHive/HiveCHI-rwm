@@ -1,3 +1,4 @@
+return;
 var text = {
     1: "bad",
     2: "okay",
