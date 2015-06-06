@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+	#layout false
   def index
     sleep(2.0)
     if current_user
