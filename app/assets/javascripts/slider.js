@@ -2,19 +2,13 @@ $( "#slider-1" ).on( 'change', function( event ) {
    var val = $("#slider-1").val();
    if(val == 1){
         $("#hint").empty();
-        $("#hint").append("beschissen");
+        $("#hint").append("car");
    }else if(val == 2){
         $("#hint").empty();
-        $("#hint").append("naja");
+        $("#hint").append("bike");
    }else if(val == 3){
         $("#hint").empty();
-        $("#hint").append("passt");
-   }else if(val == 4){
-        $("#hint").empty();
-        $("#hint").append("fett");
-   }else if(val == 5){
-        $("#hint").empty();
-        $("#hint").append("geilo");
+        $("#hint").append("public transportation");
    }
 
 });
