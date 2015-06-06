@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get 'login' => 'session#login'
   get 'dashboard' => 'welcome#dashboard'
 
+  get '/login' => 'session#new'
+  post '/login' => 'session#create'
+  get '/logout' => 'session#destroy'
+
   resources :events do
     resources :attendances
   end
