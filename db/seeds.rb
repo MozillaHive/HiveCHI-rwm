@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 School.create(name: "ALPHA OMEGA MINISTRIES", address: "1251 N PARKSIDE AVE")
 School.create(name: "AUSTIN CAREER EDUCATION CENTER", address: "5352 W CHICAGO AVE")
 School.create(name: "Acad of Comm & Technology", address: "4319 W Washington Bl")
@@ -978,3 +979,14 @@ Attendance.create(event_id: 98, user_id: 67, departure_time: "2015-08-10T11:15:0
 Attendance.create(event_id: 98, user_id: 53, departure_time: "2015-08-10T08:30:00-06:00", commitment_status: "I'm in if you're in", method_of_transit: "walking")
 Attendance.create(event_id: 98, user_id: 45, departure_time: "2015-08-10T10:00:00-06:00", commitment_status: "I'm in if you're in", method_of_transit: "transit")
 Attendance.create(event_id: 98, user_id: 48, departure_time: "2015-08-10T11:30:00-06:00", commitment_status: "Yes", method_of_transit: "walking")
+=======
+User.create(username: "bob123", email: "bob@gmail.com", school_id: 1, home_address: "2832 S Homan Ave", preference_1: "Aquatic", preference_2: "Camp", preference_3: "Football", password: "password")
+
+School.create(name: "Whitney M. Young Magnet High School", address: "211 S Laflin St, Chicago, IL 60607")
+
+Event.create(name: "Tech night fun night", address: "300 S Laflin St, Chicago, IL 60607", start_date_and_time: "2015-02-03T00:00:00+00:00", duration: 2, description: "A really fun time!", organization_id: 1)
+
+Organization.create(name: "Jim's Science Academy", domain_name: "@jimscience.org")
+
+Attendance.create(event_id: 1, user_id: 1, departure_time: "2015-02-03T00:00:55+00:00", method_of_transit: "bus", commitment_status: "Yes")
+>>>>>>> b50a20e943110fc5f933a44ab39c66cae72c8d89
