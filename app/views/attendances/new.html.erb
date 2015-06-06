@@ -1,0 +1,67 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+  <title>My Page</title>
+
+  <!-- google fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+  <!-- primary css -->
+  <link rel="stylesheet" type="text/css" href="css/mobile.css">
+
+  <!-- jquery library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" ></script>
+
+
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script type='text/javascript' > 
+  var currLat = 0.0;
+  var currLng = 0.0;
+</script>
+
+</head>
+<body>
+
+  <div data-role="page" id="map-page" data-url="map-page">
+
+    <div data-role="panel" id="myPanel" data-display="push" data-theme="b"> 
+      <h2>Preferences</h2>
+
+
+      <div>
+      <div class="toggle-option">
+        <label class="switch-label" for="flip-3">Divvy Stations</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
+         <option value="off">Off</option>
+         <option value="on">On</option>
+       </select>
+      </div>
+      <div class="toggle-option">
+        <label class="switch-label" for="flip-3">Bike Lanes</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
+          <option value="off">Off</option>
+          <option value="on">On</option>
+        </select>
+      </div>
+      <div class="toggle-option">
+        <label class="switch-label" for="flip-3">CTA Routes</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
+          <option value="off">Off</option>
+          <option value="on">On</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" value="Disable Divvy" onclick="clearDivvyMarkers()"></button>
+    <input type="button" value="stuff" onclick="showDivvyMarkers()"></button>
+    <input type="button" value="stuff" onclick="clearBusRoutes()"></button>
+    </div> 
+
+    <div role="main" class="ui-content" id="map-canvas">
+      <!-- map loads here... -->
+    </div>
+
+  </div><!-- /page -->
+
+</body>
+</html>
