@@ -10,5 +10,6 @@ class WelcomeController < ApplicationController
   end
 
   def dashboard
+
   end
 end
