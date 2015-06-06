@@ -1,7 +1,7 @@
 class AttendancesController < ApplicationController
   def new
    addresses_json = {
-      schoolAddress: current_user.school.address,
+      schoolAddress: User.find_by(id: session[:user_id]).school.address,
       eventAddress: Event.find_by_id(params[:event_id]).address
     }
     render json: addresses_json
