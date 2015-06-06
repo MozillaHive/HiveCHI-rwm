@@ -11,6 +11,9 @@ class EventsController < ApplicationController
       preference_3: User.find_by_id(session[:user_id]).preference_3
     }
 
-    render json: events_and_preferences_json
+    render json: {
+      :events => events_json,
+      :preferences => preferences_json
+    }
   end
 end
