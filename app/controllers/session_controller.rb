@@ -5,7 +5,6 @@ class SessionController < ApplicationController
   end
 
   def create
-    puts "WORD"
     @user = User.find_by(email: params[:user][:email])
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
@@ -19,6 +18,16 @@ class SessionController < ApplicationController
   def destroy
     session.clear
     redirect_to '/'
+  end
+
+  def store_user_commitment
+    session[commitment: "#{params[:commitment]}"]
+    redirect_to "/events/#{params[:id]}/attendances/new"
+  end
+
+  def store_user_time_preference
+    session[time_preference: "#{params[:time_preference]}"]
+    redirect_to "/events"
   end
 
   private
