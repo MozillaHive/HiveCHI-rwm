@@ -19,18 +19,19 @@ ActiveRecord::Schema.define(version: 20150605210630) do
   create_table "attendances", force: :cascade do |t|
     t.integer  "event_id"
     t.integer  "user_id"
-    t.string   "estimated_arrival_time"
+    t.datetime "departure_time"
     t.string   "commitment_status"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "method_of_transit"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
-    t.string   "start_date_and_time"
-    t.string   "duration"
-    t.string   "description_url"
+    t.datetime "start_date_and_time"
+    t.float    "duration"
+    t.string   "description"
     t.integer  "organization_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
