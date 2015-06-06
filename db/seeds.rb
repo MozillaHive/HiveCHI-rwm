@@ -1,4 +1,4 @@
-User.create(username: "bob123", email: "bob@gmail.com", school_id: 1, home_address: "2832 S Homan Ave")
+User.create(username: "bob123", email: "bob@gmail.com", school_id: 1, home_address: "2832 S Homan Ave", preference_1: "Aquatic", preference_2: "Camp", preference_3: "Football")
 
 School.create(name: "Whitney M. Young Magnet High School", address: "211 S Laflin St, Chicago, IL 60607")
 

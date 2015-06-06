@@ -7,6 +7,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string  :parent_password_digest
       t.string  :home_address
       t.belongs_to  :school
+      t.string  :preference_1
+      t.string  :preference_2
+      t.string  :preference_3
 
       t.timestamps null: false
     end
