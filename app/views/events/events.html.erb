@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
   <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-  <script type="text/javascript" src="~/HiveCHI-rwm/app/assets/javascripts/slider.js"></script>
 </head>
 <body>
 
@@ -21,14 +20,11 @@
     <p>Hello world</p>
   </div><!-- /content -->
 
-  <div id="slider-1"></div>
-  <div id="hint"></div>
-
-  <!-- slider
-  <div data-role="fieldcontain">
-  <label for="rideOption">Input slider:</label>
-  <input type="range" name="rideOption" id="rideOption" value="1" min="0" max="2" data-theme="a" data-track-theme="b" />
-</div> -->
+  <label for="flip-1">Today</label>
+  <select name="flip-1" id="flip-1" data-role="slider">
+    <option value="no">NO</option>
+    <option value="yes">YES</option>
+  </select> 
 
   <!-- footer navigator -->
   <div data-role="footer" data-id="foo1" data-position="fixed">

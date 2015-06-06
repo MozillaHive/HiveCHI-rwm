@@ -1,0 +1,96 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+  <title>My Page</title> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+  <!-- google fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+  <!-- primary css -->
+  <link rel="stylesheet" type="text/css" href="css/mobile.css">
+
+  <!-- jquery library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" ></script>
+
+
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script type='text/javascript' > 
+  var currLat = 0.0;
+  var currLng = 0.0;
+</script>
+
+</head>
+<body>
+
+  <div data-role="page" id="map-page" data-url="map-page">
+
+    <div data-role="panel" id="myPanel" data-display="push" data-theme="b"> 
+      <h2>Preferences</h2>
+
+
+      <div>
+      <p>Flip switches are not functional yet.. :(</p>
+      <div class="toggle-option">
+        <label class="switch-label" for="flip-3">Divvy Stations</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
+         <option value="off">Off</option>
+         <option value="on">On</option>
+       </select>
+      </div>
+      <div class="toggle-option">
+        <label class="switch-label" for="flip-3">Bike Lanes</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
+          <option value="off">Off</option>
+          <option value="on">On</option>
+        </select>
+      </div>
+      <div class="toggle-option">
+        <label class="switch-label" for="flip-3">CTA Routes</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
+          <option value="off">Off</option>
+          <option value="on">On</option>
+        </select>
+      </div>
+      <div class="toggle-option">
+        <label class="switch-label" for="flip-3">CTA Stops</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
+          <option value="off">Off</option>
+          <option value="on">On</option>
+        </select>
+      </div>
+      <div class="toggle-option">
+        <label class="switch-label" for="flip-3">CTA Buses</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
+          <option value="off">Off</option>
+          <option value="on">On</option>
+        </select>
+      </div>
+    </div>
+
+
+    <button type="button" value="Disable Divvy" onclick="clearDivvyMarkers()">Disable Divvy</button>
+    <input type="button" value="Enable Divvy" onclick="showDivvyMarkers()"></button>
+    <input type="button" value="Disable CTA" onclick="clearBusRoutes()"></button>
+    <input type="button" value="Enable CTA" onclick="showBusRoutes()"></button>
+    <input type="button" value="Disable Bike Lanes" onclick="clearBikeLayer()"></button>
+    <input type="button" value="Enable Bike Lanes" onclick="showBikeLayer()"></button>
+    <input type="button" value="Reset to Defaults" onclick="initialize()"></button>
+    </div> 
+
+    <div data-role="header" data-theme="b">
+      <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext">Delete</a>
+      <a onclick="initialize()" class="ui-btn ui-shadow ui-corner-all ui-icon-location ui-btn-icon-notext">Delete</a>
+      <h1 style="font-family: 'Pacifico', serif; font-size: 24px; margin-top: -13px;">Camooter</h1>
+    </div>
+    <div role="main" class="ui-content" id="map-canvas">
+      <!-- map loads here... -->
+    </div>
+
+  </div><!-- /page -->
+
+</body>
+</html>
