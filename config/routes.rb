@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get 'login' => 'session#login'
-  get 'dashboard' => 'dashboard#view'
+  get 'dashboard' => 'welcome#dashboard'
 
   resources :events do
     resources :attendances
