@@ -3,8 +3,8 @@ class CreateEvents < ActiveRecord::Migration
     create_table :events do |t|
       t.string  :name
       t.string  :address
-      t.string  :start_date_and_time
-      t.string  :duration
+      t.datetime  :start_date_and_time
+      t.float  :duration
       t.string  :description_url
       t.belongs_to  :organization
 
