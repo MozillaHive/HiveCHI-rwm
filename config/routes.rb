@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  get 'login' => 'sessions#login'
+  get 'login' => 'session#login'
   get 'dashboard' => 'dashboard#view'
 
-  resources :events
-  resources :attendances
+  resources :events do
+    resources :attendances
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
