@@ -2,8 +2,8 @@ User.create(username: "bob123", email: "bob@gmail.com", school_id: 1, home_addre
 
 School.create(name: "Whitney M. Young Magnet High School", address: "211 S Laflin St, Chicago, IL 60607")
 
-Event.create(name: "Tech night fun night", address: "300 S Laflin St, Chicago, IL 60607", start_date_and_time: "July 31, 2015, 5:00pm", duration: "2 hours", description_url: "http://www.google.com", organization_id: 1)
+Event.create(name: "Tech night fun night", address: "300 S Laflin St, Chicago, IL 60607", start_date_and_time: "2015-02-03T00:00:00+00:00", duration: 2, description: "A really fun time!", organization_id: 1)
 
 Organization.create(name: "Jim's Science Academy", domain_name: "@jimscience.org")
 
-Attendance.create(event_id: 1, user_id: 1, estimated_arrival_time: "10:20pm", commitment_status: "Yes")
+Attendance.create(event_id: 1, user_id: 1, departure_time: "2015-02-03T00:00:55+00:00", method_of_transit: "bus", commitment_status: "Yes")
