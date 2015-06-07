@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'login' => 'session#login'
   get 'dashboard' => 'welcome#dashboard'
 
-  get '/events/:id/store_user_commitment' => 'session#'
+  get '/events/:id/store_user_commitment' => 'session#store_user_commitment'
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'
