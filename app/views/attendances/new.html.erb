@@ -29,7 +29,7 @@
     }
   </style>
   <script>
-   /*jQuery.getJSON("/addresses.json",function(data){start = data.schoolAddress+", Chicago, IL";
+   /* jQuery.getJSON("/addresses.json",function(data){start = data.schoolAddress+", Chicago, IL";
       end = data.eventAddress+", Chicago, IL";
     });*/
     var directionsDisplay;
@@ -162,6 +162,9 @@
         return "0"+min.toString();
       }
     }
+function commit(){
+  document.getElementById("buttons").innerHTML = "You are going by "+tmode+" and leaving at "+leaveTime[tmode][leaveTimeIndex].getHours()+":"+printMin(leaveTime[tmode][leaveTimeIndex].getMinutes())
+}
 </script>
 </head>
 <body>
@@ -171,23 +174,25 @@
     <div data-role="header">
      <h1>Map</h1>
     </div><!-- /header -->
-    <div role = "main">
+    <div role = "main" id = "main">
       <div class="ui-content" id="map-canvas">
         <!-- map loads here... -->
       </div>
+      <div id = "directions">
+      </div>
+      <div id  = "buttons">
     <button id = "transit" onclick = "transitChange('transit')">CTA</button>
     <button  id = "walking" onclick = "transitChange('walking')">Walking</button>
     <button id = "bicycling" onclick = "transitChange('bicycling')">Biking</button>
-    <div id = "directions">
-    </div>
-  </div>
   <div id ="time_selections">
     <button id = "early" onclick="timeChange(0)">Early</button>
     <button id = "onTime" onclick="timeChange(1)">On Time</button>
     <button id = "late" onclick="timeChange(2)">Late</button>
   </div>
   <input type = "hidden" id = "tansit-mode-field" name = "tansit-mode" value = "transit">
-  <button id = "submit-button">Let's Go!</button>
+  <button id = "submit-button" onclick = "commit()">Let's Go!</button>
+</div>
+</div>
   </div><!-- /page -->
 
 </body>
