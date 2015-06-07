@@ -17,8 +17,15 @@
       <li></li>
     </ul>
 
-    </div><!-- /panel -->
+  </div><!-- /panel -->
 
+  <div data-role="header" data-theme="a">
+       <h1>Events</h1>
+  </div>
+    <!-- Header -->
+  <div data-role="content">
+      <ul data-role="listview" data-inset="true" id="event-list"></ul>
+  </div>
 
   <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
     <div data-role="navbar">
@@ -44,8 +51,8 @@
         <div class="toggle-option" id="football">
           <label class="switch-label" for="flip-3">Football</label>
           <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
-            <option value="off">Off</option>
-            <option value="on" selected="selected">On</option>
+            <option value="off" selected="selected">Off</option>
+            <option value="on">On</option>
          </select>
         </div>
         <div class="toggle-option" id="camp">
@@ -111,7 +118,7 @@
 </div><!-- /page -->
 
 <script>
-var eventsJson = null
+var eventsJson = null;
   var footballVal = 'on', campVal = 'on', recreationalVal = 'on', gymnasticsVal = "on", basketballVal = "on", tennisVal = "on", aquaticVal = "on", fitnessVal = "on", otherVal = "on";
 
   var eventsType = ['Football', 'Camp', 'Recreational', 'Basketball', 'Gymnastics', 'Tennis', 'Aquatic', 'Fitness', 'Other'];
@@ -121,18 +128,32 @@ var eventsJson = null
     url: "/events/all",
     dataType: "json",
     success: function(data) {
-        console.log(data);
-        console.log(data[0].name)
         eventsJson = data
     }
   })
+
+  setTimeout(start, 1000);
+
   // var fixedJson = JSON.parse(originalJson);
   // var eventsJson = originalJson.events;
 
+  function start() {
+    if(footballVal==('on')) {
+      for(var i = 0; i < eventsType.length; i++){
+        if (eventsType[i] === "Football") {
+          eventsType.splice(i, 1);
+        }
+      }
+      footballVal = 'off'
+    } else {
+      eventsType.push("Football");
+      footballVal = 'on'
+    }
+    refresh();
+  }
 
   //football
   $('#football').change(function(){
-    console.log(eventsJson[1].name);
     if(footballVal==('on')) {
       for(var i = 0; i < eventsType.length; i++){
         if (eventsType[i] === "Football") {
@@ -294,28 +315,27 @@ var eventsJson = null
   });
 
   function refresh() {
+    console.log("freshing");
     filteredEvents = [];
-    // console.log("eventsJson.length");
-    // console.log(eventsJson.length);
-  for (var i = 0; i < eventsType.length; i++)
-    {
-      for (var j = 0; j < eventsJson.length; j++)
+    for (var i = 0; i < eventsType.length; i++)
       {
-    // console.log("eventsType[i]")
-    // console.log(eventsType[i]);
-    // console.log("eventsJson[j]")
-    // console.log(eventsJson[j].event_type);
-        // console.log(eventsType[i] === eventsJson[j].event_type)
-        if (eventsType[i] === eventsJson[j].event_type)
+        for (var j = 0; j < eventsJson.length; j++)
         {
-          // console.log("HIT!!!!!!")
-          filteredEvents.push(eventsJson[j].name);
+          if (eventsType[i] === eventsJson[j].event_type)
+          {
+            filteredEvents.push(eventsJson[j].name);
+          }
         }
-      }
+      }  
+      var output = '';
+      $.each(filteredEvents, function (index, value) {
+        output += '<li><a href="#">' + value + '</a></li>';
+      });
+      $('#event-list').html(output).listview("refresh");
+      console.log(filteredEvents);
     }
-    console.log("FILTEREDEVENTS")
-    console.log(filteredEvents);
-  }
+
+
 
 </script>
 
