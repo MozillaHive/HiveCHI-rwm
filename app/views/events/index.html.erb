@@ -119,7 +119,7 @@
 
 <script>
 var eventsJson = null;
-  var footballVal = 'on', campVal = 'on', recreationalVal = 'on', gymnasticsVal = "on", basketballVal = "on", tennisVal = "on", aquaticVal = "on", fitnessVal = "on", otherVal = "on";
+  var footballVal = 'on', campVal = 'on', recreationalVal = 'on', gymnasticsVal = "on", basketballVal = "on", tennisVal = "on", aquaticVal = "on", fitnessVal = "on", otherVal = "on", filteredIds = [];
 
   var eventsType = ['Football', 'Camp', 'Recreational', 'Basketball', 'Gymnastics', 'Tennis', 'Aquatic', 'Fitness', 'Other'];
   var filteredEvents = [];
@@ -311,12 +311,13 @@ var eventsJson = null;
           if (eventsType[i] === eventsJson[j].event_type)
           {
             filteredEvents.push(eventsJson[j].name);
+            filteredIds.push(eventsJson[j].id);
           }
         }
-      }  
+      }
       var output = '';
       $.each(filteredEvents, function (index, value) {
-        output += '<li><a href="#">' + value + '</a></li>';
+        output += '<li><a href="events/' + filteredIds[index] + '">' + value + '</a></li>';
       });
       $('#event-list').html(output).listview("refresh");
       console.log(filteredEvents);
