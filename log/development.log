@@ -10137,3 +10137,50 @@ Started GET "/dashboard" for ::1 at 2015-06-07 01:48:17 -0500
 Processing by WelcomeController#dashboard as HTML
   Rendered welcome/dashboard.html.erb within layouts/application (0.3ms)
 Completed 200 OK in 25ms (Views: 25.0ms | ActiveRecord: 0.0ms)
+
+Started GET "/login" for ::1 at 2015-06-07 02:11:01 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionController#login as HTML
+  Rendered session/login.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 162ms (Views: 153.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:11:02 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:11:02 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:11:02 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:11:02 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:11:02 -0500
+
+
+Started POST "/login" for ::1 at 2015-06-07 02:11:09 -0500
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Fs0wMq9oGd0F53zjMLSzSPpHc+UKryOhfVQaWKPkVxpUfYKR15BU0xYdKQBv3bZyRseGGbxhcz2Pn7coVc0Axg==", "user"=>{"email"=>"bob@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "bob@gmail.com"]]
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 21ms (ActiveRecord: 3.1ms)
+
+
+Started GET "/dashboard" for ::1 at 2015-06-07 02:11:09 -0500
+Processing by WelcomeController#dashboard as HTML
+  Rendered welcome/dashboard.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 31ms (Views: 30.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-06-07 02:11:23 -0500
+Processing by WelcomeController#index as HTML
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 2002ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2015-06-07 02:11:25 -0500
+Processing by WelcomeController#dashboard as HTML
+  Rendered welcome/dashboard.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 19ms (Views: 18.4ms | ActiveRecord: 0.0ms)
