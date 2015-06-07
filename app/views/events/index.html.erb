@@ -85,7 +85,15 @@
     </div>
 
     <div>
-      
+      <script>
+        var events_json = $.ajax({
+          method: "get",
+          url: "/events/all",
+          dataType: "json",
+        })
+        
+        console.log(events_json)
+      </script>
     </div><!-- body -->
 
   </div><!-- /page -->
