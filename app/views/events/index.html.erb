@@ -11,67 +11,67 @@
       <h2>Catagories</h2>
 
       <div>
-        <div class="toggle-option">
+        <div class="toggle-option" id="football">
           <label class="switch-label" for="flip-3">Football</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
-            <option value="off">Off</option>
-            <option value="on">On</option>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
          </select>
         </div>
-        <div class="toggle-option">
+        <div class="toggle-option" id="camp">
           <label class="switch-label" for="flip-3">Camp</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
-            <option value="off">Off</option>
-            <option value="on">On</option>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
           </select>
         </div>
-        <div class="toggle-option">
+        <div class="toggle-option" id="recreational">
           <label class="switch-label" for="flip-3">Recreational</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
-            <option value="off">Off</option>
-            <option value="on">On</option>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
           </select>
         </div>
-        <div class="toggle-option">
+        <div class="toggle-option" id="basketball">
           <label class="switch-label" for="flip-3">Basketball</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
-            <option value="off">Off</option>
-            <option value="on">On</option>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
           </select>
         </div>
-        <div class="toggle-option">
+        <div class="toggle-option" id="tennis">
           <label class="switch-label" for="flip-3">Tennis</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
-            <option value="off">Off</option>
-            <option value="on">On</option>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
           </select>
         </div>
-        <div class="toggle-option">
+        <div class="toggle-option" id="aquatic">
           <label class="switch-label" for="flip-3">Aquatic</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
-            <option value="off">Off</option>
-            <option value="on">On</option>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
           </select>
         </div>
-        <div class="toggle-option">
+        <div class="toggle-option" id="gymnastics">
           <label class="switch-label" for="flip-3">Gymnastics</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
-            <option value="off">Off</option>
-            <option value="on">On</option>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
           </select>
         </div>
-        <div class="toggle-option">
+        <div class="toggle-option" id="fitness">
           <label class="switch-label" for="flip-3">Fitness</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
-            <option value="off">Off</option>
-            <option value="on">On</option>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
           </select>
         </div>
         <div class="toggle-option">
           <label class="switch-label" for="flip-3">Other</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
-            <option value="off">Off</option>
-            <option value="on">On</option>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
           </select>
         </div>
 
@@ -85,15 +85,41 @@
     </div>
 
     <div>
+
+    <ul data-role="listview" type="a" id="options">
+    </ul>
+
       <script>
-        var events_json = $.ajax({
+        var eventsType = [];
+        var eventsJson = $.ajax({
           method: "get",
           url: "/events/all",
           dataType: "json",
         })
         
-        console.log(events_json)
-      </script>
+        console.log(eventsJson)
+
+        //sorting by football
+        eventsType.sort();
+        var $footballToggle = $("#football");
+        var $container = $("#options");
+
+        $eventsType.change(function () {
+          //filter based on selected event.
+          makesArray = jQuery.grep(eventsType, function (product, i) {
+            return product.event_type == "football";
+          });
+          updateTable(makesArray);
+        });
+
+        //To update the table element with selected items
+        updateTable = function (collaction) {
+          $container.empty();
+          for (var i = 0; i < collaction.length; i++) {
+            $container.append("<tr><td>" + collaction[i].Year + "</td><td> " + collaction[i].Make + "</td><td>" + collaction[i].Model + "</td></tr>");
+          }
+        }
+    </script>
     </div><!-- body -->
 
   </div><!-- /page -->

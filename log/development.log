@@ -3921,3 +3921,650 @@ Processing by EventsController#all as JSON
   [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 97]]
   [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 98]]
 Completed 200 OK in 285ms (Views: 12.9ms | ActiveRecord: 35.6ms)
+
+
+Started GET "/events" for ::1 at 2015-06-07 01:27:33 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 215ms (Views: 205.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 01:27:34 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 01:27:34 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 01:27:34 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 01:27:34 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 01:27:34 -0500
+
+
+Started GET "/events" for ::1 at 2015-06-07 01:28:02 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 29ms (Views: 28.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 01:28:03 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 01:28:03 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 01:28:03 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 01:28:03 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 01:28:03 -0500
+
+
+Started GET "/events/all" for ::1 at 2015-06-07 01:28:03 -0500
+Processing by EventsController#all as JSON
+  [1m[35mEvent Load (1.4ms)[0m  SELECT "events".* FROM "events"
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 2]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 4]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 5]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 6]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 8]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 9]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 10]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 11]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 12]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 13]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 14]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 15]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 16]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 17]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 18]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 19]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 20]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 21]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 67]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 22]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 23]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 24]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 25]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 26]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 27]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 28]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 29]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 30]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 31]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 32]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 33]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 34]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 35]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 36]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 37]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 38]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 39]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 40]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 41]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 42]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 43]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 44]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 45]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 68]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 46]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 47]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 48]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 49]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 50]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 51]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 52]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 53]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 54]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 55]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 56]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 57]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 58]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 59]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 60]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 61]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 62]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 63]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 64]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 65]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 66]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 69]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 70]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 71]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 72]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 73]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 74]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 75]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 76]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 77]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 78]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 79]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 80]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 81]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 82]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 83]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 84]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 85]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 86]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 87]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 88]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 89]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 90]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 91]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 92]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 93]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 94]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 95]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 96]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 97]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 98]]
+Completed 200 OK in 185ms (Views: 9.8ms | ActiveRecord: 22.7ms)
+
+
+Started GET "/events" for ::1 at 2015-06-07 01:28:17 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 24ms (Views: 23.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 01:28:17 -0500
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 01:28:17 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 01:28:17 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 01:28:17 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 01:28:17 -0500
+
+
+Started GET "/events/all" for ::1 at 2015-06-07 01:28:18 -0500
+Processing by EventsController#all as JSON
+  [1m[36mEvent Load (0.5ms)[0m  [1mSELECT "events".* FROM "events"[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 1]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 3]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 4]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 5]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 6]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 7]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 9]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 10]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 11]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 12]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 13]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 14]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 15]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 16]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 17]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 18]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 19]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 20]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 21]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 67]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 22]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 23]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 24]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 25]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 26]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 27]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 28]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 29]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 30]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 31]]
+  [1m[35m (0.8ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 32]]
+  [1m[36m (1.8ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 33]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 34]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 35]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 36]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 37]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 38]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 39]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 40]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 41]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 42]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 43]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 44]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 45]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 68]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 46]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 47]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 48]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 49]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 50]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 51]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 52]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 53]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 54]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 55]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 56]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 57]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 58]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 59]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 60]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 61]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 62]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 63]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 64]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 65]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 66]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 69]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 70]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 71]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 72]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 73]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 74]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 75]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 76]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 77]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 78]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 79]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 80]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 81]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 82]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 83]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 84]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 85]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 86]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 87]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 88]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 89]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 90]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 91]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 92]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 93]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 94]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 95]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 96]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 97]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 98]]
+Completed 200 OK in 137ms (Views: 12.1ms | ActiveRecord: 23.7ms)
+
+
+Started GET "/events" for ::1 at 2015-06-07 01:28:28 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 23ms (Views: 22.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 01:28:29 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 01:28:29 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 01:28:29 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 01:28:29 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 01:28:29 -0500
+
+
+Started GET "/events/all" for ::1 at 2015-06-07 01:28:29 -0500
+Processing by EventsController#all as JSON
+  [1m[35mEvent Load (0.6ms)[0m  SELECT "events".* FROM "events"
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 2]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 4]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 5]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 6]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 8]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 9]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 10]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 11]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 12]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 13]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 14]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 15]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 16]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 17]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 18]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 19]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 20]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 21]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 67]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 22]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 23]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 24]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 25]]
+  [1m[36m (1.9ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 26]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 27]]
+  [1m[36m (0.9ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 28]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 29]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 30]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 31]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 32]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 33]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 34]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 35]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 36]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 37]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 38]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 39]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 40]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 41]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 42]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 43]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 44]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 45]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 68]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 46]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 47]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 48]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 49]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 50]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 51]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 52]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 53]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 54]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 55]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 56]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 57]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 58]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 59]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 60]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 61]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 62]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 63]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 64]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 65]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 66]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 69]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 70]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 71]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 72]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 73]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 74]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 75]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 76]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 77]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 78]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 79]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 80]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 81]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 82]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 83]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 84]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 85]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 86]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 87]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 88]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 89]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 90]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 91]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 92]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 93]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 94]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 95]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 96]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 97]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 98]]
+Completed 200 OK in 141ms (Views: 11.2ms | ActiveRecord: 22.4ms)
+
+
+Started GET "/events" for ::1 at 2015-06-07 01:53:48 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 47ms (Views: 46.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 01:53:48 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 01:53:48 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 01:53:48 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 01:53:48 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 01:53:48 -0500
+
+
+Started GET "/events/all" for ::1 at 2015-06-07 01:53:48 -0500
+Processing by EventsController#all as JSON
+  [1m[36mEvent Load (0.6ms)[0m  [1mSELECT "events".* FROM "events"[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 3]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 4]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 5]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 6]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 7]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 9]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 10]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 11]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 12]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 13]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 14]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 15]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 16]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 17]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 18]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 19]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 20]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 21]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 67]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 22]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 23]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 24]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 25]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 26]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 27]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 28]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 29]]
+  [1m[35m (1.4ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 30]]
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 31]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 32]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 33]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 34]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 35]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 36]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 37]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 38]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 39]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 40]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 41]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 42]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 43]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 44]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 45]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 68]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 46]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 47]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 48]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 49]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 50]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 51]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 52]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 53]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 54]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 55]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 56]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 57]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 58]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 59]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 60]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 61]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 62]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 63]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 64]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 65]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 66]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 69]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 70]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 71]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 72]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 73]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 74]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 75]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 76]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 77]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 78]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 79]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 80]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 81]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 82]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 83]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 84]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 85]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 86]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 87]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 88]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 89]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 90]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 91]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 92]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 93]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 94]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 95]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 96]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 97]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 98]]
+Completed 200 OK in 131ms (Views: 13.2ms | ActiveRecord: 23.2ms)
+
+
+Started GET "/events" for ::1 at 2015-06-07 01:54:03 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 47ms (Views: 46.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 01:54:03 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 01:54:03 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 01:54:03 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 01:54:03 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 01:54:03 -0500
+
+
+Started GET "/events/all" for ::1 at 2015-06-07 01:54:03 -0500
+Processing by EventsController#all as JSON
+  [1m[35mEvent Load (0.6ms)[0m  SELECT "events".* FROM "events"
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 2]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 4]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 5]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 6]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 8]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 9]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 10]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 11]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 12]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 13]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 14]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 15]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 16]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 17]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 18]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 19]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 20]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 21]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 67]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 22]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 23]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 24]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 25]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 26]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 27]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 28]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 29]]
+  [1m[36m (2.4ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 30]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 31]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 32]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 33]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 34]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 35]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 36]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 37]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 38]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 39]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 40]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 41]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 42]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 43]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 44]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 45]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 68]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 46]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 47]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 48]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 49]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 50]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 51]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 52]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 53]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 54]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 55]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 56]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 57]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 58]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 59]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 60]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 61]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 62]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 63]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 64]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 65]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 66]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 69]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 70]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 71]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 72]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 73]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 74]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 75]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 76]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 77]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 78]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 79]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 80]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 81]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 82]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 83]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 84]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 85]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 86]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 87]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 88]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 89]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 90]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 91]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 92]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 93]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 94]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 95]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 96]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 97]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 98]]
+Completed 200 OK in 144ms (Views: 11.9ms | ActiveRecord: 23.2ms)
