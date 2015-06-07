@@ -19,6 +19,11 @@ class EventsController < ApplicationController
         event.as_json.merge(:numberOfAttendees => event.attendances.count)
     end
 
-    render :json => @events_json
+    # events = ["bob", "bill"]
+
+    respond_to do |format|
+      format.json {render json: @events_json, :status => :ok}
+    end
+    # render :json => events
   end
 end

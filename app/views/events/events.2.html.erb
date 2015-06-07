@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Index</title> 
+</head>
+<body>
+
+  <div data-role="page">
+
+    <div data-role="panel" id="myPanel" data-display="reveal"> 
+      <h2>Catagories</h2>
+
+      <div>
+        <div class="toggle-option" id="football">
+          <label class="switch-label" for="flip-3">Football</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false" value="DEFAULT">
+            <option value="0">Off</option>
+            <option value="1">On</option>
+         </select>
+        </div>
+        <div class="toggle-option" id="camp">
+          <label class="switch-label" for="flip-3">Camp</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="recreational">
+          <label class="switch-label" for="flip-3">Recreational</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="basketball">
+          <label class="switch-label" for="flip-3">Basketball</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="tennis">
+          <label class="switch-label" for="flip-3">Tennis</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="aquatic">
+          <label class="switch-label" for="flip-3">Aquatic</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="gymnastics">
+          <label class="switch-label" for="flip-3">Gymnastics</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="fitness">
+          <label class="switch-label" for="flip-3">Fitness</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="other">
+          <label class="switch-label" for="flip-3">Other</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="0">Off</option>
+            <option value="1">On</option>
+          </select>
+        </div>
+
+      </div>
+    </div> <!-- /panel -->
+
+    <div data-role="header">
+      <h1>Index</h1>
+      <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext"></a>
+      </div><!-- /header -->
+    </div>
+
+    <div data-role="body">
+
+    <ul data-role="listview" type="a" id="options">
+      <li>things</li>
+      <li>things</li>
+      <li>things</li>
+      <li>things</li>
+      <li>things</li>
+      <li>things</li>
+      <li>things</li>
+    </ul>
+
+      <script>
+        var eventsType = [];
+        var eventsJson = $.ajax({
+          method: "get",
+          url: "/events/all",
+          dataType: "json",
+        })
+        
+        console.log(eventsJson)
+
+        var $footballToggle = $("#football");
+        var $container = $("#options").find("li");
+
+        $footballToggle.change(function () {
+          //filter based on selected event.
+          if ('#football.option[value="1"]') {
+            makesArray = jQuery.grep(eventsType, function (product, i) {
+              return product.event_type == "football";
+            });
+          }
+          updateTable(makesArray);
+        });
+
+        //To update the table element with selected items
+        updateTable = function (collaction) {
+          $container.empty();
+          for (var i = 0; i < collaction.length; i++) {
+            $container.append(collaction[i].name);
+          }
+        }
+    </script>
+    </div><!-- /body -->
+
+    <!-- footer navigator -->
+  <div data-role="footer" data-id="foo1" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="login/login">Login</a></li>
+        <li><a href="b.html">Friends</a></li>
+        <li><a href="c.html">Albums</a></li>
+        <li><a href="d.html">Emails</a></li>
+      </ul>
+    </div><!-- /navbar -->
+  </div><!-- /footer -->
+
+  </div><!-- /page -->
+
+</body>
+</html>
