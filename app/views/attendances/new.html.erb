@@ -29,16 +29,21 @@
     }
   </style>
   <script>
+    var start;
+    var end;
     jQuery.getJSON("/addresses.json",function(data){start = data.schoolAddress+", Chicago, IL";
       end = data.eventAddress+", Chicago, IL";
     });
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
     var map;
-    var start;
-    var end;
     var tmode = "transit";
-
+    var startTime = new Date("2015-06-20T10:00:00-06:00");
+    var earlyTime = new Date(startTime.getTime()-15*60*1000);
+    var lateTime = new Date(startTime.getTime()+15*60*1000);
+    var arriveTimeArray = [earlyTime,startTime,lateTime];
+    var leaveTime = {transit: [0,0,0], walking: [0,0,0], bicycling: [0,0,0]};
+    var leaveTimeIndex = 1;
     function initialize() {
         directionsDisplay = new google.maps.DirectionsRenderer();
         var chicago = new google.maps.LatLng(41.850033, -87.6500523);
@@ -48,6 +53,7 @@
      }
      map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
      directionsDisplay.setMap(map);
+     calcTime();
      calcRoute(google.maps.TravelMode.TRANSIT);
      directionsDisplay.setPanel(document.getElementById("directions"));
     }
@@ -56,16 +62,59 @@
       var request = {
         origin:start,
         destination:end,
-        travelMode: mode
+        travelMode:mode,
       };
       directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
            directionsDisplay.setDirections(result);
          }
-      document.getElementById("tansit-mode-field").value = tmode;
       });
+      document.getElementById("tansit-mode-field").value = tmode;
     }
-    google.maps.event.addDomListener(window, 'load', function(){initialize();});
+    function calcTime(){
+       var request = {
+        origin:start,
+        destination:end,
+        travelMode:google.maps.TravelMode.WALKING
+      };
+      directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+           time = result.routes[0].legs[0].duration.value;
+           for (var i = 0; i < 3; i++) {
+             leaveTime.walking[i] = new Date(arriveTimeArray[i].getTime()-time*1000);
+           };
+         }
+      });
+      var request = {
+        origin:start,
+        destination:end,
+        travelMode:google.maps.TravelMode.BICYCLING
+      };
+      directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+           time = result.routes[0].legs[0].duration.value;
+           for (var j = 0; j < 3; j++) {
+             leaveTime.bicycling[j] = new Date(arriveTimeArray[j].getTime()-time*1000);
+           };
+         }
+      });
+      var l = 0
+      for (var k = 0; k < 3; k++) {
+        var request = {
+          origin:start,
+          destination:end,
+          travelMode:google.maps.TravelMode.TRANSIT,
+          transitOptions: {arrivalTime: arriveTimeArray[k]}
+        };
+        directionsService.route(request, function(result, status) {
+         if (status == google.maps.DirectionsStatus.OK) {
+             leaveTime.transit[l] = result.routes[0].legs[0].departure_time.value;
+             l++;
+         }
+      });
+      }
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 </head>
 <body>
@@ -79,14 +128,9 @@
       <div class="ui-content" id="map-canvas">
         <!-- map loads here... -->
       </div>
-    <div id="transport-mode">
-      <button id = "transit" onclick = "calcRoute(google.maps.TravelMode.TRANSIT);tmode='transit';">CTA</button>
-      <button  id = "walking" onclick = "calcRoute(google.maps.TravelMode.WALKING);tmode='walking'">Walking</button>
-      <button id = "bicycling" onclick = "calcRoute(google.maps.TravelMode.BICYCLING);tmode='bicycling'">Biking</button>
-    </div>
-    <div id = "arrival-times">
-
-    </div>
+    <button id = "transit" onclick = "tmode='transit';calcRoute(google.maps.TravelMode.TRANSIT)">CTA</button>
+    <button  id = "walking" onclick = "tmode='walking';calcRoute(google.maps.TravelMode.WALKING)">Walking</button>
+    <button id = "bicycling" onclick = "tmode='bicycling';calcRoute(google.maps.TravelMode.BICYCLING)">Biking</button>
     <div id = "directions">
     </div>
   </div>
