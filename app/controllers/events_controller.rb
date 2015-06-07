@@ -18,6 +18,8 @@ class EventsController < ApplicationController
     @events_json = events.map do |event|
         event.as_json.merge(:numberOfAttendees => event.attendances.count)
     end
+
+    render :json => @events_json
   end
 
 end
