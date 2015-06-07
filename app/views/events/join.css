@@ -1,0 +1,9 @@
+#buttons {
+	text-align: center;
+	position:fixed;
+	left: 40%;
+	right: 40%;
+	top: 5%;
+	float: center;
+	width: auto;
+}
