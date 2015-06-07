@@ -12,15 +12,29 @@
     <h1>Show</h1>
   </div><!-- /header -->
 
-  <div>
+  <div id="event">
     <% event = Event.find_by(id: params[:id]) %>
+  </div>
+  <div id="location">
     <%="Location:" + event.address %>
+  </div>
+  <div id="dt">
     <%="Date and time:" + event.start_date_and_time.strftime("%A, %B %d, %Y at %l%p") %>
+  </div>
+  <div id="descr">
     <%="Description:" + event.description %>
-    <%="# attending from your school:" %>
+  </div>
+  <div id="user">
     <% current_user = User.find_by(id: session[:user_id]) %>
+  </div>
+  <div id="school">
     <% user_school = current_user.school.name %>
+  </div>
+  <div id="">
     <%="Number attending from your school:" + event.attendees.where(school: user_school).count.to_s %>
+  </div>
+  <div>
+    <button ahref="">JOIN<button>
   </div><!-- body -->
 
   <!-- footer navigator -->
