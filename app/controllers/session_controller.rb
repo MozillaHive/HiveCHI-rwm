@@ -1,18 +1,22 @@
 class SessionController < ApplicationController
   def new
     @user = User.new
-    render '_login'
   end
 
   def create
+    puts "USER EMAIL PARAMS THING"
+    puts params[:user][:email]
+
     @user = User.find_by(email: params[:user][:email])
+    puts @user
     # if @user && @user.authenticate(params[:user][:password])
-    session[:user_id] = @user.id
-    redirect_to dashboard_path
-    # else
-    #   @errors = ["Invalid email or password"]
-    #   redirect_to login_path
-    # end
+    if @user
+      session[:user_id] = @user.id
+      redirect_to dashboard_path
+    else
+      @errors = ["Invalid email or password"]
+      redirect_to login_path
+    end
   end
 
   def destroy

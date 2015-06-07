@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Events</title>
+</head>
+<body>
+<div data-role="page" data-quicklinks="true">
+
+  <div data-role="header" class="jqm-header">
+  <h1>Index</h1>
+  <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext"></a>
+  </div><!-- /header -->
+
+  <div role="main" class="ui-content jqm-content">
+
+    <<ul data-role="listview" type="a" id="options">
+      <li></li>
+    </ul>
+
+    </div><!-- /panel -->
+
+
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="login/login">Login</a></li>
+        <li><a href="b.html">Friends</a></li>
+        <li><a href="c.html">Albums</a></li>
+        <li><a href="d.html">Emails</a></li>
+      </ul>
+    </div><!-- /navbar -->
+  </div><!-- /footer -->
+
+
+
+  <!-- Here are a bunch of panels at the end, just before the close page tag  -->
+
+  <!-- leftpanel1  -->
+  <div data-role="panel" id="myPanel" data-position="left" data-display="reveal" data-theme="a">
+
+        <h2>Catagories</h2>
+
+      <div>
+        <div class="toggle-option" id="football">
+          <label class="switch-label" for="flip-3">Football</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="off">Off</option>
+            <option value="on" selected="selected">On</option>
+         </select>
+        </div>
+        <div class="toggle-option" id="camp">
+          <label class="switch-label" for="flip-3">Camp</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="off">Off</option>
+            <option value="on" selected="selected">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="recreational">
+          <label class="switch-label" for="flip-3">Recreational</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="off">Off</option>
+            <option value="on" selected="selected">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="basketball">
+          <label class="switch-label" for="flip-3">Basketball</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="off">Off</option>
+            <option value="on" selected="selected">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="tennis">
+          <label class="switch-label" for="flip-3">Tennis</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="off">Off</option>
+            <option value="on" selected="selected">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="aquatic">
+          <label class="switch-label" for="flip-3">Aquatic</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="off">Off</option>
+            <option value="on" selected="selected">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="gymnastics">
+          <label class="switch-label" for="flip-3">Gymnastics</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="off">Off</option>
+            <option value="on" selected="selected">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="fitness">
+          <label class="switch-label" for="flip-3">Fitness</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="off">Off</option>
+            <option value="on" selected="selected">On</option>
+          </select>
+        </div>
+        <div class="toggle-option" id="other">
+          <label class="switch-label" for="flip-3">Other</label>
+          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+            <option value="off">Off</option>
+            <option value="on" selected="selected">On</option>
+          </select>
+        </div>
+
+      </div>
+  </div><!-- /leftpanel1 -->
+
+</div><!-- /page -->
+
+<script>
+var eventsJson = null
+  var footballVal = 'on', campVal = 'on', recreationalVal = 'on', gymnasticsVal = "on", basketballVal = "on", tennisVal = "on", aquaticVal = "on", fitnessVal = "on", otherVal = "on";
+
+  var eventsType = ['Football', 'Camp', 'Recreational', 'Basketball', 'Gymnastics', 'Tennis', 'Aquatic', 'Fitness', 'Other'];
+  var filteredEvents = [];
+  $.ajax({
+    method: "get",
+    url: "/events/all",
+    dataType: "json",
+    success: function(data) {
+        console.log(data);
+        console.log(data[0].name)
+        eventsJson = data
+    }
+  })
+  // var fixedJson = JSON.parse(originalJson);
+  // var eventsJson = originalJson.events;
+
+
+  //football
+  $('#football').change(function(){
+    console.log(eventsJson[1].name);
+    if(footballVal==('on')) {
+      for(var i = 0; i < eventsType.length; i++){
+        if (eventsType[i] === "Football") {
+          eventsType.splice(i, 1);
+        }
+      }
+      footballVal = 'off'
+    } else {
+      eventsType.push("Football");
+      footballVal = 'on'
+    }
+    refresh();
+    console.log(footballVal);
+    console.log(eventsType);
+  });
+
+  //camp
+  $('#camp').change(function(){
+    if(campVal==('on')) {
+      for(var i = 0; i < eventsType.length; i++){
+        if (eventsType[i] === "Camp") {
+          eventsType.splice(i, 1);
+        }
+      }
+      campVal = 'off'
+    } else {
+      eventsType.push("Camp");
+      campVal = 'on'
+    }
+    refresh();
+    console.log(campVal);
+    console.log(eventsType);
+  });
+
+  //recreational
+  $('#recreational').change(function(){
+    if(recreationalVal==('on')) {
+      for(var i = 0; i < eventsType.length; i++){
+        if (eventsType[i] === "Recreational") {
+          eventsType.splice(i, 1);
+        }
+      }
+      recreationalVal = 'off'
+    } else {
+      eventsType.push("Recreational");
+      recreationalVal = 'on'
+    }
+    refresh();
+    console.log(recreationalVal);
+    console.log(eventsType);
+  });
+
+  //basketball
+  $('#basketball').change(function(){
+    if(basketballVal==('on')) {
+      for(var i = 0; i < eventsType.length; i++){
+        if (eventsType[i] === "Basketball") {
+          eventsType.splice(i, 1);
+        }
+      }
+      basketballVal = 'off'
+    } else {
+      eventsType.push("Basketball");
+      basketballVal = 'on'
+    }
+    refresh();
+    console.log(basketballVal);
+    console.log(eventsType);
+  });
+
+  //tennis
+  $('#tennis').change(function(){
+    if(tennisVal==('on')) {
+      for(var i = 0; i < eventsType.length; i++){
+        if (eventsType[i] === "Tennis") {
+          eventsType.splice(i, 1);
+        }
+      }
+      tennisVal = 'off'
+    } else {
+      eventsType.push("Tennis");
+      tennisVal = 'on'
+    }
+    refresh();
+    console.log(tennisVal);
+    console.log(eventsType);
+  });
+
+  //aquatic
+  $('#aquatic').change(function(){
+    if(aquaticVal==('on')) {
+      for(var i = 0; i < eventsType.length; i++){
+        if (eventsType[i] === "Aquatic") {
+          eventsType.splice(i, 1);
+        }
+      }
+      aquaticVal = 'off'
+    } else {
+      eventsType.push("Aquatic");
+      aquaticVal = 'on'
+    }
+    refresh();
+    console.log(aquaticVal);
+    console.log(eventsType);
+  });
+
+  //gymnastics
+  $('#gymnastics').change(function(){
+    if(gymnasticsVal==('on')) {
+      for(var i = 0; i < eventsType.length; i++){
+        if (eventsType[i] === "Gymnastics") {
+          eventsType.splice(i, 1);
+        }
+      }
+      gymnasticsVal = 'off'
+    } else {
+      eventsType.push("Gymnastics");
+      gymnasticsVal = 'on'
+    }
+    refresh();
+    console.log(gymnasticsVal);
+    console.log(eventsType);
+  });
+
+  //fitness
+  $('#fitness').change(function(){
+    if(fitnessVal==('on')) {
+      for(var i = 0; i < eventsType.length; i++){
+        if (eventsType[i] === "Fitness") {
+          eventsType.splice(i, 1);
+        }
+      }
+      fitnessVal = 'off'
+    } else {
+      eventsType.push("Fitness");
+      fitnessVal = 'on'
+    }
+    refresh();
+    console.log(fitnessVal);
+    console.log(eventsType);
+  });
+
+  //other
+  $('#other').change(function(){
+    if(otherVal==('on')) {
+      for(var i = 0; i < eventsType.length; i++){
+        if (eventsType[i] === "Other") {
+          eventsType.splice(i, 1);
+        }
+      }
+      otherVal = 'off'
+    } else {
+      eventsType.push("Other");
+      otherVal = 'on'
+    }
+    refresh();
+    console.log(otherVal);
+    console.log(eventsType);
+  });
+
+  function refresh() {
+    filteredEvents = [];
+    // console.log("eventsJson.length");
+    // console.log(eventsJson.length);
+  for (var i = 0; i < eventsType.length; i++)
+    {
+      for (var j = 0; j < eventsJson.length; j++)
+      {
+    // console.log("eventsType[i]")
+    // console.log(eventsType[i]);
+    // console.log("eventsJson[j]")
+    // console.log(eventsJson[j].event_type);
+        // console.log(eventsType[i] === eventsJson[j].event_type)
+        if (eventsType[i] === eventsJson[j].event_type)
+        {
+          // console.log("HIT!!!!!!")
+          filteredEvents.push(eventsJson[j].name);
+        }
+      }
+    }
+    console.log("FILTEREDEVENTS")
+    console.log(filteredEvents);
+  }
+
+</script>
+
+</body>
+</html>
