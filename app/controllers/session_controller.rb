@@ -1,7 +1,6 @@
 class SessionController < ApplicationController
   def new
     @user = User.new
-    render '_login'
   end
 
   def create

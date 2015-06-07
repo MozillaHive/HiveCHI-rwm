@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   get '/events/:id/store_user_commitment' => 'session#store_user_commitment'
 
+  get 'events/:id/join' => 'events#join'
+  get 'events/all' => 'events#all'
+
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   get '/logout' => 'session#destroy'
