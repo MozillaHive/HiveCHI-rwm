@@ -51,8 +51,8 @@
         <div class="toggle-option" id="football">
           <label class="switch-label" for="flip-3">Football</label>
           <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
-            <option value="off" selected="selected">Off</option>
-            <option value="on">On</option>
+            <option value="off">Off</option>
+            <option value="on" selected="selected">On</option>
          </select>
         </div>
         <div class="toggle-option" id="camp">
@@ -131,26 +131,13 @@ var eventsJson = null;
         eventsJson = data
     }
   })
-
-  setTimeout(start, 1000);
+  setTimeout(refresh, 1000);
+  setTimeout(refresh, 3000);
+  setTimeout(refresh, 2000);
+  setTimeout(refresh, 2000);
 
   // var fixedJson = JSON.parse(originalJson);
   // var eventsJson = originalJson.events;
-
-  function start() {
-    if(footballVal==('on')) {
-      for(var i = 0; i < eventsType.length; i++){
-        if (eventsType[i] === "Football") {
-          eventsType.splice(i, 1);
-        }
-      }
-      footballVal = 'off'
-    } else {
-      eventsType.push("Football");
-      footballVal = 'on'
-    }
-    refresh();
-  }
 
   //football
   $('#football').change(function(){

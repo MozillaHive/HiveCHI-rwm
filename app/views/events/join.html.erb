@@ -2,9 +2,9 @@
 <html>
   <head>
   <title>Join</title>
+<link rel="stylesheet" type="text/css" href="join.css">
 </head>
 <body>
-
 
 <div data-role="page">
 
@@ -13,10 +13,12 @@
   </div><!-- /header -->
 
   <div>
+
+  <div id="buttons">
     <form method="GET" action="/events/<%=params[:id]%>/attendances/new">
-      <input type="submit" id="going">GOING!</input>
-      <input type="submit" id="maybeeee">MAYBE</input>
-      <input type="submit" id="igiyg">I'll Go If You Go</input>
+      <input type="submit" id="going" value="GOING!"></input>
+      <input type="submit" id="maybeeee" value="MAYBE"></input>
+      <input type="submit" id="igiyg" value="I'll Go If You Go"></input>
     </form>
 
     <form>
@@ -33,8 +35,8 @@
     <div class="ui-input-btn ui-btn ui-shadow">
         I'll Go if You Go
         <input type="button" data-enhanced="true" value="Enhanced">
-    </div> -->
-    <h2>#</h2>
+    </div>
+    <h2>#</h2> -->
 </form>
   </div><!-- body -->
 

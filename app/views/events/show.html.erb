@@ -2,25 +2,42 @@
 <html>
   <head>
   <title>Show</title>
+<link rel="stylesheet" type="text/css" href="show.css">
 </head>
 <body>
-
 
 <div data-role="page">
 
   <div data-role="header">
     <h1>Show</h1>
   </div><!-- /header -->
-
-  <div>
-    <% event = Event.find_by(id: params[:id]) %>
-    <%="Location:" + event.address %>
-    <%="Date and time:" + event.start_date_and_time.strftime("%A, %B %d, %Y at %l%p") %>
-    <%="Description:" + event.description %>
-    <%="# attending from your school:" %>
-    <% current_user = User.find_by(id: session[:user_id]) %>
-    <% user_school = current_user.school.name %>
-    <%="Number attending from your school:" + event.attendees.where(school: user_school).count.to_s %>
+  <div id="body">
+    <div id="event">
+      <% event = Event.find_by(id: params[:id]) %>
+    </div>
+    <div id="location">
+      <%="Location:" + event.address %>
+    </div>
+    <div id="dt">
+      <%="Date and time:" + event.start_date_and_time.strftime("%A, %B %d, %Y at %l%p") %>
+    </div>
+    <div id="desc">
+      <%="Description:" + event.description %>
+    </div>
+    <div id="user">
+      <% current_user = User.find_by(id: session[:user_id]) %>
+    </div>
+    <div id="school">
+      <% user_school = current_user.school.name %>
+    </div>
+    <div id="attendee">
+      <%="Number attending from your school:" + event.attendees.where(school: user_school).count.to_s %>
+    </div>
+    <div id="join">
+      <form method="get" action="/events/<%=params[:id]%>/join"%>
+        <input type="submit" value="JOIN"></input>
+      </form>
+    </div>
   </div><!-- body -->
 
   <!-- footer navigator -->
