@@ -6,61 +6,87 @@
   <!-- google fonts -->
   <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 
-  <!-- primary css -->
-  <link rel="stylesheet" type="text/css" href="css/mobile.css">
-
   <!-- jquery library -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" ></script>
 
 
-  <script src="https://maps.googleapis.com/maps/api/js"></script>
-  <script type='text/javascript' > 
-  var currLat = 0.0;
-  var currLng = 0.0;
-</script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZ1NrRFt8hQ9k6fbf-H2VhKDSwlmi-g8"></script>
+  <style>
+    .ui-content#map-canvas{
+      height: 400px;
+    }
+    div#directions{
+      height: 440px;
+      width:  300px;
+      background-color: #eee;
+      position: absolute;
+      top: 43px;
+      overflow: scroll;
+    }
+    #submit-button{
+      background-color: #5c5;
+      color: #300;
+    }
+  </style>
+  <script>
+    jQuery.getJSON("/addresses.json",function(data){start = data.schoolAddress+", Chicago, IL";
+      end = data.eventAddress+", Chicago, IL";
+    });
+    var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+    var map;
+    var start;
+    var end;
+    var tmode = "transit";
 
+    function initialize() {
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+        var mapOptions = {
+        zoom: 10,
+        center: chicago
+     }
+     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+     directionsDisplay.setMap(map);
+     calcRoute(google.maps.TravelMode.TRANSIT);
+     directionsDisplay.setPanel(document.getElementById("directions"));
+    }
+
+    function calcRoute(mode) {
+      var request = {
+        origin:start,
+        destination:end,
+        travelMode: mode
+      };
+      directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+           directionsDisplay.setDirections(result);
+         }
+      document.getElementById("tansit-mode-field").value = tmode;
+      });
+    }
+    google.maps.event.addDomListener(window, 'load', function(){initialize();});
+</script>
 </head>
 <body>
 
-  <div data-role="page" id="map-page" data-url="map-page">
+  <div data-role="page">
 
-    <div data-role="panel" id="myPanel" data-display="push" data-theme="b"> 
-      <h2>Preferences</h2>
-
-
-      <div>
-      <div class="toggle-option">
-        <label class="switch-label" for="flip-3">Divvy Stations</label>
-        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
-         <option value="off">Off</option>
-         <option value="on">On</option>
-       </select>
+    <div data-role="header">
+     <h1>Map</h1>
+    </div><!-- /header -->
+    <div role = "main">
+      <div class="ui-content" id="map-canvas">
+        <!-- map loads here... -->
       </div>
-      <div class="toggle-option">
-        <label class="switch-label" for="flip-3">Bike Lanes</label>
-        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
-          <option value="off">Off</option>
-          <option value="on">On</option>
-        </select>
-      </div>
-      <div class="toggle-option">
-        <label class="switch-label" for="flip-3">CTA Routes</label>
-        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="true">
-          <option value="off">Off</option>
-          <option value="on">On</option>
-        </select>
-      </div>
+    <button id = "transit" onclick = "calcRoute(google.maps.TravelMode.TRANSIT);tmode='transit';">CTA</button>
+    <button  id = "walking" onclick = "calcRoute(google.maps.TravelMode.WALKING);tmode='walking'">Walking</button>
+    <button id = "bicycling" onclick = "calcRoute(google.maps.TravelMode.BICYCLING);tmode='bicycling'">Biking</button>
+    <div id = "directions">
     </div>
-
-    <button type="button" value="Disable Divvy" onclick="clearDivvyMarkers()"></button>
-    <input type="button" value="stuff" onclick="showDivvyMarkers()"></button>
-    <input type="button" value="stuff" onclick="clearBusRoutes()"></button>
-    </div> 
-
-    <div role="main" class="ui-content" id="map-canvas">
-      <!-- map loads here... -->
-    </div>
-
+  </div>
+  <input type = "hidden" id = "tansit-mode-field" name = "tansit-mode" value = "transit">
+  <button id = "submit-button">Let's Go!</button>
   </div><!-- /page -->
 
 </body>
