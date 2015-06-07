@@ -1,0 +1,173 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+  <title>My Page</title>
+
+  <!-- google fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+  <!-- jquery library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" ></script>
+
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZ1NrRFt8hQ9k6fbf-H2VhKDSwlmi-g8"></script>
+  <style>
+    .ui-content#map-canvas{
+      height: 400px;
+    }
+    div#directions{
+      height: 440px;
+      width:  300px;
+      background-color: #eee;
+      position: absolute;
+      top: 43px;
+      overflow: scroll;
+    }
+    #submit-button{
+      background-color: #5c5;
+      color: #300;
+    }
+  </style>
+  <script>
+   /* jQuery.getJSON("/addresses.json",function(data){start = data.schoolAddress+", Chicago, IL";
+      end = data.eventAddress+", Chicago, IL";
+    });*/
+    var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+    var map;
+    var start = "5110 N Damen Av";
+    var end = "6935 W. Addison St.";
+    var tmode = "transit";
+    var startTime = new Date("2015-06-20T10:00:00-06:00");
+    var earlyTime = new Date(startTime.getTime()-15*60*1000);
+    var lateTime = new Date(startTime.getTime()+15*60*1000);
+    var arriveTimeArray = [earlyTime,startTime,lateTime];
+    var leaveTime = {transit: [0,0,0], walking: [0,0,0], bicycling: [0,0,0]};
+    var leaveTimeIndex = 1;
+    var attendence = {transit: [Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1],walking: [Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1],
+      bicycling: [Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1]
+            }
+    function initialize() {
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+        var mapOptions = {
+        zoom: 10,
+        center: chicago
+     }
+     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+     directionsDisplay.setMap(map);
+     calcTime();
+     calcRoute(google.maps.TravelMode.TRANSIT);
+     directionsDisplay.setPanel(document.getElementById("directions"));
+    }
+
+    function calcRoute(mode,arriveDate) {
+      var request = {
+        origin:start,
+        destination:end,
+        travelMode:mode,
+        transitOptions:{arrivalTime: arriveDate}
+      };
+      directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+           directionsDisplay.setDirections(result);
+         }
+          document.getElementById("tansit-mode-field").value = tmode;
+      });
+    }
+    function calcTime(){
+       var request = {
+        origin:start,
+        destination:end,
+        travelMode:google.maps.TravelMode.WALKING
+      };
+      directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+           time = result.routes[0].legs[0].duration.value;
+           for (var i = 0; i < 3; i++) {
+             leaveTime.walking[i] = new Date(arriveTimeArray[i].getTime()-time*1000);
+           };
+         }
+      });
+      var request = {
+        origin:start,
+        destination:end,
+        travelMode:google.maps.TravelMode.BICYCLING
+      };
+      directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+           time = result.routes[0].legs[0].duration.value;
+           for (var j = 0; j < 3; j++) {
+             leaveTime.bicycling[j] = new Date(arriveTimeArray[j].getTime()-time*1000);
+           };
+         }
+      });
+      var l = 0
+      for (var k = 0; k < 3; k++) {
+        var request = {
+          origin:start,
+          destination:end,
+          travelMode:google.maps.TravelMode.TRANSIT,
+          transitOptions: {arrivalTime: arriveTimeArray[k]}
+        };
+        directionsService.route(request, function(result, status) {
+         if (status == google.maps.DirectionsStatus.OK) {
+             leaveTime.transit[l] = result.routes[0].legs[0].departure_time.value;
+             l++;
+         }
+      });
+      }
+      document.getElementById("transit").innerHTML = "CTA: "+(attendence.transit[0]+attendence.transit[1]+attendence.transit[2])
+      document.getElementById("walking").innerHTML = "Walking: "+(attendence.walking[0]+attendence.walking[1]+attendence.walking[2])
+      document.getElementById("bicycling").innerHTML = "Biking: "+(attendence.bicycling[0]+attendence.bicycling[1]+attendence.bicycling[2])
+      document.getElementById("early").innerHTML = "Early: "+attendence.transit[0];
+      document.getElementById("onTime").innerHTML = "On Time: "+attendence.transit[1];
+      document.getElementById("late").innerHTML = "Late: "+attendence.transit[2];
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+    function transitChange(mode){
+      tmode = mode;
+      if (mode == 'walking'){
+        gmMode = google.maps.TravelMode.WALKING;
+      }
+      else if (mode == 'transit'){
+        gmMode = google.maps.TravelMode.TRANSIT;
+      }
+      else{
+        gmMode = google.maps.TravelMode.BICYCLING;
+      }
+      document.getElementById("early").innerHTML = "Early: "+attendence[tmode][0];
+      document.getElementById("onTime").innerHTML = "On Time: "+attendence[tmode][1];
+      document.getElementById("late").innerHTML = "Late: "+attendence[tmode][2];
+      calcRoute(gmMode,arriveTimeArray[leaveTimeIndex]);
+    }
+</script>
+</head>
+<body>
+
+  <div data-role="page">
+
+    <div data-role="header">
+     <h1>Map</h1>
+    </div><!-- /header -->
+    <div role = "main">
+      <div class="ui-content" id="map-canvas">
+        <!-- map loads here... -->
+      </div>
+    <button id = "transit" onclick = "transitChange('transit')">CTA</button>
+    <button  id = "walking" onclick = "transitChange('walking')">Walking</button>
+    <button id = "bicycling" onclick = "transitChange('bicycling')">Biking</button>
+    <div id = "directions">
+    </div>
+  </div>
+  <div id ="time_selections">
+    <button id = "early" onclick="timeChange(0)">Early</button>
+    <button id = "onTime" onclick="timeChange(1)">On Time</button>
+    <button id = "late" onclick="timeChange(2)">Late</button>
+  </div>
+  <input type = "hidden" id = "tansit-mode-field" name = "tansit-mode" value = "transit">
+  <button id = "submit-button">Let's Go!</button>
+  </div><!-- /page -->
+
+</body>
+</html>
