@@ -1,12 +1,6 @@
 class EventsController < ApplicationController
   def index
-
-    if request.xhr?
-      events = Event.all
-      @events_json = events.map do |event|
-        event.as_json.merge(:numberOfAttendees => event.attendances.count)
-      end
-    end
+  end
 
     # preferences_json = {
     #   preference_1: User.find_by_id(session[:user_id]).preference_1,
@@ -18,5 +12,12 @@ class EventsController < ApplicationController
     #   :events => events_json,
     #   :preferences => preferences_json
     # }
+
+  def all
+    events = Event.all
+    @events_json = events.map do |event|
+        event.as_json.merge(:numberOfAttendees => event.attendances.count)
+    end
   end
+
 end
