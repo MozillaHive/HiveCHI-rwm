@@ -116,3 +116,28 @@ Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bd
 
 
 Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-06 22:14:21 -0500
+
+
+Started GET "/" for ::1 at 2015-06-06 22:19:03 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 2013ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-06-06 22:19:05 -0500
+Processing by WelcomeController#index as HTML
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 2004ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2015-06-06 22:19:07 -0500
+Processing by WelcomeController#dashboard as HTML
+  Rendered welcome/dashboard.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 335ms (Views: 334.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2015-06-06 22:19:13 -0500
+Processing by SessionController#login as HTML
+  Rendered session/login.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 32ms (Views: 31.2ms | ActiveRecord: 0.0ms)

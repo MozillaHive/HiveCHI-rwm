@@ -1,8 +1,11 @@
 class EventsController < ApplicationController
   def index
-    events = Event.all
-    events_json = events.map do |event|
-      event.as_json.merge(:numberOfAttendees => event.attendances.count)
+
+    if request.xhr?
+      events = Event.all
+      @events_json = events.map do |event|
+        event.as_json.merge(:numberOfAttendees => event.attendances.count)
+      end
     end
 
     # preferences_json = {
