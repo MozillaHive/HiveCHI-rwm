@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Index</title> 
+  <title>Index</title>
 </head>
 <body>
 
+  <script>
+    var events_json = $.ajax({
+        method: "get",
+        url: "/events/all",
+        dataType: "json",
+      })
+    console.log(events_json)
+  </script>
+
   <div data-role="page">
 
-    <div data-role="panel" id="myPanel" data-display="reveal"> 
+    <div data-role="panel" id="myPanel" data-display="reveal">
       <h2>Catagories</h2>
 
       <div>
@@ -85,7 +94,7 @@
     </div>
 
     <div>
-      
+
     </div><!-- body -->
 
   </div><!-- /page -->
