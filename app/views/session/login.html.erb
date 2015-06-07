@@ -4,14 +4,15 @@
   <title>My Page</title>
 </head>
 <body>
-
+<link rel="stylesheet" type="text/css" href="login.css">
 
 <div data-role="page">
 
-  <div data-role="header">
-    <h1>Events</h1>
+  <div data-role="header" data-theme="b">
+    <h1>Welcome</h1>
   </div><!-- /header -->
 
+  <div id="form">
   <%= form_for :user, url: '/login', html: {id: "login_form"} do |f| %>
 
     <%= f.label :email %>
@@ -22,9 +23,10 @@
 
     <%= f.submit "Log in", :class => "button" %>
   <% end %>
+  </div>
 
   <!-- footer navigator -->
-  <div data-role="footer" data-id="foo1" data-position="fixed">
+  <div data-role="footer" id="footer" data-position="fixed">
   <div data-role="navbar">
     <ul>
       <li><a href="a.html">Info</a></li>
