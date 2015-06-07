@@ -17,8 +17,18 @@
       <li></li>
     </ul>
 
-    </div><!-- /panel -->
+  </div><!-- /panel -->
 
+  <div data-role="page" id="home_page">
+    <div data-role="header" data-theme="a">
+         <h1>Header</h1>
+
+    </div>
+    <!-- Header -->
+    <div data-role="content">
+        <ul data-role="listview" data-inset="true" id="event-list"></ul>
+    </div>
+  </div>
 
   <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
     <div data-role="navbar">
@@ -121,8 +131,6 @@ var eventsJson = null
     url: "/events/all",
     dataType: "json",
     success: function(data) {
-        console.log(data);
-        console.log(data[0].name)
         eventsJson = data
     }
   })
@@ -295,27 +303,25 @@ var eventsJson = null
 
   function refresh() {
     filteredEvents = [];
-    // console.log("eventsJson.length");
-    // console.log(eventsJson.length);
-  for (var i = 0; i < eventsType.length; i++)
-    {
-      for (var j = 0; j < eventsJson.length; j++)
+    for (var i = 0; i < eventsType.length; i++)
       {
-    // console.log("eventsType[i]")
-    // console.log(eventsType[i]);
-    // console.log("eventsJson[j]")
-    // console.log(eventsJson[j].event_type);
-        // console.log(eventsType[i] === eventsJson[j].event_type)
-        if (eventsType[i] === eventsJson[j].event_type)
+        for (var j = 0; j < eventsJson.length; j++)
         {
-          // console.log("HIT!!!!!!")
-          filteredEvents.push(eventsJson[j].name);
+          if (eventsType[i] === eventsJson[j].event_type)
+          {
+            filteredEvents.push(eventsJson[j].name);
+          }
         }
-      }
+      }  
+      var output = '';
+      $.each(filteredEvents, function (index, value) {
+        output += '<li><a href="#">' + value.name + '</a></li>';
+      });
+      $('#event-list').html(output).listview("refresh");
+      console.log(filteredEvents);
     }
-    console.log("FILTEREDEVENTS")
-    console.log(filteredEvents);
-  }
+
+
 
 </script>
 
