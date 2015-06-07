@@ -29,14 +29,14 @@
     }
   </style>
   <script>
-   /* jQuery.getJSON("/addresses.json",function(data){start = data.schoolAddress+", Chicago, IL";
+   /*jQuery.getJSON("/addresses.json",function(data){start = data.schoolAddress+", Chicago, IL";
       end = data.eventAddress+", Chicago, IL";
     });*/
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
     var map;
     var start = "5110 N Damen Av";
-    var end = "6935 W. Addison St.";
+    var end = "3945 N. Springfield Ave.";
     var tmode = "transit";
     var startTime = new Date("2015-06-20T10:00:00-06:00");
     var earlyTime = new Date(startTime.getTime()-15*60*1000);
@@ -59,6 +59,10 @@
      calcTime();
      calcRoute(google.maps.TravelMode.TRANSIT);
      directionsDisplay.setPanel(document.getElementById("directions"));
+     setInterval(function(){
+      document.getElementById("early").innerHTML = "Early: "+attendence[tmode][0]+"<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
+      document.getElementById("onTime").innerHTML = "On Time: "+attendence[tmode][1]+"<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
+      document.getElementById("late").innerHTML = "Late: "+attendence[tmode][2]+"<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes())},10)
     }
 
     function calcRoute(mode,arriveDate) {
@@ -114,6 +118,9 @@
          if (status == google.maps.DirectionsStatus.OK) {
              leaveTime.transit[l] = result.routes[0].legs[0].departure_time.value;
              l++;
+             if (l ==3){
+              leaveTime.transit.sort(function(a,b){return a.getTime()-b.getTime()})
+             }
          }
       });
       }
@@ -136,10 +143,24 @@
       else{
         gmMode = google.maps.TravelMode.BICYCLING;
       }
-      document.getElementById("early").innerHTML = "Early: "+attendence[tmode][0];
-      document.getElementById("onTime").innerHTML = "On Time: "+attendence[tmode][1];
-      document.getElementById("late").innerHTML = "Late: "+attendence[tmode][2];
+      document.getElementById("early").innerHTML = "Early: "+attendence[tmode][0]+"<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
+      document.getElementById("onTime").innerHTML = "On Time: "+attendence[tmode][1]+"<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
+      document.getElementById("late").innerHTML = "Late: "+attendence[tmode][2]+"<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes());
       calcRoute(gmMode,arriveTimeArray[leaveTimeIndex]);
+    }
+    function timeChange(index){
+      leaveTimeIndex = index;
+      if (tmode == "transit"){
+        calcRoute(google.maps.TravelMode.TRANSIT,arriveTimeArray[index]);
+      }
+    }
+    function  printMin(min){
+      if (min > 9){
+        return min.toString();
+      }
+      else{
+        return "0"+min.toString();
+      }
     }
 </script>
 </head>
