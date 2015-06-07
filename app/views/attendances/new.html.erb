@@ -79,9 +79,14 @@
       <div class="ui-content" id="map-canvas">
         <!-- map loads here... -->
       </div>
-    <button id = "transit" onclick = "calcRoute(google.maps.TravelMode.TRANSIT);tmode='transit';">CTA</button>
-    <button  id = "walking" onclick = "calcRoute(google.maps.TravelMode.WALKING);tmode='walking'">Walking</button>
-    <button id = "bicycling" onclick = "calcRoute(google.maps.TravelMode.BICYCLING);tmode='bicycling'">Biking</button>
+    <div id="transport-mode">
+      <button id = "transit" onclick = "calcRoute(google.maps.TravelMode.TRANSIT);tmode='transit';">CTA</button>
+      <button  id = "walking" onclick = "calcRoute(google.maps.TravelMode.WALKING);tmode='walking'">Walking</button>
+      <button id = "bicycling" onclick = "calcRoute(google.maps.TravelMode.BICYCLING);tmode='bicycling'">Biking</button>
+    </div>
+    <div id = "arrival-times">
+
+    </div>
     <div id = "directions">
     </div>
   </div>
