@@ -10184,3 +10184,493 @@ Started GET "/dashboard" for ::1 at 2015-06-07 02:11:25 -0500
 Processing by WelcomeController#dashboard as HTML
   Rendered welcome/dashboard.html.erb within layouts/application (0.3ms)
 Completed 200 OK in 19ms (Views: 18.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-06-07 02:34:00 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 2013ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-06-07 02:34:02 -0500
+Processing by WelcomeController#index as HTML
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 2005ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2015-06-07 02:34:04 -0500
+Processing by WelcomeController#dashboard as HTML
+  Rendered welcome/dashboard.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 132ms (Views: 131.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events" for ::1 at 2015-06-07 02:34:12 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 20ms (Views: 19.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/1" for ::1 at 2015-06-07 02:34:24 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered events/show.html.erb within layouts/application (0.8ms)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+SyntaxError (/Users/christopherbohl/Desktop/ride_with_me/app/views/events/show.html.erb:17: syntax error, unexpected tIDENTIFIER, expecting ')'
+...uffer.append=("Location:" event.address );@output_buffer.saf...
+...                               ^
+/Users/christopherbohl/Desktop/ride_with_me/app/views/events/show.html.erb:18: syntax error, unexpected tIDENTIFIER, expecting ')'
+....append=("Date and time:" event.start_date_and_time );@outpu...
+...                               ^
+/Users/christopherbohl/Desktop/ride_with_me/app/views/events/show.html.erb:19: syntax error, unexpected tIDENTIFIER, expecting ')'
+...er.append=("Description:" event.description );@output_buffer...
+...                               ^):
+  app/views/events/show.html.erb:17: syntax error, unexpected tIDENTIFIER, expecting ')'
+  app/views/events/show.html.erb:18: syntax error, unexpected tIDENTIFIER, expecting ')'
+  app/views/events/show.html.erb:19: syntax error, unexpected tIDENTIFIER, expecting ')'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (59.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (45.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (97.2ms)
+
+
+Started GET "/events/1" for ::1 at 2015-06-07 02:35:22 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mEvent Load (0.4ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered events/show.html.erb within layouts/application (33.8ms)
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 2.5ms)
+
+ActionView::Template::Error (no implicit conversion of ActiveSupport::TimeWithZone into String):
+    15:   <div>
+    16:     <% event = Event.find_by(id: params[:id]) %>
+    17:     <%="Location:" + event.address %>
+    18:     <%="Date and time:" + event.start_date_and_time %>
+    19:     <%="Description:" + event.description %>
+    20:   </div><!-- /body -->
+    21: 
+  app/views/events/show.html.erb:18:in `+'
+  app/views/events/show.html.erb:18:in `_app_views_events_show_html_erb__2131425389567915955_70166464159280'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (11.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (61.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (44.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (93.0ms)
+
+
+Started GET "/events/1" for ::1 at 2015-06-07 02:35:30 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered events/show.html.erb within layouts/application (2.7ms)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.2ms)
+
+ActionView::Template::Error (no implicit conversion of ActiveSupport::TimeWithZone into String):
+    15:   <div>
+    16:     <% event = Event.find_by(id: params[:id]) %>
+    17:     <%="Location:" + event.address %>
+    18:     <%="Date and time:" + event.start_date_and_time %>
+    19:     <%="Description:" + event.description %>
+    20:   </div><!-- /body -->
+    21: 
+  app/views/events/show.html.erb:18:in `+'
+  app/views/events/show.html.erb:18:in `_app_views_events_show_html_erb__2131425389567915955_70166464159280'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (49.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (44.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (101.3ms)
+
+
+Started GET "/events/1" for ::1 at 2015-06-07 02:35:42 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mEvent Load (0.2ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered events/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 19ms (Views: 18.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:35:42 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:35:42 -0500
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:35:42 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:35:42 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:35:42 -0500
+
+
+Started GET "/events/1" for ::1 at 2015-06-07 02:36:26 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered events/show.html.erb within layouts/application (2.7ms)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.3ms)
+
+ActionView::Template::Error (wrong number of arguments (0 for 1)):
+    15:   <div>
+    16:     <% event = Event.find_by(id: params[:id]) %>
+    17:     <%="Location:" + event.address %>
+    18:     <%="Date and time:" + event.start_date_and_time.strftime %>
+    19:     <%="Description:" + event.description %>
+    20:   </div><!-- /body -->
+    21: 
+  app/views/events/show.html.erb:18:in `_app_views_events_show_html_erb__2131425389567915955_70166510028840'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (51.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (40.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (97.6ms)
+
+
+Started GET "/events/1" for ::1 at 2015-06-07 02:37:44 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mEvent Load (0.2ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered events/show.html.erb within layouts/application (2.8ms)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.2ms)
+
+ActionView::Template::Error (wrong number of arguments (0 for 1)):
+    15:   <div>
+    16:     <% event = Event.find_by(id: params[:id]) %>
+    17:     <%="Location:" + event.address %>
+    18:     <%="Date and time:" + event.start_date_and_time.strftime %>
+    19:     <%="Description:" + event.description %>
+    20:   </div><!-- /body -->
+    21: 
+  app/views/events/show.html.erb:18:in `_app_views_events_show_html_erb__2131425389567915955_70166458768480'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (56.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (40.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (96.6ms)
+
+
+Started GET "/events/1" for ::1 at 2015-06-07 02:39:14 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered events/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 21ms (Views: 20.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:39:14 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:39:14 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:39:14 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:39:14 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:39:14 -0500
+
+
+Started GET "/" for ::1 at 2015-06-07 02:49:15 -0500
+Processing by WelcomeController#index as HTML
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 2004ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-06-07 02:49:17 -0500
+Processing by WelcomeController#index as HTML
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 2003ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2015-06-07 02:49:19 -0500
+Processing by WelcomeController#dashboard as HTML
+  Rendered welcome/dashboard.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 26ms (Views: 25.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events" for ::1 at 2015-06-07 02:49:24 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 25ms (Views: 24.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events" for ::1 at 2015-06-07 02:49:43 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 19ms (Views: 18.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:49:43 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:49:43 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:49:43 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:49:43 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:49:43 -0500
+
+
+Started GET "/events" for ::1 at 2015-06-07 02:50:10 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 23ms (Views: 22.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:50:10 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:50:10 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:50:10 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:50:10 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:50:10 -0500
+
+
+Started GET "/events" for ::1 at 2015-06-07 02:50:11 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 20ms (Views: 19.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:50:11 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:50:11 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:50:11 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:50:11 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:50:11 -0500
+
+
+Started GET "/events" for ::1 at 2015-06-07 02:50:12 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 23ms (Views: 22.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:50:12 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:50:12 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:50:12 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:50:12 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:50:12 -0500
+
+
+Started GET "/events" for ::1 at 2015-06-07 02:51:09 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 18ms (Views: 18.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:51:09 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:51:09 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:51:09 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:51:09 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:51:09 -0500
+
+
+Started GET "/events" for ::1 at 2015-06-07 02:51:10 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 24ms (Views: 23.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:51:10 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:51:10 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:51:10 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:51:10 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:51:10 -0500
+
+
+Started GET "/events" for ::1 at 2015-06-07 02:51:36 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 19ms (Views: 18.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:51:36 -0500
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:51:36 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:51:36 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:51:36 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:51:36 -0500
+
+
+Started GET "/events" for ::1 at 2015-06-07 02:51:37 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 21ms (Views: 21.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:51:37 -0500
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:51:37 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:51:37 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:51:37 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:51:37 -0500
+
+
+Started GET "/events" for ::1 at 2015-06-07 02:51:41 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 19ms (Views: 18.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:51:41 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:51:41 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:51:41 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:51:41 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:51:41 -0500
+
+
+Started GET "/events" for ::1 at 2015-06-07 02:51:42 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 21ms (Views: 20.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:51:42 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:51:42 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:51:42 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:51:42 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:51:42 -0500
+
+
+Started GET "/events" for ::1 at 2015-06-07 02:51:42 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 19ms (Views: 18.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 02:51:43 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 02:51:43 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 02:51:43 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 02:51:43 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 02:51:43 -0500

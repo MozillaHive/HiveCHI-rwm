@@ -1,7 +1,7 @@
-<!DOCTYPE html> 
-<html> 
-  <head> 
-  <title>Show</title> 
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Show</title>
 </head>
 <body>
 
@@ -13,8 +13,12 @@
   </div><!-- /header -->
 
   <div>
-    
-  </div><!-- body -->
+    <% event = Event.find_by(id: params[:id]) %>
+    <%="Location:" + event.address %>
+    <%="Date and time:" + event.start_date_and_time.strftime("%A, %B %d, %Y at %l%p") %>
+    <%="Description:" + event.description %>
+    <%="# attending from your school:" + event.attendances.where(school:  = %>
+  </div><!-- /body -->
 
   <!-- footer navigator -->
   <div data-role="footer" data-id="foo1" data-position="fixed">

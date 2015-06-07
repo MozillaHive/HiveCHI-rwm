@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Index</title> 
+  <title>Index</title>
 </head>
 <body>
 
   <div data-role="page">
 
-    <div data-role="panel" id="myPanel" data-display="reveal"> 
+    <div data-role="panel" id="myPanel" data-display="reveal">
       <h2>Catagories</h2>
 
       <div>
@@ -67,7 +67,7 @@
             <option value="1">On</option>
           </select>
         </div>
-        <div class="toggle-option" id="other">
+        <div class="toggle-option">
           <label class="switch-label" for="flip-3">Other</label>
           <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
             <option value="0">Off</option>
@@ -96,18 +96,19 @@
           url: "/events/all",
           dataType: "json",
         })
-        
+
         console.log(eventsJson)
 
+        //sorting by football
+        eventsType.sort();
         var $footballToggle = $("#football");
         var $container = $("#options");
 
         $eventsType.change(function () {
           //filter based on selected event.
-          if (#football.option[value="1"]) {
           makesArray = jQuery.grep(eventsType, function (product, i) {
             return product.event_type == "football";
-          }});
+          });
           updateTable(makesArray);
         });
 
