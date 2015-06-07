@@ -10917,3 +10917,399 @@ Processing by WelcomeController#dashboard as HTML
   [1m[36mEvent Load (0.2ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 3]]
   Rendered welcome/dashboard.html.erb within layouts/application (3.0ms)
 Completed 200 OK in 23ms (Views: 21.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2015-06-07 11:53:01 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 2013ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2015-06-07 11:53:03 -0500
+Processing by WelcomeController#dashboard as HTML
+  [1m[35mEvent Load (0.3ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mEvent Load (0.1ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mEvent Load (0.1ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mEvent Load (0.1ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 3]]
+  Rendered welcome/dashboard.html.erb within layouts/application (20.3ms)
+Completed 200 OK in 160ms (Views: 156.6ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 11:53:04 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 11:53:04 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 11:53:04 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 11:53:04 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 11:53:04 -0500
+
+
+Started GET "/" for ::1 at 2015-06-07 11:54:53 -0500
+Processing by WelcomeController#index as HTML
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 2006ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2015-06-07 11:54:55 -0500
+Processing by WelcomeController#dashboard as HTML
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mEvent Load (0.1ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mEvent Load (0.1ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 7]]
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mEvent Load (0.1ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  Rendered welcome/dashboard.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 22ms (Views: 20.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/events/1/attendances/new" for ::1 at 2015-06-07 11:54:56 -0500
+Processing by AttendancesController#new as HTML
+  Parameters: {"event_id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 1.1ms)
+
+NoMethodError (undefined method `school' for nil:NilClass):
+  app/controllers/attendances_controller.rb:4:in `new'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (48.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (43.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (98.9ms)
+
+
+Started GET "/events/1/join" for ::1 at 2015-06-07 11:54:57 -0500
+Processing by EventsController#join as HTML
+  Parameters: {"id"=>"1"}
+  Rendered events/join.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 20ms (Views: 19.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/1/attendances/new" for ::1 at 2015-06-07 11:55:01 -0500
+Processing by AttendancesController#new as HTML
+  Parameters: {"event_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `school' for nil:NilClass):
+  app/controllers/attendances_controller.rb:4:in `new'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (50.6ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (44.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (99.8ms)
+
+
+Started GET "/events/1/attendances/new" for ::1 at 2015-06-07 11:55:02 -0500
+Processing by AttendancesController#new as HTML
+  Parameters: {"event_id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.4ms)
+
+NoMethodError (undefined method `school' for nil:NilClass):
+  app/controllers/attendances_controller.rb:4:in `new'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (57.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (44.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (96.1ms)
+
+
+Started GET "/events/1/attendances/new" for ::1 at 2015-06-07 11:55:23 -0500
+Processing by AttendancesController#new as HTML
+  Parameters: {"event_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `school' for nil:NilClass):
+  app/controllers/attendances_controller.rb:4:in `new'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (53.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (44.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (97.7ms)
+
+
+Started GET "/events/1/attendances/new" for ::1 at 2015-06-07 11:55:24 -0500
+Processing by AttendancesController#new as HTML
+  Parameters: {"event_id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `school' for nil:NilClass):
+  app/controllers/attendances_controller.rb:4:in `new'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (52.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (42.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (91.7ms)
+
+
+Started GET "/events/1/attendances/new" for ::1 at 2015-06-07 11:56:54 -0500
+Processing by AttendancesController#new as HTML
+  Parameters: {"event_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 12]]
+  [1m[35mSchool Load (0.2ms)[0m  SELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered attendances/new.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 52ms (Views: 22.5ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 11:56:54 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 11:56:54 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 11:56:54 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 11:56:54 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 11:56:54 -0500
+
+
+Started GET "/events/1/join" for ::1 at 2015-06-07 11:58:04 -0500
+Processing by EventsController#join as HTML
+  Parameters: {"id"=>"1"}
+  Rendered events/join.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 27ms (Views: 26.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/1/attendances/new" for ::1 at 2015-06-07 11:58:06 -0500
+Processing by AttendancesController#new as HTML
+  Parameters: {"event_id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36mSchool Load (0.1ms)[0m  [1mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mEvent Load (0.1ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered attendances/new.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 30ms (Views: 27.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/events/1/attendances/new" for ::1 at 2015-06-07 11:58:17 -0500
+Processing by AttendancesController#new as HTML
+  Parameters: {"event_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 12]]
+  [1m[35mSchool Load (0.1ms)[0m  SELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered attendances/new.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 21ms (Views: 18.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-07 11:58:17 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-07 11:58:17 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-06-07 11:58:17 -0500
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-06-07 11:58:17 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-07 11:58:17 -0500
+
+
+Started GET "/events" for ::1 at 2015-06-07 11:58:26 -0500
+Processing by EventsController#index as HTML
+  Rendered events/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 34ms (Views: 33.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/all" for ::1 at 2015-06-07 11:58:26 -0500
+Processing by EventsController#all as JSON
+  [1m[35mEvent Load (0.7ms)[0m  SELECT "events".* FROM "events"
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 2]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 4]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 5]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 6]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 8]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 9]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 10]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 11]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 12]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 13]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 14]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 15]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 16]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 17]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 18]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 19]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 20]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 21]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 67]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 22]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 23]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 24]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 25]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 26]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 27]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 28]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 29]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 30]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 31]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 32]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 33]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 34]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 35]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 36]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 37]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 38]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 39]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 40]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 41]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 42]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 43]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 44]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 45]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 68]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 46]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 47]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 48]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 49]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 50]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 51]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 52]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 53]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 54]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 55]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 56]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 57]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 58]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 59]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 60]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 61]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 62]]
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 63]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 64]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 65]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 66]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 69]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 70]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 71]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 72]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 73]]
+  [1m[35m (1.5ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 74]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 75]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 76]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 77]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 78]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 79]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 80]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 81]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 82]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 83]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 84]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 85]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 86]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 87]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 88]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 89]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 90]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 91]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 92]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 93]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 94]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 95]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 96]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1[0m  [["event_id", 97]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "attendances" WHERE "attendances"."event_id" = $1  [["event_id", 98]]
+Completed 200 OK in 121ms (Views: 10.0ms | ActiveRecord: 18.8ms)
+
+
+Started GET "/events/12" for ::1 at 2015-06-07 11:58:30 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mEvent Load (0.5ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 12]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36mSchool Load (0.2ms)[0m  [1mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1 AND "users"."school_id" = 0  [["event_id", 12]]
+  Rendered events/show.html.erb within layouts/application (15.6ms)
+Completed 200 OK in 39ms (Views: 37.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/events/12/join" for ::1 at 2015-06-07 11:58:41 -0500
+Processing by EventsController#join as HTML
+  Parameters: {"id"=>"12"}
+  Rendered events/join.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 20ms (Views: 19.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/12/attendances/new" for ::1 at 2015-06-07 11:58:44 -0500
+Processing by AttendancesController#new as HTML
+  Parameters: {"event_id"=>"12"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 12]]
+  [1m[35mSchool Load (0.2ms)[0m  SELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 12]]
+  Rendered attendances/new.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 27ms (Views: 24.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/events/12/attendances/new" for ::1 at 2015-06-07 11:58:58 -0500
+Processing by AttendancesController#new as HTML
+  Parameters: {"event_id"=>"12"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36mSchool Load (0.1ms)[0m  [1mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mEvent Load (0.1ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 12]]
+  Rendered attendances/new.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 28ms (Views: 26.2ms | ActiveRecord: 0.4ms)
