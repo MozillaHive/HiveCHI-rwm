@@ -17,7 +17,10 @@
     <%="Location:" + event.address %>
     <%="Date and time:" + event.start_date_and_time.strftime("%A, %B %d, %Y at %l%p") %>
     <%="Description:" + event.description %>
-    <%="# attending from your school:" + event.attendances.where(school:  = %>
+    <%="# attending from your school:" %>
+    <% current_user = User.find_by(id: session[:user_id]) %>
+    <% user_school = current_user.school.name %>
+    <%="Number attending from your school:" event.attendees.where(school: user_school).count %>
   </div><!-- /body -->
 
   <!-- footer navigator -->
