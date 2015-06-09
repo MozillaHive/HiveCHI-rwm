@@ -118,24 +118,29 @@
 </div><!-- /page -->
 
 <script>
-var eventsJson = null;
-  var footballVal = 'on', campVal = 'on', recreationalVal = 'on', gymnasticsVal = "on", basketballVal = "on", tennisVal = "on", aquaticVal = "on", fitnessVal = "on", otherVal = "on", filteredIds = [];
-
-  var eventsType = ['Football', 'Camp', 'Recreational', 'Basketball', 'Gymnastics', 'Tennis', 'Aquatic', 'Fitness', 'Other'];
-  var filteredEvents = [];
+  var eventsJson = null
   $.ajax({
     method: "get",
     url: "/events/all",
     dataType: "json",
     success: function(data) {
-        eventsJson = data
+      eventsJson = data;
+      refresh();
+      debugger;
     }
   })
+
+
+  var footballVal = 'on', campVal = 'on', recreationalVal = 'on', gymnasticsVal = "on", basketballVal = "on", tennisVal = "on", aquaticVal = "on", fitnessVal = "on", otherVal = "on", filteredIds = [];
+
+  var eventsType = ['Football', 'Camp', 'Recreational', 'Basketball', 'Gymnastics', 'Tennis', 'Aquatic', 'Fitness', 'Other'];
+  var filteredEvents = [];
   setTimeout(refresh, 1000);
   setTimeout(refresh, 3000);
   setTimeout(refresh, 2000);
   setTimeout(refresh, 2000);
 
+  // refresh()
   // var fixedJson = JSON.parse(originalJson);
   // var eventsJson = originalJson.events;
 
