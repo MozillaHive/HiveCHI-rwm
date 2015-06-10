@@ -9,8 +9,8 @@ class SessionController < ApplicationController
 
     @user = User.find_by(email: params[:user][:email])
     puts @user
-    # if @user && @user.authenticate(params[:user][:password])
-    if @user
+    if @user && @user.authenticate(params[:user][:password])
+    #if @user
       session[:user_id] = @user.id
       redirect_to dashboard_path
     else
