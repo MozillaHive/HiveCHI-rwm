@@ -56,14 +56,15 @@ ActiveRecord::Schema.define(version: 20150605210630) do
     t.string   "email"
     t.string   "username"
     t.string   "password_digest"
-    t.string   "parent_password_digest"
+    t.string   "parent_password"
     t.string   "home_address"
+    t.string   "phone"
     t.integer  "school_id"
     t.string   "preference_1"
     t.string   "preference_2"
     t.string   "preference_3"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
