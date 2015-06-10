@@ -14,7 +14,8 @@ class SessionController < ApplicationController
       session[:user_id] = @user.id
       redirect_to dashboard_path
     else
-      @errors = ["Invalid email or password"]
+      flash[:notice] = "Invalid email or password"
+      #puts @errors
       redirect_to login_path
     end
   end
