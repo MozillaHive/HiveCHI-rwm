@@ -1,4 +1,5 @@
 class NudgesController < ApplicationController
+
 	def new
 		@user = User.find(session[:user_id])
 		@menu_options = @user.school.students
@@ -12,6 +13,12 @@ class NudgesController < ApplicationController
 		flash[:notice] = "You nudged #{nudge.nudgee.username} to go to #{nudge.event.name}"
 		nudge.save
 		redirect_to "/"
+	end
+
+	def show
+		user = User.find(session[:user_id])
+		@nudges_in = user.recieved_nudges
+		@nudges_out = user.sent_nudges
 	end
 
 	private
