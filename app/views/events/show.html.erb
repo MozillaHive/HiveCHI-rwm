@@ -37,11 +37,18 @@
     <%="Total number attending: " + event.attendees.length.to_s %><br />
     <%="Number attending from your school: " + event.attendees.where(school: user_school).length.to_s %>
     </div>
+    <% attend = Attendance.find_by(event: event, user: current_user) %>
+    <% unless attend%>
     <div id="join">
       <form method="get" action="/events/<%=params[:id]%>/join"%>
         <input type="submit" value="JOIN"></input>
       </form>
     </div>
+    <% else %>
+    <div id = "status">
+    <%= "Your attendance status: #{attend.commitment_status}" %>
+  </div>
+    <% end %>
   </div><!-- body -->
 
   <!-- footer navigator -->
