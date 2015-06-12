@@ -10,6 +10,6 @@ class WelcomeController < ApplicationController
   end
 
   def dashboard
-
+      @user_events = User.find(session[:user_id]).events_attended
   end
 end
