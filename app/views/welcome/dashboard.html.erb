@@ -11,7 +11,9 @@
   <div data-role="header">
     <h1>Dashboard</h1>
   </div><!-- /header -->
-
+   <div id = "notice" class = "notice">
+    <%= flash[:notice] if flash[:notice] %>
+  </div>
   <div data-role="collapsible-set">
     <div data-role="collapsible" data-collapsed="false">
       <h4>My Events</h4>
@@ -40,6 +42,7 @@
           <li><a href="/events", data-ajax="false">This Week</a></li>
       </ul>
     </div>
+    <a href = "/mynudges" id = "nudges-link">My Nudges</a>
   </div>
 
   <!-- footer navigator -->
