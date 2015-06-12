@@ -15,6 +15,9 @@
     <div id="event">
       <% event = Event.find_by(id: params[:id]) %>
     </div>
+    <div id = "name">
+      <%= event.name %>
+    </div>
     <div id="location">
       <%="Location: " + event.address %>
     </div>
@@ -31,7 +34,8 @@
       <% user_school = current_user.school %>
     </div>
     <div id="attendee">
-      <%="Number attending from your school: " + event.attendees.where(school: user_school).length.to_s %>
+    <%="Total number attending: " + event.attendees.length.to_s %><br />
+    <%="Number attending from your school: " + event.attendees.where(school: user_school).length.to_s %>
     </div>
     <div id="join">
       <form method="get" action="/events/<%=params[:id]%>/join"%>
