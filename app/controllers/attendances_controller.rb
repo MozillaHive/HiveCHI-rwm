@@ -1,9 +1,15 @@
 class AttendancesController < ApplicationController
   def new
-   # addresses_json = {
-   #    schoolAddress: current_user.school.address,
-   #    eventAddress: Event.find_by_id(params[:event_id]).address
-   #  }
-   #  render json: addresses_json
+    redirect_to "/events/"+params[:event_id] unless flash[:commitment]
+  end
+
+  def create
+  	event = Event.find(params[:id])
+  	Attendance.create(user: User.find(session[:user_id]), event: event,
+  		departure_time: params[:departure_time],
+  		method_of_transit: params[:method_of_transit],
+  		commitment_status: params[:commitment_status])
+  	flash[:notice] = "You signed up for #{event.name}"
+  	redirect_to "/"
   end
 end
