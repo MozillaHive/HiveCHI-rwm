@@ -1,10 +1,9 @@
 class NudgesController < ApplicationController
 
 	def new
-		@user = User.find(session[:user_id])
-		@menu_options = @user.school.students
-		@menu_options = @menu_options.select{|s| s.id != session[:user_id]}
-		@test = Nudge.all
+		user = User.find(session[:user_id])
+		@menu_options = user.school.students
+		@menu_options = @menu_options.select{|s| s != user}
 	end
 
 	def create
