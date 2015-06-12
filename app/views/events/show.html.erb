@@ -16,22 +16,22 @@
       <% event = Event.find_by(id: params[:id]) %>
     </div>
     <div id="location">
-      <%="Location:" + event.address %>
+      <%="Location: " + event.address %>
     </div>
     <div id="dt">
-      <%="Date and time:" + event.start_date_and_time.strftime("%A, %B %d, %Y at %l%p") %>
+      <%="Date and time: " + event.start_date_and_time.strftime("%A, %B %d, %Y at %l%p") %>
     </div>
     <div id="desc">
-      <%="Description:" + event.description %>
+      <%="Description: " + event.description %>
     </div>
     <div id="user">
       <% current_user = User.find_by(id: session[:user_id]) %>
     </div>
     <div id="school">
-      <% user_school = current_user.school.name %>
+      <% user_school = current_user.school %>
     </div>
     <div id="attendee">
-      <%="Number attending from your school:" + event.attendees.where(school: user_school).count.to_s %>
+      <%="Number attending from your school: " + event.attendees.where(school: user_school).length.to_s %>
     </div>
     <div id="join">
       <form method="get" action="/events/<%=params[:id]%>/join"%>
