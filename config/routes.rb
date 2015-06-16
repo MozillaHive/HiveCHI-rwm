@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/logout' => 'session#destroy'
 
   post '/events/:id/attendances/create' => 'attendances#create'
+  post '/events/:event_id/attendances/update' => 'attendances#update'
 
   resources :events do
     resources :attendances

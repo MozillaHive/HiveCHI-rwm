@@ -38,16 +38,41 @@
     <%="Number attending from your school: " + event.attendees.where(school: user_school).length.to_s %>
     </div>
     <% attend = Attendance.find_by(event: event, user: current_user) %>
-    <% unless attend%>
-    <div id="join">
-      <form method="get" action="/events/<%=params[:id]%>/join"%>
-        <input type="submit" value="JOIN"></input>
+    <% flash[:attendance] ||= attend.id %>
+    <% if !attend %>
+      <div id="join">
+        <form method="get" action="/events/<%=params[:id]%>/join"%>
+          <input type="submit" value="JOIN"></input>
+        </form>
+      </div>
+    <% elsif attend.commitment_status == "Yes"%>
+      <div id = "status">
+       You are going to this event
+      </div>
+      <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
+        <input type = "hidden" name = "update_commit_status" value = "No" />
+        <input type="submit" value="Back Out"></input>
       </form>
-    </div>
+    <% elsif attend.commitment_status == "No"%>
+      <div id = "status">
+        You backed out of this event
+      </div>
+      <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
+        <input type = "hidden" name = "update_commit_status" value = "Yes" />
+        <input type="submit" value="Commit"></input>
+      </form>
     <% else %>
-    <div id = "status">
-    <%= "Your attendance status: #{attend.commitment_status}" %>
-  </div>
+      <div id = "status">
+        You might be going to this event
+      </div>
+      <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
+        <input type = "hidden" name = "update_commit_status" value = "Yes" />
+        <input type="submit" value="Commit"></input>
+      </form>
+      <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
+        <input type = "hidden" name = "update_commit_status" value = "No" />
+        <input type="submit" value="Back Out"></input>
+      </form>
     <% end %>
   </div><!-- body -->
 

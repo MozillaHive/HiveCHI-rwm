@@ -27,7 +27,7 @@ class SessionController < ApplicationController
 
   def store_user_commitment
    if params[:commitment]
-      flash[:commitment] = params[:commitment]
+      session[:commitment] = params[:commitment]
       redirect_to "/events/#{params[:id]}/attendances/new"
     else
       redirect_to "/events/#{params[:id]}" 

@@ -19,7 +19,7 @@
       <h4>My Events</h4>
         <ul data-role="listview">
           <% @user_events.each do |e| %>
-          <li><a href="<%="/events/#{e.id}"%>"><%=e.name%></a></li>
+            <li><a href="<%="/events/#{e.id}"%>"><%=e.name%></a></li>
           <%end%>
           <%= "You have no events, slacker" unless @user_events.length > 0 %>
       </ul>
@@ -29,7 +29,7 @@
       <h4>Trending</h4>
         <ul data-role="listview">
           <% @hot_events_num.times do |i|%>
-          <li><a href="/events/<%=@events_arr[i][0].id%>"><%=@events_arr[i][0].name%>: <%=@events_arr[i][1]%> people from your school</a></li>
+            <li><a href="/events/<%=@events_arr[i][0].id%>"><%=@events_arr[i][0].name%>: <%=@events_arr[i][1]%> people from your school</a></li>
           <%end%>
       </ul>
     </div>
