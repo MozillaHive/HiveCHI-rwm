@@ -18,8 +18,8 @@
     <div data-role="collapsible" data-collapsed="false">
       <h4>My Events</h4>
         <ul data-role="listview">
-          <% @user_events.each do |e| %>
-            <li><a href="<%="/events/#{e.id}"%>"><%=e.name%></a></li>
+          <% @user_events.each do |a| %>
+            <li><a href="<%="/events/#{a.event.id}"%>"><%="#{a.event.name}\tAttendance Status: #{a.commitment_status}"%></a></li>
           <%end%>
           <%= "You have no events, slacker" unless @user_events.length > 0 %>
       </ul>

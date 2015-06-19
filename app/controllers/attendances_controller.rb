@@ -10,6 +10,7 @@ class AttendancesController < ApplicationController
   		method_of_transit: params[:method_of_transit],
   		commitment_status: session[:commitment])
   	flash[:notice] = "You signed up for #{event.name}"
+    session[:commitment] = nil
   	redirect_to "/"
   end
 

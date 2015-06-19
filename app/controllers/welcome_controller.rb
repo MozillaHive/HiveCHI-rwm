@@ -14,8 +14,9 @@ class WelcomeController < ApplicationController
       @user_events = []
       now = DateTime.now
       active_attends.each do |a|
-        @user_events.push(a.event) unless (a.event.start_date_and_time + a.event.duration.hours) - now < 0
+        @user_events.push(a) unless (a.event.start_date_and_time + a.event.duration.hours) - now < 0
       end
+      @user_events.sort_by! {|a| a.event.start_date_and_time}
       school = User.find(session[:user_id]).school
       @hot_events = Hash.new(0)
       school.students.each do |s|

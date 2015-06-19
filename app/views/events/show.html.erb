@@ -12,20 +12,17 @@
     <h1>Show</h1>
   </div><!-- /header -->
   <div id="body">
-    <div id="event">
-      <% event = Event.find_by(id: params[:id]) %>
-    </div>
     <div id = "name">
-      <%= event.name %>
+      <%= @event.name %>
     </div>
     <div id="location">
-      <%="Location: " + event.address %>
+      <%="Location: " + @event.address %>
     </div>
     <div id="dt">
-      <%="Date and time: " + event.start_date_and_time.strftime("%A, %B %d, %Y at %l%p") %>
+      <%="Date and time: " + @event.start_date_and_time.strftime("%A, %B %d, %Y %l%p") + " to " + (@event.start_date_and_time+@event.duration.hours).strftime("%l%p")%>
     </div>
     <div id="desc">
-      <%="Description: " + event.description %>
+      <%="Description: " + @event.description %>
     </div>
     <div id="user">
       <% current_user = User.find_by(id: session[:user_id]) %>
@@ -34,29 +31,35 @@
       <% user_school = current_user.school %>
     </div>
     <div id="attendee">
-    <%="Total number attending: " + event.attendees.length.to_s %><br />
-    <%="Number attending from your school: " + event.attendees.where(school: user_school).length.to_s %>
+    <%="Total number attending: " + @event.attendees.length.to_s %><br />
+    <%="Number attending from your school: " + @event.attendees.where(school: user_school).length.to_s %>
     </div>
-    <% attend = Attendance.find_by(event: event, user: current_user) %>
-    <% flash[:attendance] ||= attend.id %>
-    <% if !attend %>
+    <% if @in_nudge %>
+      <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
+      <button>Let's Go (dummy)</button>
+      <button>Let's Not (dummy)</button>
+    <% elsif @out_nudge %>
+      <%= "You have nudged #{@out_nudge.nudgee.username} and response is pending" %>
+    <% elsif !@attend %>
       <div id="join">
         <form method="get" action="/events/<%=params[:id]%>/join"%>
           <input type="submit" value="JOIN"></input>
         </form>
       </div>
-    <% elsif attend.commitment_status == "Yes"%>
+    <% elsif @attend.commitment_status == "Yes"%>
       <div id = "status">
        You are going to this event
       </div>
+      <a href = "<%=params[:id]%>/attendances/show">Show Directions</a>
       <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
         <input type = "hidden" name = "update_commit_status" value = "No" />
         <input type="submit" value="Back Out"></input>
       </form>
-    <% elsif attend.commitment_status == "No"%>
+    <% elsif @attend.commitment_status == "No"%>
       <div id = "status">
         You backed out of this event
       </div>
+      <a href = "<%=params[:id]%>/attendances/show">Show Directions</a>
       <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
         <input type = "hidden" name = "update_commit_status" value = "Yes" />
         <input type="submit" value="Commit"></input>
@@ -65,6 +68,7 @@
       <div id = "status">
         You might be going to this event
       </div>
+      <a href = "<%=params[:id]%>/attendances/show">Show Directions</a>
       <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
         <input type = "hidden" name = "update_commit_status" value = "Yes" />
         <input type="submit" value="Commit"></input>
