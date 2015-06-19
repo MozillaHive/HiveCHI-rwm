@@ -4,8 +4,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string  :email
       t.string  :username
       t.string  :password_digest
-      t.string  :parent_password_digest
+      t.string  :parent_password
       t.string  :home_address
+      t.string :phone
       t.belongs_to  :school
       t.string  :preference_1
       t.string  :preference_2

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605210630) do
+ActiveRecord::Schema.define(version: 20150610235421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20150605210630) do
     t.datetime "updated_at",          null: false
   end
 
+  create_table "nudges", force: :cascade do |t|
+    t.integer  "nudger_id"
+    t.integer  "nudgee_id"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.string   "domain_name"
@@ -56,14 +64,15 @@ ActiveRecord::Schema.define(version: 20150605210630) do
     t.string   "email"
     t.string   "username"
     t.string   "password_digest"
-    t.string   "parent_password_digest"
+    t.string   "parent_password"
     t.string   "home_address"
+    t.string   "phone"
     t.integer  "school_id"
     t.string   "preference_1"
     t.string   "preference_2"
     t.string   "preference_3"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
