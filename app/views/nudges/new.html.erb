@@ -9,22 +9,18 @@
 <div data-role="page">
 
   <div data-role="header" data-theme="b">
-    <h1>Welcome</h1>
+    <h1>IGYIG</h1>
   </div><!-- /header -->
-  <div id = "login_error" class = "error_message">
-    <%= flash[:notice] if flash[:notice] %>
-  </div>
   <div id="form">
-  <%= form_for :user, url: '/login', html: {id: "login_form"} do |f| %>
-
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-
-    <%= f.submit "Log in", :class => "button" %>
-  <% end %>
+    Select a user to nudge
+    <form method = "post" action = "./nudge">
+      <select name = "nudgee">
+        <% @menu_options.each do |tar| %>
+        <option value = "<%= tar.id %>"><%= tar.username %></option>
+        <%end%>
+      </select>
+      <input type = "submit" value = "Nudge">
+    </form>
   </div>
 
   <!-- footer navigator -->
