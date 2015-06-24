@@ -39,6 +39,7 @@ class RegistrationsController < ApplicationController
 		if tos_status == "agree"
 			textKey()
 			redirect_to "/register/verify"
+			session[:tos] = true
 		else
 			flash[:notice] = "You must agree to the terms of service to register"
 			redirect_to "/"
@@ -46,7 +47,9 @@ class RegistrationsController < ApplicationController
 	end
 
 	def pending
-		if params[:ver_code]
+		if !session[:tos]
+			redirect_to "/register/tos"
+		elsif params[:ver_code]
 			if params[:ver_code] == session[:verification_key]
 				u = User.create(session[:registering_user])
 				reset_session
