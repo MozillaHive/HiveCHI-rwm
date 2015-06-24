@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>My Page</title>
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="login.css">
+
+<div data-role="page">
+
+  <div data-role="header" data-theme="b">
+    <h1>Your Nudges</h1>
+  </div><!-- /header -->
+    <div id = "incoming_nudges">
+      <h2>Incoming Nudges</h2>
+      <% @nudges_in.each do |n| %>
+      <div class = "nudge">
+        <%="#{n.nudger.username} wants to go to #{n.event.name} with you"%>
+      </div>
+      <%end%> 
+      <%= "You have no incoming nudges" unless @nudges_in.length > 0 %>
+    </div>
+    <div id = "outgoing_nudges">
+      <h2>Outgoing Nudges</h2>
+      <% @nudges_out.each do |n| %>
+      <div class = "nudge">
+        <%="You want to go to #{n.event.name} with #{n.nudgee.username}"%>
+      </div>
+      <%end%>
+       <%= "You have no outgoing nudges" unless @nudges_out.length > 0 %>
+    </div>
+
+  <!-- footer navigator -->
+  <div data-role="footer" id="footer" data-position="fixed">
+  <div data-role="navbar">
+    <ul>
+      <li><a href="a.html">Info</a></li>
+      <li><a href="b.html">Friends</a></li>
+      <li><a href="c.html">Albums</a></li>
+      <li><a href="d.html">Emails</a></li>
+    </ul>
+  </div><!-- /navbar -->
+</div><!-- /footer -->
+
+</div><!-- /page -->
+
+</body>
+</html>
