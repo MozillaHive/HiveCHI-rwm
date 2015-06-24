@@ -26,12 +26,16 @@ class SessionController < ApplicationController
   end
 
   def store_user_commitment
-    session[commitment: "#{params[:commitment]}"]
-    redirect_to "/events/#{params[:id]}/attendances/new"
+   if params[:commitment]
+      session[:commitment] = params[:commitment]
+      redirect_to "/events/#{params[:id]}/attendances/new"
+    else
+      redirect_to "/events/#{params[:id]}" 
+    end     
   end
 
   def store_user_time_preference
-    session[time_preference: "#{params[:time_preference]}"]
+    #session[time_preference: "#{params[:time_preference]}"]
     redirect_to "/events"
   end
 

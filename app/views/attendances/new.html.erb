@@ -37,8 +37,8 @@
     var map;
     var start = "5110 N Damen Av";
     var end = "3945 N. Springfield Ave.";
-    var tmode = "transit";
-    var startTime = new Date("2015-06-20T10:00:00-06:00");
+    var tmode = "walking";
+    var startTime = new Date("2015-06-20T10:00:00-05:00");
     var earlyTime = new Date(startTime.getTime()-15*60*1000);
     var lateTime = new Date(startTime.getTime()+15*60*1000);
     var arriveTimeArray = [earlyTime,startTime,lateTime];
@@ -57,33 +57,26 @@
      map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
      directionsDisplay.setMap(map);
      calcTime();
-     calcRoute(google.maps.TravelMode.TRANSIT);
      directionsDisplay.setPanel(document.getElementById("directions"));
-     setInterval(function(){
-      document.getElementById("early").innerHTML = "Early: "+attendence[tmode][0]+"<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
-      document.getElementById("onTime").innerHTML = "On Time: "+attendence[tmode][1]+"<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
-      document.getElementById("late").innerHTML = "Late: "+attendence[tmode][2]+"<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes())},10)
-    }
-
+   }
     function calcRoute(mode,arriveDate) {
       var request = {
         origin:start,
         destination:end,
-        travelMode:mode,
+        travelMode: mode,
         transitOptions:{arrivalTime: arriveDate}
       };
       directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
            directionsDisplay.setDirections(result);
          }
-          document.getElementById("tansit-mode-field").value = tmode;
       });
     }
     function calcTime(){
        var request = {
-        origin:start,
-        destination:end,
-        travelMode:google.maps.TravelMode.WALKING
+        origin: start,
+        destination: end,
+        travelMode: google.maps.TravelMode.WALKING
       };
       directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
@@ -122,14 +115,11 @@
               leaveTime.transit.sort(function(a,b){return a.getTime()-b.getTime()})
              }
          }
-      });
+       })
       }
       document.getElementById("transit").innerHTML = "CTA: "+(attendence.transit[0]+attendence.transit[1]+attendence.transit[2])
       document.getElementById("walking").innerHTML = "Walking: "+(attendence.walking[0]+attendence.walking[1]+attendence.walking[2])
       document.getElementById("bicycling").innerHTML = "Biking: "+(attendence.bicycling[0]+attendence.bicycling[1]+attendence.bicycling[2])
-      document.getElementById("early").innerHTML = "Early: "+attendence.transit[0];
-      document.getElementById("onTime").innerHTML = "On Time: "+attendence.transit[1];
-      document.getElementById("late").innerHTML = "Late: "+attendence.transit[2];
     }
     google.maps.event.addDomListener(window, 'load', initialize);
     function transitChange(mode){
@@ -143,13 +133,12 @@
       else{
         gmMode = google.maps.TravelMode.BICYCLING;
       }
-      document.getElementById("early").innerHTML = "Early: "+attendence[tmode][0]+"<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
-      document.getElementById("onTime").innerHTML = "On Time: "+attendence[tmode][1]+"<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
-      document.getElementById("late").innerHTML = "Late: "+attendence[tmode][2]+"<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes());
+      updateDisplay()
       calcRoute(gmMode,arriveTimeArray[leaveTimeIndex]);
     }
     function timeChange(index){
       leaveTimeIndex = index;
+      updateDisplay()
       if (tmode == "transit"){
         calcRoute(google.maps.TravelMode.TRANSIT,arriveTimeArray[index]);
       }
@@ -162,9 +151,14 @@
         return "0"+min.toString();
       }
     }
-function commit(){
-  document.getElementById("buttons").innerHTML = "You are going by "+tmode+" and leaving at "+leaveTime[tmode][leaveTimeIndex].getHours()+":"+printMin(leaveTime[tmode][leaveTimeIndex].getMinutes())
-}
+    function updateDisplay (){
+      document.getElementById("tansit-mode-field").value = tmode;
+      document.getElementById("deparute-time-field").value = leaveTime[tmode][leaveTimeIndex].toISOString()
+      document.getElementById("early").innerHTML = "Early: "+attendence[tmode][0]+"<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
+      document.getElementById("onTime").innerHTML = "On Time: "+attendence[tmode][1]+"<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
+      document.getElementById("late").innerHTML = "Late: "+attendence[tmode][2]+"<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes());
+
+    }
 </script>
 </head>
 <body>
@@ -189,8 +183,12 @@ function commit(){
     <button id = "onTime" onclick="timeChange(1)">On Time</button>
     <button id = "late" onclick="timeChange(2)">Late</button>
   </div>
-  <input type = "hidden" id = "tansit-mode-field" name = "tansit-mode" value = "transit">
-  <button id = "submit-button" onclick = "commit()">Let's Go!</button>
+  <form method = "POST" action = "./create">
+    <input type = "hidden" id = "tansit-mode-field" name = "method_of_transit" value = "transit" />
+    <input type = "hidden" name = "depature_time" value = ""  id = "deparute-time-field"/>
+    <input type = "hidden" name = "commitment_status" value = "<%=flash[:commitment]%>" />
+    <input  type = "submit" value ="Let's Go!" />
+  </form>
 </div>
 </div>
   </div><!-- /page -->

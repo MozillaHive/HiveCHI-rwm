@@ -26,4 +26,16 @@ class EventsController < ApplicationController
     end
     # render :json => events
   end
+
+  def show
+    @event = Event.find(params[:id])
+    @attend = Attendance.find_by(event: @event, user_id: session[:user_id])
+    @out_nudge = Nudge.find_by(event: @event, nudger_id: session[:user_id])
+    @in_nudge = Nudge.find_by(event: @event, nudgee_id: session[:user_id])
+    flash[:attendance] = @attend.id if @attend
+    puts @attend
+    puts @out_nudge
+    puts @in_nudge
+  end
+
 end

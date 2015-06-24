@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   get '/register/tos' => 'registrations#tos'
   post '/register/tos' => 'registrations#tos_confirm'
 
+  post '/events/:id/attendances/create' => 'attendances#create'
+  post '/events/:event_id/attendances/update' => 'attendances#update'
+  get '/events/:event_id/attendances/show' => 'attendances#show'
   resources :events do
     resources :attendances
   end
