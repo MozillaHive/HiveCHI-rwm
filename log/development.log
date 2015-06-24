@@ -20151,3 +20151,139 @@ Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0e
 
 
 Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-22 21:02:52 -0500
+
+
+Started GET "/" for ::1 at 2015-06-23 20:13:06 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (12.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 10ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2015-06-23 20:13:06 -0500
+Processing by WelcomeController#dashboard as HTML
+  [1m[35mUser Load (12.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 12]]
+  [1m[35mSchool Load (0.6ms)[0m  SELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."school_id" = $1[0m  [["school_id", 9]]
+  [1m[35mEvent Load (1.3ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 7]]
+  [1m[36mEvent Load (0.4ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 12]]
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 15]]
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 18]]
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 27]]
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 31]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 42]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 46]]
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 47]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 48]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 55]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 56]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 57]]
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 71]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 73]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 74]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 89]]
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 92]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 94]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 99]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 12]]
+  Rendered welcome/dashboard.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 703ms (Views: 564.6ms | ActiveRecord: 38.0ms)
+
+
+Started GET "/assets/application.self-033e4f88e0254fe1350407337cbd2a044626a23c12468c75e5d0f7824fbdfa3a.css?body=1" for ::1 at 2015-06-23 20:13:07 -0500
+
+
+Started GET "/assets/registrations.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-06-23 20:13:07 -0500
+
+
+Started GET "/assets/nudges.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-06-23 20:13:07 -0500
+
+
+Started GET "/assets/nudges.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-06-23 20:13:07 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-06-23 20:13:07 -0500
+
+
+Started GET "/assets/jquery.mobile.self-31d65ee183ce6d4c0e27b21fad8429156ee18d418063e7f9caf860b612092cc8.js?body=1" for ::1 at 2015-06-23 20:13:07 -0500
+
+
+Started GET "/assets/registrations.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-06-23 20:13:07 -0500
+
+
+Started GET "/events/14" for ::1 at 2015-06-23 20:13:17 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 14]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36mSchool Load (0.1ms)[0m  [1mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1  [["event_id", 14]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1 AND "users"."school_id" = 9[0m  [["event_id", 14]]
+  [1m[35mAttendance Load (0.3ms)[0m  SELECT  "attendances".* FROM "attendances" WHERE "attendances"."event_id" = 14 AND "attendances"."user_id" = 12 LIMIT 1
+  Rendered events/show.html.erb within layouts/application (27.2ms)
+Completed 200 OK in 78ms (Views: 75.7ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/events/24" for ::1 at 2015-06-23 20:13:28 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"24"}
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 24]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36mSchool Load (0.1ms)[0m  [1mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1  [["event_id", 24]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1 AND "users"."school_id" = 9[0m  [["event_id", 24]]
+  [1m[35mAttendance Load (0.2ms)[0m  SELECT  "attendances".* FROM "attendances" WHERE "attendances"."event_id" = 24 AND "attendances"."user_id" = 12 LIMIT 1
+  Rendered events/show.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 73ms (Views: 71.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/events/24/join" for ::1 at 2015-06-23 20:13:31 -0500
+Processing by EventsController#join as HTML
+  Parameters: {"id"=>"24"}
+  Rendered events/join.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 57ms (Views: 57.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/24/attendances/new" for ::1 at 2015-06-23 20:13:32 -0500
+Processing by AttendancesController#new as HTML
+  Parameters: {"event_id"=>"24"}
+  Rendered attendances/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 42ms (Views: 41.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-06-23 20:13:43 -0500
+Processing by WelcomeController#index as HTML
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2015-06-23 20:13:43 -0500
+Processing by WelcomeController#dashboard as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 12]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36mSchool Load (0.3ms)[0m  [1mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."school_id" = $1  [["school_id", 9]]
+  [1m[36mEvent Load (0.5ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 7]]
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 12]]
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 15]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 18]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 27]]
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 31]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 42]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 46]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 47]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 48]]
+  [1m[36mEvent Load (0.4ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 55]]
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 56]]
+  [1m[36mEvent Load (0.4ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 57]]
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 71]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 73]]
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 74]]
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 89]]
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 92]]
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 94]]
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1  [["user_id", 99]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "events".* FROM "events" INNER JOIN "attendances" ON "events"."id" = "attendances"."event_id" WHERE "attendances"."user_id" = $1[0m  [["user_id", 12]]
+  Rendered welcome/dashboard.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 73ms (Views: 33.7ms | ActiveRecord: 6.6ms)
