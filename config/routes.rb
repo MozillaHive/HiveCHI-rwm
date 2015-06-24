@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get '/register' => 'registrations#new'
   post '/register' => 'registrations#checkinput'
   get '/register/verify' => 'registrations#pending'
+  get '/register/tos' => 'registrations#tos'
+  post '/register/tos' => 'registrations#tos_confirm'
 
   resources :events do
     resources :attendances

@@ -26,8 +26,22 @@ class RegistrationsController < ApplicationController
 		else
 			session[:registering_user].phone = "+1"+session[:registering_user].phone
 			session[:verification_key] = SecureRandom.base64(10)
+			redirect_to "/register/tos"
+		end
+	end
+
+	def tos
+
+	end
+
+	def tos_confirm
+		tos_status = params[:tos]
+		if tos_status == "agree"
 			textKey()
 			redirect_to "/register/verify"
+		else
+			flash[:notice] = "You must agree to the terms of service to register"
+			redirect_to "/"
 		end
 	end
 
@@ -47,7 +61,7 @@ class RegistrationsController < ApplicationController
 
 	private
 	def checkEmail(email)
-		@errors.append "Invalid Email" unless (email =~/.+@.+\..+/)
+		@errors.append "Invalid Email" unless (email =~/.+@.+\..+/) #matches 
 		e = User.find_by(email: email)
 		@errors.append "Email is already registered" if e
 	end
