@@ -20,6 +20,6 @@ class WelcomeController < ApplicationController
       end
       @events_arr = @hot_events.sort_by{|e,n| n}
       @events_arr.reverse!
-      @hot_events_num = 5
+      @hot_events_num = [5,@events_arr.length].min
   end
 end
