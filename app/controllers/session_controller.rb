@@ -12,8 +12,7 @@ class SessionController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
     #if @user
       session[:user_id] = @user.id
-      flash[:redirect_url] = dashboard_path
-      redirect_to "/redirect"
+      client_redirect "/dashboard"
     else
       flash[:notice] = "Invalid email or password"
       #puts @errors

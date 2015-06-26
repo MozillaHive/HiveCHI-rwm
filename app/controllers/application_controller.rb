@@ -7,4 +7,11 @@ class ApplicationController < ActionController::Base
   def current_user
       @current_user ||= User.find_by_id(session[:user])
   end
+
+  helper_method :client_redirect
+  def client_redirect (redirect_url)
+  		flash[:redirect_url] = redirect_url
+    	redirect_to "/redirect"
+  end
+
 end

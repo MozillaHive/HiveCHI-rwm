@@ -14,14 +14,12 @@ class AttendancesController < ApplicationController
   		commitment_status: session[:commitment])
   	flash[:notice] = "You signed up for #{event.name}"
     session[:commitment] = nil
-    flash[:redirect_url] = "/dashboard"
-    redirect_to "/redirect"
+    client_redirect "/dashboard"
   end
 
   def update
     Attendance.find(flash[:attendance]).update(commitment_status: params[:update_commit_status])
     flash[:notice] = "Your attendance has been updated"
-    flash[:redirect_url] = "/dashboard"
-    redirect_to "/redirect"
+    client_redirect "/dashboard"
   end
 end

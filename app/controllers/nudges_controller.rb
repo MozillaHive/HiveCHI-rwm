@@ -11,7 +11,7 @@ class NudgesController < ApplicationController
 		text_message(nudge)
 		flash[:notice] = "You nudged #{nudge.nudgee.username} to go to #{nudge.event.name}"
 		nudge.save
-		redirect_to "/"
+		client_redirect "/dashboard"
 	end
 
 	def show
