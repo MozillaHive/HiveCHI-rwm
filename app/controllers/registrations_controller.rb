@@ -22,11 +22,12 @@ class RegistrationsController < ApplicationController
 		session[:registering_user] = tempUser
 		flash[:reg_errors] = @errors
 		if @errors.length > 0
-			redirect_to "/register"
+			redirect_to :action => "new", :controller => "registrations"
 		else
 			session[:registering_user].phone = "+1"+session[:registering_user].phone
 			session[:verification_key] = SecureRandom.base64(10)
-			redirect_to "/register/tos"
+			flash[:redirect_url] = "/register/tos"
+      		redirect_to "/redirect"
 		end
 	end
 
@@ -38,24 +39,27 @@ class RegistrationsController < ApplicationController
 		tos_status = params[:tos]
 		if tos_status == "agree"
 			textKey()
-			redirect_to "/register/verify"
+			flash[:redirect_url] = "/register/verify"
+      		redirect_to "/redirect"
 			session[:tos] = true
 		else
-			flash[:notice] = "You must agree to the terms of service to register"
-			redirect_to "/"
+			flash[:redirect_url] = "/login"
+      		redirect_to "/redirect"
 		end
 	end
 
 	def pending
 		if !session[:tos]
-			redirect_to "/register/tos"
+			flash[:redirect_url] = "/register/tos"
+      		redirect_to "/redirect"
 		elsif params[:ver_code]
 			if params[:ver_code] == session[:verification_key]
 				u = User.create(session[:registering_user])
 				reset_session
 				session[:user_id] = u.id
 				flash[:notice] = "Welcome to your Ride W/ Me dashboard #{u.username}" 
-				redirect_to "/"
+				flash[:redirect_url] = dashboard_path
+      			redirect_to "/redirect"			
 			else
 				@error_message = "Invalid Verification Key"
 			end

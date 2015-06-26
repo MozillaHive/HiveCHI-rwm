@@ -12,7 +12,8 @@ class SessionController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
     #if @user
       session[:user_id] = @user.id
-      redirect_to dashboard_path
+      flash[:redirect_url] = dashboard_path
+      redirect_to "/redirect"
     else
       flash[:notice] = "Invalid email or password"
       #puts @errors
@@ -28,15 +29,22 @@ class SessionController < ApplicationController
   def store_user_commitment
    if params[:commitment]
       session[:commitment] = params[:commitment]
-      redirect_to "/events/#{params[:id]}/attendances/new"
+      flash[:redirect_url] = "/events/#{params[:id]}/attendances/new"
+      redirect_to "/redirect"
     else
-      redirect_to "/events/#{params[:id]}" 
+      flash[:redirect_url] = "/events/#{params[:id]}"
+      redirect_to "/redirect"
     end     
   end
 
   def store_user_time_preference
     #session[time_preference: "#{params[:time_preference]}"]
     redirect_to "/events"
+  end
+
+  def redirect
+    @url = flash[:redirect_url]
+    flash[:notice] = flash[:notice]
   end
 
   private

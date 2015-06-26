@@ -2,12 +2,9 @@
 <html>
   <head>
   <title>Dashboard</title>
-
 </head>
 <body>
-
 <div data-role="page" id="dashboard">
-
   <div data-role="header">
     <h1>Dashboard</h1>
   </div><!-- /header -->
@@ -177,6 +174,12 @@
   </div><!-- /leftpanel1 -->
 
 <script>
+
+proper_url = window.location.origin.concat("/dashboard")
+if (window.location.href != proper_url){
+  window.location.replace(proper_url)
+}
+
 var eventsJson = null
 $.ajax({
   method: "get",
@@ -371,8 +374,6 @@ function refresh() {
 </script>
 
 </div><!-- /page -->
-
 </body>
 
-</body>
 </html>

@@ -4,26 +4,28 @@ Rails.application.routes.draw do
   get 'login' => 'session#login'
   get 'dashboard' => 'welcome#dashboard'
 
-  get '/events/:id/store_user_commitment' => 'session#store_user_commitment'
+  get 'redirect' => 'session#redirect'
 
-  get '/mynudges' => 'nudges#show'
+  get 'events/:id/store_user_commitment' => 'session#store_user_commitment'
+
+  get 'mynudges' => 'nudges#show'
   get 'events/:id/join' => 'events#join'
   get 'events/:id/nudge' => 'nudges#new'
   post 'events/:id/nudge' => 'nudges#create'
   get 'events/all' => 'events#all'
 
-  get '/login' => 'session#new'
-  post '/login' => 'session#create'
-  get '/logout' => 'session#destroy'
-  get '/register' => 'registrations#new'
-  post '/register' => 'registrations#checkinput'
-  get '/register/verify' => 'registrations#pending'
-  get '/register/tos' => 'registrations#tos'
-  post '/register/tos' => 'registrations#tos_confirm'
+  get 'login' => 'session#new'
+  post 'login' => 'session#create'
+  get 'logout' => 'session#destroy'
+  get 'register' => 'registrations#new'
+  post 'register' => 'registrations#checkinput'
+  get 'register/verify' => 'registrations#pending'
+  get 'register/tos' => 'registrations#tos'
+  post 'register/tos' => 'registrations#tos_confirm'
 
-  post '/events/:id/attendances/create' => 'attendances#create'
-  post '/events/:event_id/attendances/update' => 'attendances#update'
-  get '/events/:event_id/attendances/show' => 'attendances#show'
+  post 'events/:id/attendances/create' => 'attendances#create'
+  post 'events/:event_id/attendances/update' => 'attendances#update'
+  get 'events/:event_id/attendances/show' => 'attendances#show'
   resources :events do
     resources :attendances
   end
