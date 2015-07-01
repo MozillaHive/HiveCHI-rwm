@@ -22,11 +22,13 @@ class RegistrationsController < ApplicationController
 		session[:registering_user] = tempUser
 		flash[:reg_errors] = @errors
 		if @errors.length > 0
-			redirect_to "/register"
+			redirect_to :action => "new", :controller => "registrations"
 		else
 			session[:registering_user].phone = "+1"+session[:registering_user].phone
-			session[:verification_key] = SecureRandom.base64(10)
-			redirect_to "/register/tos"
+			#session[:text_key] = SecureRandom.base64(4)
+			session[:text_key] = "True"
+			session[:email_key] = SecureRandom.base64(10)
+			client_redirect "/register/tos"
 		end
 	end
 
@@ -37,25 +39,31 @@ class RegistrationsController < ApplicationController
 	def tos_confirm
 		tos_status = params[:tos]
 		if tos_status == "agree"
-			textKey()
-			redirect_to "/register/verify"
+			#textKey()
+			UserMailer.verification_email(session[:email_key],session[:registering_user]).deliver_now
+			client_redirect "/register/verify"
 			session[:tos] = true
 		else
-			flash[:notice] = "You must agree to the terms of service to register"
-			redirect_to "/"
+			client_redirect "/login"
 		end
 	end
 
 	def pending
 		if !session[:tos]
-			redirect_to "/register/tos"
+			client_redirect "/register/tos"
 		elsif params[:ver_code]
-			if params[:ver_code] == session[:verification_key]
+			if ((params[:ver_code] == session[:text_key] and session[:email_key] == "True") or (params[:ver_code] == session[:email_key] and session[:text_key] == "True"))
 				u = User.create(session[:registering_user])
 				reset_session
 				session[:user_id] = u.id
 				flash[:notice] = "Welcome to your Ride W/ Me dashboard #{u.username}" 
-				redirect_to "/"
+				client_redirect "/dashboard"
+			elsif params[:ver_code] == session[:text_key]
+				@error_message = "Your phone number has been verified. Please verify your email."
+				session[:text_key] = "True"
+			elsif params[:ver_code] == session[:email_key]
+				@error_message = "Your email has been verified. Please verify your phone number."
+				session[:email_key] = "True"
 			else
 				@error_message = "Invalid Verification Key"
 			end
@@ -101,7 +109,7 @@ class RegistrationsController < ApplicationController
 		client.account.messages.create(
     		:from => from,
     		:to => session[:registering_user]["phone"],
-    		:body => "Your RideW/Me verification code is #{session[:verification_key]}"
+    		:body => "Your RideW/Me verification code is #{session[:text_key]}"
     		)
   
 	end
