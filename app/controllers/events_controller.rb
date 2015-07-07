@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   end
 
   def today
-    render '../layouts/events_list'
+    render 'layouts/events_list'
   end
 
   def tomorrow
@@ -27,16 +27,32 @@ class EventsController < ApplicationController
 
   def all
     events = Event.all
+    puts "DATETIME!!"
+    puts DateTime.now.local
+    puts DateTime.now.tomorrow.to_date
+
+    params["period"] = "this_week"
+
+    if params["period"] == "today"
+      puts "AMERICA"
+      events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).all
+      # events = Event.where(start_date_and_time.to_date Datetime.now.to_date)
+      # events = Event.where("start_date_and_time = Datetime.now.to_date")
+      # Datetime.now.to_date
+    elsif params["period"] == "tomorrow"
+      events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day + 1.days, DateTime.now.end_of_day + 1.days).all
+    elsif params["period"] == "this_week"
+      events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day + 6.days).all
+    end
+
     @events_json = events.map do |event|
         event.as_json.merge(:numberOfAttendees => event.attendances.count)
     end
 
-    # events = ["bob", "bill"]
 
     respond_to do |format|
       format.json {render json: @events_json, :status => :ok}
     end
-    # render :json => events
   end
 
   def show

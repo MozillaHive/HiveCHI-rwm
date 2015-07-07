@@ -123,6 +123,7 @@
     method: "get",
     url: "/events/all",
     dataType: "json",
+    data: {"period":"today"},
     success: function(data) {
       eventsJson = data;
       refresh();
