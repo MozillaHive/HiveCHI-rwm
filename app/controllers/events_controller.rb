@@ -2,6 +2,18 @@ class EventsController < ApplicationController
   def index
   end
 
+  def today
+    render '../layouts/events_list'
+  end
+
+  def tomorrow
+    render '../layouts/events_list'
+  end
+
+  def next_week
+    render '../layouts/events_list'
+  end
+
     # preferences_json = {
     #   preference_1: User.find_by_id(session[:user_id]).preference_1,
     #   preference_2: User.find_by_id(session[:user_id]).preference_2,
