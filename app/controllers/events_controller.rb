@@ -28,7 +28,8 @@ class EventsController < ApplicationController
   def all
     events = Event.all
     puts "DATETIME!!"
-    puts DateTime.now.local
+    puts DateTime.now
+    puts DateTime.now.beginning_of_day
     puts DateTime.now.tomorrow.to_date
 
     params["period"] = "this_week"
