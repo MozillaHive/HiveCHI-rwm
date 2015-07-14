@@ -25,8 +25,8 @@ class RegistrationsController < ApplicationController
 			redirect_to :action => "new", :controller => "registrations"
 		else
 			session[:registering_user].phone = "+1"+session[:registering_user].phone
-			#session[:text_key] = SecureRandom.base64(4)
-			session[:text_key] = "True"
+			session[:text_key] = SecureRandom.base64(4)
+			#session[:text_key] = "True"
 			session[:email_key] = SecureRandom.base64(10)
 			client_redirect "/register/tos"
 		end
@@ -39,8 +39,8 @@ class RegistrationsController < ApplicationController
 	def tos_confirm
 		tos_status = params[:tos]
 		if tos_status == "agree"
-			#textKey()
-			UserMailer.verification_email(session[:email_key],session[:registering_user]).deliver_now
+			textKey()
+			UserMailer.verification_email(request.base_url+"/register/verify?ver_code="+session[:email_key],session[:registering_user]).deliver_now
 			client_redirect "/register/verify"
 			session[:tos] = true
 		else
@@ -100,11 +100,11 @@ class RegistrationsController < ApplicationController
 
 	private
 	def textKey
-		account_sid = "ACf08a1e62643f15d3123929d2bd6f1f31"
-		auth_token = "51fa5a33400c42f2363dba65cb753a12"
+		account_sid = "ACc16c03b49a8a659668d93d4b1c2c6a04"
+		auth_token = "0184338e133c2fc686a5538dcc0d930e"
 		client = Twilio::REST::Client.new account_sid, auth_token
  
-		from = "+12245209278" # Your Twilio number
+		from = "+18443117433" # Your Twilio number
 
 		client.account.messages.create(
     		:from => from,
