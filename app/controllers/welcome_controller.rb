@@ -1,5 +1,7 @@
 class WelcomeController < ApplicationController
-	#layout false
+	before_filter :require_login, except: :index
+
+  #layout false
   def index
   #  sleep(2.0)
     if session[:user_id]
