@@ -12,12 +12,12 @@
     <h1>Welcome Index</h1>
   </div><!-- /header -->
     <div id = "notices">
-      <% if flash[:reg_errors]%>
-        <p>
-          <%flash[:reg_errors].each do |e|%>
-            <div><%= e %></div>
+      <% if flash[:errors] %>
+        <ul>
+          <% flash[:errors].each do |e|%>
+            <li><%= e %></li>
           <%end%>
-        </p>
+        </il>
       <%end%>
     </div>
   <%= form_for @user, url: { action: "create" } do |f| %>
@@ -27,6 +27,7 @@
   <%= f.email_field :email %>
   <%= f.label :phone %>
   <%= f.text_field :phone %>
+  <%= f.label "School" %>
   <%= collection_select(:user, :school_id, School.all, :id, :name) %>
   <%= f.label :password %>
   <%= f.password_field :password %>
