@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
 
-  def register
-  end
-
   def new
     @user = User.new
   end
