@@ -1,4 +1,6 @@
 class AttendancesController < ApplicationController
+  before_filter :require_login
+
   def new
     unless session[:commitment]
       flash[:redirect_url] = "/events/"+params[:event_id]
