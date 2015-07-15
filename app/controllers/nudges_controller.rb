@@ -1,5 +1,5 @@
 class NudgesController < ApplicationController
-	before_filter :require_login
+	before_filter :require_verified_user
 
 	def new
 		user = User.find(session[:user_id])

@@ -4,7 +4,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def require_login
-    redirect_to "/login" unless session[:user_id]
+    redirect_to "/login" unless current_user
+  end
+
+  def require_verified_user
+    if current_user.nil?
+      redirect_to "/login"
+    elsif !current_user.verified?
+      redirect_to "/users/verify"
+    end
   end
 
   helper_method :current_user

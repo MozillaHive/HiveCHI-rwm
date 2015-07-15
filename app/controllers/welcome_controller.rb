@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-	before_filter :require_login, except: :index
+	before_filter :require_verified_user, except: :index
 
   #layout false
   def index

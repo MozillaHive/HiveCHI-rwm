@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_login, except: [:new, :create]
+  before_filter :require_login, except: [:new, :create, :verify_email]
 
   def new
     @user = User.new
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
       redirect_to "dashboard"
     else
       @errors = @user.errors.full_messages
-      render "verification"
+      redirect_to "/users/verify"
     end
   end
 
