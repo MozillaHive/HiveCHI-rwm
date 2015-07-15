@@ -24,8 +24,9 @@ class User < ActiveRecord::Base
   end
 
   def verify_email!(token)
-    if token == self.email_token
+    if token && token == self.email_token
       self.email_verified = true
+      self.email_token = nil
       self.save
     else
       self.errors.add(:base, "Email verification code is incorrect")
@@ -33,8 +34,9 @@ class User < ActiveRecord::Base
   end
 
   def verify_phone!(token)
-    if token == self.phone_token
+    if token && token == self.phone_token
       self.phone_verified = true
+      self.phone_token = nil
       self.save
     else
       self.errors.add(:base, "Phone verification code is incorrect")
@@ -52,9 +54,9 @@ class User < ActiveRecord::Base
       Rails.application.secrets.twilio_auth_token
     )
     client.account.messages.create(
-        from: "+18443117433",
-        to: "+1" + self.phone,
-        body: "Your RideW/Me verification code is #{self.phone_token}"
+      from: "+18443117433",
+      to: "+1" + self.phone,
+      body: "Your RideW/Me verification code is #{self.phone_token}"
     )
   end
 
