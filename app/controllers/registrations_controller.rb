@@ -56,7 +56,7 @@ class RegistrationsController < ApplicationController
 				u = User.create(session[:registering_user])
 				reset_session
 				session[:user_id] = u.id
-				flash[:notice] = "Welcome to your Ride W/ Me dashboard #{u.username}" 
+				flash[:notice] = "Welcome to your Ride W/ Me dashboard #{u.username}"
 				client_redirect "/dashboard"
 			elsif params[:ver_code] == session[:text_key]
 				@error_message = "Your phone number has been verified. Please verify your email."
@@ -72,7 +72,7 @@ class RegistrationsController < ApplicationController
 
 	private
 	def checkEmail(email)
-		@errors.append "Invalid Email" unless (email =~/.+@.+\..+/) #matches 
+		@errors.append "Invalid Email" unless (email =~/.+@.+\..+/) #matches
 		e = User.find_by(email: email)
 		@errors.append "Email is already registered" if e
 	end
@@ -100,10 +100,10 @@ class RegistrationsController < ApplicationController
 
 	private
 	def textKey
-		account_sid = "ACc16c03b49a8a659668d93d4b1c2c6a04"
-		auth_token = "0184338e133c2fc686a5538dcc0d930e"
+		account_sid = Rails.application.secrets.twilio_sid
+		auth_token = Rails.application.secrets.twilio_auth_token
 		client = Twilio::REST::Client.new account_sid, auth_token
- 
+
 		from = "+18443117433" # Your Twilio number
 
 		client.account.messages.create(
@@ -111,7 +111,7 @@ class RegistrationsController < ApplicationController
     		:to => session[:registering_user]["phone"],
     		:body => "Your RideW/Me verification code is #{session[:text_key]}"
     		)
-  
+
 	end
 
 end
