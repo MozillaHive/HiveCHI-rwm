@@ -2,6 +2,7 @@
 <html>
   <head>
   <title>Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="dashboard.css">
 </head>
 <body>
 <div data-role="page" id="dashboard">
@@ -369,7 +370,7 @@ function refresh() {
     $.each(filteredEvents, function (index, value) {
       output += '<li><a href="events/' + filteredIds[index] + '">' + value + '</a></li>';
     });
-    $('#event-list').html(output).listview("refresh");
+    $('#event-list').html(output).listview().listview("refresh");
 }
 </script>
 
