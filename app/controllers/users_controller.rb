@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def verification
     @user = current_user
+    redirect_to "dashboard" if @user.verified?
   end
 
   def verify
