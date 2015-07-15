@@ -19,9 +19,9 @@ Rails.application.routes.draw do
   get 'logout' => 'session#destroy'
 
   get 'register' => 'users#new'
-  get 'users/:id/verify' => 'users#verification'
-  post 'users/:id/verify' => 'users#verify'
-  get 'verify-email' => 'users#verify_email', as: 'verify_email'
+  get 'users/verify' => 'users#verification'
+  post 'users/verify' => 'users#verify'
+  get 'users/verify-email' => 'users#verify_email'
   resources :users, only: [:create, :show, :destroy]
 
   post 'events/:id/attendances/create' => 'attendances#create'

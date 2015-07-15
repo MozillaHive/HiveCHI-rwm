@@ -11,17 +11,21 @@
   <div data-role="header">
     <h1>Welcome Index</h1>
   </div><!-- /header -->
-  <%= @error_message %>
-  <%= form_tag(action: "verify", method: "post") do %>
-    <% unless @user.email_verified %>
-      <%= label_tag "Email verification code" %>
-      <%= text_field_tag :email_token %>
+  <div>
+    <% unless @user.errors.empty? %>
+    <ul>
+      <% @user.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+      <% end %>
+    </ul>
     <% end %>
-    <% unless @user.phone_verified %>
+  </div>
+  <% unless @user.phone_verified %>
+    <%= form_tag(action: "verify", method: "post") do %>
       <%= label_tag "Phone verification code" %>
       <%= text_field_tag :phone_token %>
+      <%= submit_tag "Verify" %>
     <% end %>
-    <%= submit_tag "Verify" %>
   <% end %>
   <!-- footer navigator -->
   <div data-role="footer" data-id="foo1" data-position="fixed">

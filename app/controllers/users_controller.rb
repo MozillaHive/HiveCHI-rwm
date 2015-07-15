@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_login, except: :new
+  before_filter :require_login, except: [:new, :create]
 
   def new
     @user = User.new
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to 'dashboard'
+      redirect_to '/dashboard'
     else
       @errors = @user.errors.full_messages
       render 'new'
@@ -18,7 +18,21 @@ class UsersController < ApplicationController
 
   def verification
     @user = current_user
-    redirect_to "dashboard" if @user.verified?
+    redirect_to "/dashboard" if @user.verified?
+    unless @user.email_verified
+      @user.errors.add(:base, "You email address has not been verified. Please " \
+                              "click on the link in the confirmation email we " \
+                              "sent you.")
+    end
+  end
+
+  def verify_email
+    if params[:token] && @user = User.find_by(email_token: params[:token])
+      @user.verify_email!(params[:token])
+      redirect_to "/users/verify"
+    else
+      redirect_to "/"
+    end
   end
 
   def verify

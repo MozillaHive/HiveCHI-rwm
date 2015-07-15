@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   def verify_email!(token)
     if token == self.email_token
       self.email_verified = true
+      self.save
     else
       self.errors.add(:base, "Email verification code is incorrect")
     end
@@ -34,9 +35,27 @@ class User < ActiveRecord::Base
   def verify_phone!(token)
     if token == self.phone_token
       self.phone_verified = true
+      self.save
     else
       self.errors.add(:base, "Phone verification code is incorrect")
     end
+  end
+
+  def send_verification_email
+    url = "http://#{HOSTNAME}/verify-email?token=#{self.email_token}"
+    UserMailer.verification_email(url, self).deliver_now
+  end
+
+  def send_verification_text
+    client = Twilio::REST::Client.new(
+      Rails.application.secrets.twilio_sid,
+      Rails.application.secrets.twilio_auth_token
+    )
+    #client.account.messages.create(
+    #    from: "+18443117433",
+    #    to: self.phone,
+    #    body: "Your RideW/Me verification code is #{self.phone_token}"
+    #)
   end
 
   private
@@ -44,16 +63,16 @@ class User < ActiveRecord::Base
   def require_phone_verification
     if self.phone_changed?
       self.phone_verified = false
-      self.phone_token = SecureRandom.base64(4)
+      self.phone_token = SecureRandom.hex(4)
+      send_verification_text
     end
   end
 
   def require_email_verification
     if self.email_changed?
       self.email_verified = false
-      self.email_token = SecureRandom.base64(10)
-      
-      UserMailer.verification_email("/verify-email?token=#{self.email_token}").deliver_now
+      self.email_token = SecureRandom.hex(10)
+      send_verification_email
     end
   end
 
