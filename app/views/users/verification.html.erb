@@ -13,11 +13,11 @@
   </div><!-- /header -->
   <%= @error_message %>
   <%= form_tag(action: "verify", method: "post") do %>
-    <% unless @user.email_verified? %>
+    <% unless @user.email_verified %>
       <%= label_tag "Email verification code" %>
       <%= text_field_tag :email_token %>
     <% end %>
-    <% unless @user.phone_verified? %>
+    <% unless @user.phone_verified %>
       <%= label_tag "Phone verification code" %>
       <%= text_field_tag :phone_token %>
     <% end %>

@@ -17,22 +17,35 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 10 }, allow_nil: true
   validates :phone, length: { is: 10 }
 
-  def email_verified?
-    #placeholder
-  end
-
-  def phone_verified?
-    #placeholder
+  before_save do
+    if self.phone_changed?
+      self.phone_verified = false
+      self.phone_token = SecureRandom.base64(4)
+    end
+    if self.email_changed?
+      self.email_verified = false
+      self.email_token = SecureRandom.base64(10)
+    end
   end
 
   def verified?
-    self.email_verified? && self.phone_verified?
+    self.email_verified && self.phone_verified
   end
 
   def verify_email!(token)
+    if token == self.email_token
+      self.email_verified = true
+    else
+      self.errors.add(:base, "Email verification code is incorrect")
+    end
   end
 
   def verify_phone!(token)
+    if token == self.phone_token
+      self.phone_verified = true
+    else
+      self.errors.add(:base, "Phone verification code is incorrect")
+    end
   end
 
 end
