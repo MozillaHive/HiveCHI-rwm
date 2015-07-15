@@ -30,6 +30,8 @@ class UsersController < ApplicationController
   def verify_email
     if params[:token] && @user = User.find_by(email_token: params[:token])
       @user.verify_email!(params[:token])
+      reset_session
+      session[:user_id] = @user.id
       redirect_to "/users/verify"
     else
       redirect_to "/"
