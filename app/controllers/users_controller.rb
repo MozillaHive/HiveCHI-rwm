@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :require_login, except: :new
 
   def new
     @user = User.new
@@ -15,10 +16,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def verification
+    @user = current_user
+  end
+
+  def verify
+    @user = current_user
+    @user.verify_email!(params[:email_token]) if params[:email_token]
+    @user.verify_phone!(params[:phone_token]) if params[:phone_token]
+    if @user.verified?
+      redirect_to "dashboard"
+    else
+      @errors = @user.errors.full_messages
+      render "verification"
+    end
+  end
+
   private
   def user_params
      params.require(:user).permit(
-      :username, :email, :avatar, :password, :password_confirmation, :phone,
+      :username, :email, :password, :password_confirmation, :phone,
       :school_id
      )
   end

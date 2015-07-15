@@ -16,4 +16,23 @@ class User < ActiveRecord::Base
   }
   validates :password, length: { minimum: 10 }, allow_nil: true
   validates :phone, length: { is: 10 }
+
+  def email_verified?
+    #placeholder
+  end
+
+  def phone_verified?
+    #placeholder
+  end
+
+  def verified?
+    self.email_verified? && self.phone_verified?
+  end
+
+  def verify_email!(token)
+  end
+
+  def verify_phone!(token)
+  end
+
 end

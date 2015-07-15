@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>My Page</title>
+</head>
+<body>
+
+
+<div data-role="page">
+
+  <div data-role="header">
+    <h1>Welcome Index</h1>
+  </div><!-- /header -->
+  <%= @error_message %>
+  <%= form_tag(action: "verify", method: "post") do %>
+    <% unless @user.email_verified? %>
+      <%= label_tag "Email verification code" %>
+      <%= text_field_tag :email_token %>
+    <% end %>
+    <% unless @user.phone_verified? %>
+      <%= label_tag "Phone verification code" %>
+      <%= text_field_tag :phone_token %>
+    <% end %>
+    <%= submit_tag "Verify" %>
+  <% end %>
+  <!-- footer navigator -->
+  <div data-role="footer" data-id="foo1" data-position="fixed">
+  <div data-role="navbar">
+    <ul>
+      <li><a href="login/login">Login</a></li>
+      <li><a href="b.html">Friends</a></li>
+      <li><a href="c.html">Albums</a></li>
+      <li><a href="d.html">Emails</a></li>
+    </ul>
+  </div><!-- /navbar -->
+</div><!-- /footer -->
+
+</div><!-- /page -->
+
+</body>
+</html>
