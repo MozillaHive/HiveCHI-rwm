@@ -12,12 +12,12 @@
     <h1>Welcome Index</h1>
   </div><!-- /header -->
     <div id = "notices">
-      <% if flash[:errors] %>
+      <% if flash[:reg_errors] %>
         <ul>
-          <% flash[:errors].each do |e|%>
+          <% flash[:reg_errors].each do |e|%>
             <li><%= e %></li>
           <%end%>
-        </il>
+        </ul>
       <%end%>
     </div>
   <%= form_for @user, url: { action: "create" } do |f| %>

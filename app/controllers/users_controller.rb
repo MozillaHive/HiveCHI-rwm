@@ -9,9 +9,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to '/dashboard'
+      redirect_to '/users/verify'
     else
-      flash[:errors] = @user.errors.full_messages
+      flash[:reg_errors] = @user.errors.full_messages
       render 'new'
     end
   end

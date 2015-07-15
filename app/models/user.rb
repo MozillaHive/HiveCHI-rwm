@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def send_verification_email
-    url = "http://#{HOSTNAME}/verify-email?token=#{self.email_token}"
+    url = "http://#{HOSTNAME}/users/verify-email?token=#{self.email_token}"
     UserMailer.verification_email(url, self).deliver_now
   end
 
@@ -51,11 +51,11 @@ class User < ActiveRecord::Base
       Rails.application.secrets.twilio_sid,
       Rails.application.secrets.twilio_auth_token
     )
-    #client.account.messages.create(
-    #    from: "+18443117433",
-    #    to: self.phone,
-    #    body: "Your RideW/Me verification code is #{self.phone_token}"
-    #)
+    client.account.messages.create(
+        from: "+18443117433",
+        to: "+1" + self.phone,
+        body: "Your RideW/Me verification code is #{self.phone_token}"
+    )
   end
 
   private
