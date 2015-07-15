@@ -12,9 +12,9 @@
     <h1>Welcome Index</h1>
   </div><!-- /header -->
   <div>
-    <% unless @user.errors.empty? %>
+    <% if flash[:errors] && !flash[:errors].empty? %>
     <ul>
-      <% @user.errors.full_messages.each do |error| %>
+      <% flash[:errors].each do |error| %>
       <li><%= error %></li>
       <% end %>
     </ul>

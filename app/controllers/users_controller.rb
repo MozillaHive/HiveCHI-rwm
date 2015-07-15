@@ -20,9 +20,10 @@ class UsersController < ApplicationController
     @user = current_user
     redirect_to "/dashboard" if @user.verified?
     unless @user.email_verified
-      @user.errors.add(:base, "You email address has not been verified. Please " \
-                              "click on the link in the confirmation email we " \
-                              "sent you.")
+      flash[:errors] ||= []
+      flash[:errors] << "Your email address has not been verified. Please " \
+                        "click on the link in the confirmation email we sent" \
+                        " you."
     end
   end
 
@@ -40,9 +41,9 @@ class UsersController < ApplicationController
     @user.verify_email!(params[:email_token]) if params[:email_token]
     @user.verify_phone!(params[:phone_token]) if params[:phone_token]
     if @user.verified?
-      redirect_to "dashboard"
+      redirect_to "/dashboard"
     else
-      @errors = @user.errors.full_messages
+      flash[:errors] = @user.errors.full_messages
       redirect_to "/users/verify"
     end
   end
