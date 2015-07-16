@@ -4,18 +4,12 @@ class SessionController < ApplicationController
   end
 
   def create
-    puts "USER EMAIL PARAMS THING"
-    puts params[:user][:email]
-
-    @user = User.find_by(email: params[:user][:email])
-    puts @user
+    @user = User.find_by(username: params[:user][:username])
     if @user && @user.authenticate(params[:user][:password])
-    #if @user
       session[:user_id] = @user.id
       client_redirect "/dashboard"
     else
-      flash[:notice] = "Invalid email or password"
-      #puts @errors
+      flash[:notice] = "Invalid username or password"
       redirect_to login_path
     end
   end
@@ -33,7 +27,7 @@ class SessionController < ApplicationController
     else
       flash[:redirect_url] = "/events/#{params[:id]}"
       redirect_to "/redirect"
-    end     
+    end
   end
 
   def store_user_time_preference
