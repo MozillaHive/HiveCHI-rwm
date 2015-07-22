@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+  <title>My Page</title> 
+</head>
+<body>
+
+
+<div data-role="page">
+
+  <div data-role="header">
+    <h1>Weclome Index</h1>
+  </div><!-- /header -->
+  <div id = "events-today">
+    <h3>Events Today</h3>
+    <ul>
+      <% @today_events.each do |e| %>
+      <li>
+        <%=e.name%>
+      </li>
+      <%end%>
+  </div>
+  <div id = "events-future">
+    <h3>Upcomming Events</h3>
+    <ul>
+      <% @future_events.each do |e| %>
+      <li>
+        <%=e.name%>
+      </li>
+      <%end%>
+  </div>
+    <div id = "events-past">
+    <h3>Past Events</h3>
+    <ul>
+      <% @past_events.each do |e| %>
+      <li>
+        <%=e.name%>
+      </li>
+      <%end%>
+  </div>
+  <!-- footer navigator -->
+  <div data-role="footer" data-id="foo1" data-position="fixed">
+  <div data-role="navbar">
+    <ul>
+      <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
+      <li><a href="b.html">Friends</a></li>
+      <li><a href="c.html">Albums</a></li>
+      <li><a href="d.html">Emails</a></li>
+    </ul>
+  </div><!-- /navbar -->
+</div><!-- /footer -->
+
+</div><!-- /page -->
+
+</body>
+</html>

@@ -19,7 +19,7 @@
           <% @user_events.each do |a| %>
             <li><a href="<%="/events/#{a.event.id}"%>"><%="#{a.event.name}\tAttendance Status: #{a.commitment_status}"%></a></li>
           <%end%>
-          <%= "You have no events, slacker" unless @user_events.length > 0 %>
+          <%= "You have no events"  unless @user_events.length > 0 %>
       </ul>
     </div>
 
