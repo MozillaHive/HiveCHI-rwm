@@ -16,23 +16,14 @@ Rails.application.routes.draw do
 
   get 'login' => 'session#new'
   post 'login' => 'session#create'
-<<<<<<< HEAD
-  get 'logout' => 'session#destroy'
+  delete 'logout' => 'session#destroy'
 
   get 'register' => 'users#new'
   get 'users/verify' => 'users#verification'
   post 'users/verify' => 'users#verify'
   get 'users/verify-email' => 'users#verify_email'
   resources :users, only: [:create, :show, :destroy]
-=======
-  delete 'logout' => 'session#destroy'
-  get 'register' => 'registrations#new'
-  post 'register' => 'registrations#checkinput'
-  get 'register/verify' => 'registrations#pending'
-  get 'register/tos' => 'registrations#tos'
-  post 'register/tos' => 'registrations#tos_confirm'
->>>>>>> master
-
+  
   post 'events/:id/attendances/create' => 'attendances#create'
   post 'events/:event_id/attendances/update' => 'attendances#update'
   get 'events/:event_id/attendances/show' => 'attendances#show'
