@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :require_login
+  before_filter :require_verified_user
 
   def index
   end
