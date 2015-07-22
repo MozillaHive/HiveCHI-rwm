@@ -22,7 +22,7 @@ class SessionController < ApplicationController
 
   def destroy
     session.clear
-    redirect_to '/'
+    redirect_to login_path
   end
 
   def store_user_commitment
