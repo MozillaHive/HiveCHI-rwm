@@ -28,6 +28,7 @@ class EventsController < ApplicationController
   def all
     events = Event.all
     puts "DATETIME!!"
+    puts Event.find(ch1).start_date_and_time
     puts DateTime.now
     puts DateTime.now.beginning_of_day
     puts DateTime.now.tomorrow.to_date
