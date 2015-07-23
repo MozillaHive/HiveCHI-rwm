@@ -88,4 +88,8 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
 
+  config.before(:each) do
+    allow_any_instance_of(User).to receive(:send_verification_text).and_return(true)
+    allow_any_instance_of(User).to receive(:send_verification_email).and_return(true)
+  end
 end
