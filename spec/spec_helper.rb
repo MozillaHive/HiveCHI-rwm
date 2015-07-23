@@ -88,6 +88,17 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
 
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
   config.before(:each) do
     allow_any_instance_of(User).to receive(:send_verification_text).and_return(true)
     allow_any_instance_of(User).to receive(:send_verification_email).and_return(true)
