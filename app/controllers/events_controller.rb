@@ -1,56 +1,58 @@
 class EventsController < ApplicationController
   def index
+    time = params[:time]
+    respond_to do |format|
+      format.js { render :js => "my_function();" }
+    end
+    # respond_to do |format|
+      # format.html
+      # format.js
+      # render :js => "eventsRequest(" + time + ");"
+    # end
   end
 
   def today
-    render 'layouts/events_list'
-  end
-
-  def tomorrow
-    render '../layouts/events_list'
-  end
-
-  def next_week
-    render '../layouts/events_list'
-  end
-
-    # preferences_json = {
-    #   preference_1: User.find_by_id(session[:user_id]).preference_1,
-    #   preference_2: User.find_by_id(session[:user_id]).preference_2,
-    #   preference_3: User.find_by_id(session[:user_id]).preference_3
-    # }
-
-    # render json: {
-    #   :events => events_json,
-    #   :preferences => preferences_json
-    # }
-
-  def all
-    events = Event.all
-    puts "DATETIME!!"
-    puts Event.find(ch1).start_date_and_time
-    puts DateTime.now
-    puts DateTime.now.beginning_of_day
-    puts DateTime.now.tomorrow.to_date
-
-    params["period"] = "this_week"
-
-    if params["period"] == "today"
-      puts "AMERICA"
-      events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).all
-      # events = Event.where(start_date_and_time.to_date Datetime.now.to_date)
-      # events = Event.where("start_date_and_time = Datetime.now.to_date")
-      # Datetime.now.to_date
-    elsif params["period"] == "tomorrow"
-      events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day + 1.days, DateTime.now.end_of_day + 1.days).all
-    elsif params["period"] == "this_week"
-      events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day + 6.days).all
-    end
+    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day + 1.days, DateTime.now.end_of_day + 1.days).all
 
     @events_json = events.map do |event|
         event.as_json.merge(:numberOfAttendees => event.attendances.count)
     end
 
+    respond_to do |format|
+      format.json {render json: @events_json, :status => :ok}
+    end
+  end
+
+  def tomorrow
+    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day + 1.days, DateTime.now.end_of_day + 1.days).all
+
+    @events_json = events.map do |event|
+        event.as_json.merge(:numberOfAttendees => event.attendances.count)
+    end
+
+    respond_to do |format|
+      format.json {render json: @events_json, :status => :ok}
+    end
+  end
+
+  def this_week
+    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day + 6.days).all
+
+    @events_json = events.map do |event|
+        event.as_json.merge(:numberOfAttendees => event.attendances.count)
+    end
+
+    respond_to do |format|
+      format.json {render json: @events_json, :status => :ok}
+    end
+  end
+
+  def all
+    events = Event.all
+
+    @events_json = events.map do |event|
+        event.as_json.merge(:numberOfAttendees => event.attendances.count)
+    end
 
     respond_to do |format|
       format.json {render json: @events_json, :status => :ok}
