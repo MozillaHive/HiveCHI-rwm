@@ -1,17 +1,19 @@
 class EventsController < ApplicationController
   def index
-    time = params[:time]
-    respond_to do |format|
-      format.js { render :js => "my_function();" }
-    end
+    # time = params[:time]
+    # respond_to do |format|
+    #   format.js { render :js => "my_function();" }
+    # end
     # respond_to do |format|
       # format.html
       # format.js
       # render :js => "eventsRequest(" + time + ");"
     # end
+    # render '../layouts/events_list.html.erb'
   end
 
   def today
+    puts "TODAY"
     events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day + 1.days, DateTime.now.end_of_day + 1.days).all
 
     @events_json = events.map do |event|
@@ -24,6 +26,7 @@ class EventsController < ApplicationController
   end
 
   def tomorrow
+    puts "TOMORROW"
     events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day + 1.days, DateTime.now.end_of_day + 1.days).all
 
     @events_json = events.map do |event|
@@ -36,6 +39,7 @@ class EventsController < ApplicationController
   end
 
   def this_week
+    puts "THISWEEK"
     events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day + 6.days).all
 
     @events_json = events.map do |event|
