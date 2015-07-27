@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :username, :phone, :school_id
   validates_uniqueness_of :email, :username # :phone
   validates :email, format: {
-    with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z0-9]+)*\.[a-z0-9]+\z/i
+    with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   }
   validates :password, length: { minimum: 10 }, allow_nil: true
   validates :phone, length: { is: 12 }
@@ -26,23 +26,23 @@ class User < ActiveRecord::Base
   end
 
   def verify_email!(token)
-  #  if token && token == self.email_token
-  #    self.email_verified = true
+    if token && token == self.email_token
+      self.email_verified = true
       self.email_token = nil
       self.save
-  #  else
-  #   self.errors.add(:base, "Email verification code is incorrect")
-  #  end
+    else
+      self.errors.add(:base, "Email verification code is incorrect")
+    end
   end
 
   def verify_phone!(token)
-   # if token && token == self.phone_token
+    if token && token == self.phone_token
       self.phone_verified = true
       self.phone_token = nil
-    #  self.save
-    #else
-    #  self.errors.add(:base, "Phone verification code is incorrect")
-    #end
+      self.save
+    else
+      self.errors.add(:base, "Phone verification code is incorrect")
+    end
   end
 
   def send_verification_email
@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
     if self.phone_changed? && !(new_record? && phone_verified)
       self.phone_verified = false
       self.phone_token = SecureRandom.hex(4)
-      #send_verification_text
+      send_verification_text
     end
   end
 
@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
     if self.email_changed? && !(new_record? && email_verified)
       self.email_verified = false
       self.email_token = SecureRandom.hex(10)
-      #send_verification_email
+      send_verification_email
     end
   end
 
