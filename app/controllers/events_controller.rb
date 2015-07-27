@@ -16,7 +16,7 @@ class EventsController < ApplicationController
 
   def today
     puts "TODAY"
-    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day + 1.days, DateTime.now.end_of_day + 1.days).all
+    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).all
 
     @events_json = events.map do |event|
         event.as_json.merge(:numberOfAttendees => event.attendances.count)
