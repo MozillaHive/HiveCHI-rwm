@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  @@email_format = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   has_secure_password
   belongs_to :school
   has_many :attendances
@@ -14,7 +15,10 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :username, :phone, :school_id
   validates_uniqueness_of :email, :username # :phone
   validates :email, format: {
-    with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+    with: @@email_format
+  }
+  validates :username, format: {
+    without: @@email_format
   }
   validates :password, length: { minimum: 10 }, allow_nil: true
   validates :parent_password, length: { minimum: 10 }, allow_nil: true, confirmation: true
