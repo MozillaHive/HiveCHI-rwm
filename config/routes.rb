@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   get 'events/today' => 'events#today'
   get 'events/tomorrow' => 'events#tomorrow'
-  get 'events/next-week' => 'events#next_week'
+  get 'events/this_week' => 'events#this_week'
   post 'events/:id/attendances/create' => 'attendances#create'
   post 'events/:event_id/attendances/update' => 'attendances#update'
   get 'events/:event_id/attendances/show' => 'attendances#show'
