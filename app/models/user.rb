@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   end
 
   def send_verification_email
-    url = "http://#{HOSTNAME}/users/verify-email?token=#{self.email_token}"
+    url = "http://#{ENV["HOSTNAME"]}/users/verify-email?token=#{self.email_token}"
     UserMailer.verification_email(url, self).deliver_now
   end
 
