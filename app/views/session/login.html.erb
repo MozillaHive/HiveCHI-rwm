@@ -17,14 +17,15 @@
   <div id="form">
   <%= form_for :user, url: '/login', html: {id: "login_form"} do |f| %>
 
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
 
     <%= f.label :password %>
     <%= f.password_field :password %>
 
     <%= f.submit "Log in", :class => "button" %>
   <% end %>
+  <%= link_to 'Register', register_path, class: 'centered' %>
   </div>
 
   <!-- footer navigator -->

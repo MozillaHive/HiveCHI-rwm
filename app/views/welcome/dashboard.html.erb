@@ -2,6 +2,7 @@
 <html>
   <head>
   <title>Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="dashboard.css">
 </head>
 <body>
 <div data-role="page" id="dashboard">
@@ -18,7 +19,7 @@
           <% @user_events.each do |a| %>
             <li><a href="<%="/events/#{a.event.id}"%>"><%="#{a.event.name}\tAttendance Status: #{a.commitment_status}"%></a></li>
           <%end%>
-          <%= "You have no events, slacker" unless @user_events.length > 0 %>
+          <%= "You have no events"  unless @user_events.length > 0 %>
       </ul>
     </div>
 
@@ -46,7 +47,7 @@
   <div data-role="footer" data-id="foo1" data-position="fixed">
     <div data-role="navbar">
       <ul>
-        <li><a href="login/login">Login</a></li>
+        <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
         <li><a href="b.html">Friends</a></li>
         <li><a href="c.html">Albums</a></li>
         <li><a href="d.html">Emails</a></li>
@@ -88,7 +89,7 @@
   <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
     <div data-role="navbar">
       <ul>
-        <li><a href="login/login">Login</a></li>
+        <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
         <li><a href="b.html">Friends</a></li>
         <li><a href="c.html">Albums</a></li>
         <li><a href="d.html">Emails</a></li>
@@ -369,7 +370,7 @@ function refresh() {
     $.each(filteredEvents, function (index, value) {
       output += '<li><a href="events/' + filteredIds[index] + '">' + value + '</a></li>';
     });
-    $('#event-list').html(output).listview("refresh");
+    $('#event-list').html(output).listview().listview("refresh");
 }
 </script>
 

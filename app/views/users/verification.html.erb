@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>My Page</title>
+</head>
+<body>
+
+
+<div data-role="page">
+
+  <div data-role="header">
+    <h1>Welcome Index</h1>
+  </div><!-- /header -->
+  <div>
+    <% if flash[:errors] && !flash[:errors].empty? %>
+    <ul>
+      <% flash[:errors].each do |error| %>
+      <li><%= error %></li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+  <% unless @user.phone_verified %>
+    <%= form_tag(action: "verify", method: "post") do %>
+      <%= label_tag "Phone verification code" %>
+      <%= text_field_tag :phone_token %>
+      <%= submit_tag "Verify" %>
+    <% end %>
+  <% end %>
+  <!-- footer navigator -->
+  <div data-role="footer" data-id="foo1" data-position="fixed">
+  <div data-role="navbar">
+    <ul>
+      <li><a href="login/login">Login</a></li>
+      <li><a href="b.html">Friends</a></li>
+      <li><a href="c.html">Albums</a></li>
+      <li><a href="d.html">Emails</a></li>
+    </ul>
+  </div><!-- /navbar -->
+</div><!-- /footer -->
+
+</div><!-- /page -->
+
+</body>
+</html>

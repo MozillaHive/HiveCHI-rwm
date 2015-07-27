@@ -1,4 +1,5 @@
 class NudgesController < ApplicationController
+	before_filter :require_verified_user
 
 	def new
 		user = User.find(session[:user_id])
@@ -22,11 +23,10 @@ class NudgesController < ApplicationController
 
 	private
 	def text_message(nudge)
-		account_sid = "ACf08a1e62643f15d3123929d2bd6f1f31"
-		auth_token = "51fa5a33400c42f2363dba65cb753a12"
+		account_sid = Rails.application.secrets.twilio_sid
+		auth_token = Rails.application.secrets.twilio_auth_token
 		client = Twilio::REST::Client.new account_sid, auth_token
- 
-		from = "+12245209278" # Your Twilio number
+		from = "+12245209278" # Your Twilio number\
 
 		client.account.messages.create(
     		:from => from,

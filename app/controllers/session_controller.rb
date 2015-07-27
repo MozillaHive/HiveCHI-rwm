@@ -4,25 +4,25 @@ class SessionController < ApplicationController
   end
 
   def create
-    puts "USER EMAIL PARAMS THING"
-    puts params[:user][:email]
-
-    @user = User.find_by(email: params[:user][:email])
-    puts @user
+    @user = User.find_by(username: params[:user][:username])
+    @user ||= User.find_by(email: params[:user][:username])
     if @user && @user.authenticate(params[:user][:password])
-    #if @user
       session[:user_id] = @user.id
+      session[:is_parent?] = false
       client_redirect "/dashboard"
+    elsif @user && BCrypt::Password.new(@user.parent_password) == params[:user][:password]
+        session[:user_id] = @user.id
+        session[:is_parent?] = true
+        client_redirect "/dashboard"
     else
-      flash[:notice] = "Invalid email or password"
-      #puts @errors
+      flash[:notice] = "Invalid username or password"
       redirect_to login_path
     end
   end
 
   def destroy
     session.clear
-    redirect_to '/'
+    redirect_to login_path
   end
 
   def store_user_commitment
@@ -33,7 +33,7 @@ class SessionController < ApplicationController
     else
       flash[:redirect_url] = "/events/#{params[:id]}"
       redirect_to "/redirect"
-    end     
+    end
   end
 
   def store_user_time_preference

@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_filter :require_verified_user
+
   def index
     # time = params[:time]
     # respond_to do |format|
