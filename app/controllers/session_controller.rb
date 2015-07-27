@@ -10,7 +10,7 @@ class SessionController < ApplicationController
       session[:user_id] = @user.id
       session[:is_parent?] = false
       client_redirect "/dashboard"
-    elsif @user && BCrypt::Password.new(@user.parent_password) == params[:user][:password].to_s
+    elsif @user && BCrypt::Password.new(@user.parent_password) == params[:user][:password]
         session[:user_id] = @user.id
         session[:is_parent?] = true
         client_redirect "/dashboard"
