@@ -2,31 +2,67 @@ class EventsController < ApplicationController
   before_filter :require_verified_user
 
   def index
+    # time = params[:time]
+    # respond_to do |format|
+    #   format.js { render :js => "my_function();" }
+    # end
+    # respond_to do |format|
+      # format.html
+      # format.js
+      # render :js => "eventsRequest(" + time + ");"
+    # end
+    # render '../layouts/events_list.html.erb'
   end
 
-    # preferences_json = {
-    #   preference_1: User.find_by_id(session[:user_id]).preference_1,
-    #   preference_2: User.find_by_id(session[:user_id]).preference_2,
-    #   preference_3: User.find_by_id(session[:user_id]).preference_3
-    # }
+  def today
+    puts "TODAY"
+    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).all
 
-    # render json: {
-    #   :events => events_json,
-    #   :preferences => preferences_json
-    # }
-
-  def all
-    events = Event.all
     @events_json = events.map do |event|
         event.as_json.merge(:numberOfAttendees => event.attendances.count)
     end
 
-    # events = ["bob", "bill"]
+    respond_to do |format|
+      format.json {render json: @events_json, :status => :ok}
+    end
+  end
+
+  def tomorrow
+    puts "TOMORROW"
+    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day + 1.days, DateTime.now.end_of_day + 1.days).all
+
+    @events_json = events.map do |event|
+        event.as_json.merge(:numberOfAttendees => event.attendances.count)
+    end
 
     respond_to do |format|
       format.json {render json: @events_json, :status => :ok}
     end
-    # render :json => events
+  end
+
+  def this_week
+    puts "THISWEEK"
+    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day + 6.days).all
+
+    @events_json = events.map do |event|
+        event.as_json.merge(:numberOfAttendees => event.attendances.count)
+    end
+
+    respond_to do |format|
+      format.json {render json: @events_json, :status => :ok}
+    end
+  end
+
+  def all
+    events = Event.all
+
+    @events_json = events.map do |event|
+        event.as_json.merge(:numberOfAttendees => event.attendances.count)
+    end
+
+    respond_to do |format|
+      format.json {render json: @events_json, :status => :ok}
+    end
   end
 
   def show
