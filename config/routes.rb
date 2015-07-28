@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   get 'events/:id/store_user_commitment' => 'session#store_user_commitment'
 
   get 'mynudges' => 'nudges#show'
-  get 'events/:id/join' => 'events#join'
   get 'events/:id/nudge' => 'nudges#new'
   post 'events/:id/nudge' => 'nudges#create'
   get 'events/all' => 'events#all'

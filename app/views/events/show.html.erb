@@ -41,11 +41,19 @@
     <% elsif @out_nudge %>
       <%= "You have nudged #{@out_nudge.nudgee.username} and response is pending" %>
     <% elsif !@attend %>
-      <div id="join">
-        <form method="get" action="/events/<%=params[:id]%>/join"%>
-          <input type="submit" value="JOIN"></input>
-        </form>
-      </div>
+        <div id="buttons">
+          <form method="GET" action="/events/<%=params[:id]%>/store_user_commitment" data-ajax="false">
+            <input type = "hidden" name = "commitment" value = "Yes" />
+            <input type="submit" id="going" value="Join"></input>
+          </form>
+          <form method="GET" action="/events/<%=params[:id]%>/store_user_commitment" data-ajax="false">
+            <input type = "hidden" name = "commitment" value = "Maybe" />
+            <input type="submit" id="maybe" value="Watch"></input>
+          </form>
+          <form method="GET" action="/events/<%=params[:id]%>/nudge">
+            <input type="submit" id="igiyg" value="Nudge"></input>
+          </form>
+        </div>
     <% elsif @attend.commitment_status == "Yes"%>
       <div id = "status">
        You are going to this event

@@ -29,14 +29,14 @@ gem 'rails_12factor', group: :production
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'figaro'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-#Using the ruby gem for twilio 
+#Using the ruby gem for twilio
 gem "twilio-ruby"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -47,5 +47,12 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'rspec-rails', '~> 3.0'
+  gem 'faker'
 end
 
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_girl_rails', '~> 4.0'
+end
