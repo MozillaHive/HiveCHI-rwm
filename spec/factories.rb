@@ -3,7 +3,7 @@ FactoryGirl.define do
     username { Faker::Internet.user_name }
     email { Faker::Internet.email}
     phone { "555#{Array.new(7) { rand(10).to_s }.join}"}
-    school { create(:school) }
+    school_id { create(:school).id }
     password "hellohello"
     password_confirmation "hellohello"
   end
