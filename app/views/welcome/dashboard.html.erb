@@ -25,10 +25,10 @@
 
     <div data-role="collapsible" data-collapsed="false">
       <h4>Trending</h4>
-        <ul data-role="listview">
-          <% @hot_events_num.times do |i|%>
-            <li><a href="/events/<%=@events_arr[i][0].id%>"><%=@events_arr[i][0].name%>: <%=@events_arr[i][1]%> people from your school</a></li>
-          <%end%>
+      <ul data-role="listview">
+        <% @trending_events.each do |event| %>
+          <li><%= link_to "#{event.name}: #{event.attendees.count} people going", event %></li>
+        <% end %>
       </ul>
     </div>
 
