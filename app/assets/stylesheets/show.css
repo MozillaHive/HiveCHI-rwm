@@ -15,8 +15,8 @@
 }
 
 .pictures img{
-    width: 41%;
-    height: 162px;
+    width: 20%;
+    height: 102px;
     padding: 27px 22px 23px 31px;
 }
 .attendees{
@@ -25,14 +25,34 @@
 }
 .attendees img{
     width: 5%;
-    height: 100px;
+    height: 50px;
 }
 #event {
 	text-align: center;
 }
 
+#text_box {
+    font-size: large;
+    width: 24%;
+    margin-left: 49px;
+    color: black;
+    background-color: #47F634;
+}
+
+#info{
+    margin-top: 7px;
+    width: 36%;
+    text-align: -webkit-center;
+    font-size: 11px;
+    display: inline;
+}
 #location {
-	text-align: center;
+    display: inline-flex;
+    width:100%
+}
+
+.spacing {
+    padding-bottom: 10px;
 }
 
 #dt {
@@ -40,7 +60,8 @@
 }
 
 #desc {
-	text-align: center;
+    background-color: #47F634;
+    padding: 0px 103px 0px 88px;
 }
 
 #user {

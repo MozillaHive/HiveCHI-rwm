@@ -1,30 +1,208 @@
-<!DOCTYPE html> 
-<html> 
-  <head> 
-  <title>My Page</title> 
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>My Page</title>
+
+  <!-- google fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+  <!-- jquery library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" ></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>"></script>
+  <style>
+    .ui-content#map-canvas{
+      height: 400px;
+    }
+    div#directions{
+      height: 440px;
+      width:  300px;
+      background-color: #eee;
+      position: absolute;
+      top: 43px;
+      overflow: scroll;
+    }
+    #submit-button{
+      background-color: #5c5;
+      color: #300;
+    }
+  </style>
+  <script>
+   /* jQuery.getJSON("/addresses.json",function(data){start = data.schoolAddress+", Chicago, IL";
+      end = data.eventAddress+", Chicago, IL";
+    });*/
+    var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+    var map;
+    var gMode;
+    var tmode;
+    var start = "5110 N Damen Av";
+    var end = "3945 N. Springfield Ave.";
+    if ('<%=@attendance.method_of_transit %>' == 'walking'){
+      gmMode = google.maps.TravelMode.WALKING;
+      tmode = google.maps.TravelMode.WALKING.toLowerCase();
+    }
+    else if ('<%=@attendance.method_of_transit %>' == 'transit'){
+      gmMode = google.maps.TravelMode.TRANSIT;
+      tmode = google.maps.TravelMode.TRANSIT.toLowerCase();
+    }
+    else{
+      gmMode = google.maps.TravelMode.BICYCLING;
+      tmode = google.maps.TravelMode.BICYCLING.toLowerCase();
+    }
+    var attendence = {transit: [Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1],walking: [Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1],
+      bicycling: [Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1]
+            }
+    var startTime = new Date("2015-06-20T10:00:00-05:00");
+    var earlyTime = new Date(startTime.getTime()-15*60*1000);
+    var lateTime = new Date(startTime.getTime()+15*60*1000);
+    var arriveTimeArray = [earlyTime,startTime,lateTime];
+    var leaveTimeIndex;
+    if ('<%=@attendance.departure_type %>' == 'Early'){
+      leaveTimeIndex = 0;
+    }
+    else if ('<%=@attendance.departure_type %>' == 'On Time'){
+      leaveTimeIndex = 1;
+    }
+    else if ('<%=@attendance.departure_type %>' == 'Late'){
+      leaveTimeIndex = 2;
+    }
+    var leaveTime = {transit: [0,0,0], walking: [0,0,0], bicycling: [0,0,0]};
+    var startTime = new Date("2015-06-20T10:00:00-05:00");
+    var earlyTime = new Date(startTime.getTime()-15*60*1000);
+    var lateTime = new Date(startTime.getTime()+15*60*1000);
+    var arriveTimeArray = [earlyTime,startTime,lateTime];
+    var leaveTimeIndex = 1;
+    function initialize() {
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+        var mapOptions = {
+        zoom: 10,
+        center: chicago
+     }
+     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    calcTime();
+    calcRoute(gmMode, arriveTimeArray[leaveTimeIndex]);
+     directionsDisplay.setMap(map);
+     directionsDisplay.setPanel(document.getElementById("directions"));
+   }
+    function calcRoute(mode,arriveDate) {
+      var request = {
+        origin:start,
+        destination:end,
+        travelMode: mode,
+        transitOptions:{arrivalTime: arriveDate}
+      };
+      directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+           directionsDisplay.setDirections(result);
+         }
+      });
+    }
+    function calcTime(){
+      if('<%=@attendance.method_of_transit%>' == 'walking') {
+       var request = {
+        origin: start,
+        destination: end,
+        travelMode: google.maps.TravelMode.WALKING
+      };
+      directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+           time = result.routes[0].legs[0].duration.value;
+           for (var i = 0; i < 3; i++) {
+             leaveTime.walking[i] = new Date(arriveTimeArray[i].getTime()-time*1000);
+           };
+           updateDisplay();
+         }
+      });
+    } else if('<%=@attendance.method_of_transit%>' == 'bicycling') {
+      var request = {
+        origin:start,
+        destination:end,
+        travelMode:google.maps.TravelMode.BICYCLING
+      };
+      directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+           time = result.routes[0].legs[0].duration.value;
+           for (var j = 0; j < 3; j++) {
+             leaveTime.bicycling[j] = new Date(arriveTimeArray[j].getTime()-time*1000);
+           };
+           updateDisplay();
+         }
+      });
+      } else if('<%=@attendance.method_of_transit%>' == 'transit') {
+      var l = 0
+      for (var k = 0; k < 3; k++) {
+        var request = {
+          origin:start,
+          destination:end,
+          travelMode:google.maps.TravelMode.TRANSIT,
+          transitOptions: {arrivalTime: arriveTimeArray[k]}
+        };
+        directionsService.route(request, function(result, status) {
+         if (status == google.maps.DirectionsStatus.OK) {
+             leaveTime.transit[l] = result.routes[0].legs[0].departure_time.value;
+             l++;
+             if (l ==3){
+              leaveTime.transit.sort(function(a,b){return a.getTime()-b.getTime()})
+             }
+             updateDisplay();
+         }
+       })
+      }
+      if('<%=@attendance.method_of_transit%>' == 'walking') {
+      document.getElementById("transportation").innerHTML = "Walking: "+(attendence.walking[0]+attendence.walking[1]+attendence.walking[2])
+    }
+      if('<%=@attendance.method_of_transit%>' == 'transit') {
+        document.getElementById("transportation").innerHTML = "Transit: "+(attendence.transit[0]+attendence.transit[1]+attendence.transit[2])
+      }
+      if('<%=@attendance.method_of_transit%>' == 'bicycling') {
+      document.getElementById("transportation").innerHTML = "Bike: "+(attendence.bicycling[0]+attendence.bicycling[1]+attendence.bicycling[2])
+      }
+    }
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+    function  printMin(min){
+      if (min > 9){
+        return min.toString();
+      }
+      else{
+        return "0"+min.toString();
+      }
+    }
+    function updateDisplay (){
+      if ('<%=@attendance.departure_type %>' == 'Early'){
+      document.getElementById("time").innerHTML = "Early: "+attendence[tmode][0]+"<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
+      }
+        else if ('<%=@attendance.departure_type %>' == 'On Time'){
+      document.getElementById("time").innerHTML = "On Time: "+attendence[tmode][1]+"<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
+      }
+      else{
+      document.getElementById("time").innerHTML = "Late: "+attendence[tmode][2]+"<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes());
+      }
+
+    }
+</script>
 </head>
 <body>
 
-
-<div data-role="page">
-
-  <div data-role="header">
-    <h1></h1>
-  </div><!-- /header -->
-  Map Implementation is coming.
-  <!-- footer navigator -->
-  <div data-role="footer" data-id="foo1" data-position="fixed">
-  <div data-role="navbar">
-    <ul>
-      <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
-      <li><a href="b.html">Friends</a></li>
-      <li><a href="c.html">Albums</a></li>
-      <li><a href="d.html">Emails</a></li>
-    </ul>
-  </div><!-- /navbar -->
-</div><!-- /footer -->
-
-</div><!-- /page -->
+  <div data-role="page">
+    <div data-role="header">
+     <h1>Map</h1>
+    </div><!-- /header -->
+    <div role = "main" id = "main">
+      <div class="ui-content" id="map-canvas">
+        <!-- map loads here... -->
+      </div>
+      <div id = "directions">
+      </div>
+      <div id  = "buttons">
+        <button disabled="true" id="transportation"><%= @attendance.method_of_transit.upcase %></button>
+  <div id ="time_selections">
+        <button disabled="true" id="time"><%= @attendance.departure_type.upcase %></button>
+  </div>
+</div>
+</div>
+  </div><!-- /page -->
 
 </body>
 </html>
