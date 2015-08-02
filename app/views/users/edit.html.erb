@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>My Page</title>
+  <link rel="stylesheet" type="text/css" href="new.css">
+</head>
+<body>
+
+
+<div data-role="page">
+
+  <div data-role="header">
+    <h1>Edit your Profile</h1>
+  </div><!-- /header -->
+  <%= render partial: "form" %>
+  <!-- footer navigator -->
+  <div data-role="footer" data-id="foo1" data-position="fixed">
+  <div data-role="navbar">
+    <ul>
+      <li><%= link_to 'Back', :back %></li>
+        <li><a href="/dashboard.html">Home</a></li>
+        <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
+    </ul>
+  </div><!-- /navbar -->
+</div><!-- /footer -->
+
+</div><!-- /page -->
+
+</body>
+</html>

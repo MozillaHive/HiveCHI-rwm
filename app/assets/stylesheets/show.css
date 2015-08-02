@@ -1,5 +1,4 @@
 #body {
-	margin-top: 2em;
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
@@ -15,11 +14,11 @@
 
 .align-left {
   text-align: left;
-  margin-left: 98px;
+  margin-left: 25px;
 }
 .align-left-padding {
   text-align: left;
-  padding-left: 49px;
+  padding-left: 10px;
 }
 
 .no-bottom-margin {
@@ -27,12 +26,13 @@
 }
 
 .margin-right {
-  margin-right: 98px;
+  margin-right: 25px;
 }
 
 .pictures img{
-  max-height: 400px;
-  padding: 27px 22px 23px 98px;
+  height: auto;
+  width: 100%;
+  padding: 0px 0px 23px 0px;
 }
 .attendees{
     text-align: -webkit-left;
@@ -49,7 +49,7 @@
 #text_box {
     font-size: large;
     width: 24%;
-    margin-left: 98px;
+    margin-left: 25px;
     color: black;
     background-color: #47F634;
 }
