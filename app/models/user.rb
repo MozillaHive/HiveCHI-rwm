@@ -76,6 +76,7 @@ class User < ActiveRecord::Base
   private
 
   def real_phone_number?
+    return
     unless new_record? && phone_verified
       client = Twilio::REST::LookupsClient.new(
         ENV['TWILIO_SID'], ENV['TWILIO_AUTH_TOKEN']

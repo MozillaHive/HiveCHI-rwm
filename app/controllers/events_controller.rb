@@ -76,4 +76,15 @@ class EventsController < ApplicationController
     puts @in_nudge
   end
 
+  def store_user_commitment
+   if params[:commitment]
+      session[:commitment] = params[:commitment]
+      flash[:redirect_url] = "/events/#{params[:id]}/attendances/new"
+      redirect_to "/redirect"
+    else
+      flash[:redirect_url] = "/events/#{params[:id]}"
+      redirect_to "/redirect"
+    end
+  end
+
 end
