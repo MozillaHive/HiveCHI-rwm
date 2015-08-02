@@ -36,8 +36,7 @@
     <ul>
       <li><a href="b.html">Back</a></li>
       <li><a href="c.html">Home</a></li>
-      <li><a href="d.html">My Profile</a></li>
-      <li><a href="e.html">Logout</a></li>
+      <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
     </ul>
   </div><!-- /navbar -->
 </div><!-- /footer -->
