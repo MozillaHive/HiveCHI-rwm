@@ -80,7 +80,7 @@
         You backed out of this event
       </div>
       <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" data-ajax="false">Show Directions</a>
-      <%= form_tag(new_event_attendance_path(@event)), method: "get") do %>
+      <%= form_tag(new_event_attendance_path(@event), method: "get") do %>
         <%= submit_tag("Join") %>
       <% end %>
     <% else %>
