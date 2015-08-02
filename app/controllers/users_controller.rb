@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to '/users/verify'
+      redirect_to users_verify_path
     else
       flash[:reg_errors] = @user.errors.full_messages
       render 'new'
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def verification
     @user = current_user
-    redirect_to "/dashboard" if @user.verified?
+    redirect_to dashboard_path if @user.verified?
     unless @user.email_verified
       flash[:errors] ||= []
       flash[:errors] << "Your email address has not been verified. Please " \
@@ -32,9 +32,9 @@ class UsersController < ApplicationController
       @user.verify_email!(params[:token])
       reset_session
       session[:user_id] = @user.id
-      redirect_to "/users/verify"
+      redirect_to users_verify_path
     else
-      redirect_to "/"
+      redirect_to root_path
     end
   end
 
@@ -43,10 +43,10 @@ class UsersController < ApplicationController
     @user.verify_email!(params[:email_token]) if params[:email_token]
     @user.verify_phone!(params[:phone_token]) if params[:phone_token]
     if @user.verified?
-      redirect_to "/dashboard"
+      redirect_to dashboard_path
     else
       flash[:errors] = @user.errors.full_messages
-      redirect_to "/users/verify"
+      render "verification"
     end
   end
 
