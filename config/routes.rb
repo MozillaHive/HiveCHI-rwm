@@ -27,7 +27,8 @@ Rails.application.routes.draw do
   get 'users/verify' => 'users#verification'
   post 'users/verify' => 'users#verify'
   get 'users/verify-email' => 'users#verify_email'
-  resources :users, only: [:create, :show, :destroy]
+  get 'users/edit' => 'users#edit'
+  resources :users, only: [:create, :update, :destroy]
 
   resources :events do
     resources :attendances
