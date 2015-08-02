@@ -56,10 +56,9 @@
       <%= "You have nudged #{@out_nudge.nudgee.username} and response is pending" %>
     <% elsif !@attend %>
         <div id="buttons">
-          <form method="GET" action="/events/<%=params[:id]%>/store_user_commitment" data-ajax="false">
-            <input type = "hidden" name = "commitment" value = "Yes" />
-            <input type="submit" id="going" value="Join"></input>
-          </form>
+          <%= form_tag(new_event_attendance_path(@event), method: "get") do %>
+            <%= submit_tag("Join") %>
+          <% end %>
           <%= form_tag(event_attendances_path(@event), method: "post") do %>
             <%= hidden_field_tag(:commitment_status, "Maybe") %>
             <%= submit_tag("Watch") %>

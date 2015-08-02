@@ -175,7 +175,7 @@
       </div>
       <div id = "directions">
       </div>
-    <form method = "POST" action = "./create">
+    <form>
       <div id  = "buttons">
         <h4>Method of Transit</h4>
     <input type = "radio" id = "transit" name = "method" value = 'transit' onclick = "transitChange('transit')"/> CTA
@@ -189,6 +189,7 @@
   </div>
     <input type = "hidden" id = "tansit-mode-field" name = "method_of_transit" value = "" />
     <input type = "hidden" name = "departure_time" value = ""  id = "departure_time_field"/>
+  </form>
   <%= form_tag(event_attendances_path(@event), method: "post") do %>
     <%= hidden_field_tag(:commitment_status, "Yes") %>
     <%= hidden_field_tag(:method_of_transit) %>
