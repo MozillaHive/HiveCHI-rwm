@@ -4,15 +4,15 @@
   <title>Show</title>
 <link rel="stylesheet" type="text/css" href="show.css">
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>"></script>
+
 <script>
   leaveaddr = "<%=current_user.school.address %>"
   arriveaddr = "<%=@event.address %>"
   arrivetime = new Date("<%=@event.start_date_and_time %>")
-  </script>
-<%= javascript_include_tag "travel_times.js" %>
-<script>
-
 </script>
+
+<%= javascript_include_tag "travel_times.js" %>
+
 </head>
 <body>
 
@@ -107,10 +107,9 @@
   <div data-role="footer" data-id="foo1" data-position="fixed">
   <div data-role="navbar">
     <ul>
-      <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
-      <li><a href="b.html">Friends</a></li>
-      <li><a href="c.html">Albums</a></li>
-      <li><a href="d.html">Emails</a></li>
+        <li><%= link_to 'Back', :back %></li>
+        <li><a href="/dashboard.html">Home</a></li>
+        <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
     </ul>
   </div><!-- /navbar -->
 </div><!-- /footer -->

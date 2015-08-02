@@ -22,7 +22,11 @@ class WelcomeController < ApplicationController
     end
     @user_events.sort_by! {|a| a.event.start_date_and_time}
 		@trending_events = Event.popular_events(5)
+
+    @nudges_in = current_user.recieved_nudges
+    @nudges_out = current_user.sent_nudges
   end
+
 
   def parent_dashboard
     redirect_to :action => "dashboard", :controller => "welcome" unless session[:is_parent?]
