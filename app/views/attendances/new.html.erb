@@ -160,9 +160,9 @@
       } else {
       document.getElementById("departure_type").value = "Late";
     }
-      document.getElementById("early").innerHTML = "Early: "+attendence[tmode][0]+"<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
-      document.getElementById("onTime").innerHTML = "On Time: "+attendence[tmode][1]+"<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
-      document.getElementById("late").innerHTML = "Late: "+attendence[tmode][2]+"<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes());
+      document.getElementById("early").innerHTML = "Early: "+attendence[tmode][0]+" people<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
+      document.getElementById("onTime").innerHTML = "On Time: "+attendence[tmode][1]+" people<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
+      document.getElementById("late").innerHTML = "Late: "+attendence[tmode][2]+" people<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes());
     }
 </script>
 </head>
