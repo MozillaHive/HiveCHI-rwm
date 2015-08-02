@@ -13,7 +13,7 @@ class AttendancesController < ApplicationController
   def create
   	event = Event.find(params[:id])
   	Attendance.create(user: current_user, event: event,
-  		departure_time: params[:departure],
+  		departure_time: params[:departure_time][0...-1],
   		method_of_transit: params[:method_of_transit],
   		commitment_status: session[:commitment])
   	flash[:notice] = "You signed up for #{event.name}"

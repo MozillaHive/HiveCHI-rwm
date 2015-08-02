@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150715145744) do
   create_table "attendances", force: :cascade do |t|
     t.integer  "event_id"
     t.integer  "user_id"
-    t.string   "departure_time"
+    t.datetime "departure_time"
     t.string   "commitment_status"
     t.string   "method_of_transit"
     t.datetime "created_at",        null: false

@@ -154,7 +154,7 @@
     function updateDisplay (){
       document.getElementById("time_selections").hidden = false
       document.getElementById("tansit-mode-field").value = tmode;
-      document.getElementById("deparute-time-field").value = leaveTime[tmode][leaveTimeIndex].toISOString()
+      document.getElementById("departure_time_field").value = leaveTime[tmode][leaveTimeIndex].toISOString()
       document.getElementById("early-time").innerHTML = "Early: "+attendence[tmode][0]+"<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
       document.getElementById("ontime-time").innerHTML = "On Time: "+attendence[tmode][1]+"<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
       document.getElementById("late-time").innerHTML = "Late: "+attendence[tmode][2]+"<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes());
@@ -187,7 +187,7 @@
     <input type ="radio" id = "late" name = "departure" value = "Late" onclick="timeChange(2)" /><span id = "late-time"></span>
   </div>
     <input type = "hidden" id = "tansit-mode-field" name = "method_of_transit" value = "" />
-    <input type = "hidden" name = "depature_time" value = ""  id = "deparute-time-field"/>
+    <input type = "hidden" name = "departure_time" value = ""  id = "departure_time_field"/>
     <input type = "hidden" name = "commitment_status" value = "<%=flash[:commitment]%>" />
     <input  type = "submit" value ="Let's Go!" />
   </form>
