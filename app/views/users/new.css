@@ -8,7 +8,7 @@
   -webkit-overflow-scrolling: touch;
   }
 
-.notice {
+.error {
   width: 100%;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -17,6 +17,6 @@
   font-size: 20px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
-  background-color: yellowgreen;
+  background-color: red;
   text-align: center;
 }
