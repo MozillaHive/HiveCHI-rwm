@@ -6,12 +6,14 @@ class AttendancesController < ApplicationController
       flash[:redirect_url] = "/events/"+params[:event_id]
       redirect_to "/redirect"
     end
+    @event = Event.find(params[:event_id])
+
   end
 
   def create
   	event = Event.find(params[:id])
-  	Attendance.create(user: User.find(session[:user_id]), event: event,
-  		departure_time: params[:departure_time],
+  	Attendance.create(user: current_user, event: event,
+  		departure_time: params[:departure],
   		method_of_transit: params[:method_of_transit],
   		commitment_status: session[:commitment])
   	flash[:notice] = "You signed up for #{event.name}"

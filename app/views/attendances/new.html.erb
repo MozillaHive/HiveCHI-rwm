@@ -35,10 +35,10 @@
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
     var map;
-    var start = "5110 N Damen Av";
-    var end = "3945 N. Springfield Ave.";
+    var start = "<%=current_user.school.address %>";
+    var end = "<%=@event.address%>";
     var tmode = "walking";
-    var startTime = new Date("2015-06-20T10:00:00-05:00");
+    var startTime = new Date("<%=@event.start_date_and_time%>");
     var earlyTime = new Date(startTime.getTime()-15*60*1000);
     var lateTime = new Date(startTime.getTime()+15*60*1000);
     var arriveTimeArray = [earlyTime,startTime,lateTime];
@@ -152,12 +152,12 @@
       }
     }
     function updateDisplay (){
+      document.getElementById("time_selections").hidden = false
       document.getElementById("tansit-mode-field").value = tmode;
       document.getElementById("deparute-time-field").value = leaveTime[tmode][leaveTimeIndex].toISOString()
-      document.getElementById("early").innerHTML = "Early: "+attendence[tmode][0]+"<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
-      document.getElementById("onTime").innerHTML = "On Time: "+attendence[tmode][1]+"<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
-      document.getElementById("late").innerHTML = "Late: "+attendence[tmode][2]+"<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes());
-
+      document.getElementById("early-time").innerHTML = "Early: "+attendence[tmode][0]+"<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
+      document.getElementById("ontime-time").innerHTML = "On Time: "+attendence[tmode][1]+"<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
+      document.getElementById("late-time").innerHTML = "Late: "+attendence[tmode][2]+"<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes());
     }
 </script>
 </head>
@@ -174,17 +174,19 @@
       </div>
       <div id = "directions">
       </div>
+    <form method = "POST" action = "./create">
       <div id  = "buttons">
-    <button id = "transit" onclick = "transitChange('transit')">CTA</button>
-    <button  id = "walking" onclick = "transitChange('walking')">Walking</button>
-    <button id = "bicycling" onclick = "transitChange('bicycling')">Biking</button>
-  <div id ="time_selections">
-    <button id = "early" onclick="timeChange(0)">Early</button>
-    <button id = "onTime" onclick="timeChange(1)">On Time</button>
-    <button id = "late" onclick="timeChange(2)">Late</button>
+        <h4>Method of Transit</h4>
+    <input type = "radio" id = "transit" name = "method" value = 'transit' onclick = "transitChange('transit')"/> CTA
+    <input type = "radio"  id = "walking" name = "method" value = "walking" onclick = "transitChange('walking')" /> Walking
+    <input type = "radio" id = "bicycling" name ="method" value = "bicycling" onclick = "transitChange('bicycling')"> Biking
+  <div id ="time_selections" hidden>
+    <h4>Arrival Time</h4>
+    <input type = "radio" id = "early" name = "departure" value = "Early" onclick="timeChange(0)" /><span id = "early-time"></span></button>
+    <input type = "radio" id = "onTime" name = "departure" value = "On Time" onclick="timeChange(1)" /><span id = "ontime-time"></span>
+    <input type ="radio" id = "late" name = "departure" value = "Late" onclick="timeChange(2)" /><span id = "late-time"></span>
   </div>
-  <form method = "POST" action = "./create">
-    <input type = "hidden" id = "tansit-mode-field" name = "method_of_transit" value = "transit" />
+    <input type = "hidden" id = "tansit-mode-field" name = "method_of_transit" value = "" />
     <input type = "hidden" name = "depature_time" value = ""  id = "deparute-time-field"/>
     <input type = "hidden" name = "commitment_status" value = "<%=flash[:commitment]%>" />
     <input  type = "submit" value ="Let's Go!" />
