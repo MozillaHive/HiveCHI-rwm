@@ -338,7 +338,7 @@
       }
       var output = '';
       $.each(filteredEvents, function (index, value) {
-        output += '<li><a href="events/' + filteredIds[index] + '">' + value + '</a></li>';
+        output += '<li><a href="events/' + filteredIds[index] + '" data-ajax="false">' + value + '</a></li>';
       });
       $('#event-list').html(output).listview().listview("refresh");
       console.log(filteredEvents);
