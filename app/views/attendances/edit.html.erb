@@ -177,10 +177,12 @@
     <h4>Arrival Time</h4>
     <input type = "radio" id = "early" name = "departuretype" value = "Early" onclick="timeChange(0)" /><span id = "early-time"></span></button>
     <input type = "radio" id = "onTime" name = "departuretype" value = "On Time" onclick="timeChange(1)" /><span id = "ontime-time"></span>
-    <input type ="radio" id = "late" name = "departuretype" value = "Late" onclick="timeChange(2)" /><span id = "late-time"></span>
+    <input type ="radio" id = "late" name = "departurettype" value = "Late" onclick="timeChange(2)" /><span id = "late-time"></span>
   </div>
+    <input type = "hidden" id = "tansit-mode-field" name = "method_of_transit" value = "" />
+    <input type = "hidden" name = "departure_time" value = ""  id = "departure_time_field"/>
   </form>
-    <%= form_tag(event_attendances_path(@event), method: "post") do %>
+    <%= form_tag(event_attendance_path(@event, @attendance), method: "patch") do %>
     <%= hidden_field_tag(:commitment_status, "Yes") %>
     <%= hidden_field_tag(:method_of_transit) %>
     <%= hidden_field_tag(:departure_type)%>
