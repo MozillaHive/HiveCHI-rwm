@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>Show</title>
+  <title>@event.name</title>
+  <script src="/assets/events.js"></script>
 <link rel="stylesheet" type="text/css" href="show.css">
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>"></script>
 <% if current_user and current_user.verified? %>
@@ -16,19 +17,30 @@
 <body>
 
 <div data-role="page">
-
-  <div data-role="header">
-    <h1>Show</h1>
-  </div><!-- /header -->
   <div id="body">
     <div id = "name">
       <%= @event.name %>
     </div>
-    <div id="location">
-      <%="Location: " + @event.address %>
+    <div class="pictures">
+      <img src="/assets/default_image.jpg" class="default_image"/>
+      <img src="/assets/google-map.jpg" class="google_map"/>
     </div>
-    <div id="dt">
-      <%="Date and time: " + @event.start_date_and_time.strftime("%A, %B %d, %Y %l%p") + " to " + (@event.start_date_and_time+@event.duration.hours).strftime("%l%p")%>
+    <div class="attendees">
+      <% @event.attendances.each do %>
+        <img src="/assets/default_person.jpg">
+      <%end %>
+    </div>
+    <div id="location" class="spacing">
+      <div id="text_box">Where: </div>
+      <div id="info">
+        <%=@event.address %>
+      </div>
+    </div>
+    <div id="dt" class="spacing">
+      <div id="text_box">When: </div>
+      <div id="info">
+        <%=@event.start_date_and_time.strftime("%A, %B %d, %Y %l%p") + " to " + (@event.start_date_and_time+@event.duration.hours).strftime("%l%p")%>
+      </div>
     </div>
     <div id="desc">
       <%="Description: " + @event.description %>
@@ -40,7 +52,6 @@
       <% user_school = current_user.school %>
     </div>
     <div id="attendee">
-    <%="Total number attending: " + @event.attendees.length.to_s %><br />
     <%="Number attending from your school: " + @event.attendees.where(school: user_school).length.to_s %>
     </div>
     <div id = "travel_times">
