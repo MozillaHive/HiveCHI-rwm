@@ -16,11 +16,10 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :username # :phone
   validates :email, format: { with: @@email_format }
   validates :username, format: { without: @@email_format }
-  validates :password, length: { minimum: 10 }, allow_nil: true
-  validates :parent_password, length: { minimum: 10 }, allow_nil: true, confirmation: true
+  validates :password, length: { minimum: 10 }, allow_blank: true
+  validates :parent_password, length: { minimum: 10 }, allow_blank: true, confirmation: true
   validates :phone, length: { is: 12 }
   validate :no_password_collision?, :real_phone_number?
-
   before_save :require_phone_verification, :require_email_verification, :hash_parent_pass
 
   def verified?
@@ -65,12 +64,16 @@ class User < ActiveRecord::Base
   end
 
   def hash_parent_pass
-    self.parent_password = BCrypt::Password.create(self.parent_password) unless BCrypt::Password.valid_hash?(self.parent_password)
+    if attribute_present?(:parent_password) && !BCrypt::Password.valid_hash?(self.parent_password)
+      self.parent_password = BCrypt::Password.create(self.parent_password)
+    end
   end
 
   #This is simple password collision detection that will need changing when we add the ability to change passwords
   def no_password_collision?
-    errors.add(:parent_password, "and password must be different") if self.parent_password == self.password
+    if attribute_present?(:parent_password) && self.parent_password == self.password
+      errors.add(:parent_password, "and password must be different")
+    end
   end
 
   private
