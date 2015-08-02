@@ -4,15 +4,15 @@
   <title>Show</title>
 <link rel="stylesheet" type="text/css" href="show.css">
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>"></script>
+
 <script>
   leaveaddr = "<%=current_user.school.address %>"
   arriveaddr = "<%=@event.address %>"
   arrivetime = new Date("<%=@event.start_date_and_time %>")
-  </script>
-<%= javascript_include_tag "travel_times.js" %>
-<script>
-
 </script>
+
+<%= javascript_include_tag "travel_times.js" %>
+
 </head>
 <body>
 

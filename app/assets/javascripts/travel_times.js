@@ -1,6 +1,6 @@
 modePrefix = {
 	BICYCLING: "Time by biking: ",
-	TRANSIT: "Time by public transit: ",
+	TRANSIT: "Time by CTA: ",
 	WALKING: "Time by walking: "
 }
 shown = {
