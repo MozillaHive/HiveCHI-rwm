@@ -72,7 +72,8 @@
     <div data-role="navbar">
       <ul>
         <li><%= link_to 'Back', :back %></li>
-        <li><a href="/dashboard.html">Home</a></li>
+        <li><%= link_to "Home", dashboard_path %></li>
+        <li><%= link_to "Edit Profile", users_edit_path %></li>
         <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
       </ul>
     </div><!-- /navbar -->
@@ -113,7 +114,8 @@
     <div data-role="navbar">
       <ul>
         <li><%= link_to 'Back', :back %></li>
-        <li><a href="/dashboard.html">Home</a></li>
+        <li><%= link_to "Home", dashboard_path %></li>
+        <li><%= link_to "Edit Profile", users_edit_path %></li>
         <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
       </ul>
     </div><!-- /navbar -->
