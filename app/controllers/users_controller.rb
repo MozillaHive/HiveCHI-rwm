@@ -43,7 +43,13 @@ class UsersController < ApplicationController
     @user.verify_email!(params[:email_token]) if params[:email_token]
     @user.verify_phone!(params[:phone_token]) if params[:phone_token]
     if @user.verified?
-      redirect_to dashboard_path
+      if session[:redirect_url]
+        url  = session[:redirect_url]
+        session[:redirect_url] = nil
+        redirect_to url
+      else
+        client_redirect "/dashboard"
+      end
     else
       flash[:errors] = @user.errors.full_messages
       render "verification"
