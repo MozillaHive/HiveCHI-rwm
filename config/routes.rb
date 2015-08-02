@@ -10,13 +10,17 @@ Rails.application.routes.draw do
   get 'events/:id/store_user_commitment' => 'session#store_user_commitment'
 
   get 'mynudges' => 'nudges#show'
-  get 'events/:id/join' => 'events#join'
   get 'events/:id/nudge' => 'nudges#new'
   post 'events/:id/nudge' => 'nudges#create'
   get 'events/all' => 'events#all'
 
   get 'login' => 'session#new'
   post 'login' => 'session#create'
+
+  post 'events/today' => 'events#today'
+  post 'events/tomorrow' => 'events#tomorrow'
+  post 'events/this_week' => 'events#this_week'
+
   delete 'logout' => 'session#destroy'
 
   get 'register' => 'users#new'
@@ -24,7 +28,7 @@ Rails.application.routes.draw do
   post 'users/verify' => 'users#verify'
   get 'users/verify-email' => 'users#verify_email'
   resources :users, only: [:create, :show, :destroy]
-  
+
   post 'events/:id/attendances/create' => 'attendances#create'
   post 'events/:event_id/attendances/update' => 'attendances#update'
   get 'events/:event_id/attendances/show' => 'attendances#show'

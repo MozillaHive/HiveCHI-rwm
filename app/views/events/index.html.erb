@@ -117,11 +117,27 @@
 
 </div><!-- /page -->
 
+
+</body>
+</html>
+
+
 <script>
+  function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+
+
+  var time = getParameterByName("time")
   var eventsJson = null
+
   $.ajax({
-    method: "get",
-    url: "/events/all",
+    method: "post",
+    url: "/events/" + time,
     dataType: "json",
     success: function(data) {
       eventsJson = data;
@@ -331,6 +347,3 @@
 
 
 </script>
-
-</body>
-</html>

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  @@email_format = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   has_secure_password
   belongs_to :school
   has_many :attendances
@@ -14,12 +15,17 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :username, :phone, :school_id
   validates_uniqueness_of :email, :username # :phone
   validates :email, format: {
-    with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+    with: @@email_format
+  }
+  validates :username, format: {
+    without: @@email_format
   }
   validates :password, length: { minimum: 10 }, allow_nil: true
+  validates :parent_password, length: { minimum: 10 }, allow_nil: true, confirmation: true
   validates :phone, length: { is: 12 }
+  validate :no_password_collision?
 
-  before_save :require_phone_verification, :require_email_verification
+  before_save :require_phone_verification, :require_email_verification, :hash_parent_pass
 
   def verified?
     self.email_verified && self.phone_verified
@@ -60,6 +66,15 @@ class User < ActiveRecord::Base
       to: self.phone,
       body: "Your RideW/Me verification code is #{self.phone_token}"
     )
+  end
+
+  def hash_parent_pass
+    self.parent_password = BCrypt::Password.create(self.parent_password) unless BCrypt::Password.valid_hash?(self.parent_password)
+  end
+
+  #This is simple password collision detection that will need changing when we add the ability to change passwords
+  def no_password_collision?
+    errors.add(:parent_password, "and password must be different") if self.parent_password == self.password
   end
 
   private
