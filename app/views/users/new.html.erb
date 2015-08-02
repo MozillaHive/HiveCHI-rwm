@@ -2,6 +2,7 @@
 <html>
   <head>
   <title>My Page</title>
+  <link rel="stylesheet" type="text/css" href="new.css">
 </head>
 <body>
 
@@ -11,8 +12,8 @@
   <div data-role="header">
     <h1>Welcome Index</h1>
   </div><!-- /header -->
-    <div id = "notices">
       <% if flash[:reg_errors] %>
+    <div id = "notices" class="error">
         <ul>
           <% flash[:reg_errors].each do |e|%>
             <li><%= e %></li>
@@ -22,6 +23,7 @@
         Password and Parent Password must both be 10 characters or more.
       <%end%>
     </div>
+      <%end%>
   <%= form_for @user, url: { action: "create" } do |f| %>
   <%= f.label :username %>
   <%= f.text_field :username %>
