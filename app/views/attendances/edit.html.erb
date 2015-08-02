@@ -190,7 +190,7 @@
     <input type = "hidden" id = "tansit-mode-field" name = "method_of_transit" value = "" />
     <input type = "hidden" name = "departure_time" value = ""  id = "departure_time_field"/>
   </form>
-  <%= form_tag(event_attendances_path(@event), method: "post") do %>
+  <%= form_tag(event_attendance_path(@event, @attendance), method: "patch") do %>
     <%= hidden_field_tag(:commitment_status, "Yes") %>
     <%= hidden_field_tag(:method_of_transit) %>
     <%= submit_tag("Let's Go!") %>
