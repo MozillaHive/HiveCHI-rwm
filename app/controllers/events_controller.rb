@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :require_verified_user
+  before_filter :require_verified_user, except: :show
 
   def index
     # time = params[:time]
@@ -66,6 +66,9 @@ class EventsController < ApplicationController
   end
 
   def show
+    unless current_user and current_user.verified?
+      session[:redirect_url] = "/events/#{params[:id]}"
+    end
     @event = Event.find(params[:id])
     @attend = Attendance.find_by(event: @event, user_id: session[:user_id])
     @out_nudge = Nudge.find_by(event: @event, nudger_id: session[:user_id])

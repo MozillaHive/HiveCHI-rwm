@@ -9,11 +9,23 @@ class SessionController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       session[:is_parent?] = false
-      client_redirect "/dashboard"
+     if session[:redirect_url]
+          flash[:redirect_url] = session[:redirect_url]
+          session[:redirect_url] = nil
+          redirect_to "/redirect"
+      else
+        client_redirect "/dashboard"
+      end
     elsif @user && BCrypt::Password.new(@user.parent_password) == params[:user][:password]
         session[:user_id] = @user.id
         session[:is_parent?] = true
-        client_redirect "/dashboard"
+        if session[:redirect_url]
+          flash[:redirect_url] = session[:redirect_url]
+          session[:redirect_url] = nil
+          redirect_to "/redirect"
+        else
+          client_redirect "/dashboard"
+        end
     else
       flash[:notice] = "Invalid username or password"
       redirect_to login_path
