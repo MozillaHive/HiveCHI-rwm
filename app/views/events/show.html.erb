@@ -3,6 +3,16 @@
   <head>
   <title>Show</title>
 <link rel="stylesheet" type="text/css" href="show.css">
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>"></script>
+<script>
+  leaveaddr = "<%=current_user.school.address %>"
+  arriveaddr = "<%=@event.address %>"
+  arrivetime = new Date("<%=@event.start_date_and_time %>")
+  </script>
+<%= javascript_include_tag "travel_times.js" %>
+<script>
+
+</script>
 </head>
 <body>
 
@@ -33,6 +43,11 @@
     <div id="attendee">
     <%="Total number attending: " + @event.attendees.length.to_s %><br />
     <%="Number attending from your school: " + @event.attendees.where(school: user_school).length.to_s %>
+    </div>
+    <div id = "travel_times">
+      <div id = "TRANSIT"></div>
+      <div id = "BICYCLING"></div>
+      <div id = "WALKING"></div>
     </div>
     <% if @in_nudge %>
       <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
