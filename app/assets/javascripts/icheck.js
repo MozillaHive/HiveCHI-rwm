@@ -7,9 +7,9 @@
  * MIT Licensed
  */
 
-$(document).ready(function() {
-  console.log("found icheck");
-});
+// $(document).ready (function () {
+  // console.log("found icheck");
+// })
 
 
 (function($) {
