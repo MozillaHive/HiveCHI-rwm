@@ -5,6 +5,8 @@ class AttendancesController < ApplicationController
     @event = Event.find(params[:event_id])
     if (@attendance = Attendance.find_by(user: current_user, event: @event))
       redirect_to edit_attendance_path(@event, @attendance)
+    else
+      @attendance = Attendance.new
     end
   end
 
