@@ -8,7 +8,7 @@ class AttendancesController < ApplicationController
     # different button depending on commitment. However, we might want to change
     # that later.
     if (@attendance = Attendance.find_by(user: @user, event: @event))
-      redirect_to edit_attendance_path(@event, @attendance)
+      redirect_to edit_event_attendance_path(@event, @attendance)
     else
       @attendance = Attendance.new
     end
