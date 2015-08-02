@@ -45,6 +45,13 @@ class AttendancesController < ApplicationController
     @attendance = Attendance.find(params[:id])
   end
 
+  def destroy
+    @attendance = Attendance.find(params[:id])
+    @event = Event.find(params[:event_id])
+    @attendance.update(commitment_status: "No")
+    redirect_to @event
+  end
+
   private
 
   def attendance_params

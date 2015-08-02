@@ -72,19 +72,17 @@
        You are going to this event
       </div>
       <a href="<%="#{params[:id]}/attendances/#{@attend.id}"%>" data-ajax="false">Show Directions</a>
-      <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
-        <input type = "hidden" name = "update_commit_status" value = "No" />
-        <input type="submit" value="Back Out"></input>
-      </form>
+      <%= form_tag(event_attendance_path(@event, @attend), method: "delete") do %>
+        <%= submit_tag("Back Out") %>
+      <% end %>
     <% elsif @attend.commitment_status == "No"%>
       <div id = "status">
         You backed out of this event
       </div>
       <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" data-ajax="false">Show Directions</a>
-      <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
-        <input type = "hidden" name = "update_commit_status" value = "Yes" />
-        <input type="submit" value="Commit"></input>
-      </form>
+      <%= form_tag(new_event_attendance_path(@event)), method: "get") do %>
+        <%= submit_tag("Join") %>
+      <% end %>
     <% else %>
       <div id = "status">
         You might be going to this event
@@ -93,10 +91,9 @@
       <%= form_tag(edit_event_attendance_path(@event, @attend), method: "get") do %>
         <%= submit_tag("Commit") %>
       <% end %>
-      <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
-        <input type = "hidden" name = "update_commit_status" value = "No" />
-        <input type="submit" value="Back Out"></input>
-      </form>
+      <%= form_tag(event_attendance_path(@event, @attend), method: "delete") do %>
+        <%= submit_tag("Back Out") %>
+      <% end %>
     <% end %>
     <% else %>
     <div id = "login">
