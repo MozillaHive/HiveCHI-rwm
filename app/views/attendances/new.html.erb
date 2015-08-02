@@ -11,28 +11,12 @@
 
 
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>"></script>
-  <style>
-    .ui-content#map-canvas{
-      height: 400px;
-    }
-    div#directions{
-      height: 440px;
-      width:  300px;
-      background-color: #eee;
-      position: absolute;
-      top: 43px;
-      overflow: scroll;
-    }
-    #submit-button{
-      background-color: #5c5;
-      color: #300;
-    }
-  </style>
   <script>
    /* jQuery.getJSON("/addresses.json",function(data){start = data.schoolAddress+", Chicago, IL";
       end = data.eventAddress+", Chicago, IL";
     });*/
     var directionsDisplay;
+    var aspect_ratio = .4
     var directionsService = new google.maps.DirectionsService();
     var map;
     var start = "<%=current_user.school.address %>";
@@ -44,11 +28,21 @@
     var arriveTimeArray = [earlyTime,startTime,lateTime];
     var leaveTime = {transit: [0,0,0], walking: [0,0,0], bicycling: [0,0,0]};
     var leaveTimeIndex = 1;
-    var attendence = {transit: [Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1],walking: [Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1],
-      bicycling: [Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1,Math.floor(Math.random()*3)+1]
-            }
-    function initialize() {
+    var attendence = {
+      transit: <%=@attend_hash[:transit]%>,
+      walking: <%=@attend_hash[:walking]%>,
+      bicycling: <%=@attend_hash[:bicycling]%>
+    }
+        function initialize() {
         directionsDisplay = new google.maps.DirectionsRenderer();
+        $( "#map-canvas" ).height($( "#map-canvas" ).width()*aspect_ratio)
+       // $( "#directions").height($( "#map-canvas" ).height()*1.06)
+       // $( "#directions").width($("#map-canvas").width()*.2)
+        //$( "#map-canvas" ).width($( "#map-canvas" ).width())
+        //$( "#map-canvas").offset({left:$( "#map-canvas").offset().left + $("#map-canvas").width()*.25, top:$( "#map-canvas").offset().top})
+       // $( "#directions").offset({left:$( "#directions").offset().left, top: $("#map").position().top})
+        $("#buttons").offset({left:$( "#buttons").offset().left, top:$( "#buttons").offset().top - $ ("#directions").height()})
+        $("span").offset(function(i,o){return({left:o.left+25,top: o.top-10})})
         var chicago = new google.maps.LatLng(41.850033, -87.6500523);
         var mapOptions = {
         zoom: 10,
@@ -169,17 +163,18 @@
      <h1>Map</h1>
     </div><!-- /header -->
     <div role = "main" id = "main">
+      <div id = "map">
       <div class="ui-content" id="map-canvas">
         <!-- map loads here... -->
       </div>
-      <div id = "directions">
-      </div>
+    <!--  <div id = "directions" style = "overflow: scroll;">
+      </div> -->
     <form method = "POST" action = "./create">
       <div id  = "buttons">
         <h4>Method of Transit</h4>
-    <input type = "radio" id = "transit" name = "method" value = 'transit' onclick = "transitChange('transit')"/> CTA
-    <input type = "radio"  id = "walking" name = "method" value = "walking" onclick = "transitChange('walking')" /> Walking
-    <input type = "radio" id = "bicycling" name ="method" value = "bicycling" onclick = "transitChange('bicycling')" /> Biking
+    <input type = "radio" id = "transit" name = "method" value = 'transit' onclick = "transitChange('transit')"/> <span>CTA</span>
+    <input type = "radio"  id = "walking" name = "method" value = "walking" onclick = "transitChange('walking')" /><span> Walking</span>
+    <input type = "radio" id = "bicycling" name ="method" value = "bicycling" onclick = "transitChange('bicycling')" /><span> Biking</span>
   <div id ="time_selections" hidden>
     <h4>Arrival Time</h4>
     <input type = "radio" id = "early" name = "departure_type" value = "Early" onclick="timeChange(0)" /><span id = "early-time"></span></button>
@@ -195,6 +190,15 @@
   </form>
 </div>
 </div>
+  <div data-role="footer" id="footer" data-position="fixed">
+  <div data-role="navbar">
+    <ul>
+      <li><%= link_to 'Back', :back %></li>
+        <li><a href="/dashboard.html">Home</a></li>
+        <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
+    </ul>
+  </div><!-- /navbar -->
+</div><!-- /footer -->
   </div><!-- /page -->
 
 </body>
