@@ -25,13 +25,13 @@
       <img src="/assets/default_image.jpg" class="default_image"/>
     </div>
     <% if @in_nudge %>
-           <div class="align-left">
+           <div class="notice">
            <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
            <button>Let's Go (dummy)</button>
            <button>Let's Not (dummy)</button>
            </div>
          <% elsif @out_nudge %>
-           <div class="align-left">
+           <div class="notice">
            <%= "You have nudged #{@out_nudge.nudgee.username} and response is pending" %>
            </div>
          <% elsif !@attend %>
@@ -48,29 +48,28 @@
              </form>
            </div>
          <% elsif @attend.commitment_status == "Yes"%>
-           <div class="align-left" id = "status">
-           You are going to this event
-           </div>
            <%= form_tag(event_attendance_path(@event, @attend), method: "delete") do %>
              <%= submit_tag("Back Out") %>
            <% end %>
+           <div class="notice" id = "status">
+           You are going to this event
+           </div>
        <% elsif @attend.commitment_status == "No"%>
-         <div class="align-left" id = "status">
+         <%= form_tag(edit_event_attendance_path(@event, @attend), method: "get") do %>
+           <%= submit_tag("Commit") %>
+         <% end %>
+         <div class="notice" id = "status">
          You backed out of this event
          </div>
-         <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" data-ajax="false">Show Directions</a>
-         <%= form_tag(edit_event_attendance_path(@event, @attend), method: "get") do %>
-           <%= submit_tag("Commit") %>
-         <% end %>
      <% else %>
-       <div class="align-left" id = "status">
+       <%= form_tag(edit_event_attendance_path(@event, @attend), method: "get") do %>
+         <%= submit_tag("Commit") %>
+       <% end %>
+       <%= form_tag(event_attendance_path(@event, @attend), method: "delete") do %>
+         <%= submit_tag("Back Out") %>
+         <div class="notice" id = "status">
        You might be going to this event
        </div>
-         <%= form_tag(edit_event_attendance_path(@event, @attend), method: "get") do %>
-           <%= submit_tag("Commit") %>
-         <% end %>
-     <%= form_tag(event_attendance_path(@event, @attend), method: "delete") do %>
-       <%= submit_tag("Back Out") %>
      <% end %>
    </form>
  <% end %>
