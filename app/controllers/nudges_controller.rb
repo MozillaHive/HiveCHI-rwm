@@ -31,7 +31,7 @@ class NudgesController < ApplicationController
 		client.account.messages.create(
     		:from => from,
     		:to => nudge.nudgee.phone,
-    		:body => "Hey #{nudge.nudgee.username}, #{nudge.nudger.username} wants to go to #{nudge.event.name} with you. Log into your RideW/Me account to confirm."
+    		:body => "Hey #{nudge.nudgee.username}, #{nudge.nudger.username} wants to go to #{nudge.event.name} with you. Visit #{request.base_url+"/events/"+params[:id]}."
   		)
 	end
 
