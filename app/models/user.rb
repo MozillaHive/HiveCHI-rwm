@@ -14,16 +14,12 @@ class User < ActiveRecord::Base
   end
   validates_presence_of :email, :username, :phone, :school_id
   validates_uniqueness_of :email, :username # :phone
-  validates :email, format: {
-    with: @@email_format
-  }
-  validates :username, format: {
-    without: @@email_format
-  }
+  validates :email, format: { with: @@email_format }
+  validates :username, format: { without: @@email_format }
   validates :password, length: { minimum: 10 }, allow_nil: true
   validates :parent_password, length: { minimum: 10 }, allow_nil: true, confirmation: true
   validates :phone, length: { is: 12 }
-  validate :no_password_collision?
+  validate :no_password_collision?, :real_phone_number?
 
   before_save :require_phone_verification, :require_email_verification, :hash_parent_pass
 
@@ -78,6 +74,20 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def real_phone_number?
+    unless new_record? && phone_verified
+      client = Twilio::REST::LookupsClient.new(
+        ENV['TWILIO_SID'], ENV['TWILIO_AUTH_TOKEN']
+      )
+      number = client.phone_numbers.get(self.phone)
+      begin
+        number.carrier
+      rescue
+        errors.add(:phone, "number is invalid")
+      end
+    end
+  end
 
   def require_phone_verification
     if self.phone_changed? && !(new_record? && phone_verified)
