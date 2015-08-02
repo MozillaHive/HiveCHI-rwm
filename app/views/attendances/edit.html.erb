@@ -161,16 +161,6 @@
       document.getElementById("late-time").innerHTML = attendence[tmode][2]+" people are leaving late<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes());
     }
 </script>
-
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script>
-  $(function() {
-    $( "#radio" ).buttonset();
-  });
-  </script>
 </head>
 <body>
 
@@ -188,32 +178,26 @@
     <form>
       <div id  = "buttons">
         <h4>Method of Transit</h4>
-
-        <input type="radio" id="radio1" name="method" value="transit" onclick="transitChange('transit')"><label for="radio1">CTA</label>
-        <input type="radio" id="radio2" name="method" value="walking" onclick="transitChange('walking')"><label for="radio2">Walking</label>
-        <input type="radio" id="radio3" name="method" value="bicycling" onclick="transitChange('bicycling')"><label for="radio3">Bicycling</label>
-<!-- 
     <input type = "radio" id = "transit" name = "method" value = 'transit' onclick = "transitChange('transit')"/> CTA
     <input type = "radio"  id = "walking" name = "method" value = "walking" onclick = "transitChange('walking')" /> Walking
     <input type = "radio" id = "bicycling" name ="method" value = "bicycling" onclick = "transitChange('bicycling')" /> Biking
- -->  <div id ="time_selections" hidden>
+  <div id ="time_selections" hidden>
     <h4>Arrival Time</h4>
-    <input type = "radio" id = "early" name = "departure_type" value = "Early" onclick="timeChange(0)" />
-    <label for="early"><span id = "early-time"></span></label>
-    <input type = "radio" id = "onTime" name = "departure_type" value = "On Time" onclick="timeChange(1)" /><label for="onTime"><span id = "ontime-time"></span></label>
-    <input type ="radio" id = "late" name = "departure_type" value = "Late" onclick="timeChange(2)" />
-    <label for="late"><span id = "late-time"></span></label>
+    <input type = "radio" id = "early" name = "departure_type" value = "Early" onclick="timeChange(0)" /><span id = "early-time"></span></button>
+    <input type = "radio" id = "onTime" name = "departure_type" value = "On Time" onclick="timeChange(1)" /><span id = "ontime-time"></span>
+    <input type ="radio" id = "late" name = "departure_type" value = "Late" onclick="timeChange(2)" /><span id = "late-time"></span>
   </div>
     <input type = "hidden" id = "tansit-mode-field" name = "method_of_transit" value = "" />
     <input type = "hidden" name = "departure_time" value = ""  id = "departure_time_field"/>
   </form>
-  <%= form_tag(event_attendances_path(@event), method: "post") do %>
+  <%= form_tag(event_attendance_path(@event, @attendance), method: "patch") do %>
     <%= hidden_field_tag(:commitment_status, "Yes") %>
     <%= hidden_field_tag(:method_of_transit) %>
     <%= submit_tag("Let's Go!") %>
   <% end %>
 </div>
 </div>
-  </div>
+  </div><!-- /page -->
+
 </body>
 </html>

@@ -29,9 +29,6 @@ Rails.application.routes.draw do
   get 'users/verify-email' => 'users#verify_email'
   resources :users, only: [:create, :show, :destroy]
 
-  post 'events/:id/attendances/create' => 'attendances#create'
-  post 'events/:event_id/attendances/update' => 'attendances#update'
-  get 'events/:event_id/attendances/show' => 'attendances#show'
   resources :events do
     resources :attendances
   end
