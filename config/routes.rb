@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'redirect' => 'session#redirect'
 
-  get 'events/:id/store_user_commitment' => 'session#store_user_commitment'
+  get 'events/:id/store_user_commitment' => 'events#store_user_commitment'
 
   get 'mynudges' => 'nudges#show'
   get 'events/:id/nudge' => 'nudges#new'

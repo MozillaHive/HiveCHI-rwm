@@ -73,7 +73,7 @@
       <div id = "status">
        You are going to this event
       </div>
-      <a href = "<%=params[:id]%>/attendances/show">Show Directions</a>
+      <a href="<%="#{params[:id]}/attendances/#{@attend.id}"%>" data-ajax="false">Show Directions</a>
       <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
         <input type = "hidden" name = "update_commit_status" value = "No" />
         <input type="submit" value="Back Out"></input>
@@ -82,7 +82,7 @@
       <div id = "status">
         You backed out of this event
       </div>
-      <a href = "<%=params[:id]%>/attendances/show">Show Directions</a>
+      <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" data-ajax="false">Show Directions</a>
       <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
         <input type = "hidden" name = "update_commit_status" value = "Yes" />
         <input type="submit" value="Commit"></input>
@@ -91,7 +91,7 @@
       <div id = "status">
         You might be going to this event
       </div>
-      <a href = "<%=params[:id]%>/attendances/show">Show Directions</a>
+      <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" data-ajax="false">Show Directions</a>
       <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
         <input type = "hidden" name = "update_commit_status" value = "Yes" />
         <input type="submit" value="Commit"></input>
