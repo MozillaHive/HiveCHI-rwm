@@ -19,8 +19,6 @@
             <li><%= e %></li>
           <%end%>
         </ul>
-      <% else %>
-        Password and Parent Password must both be 10 characters or more.
       <%end%>
     </div>
   <%= form_for @user, url: { action: "create" } do |f| %>
@@ -32,6 +30,7 @@
     <%= f.text_field :phone %>
     <%= f.label "School" %>
     <%= collection_select(:user, :school_id, School.all, :id, :name) %>
+    Password and Parent Password must both be 10 characters or more.
     <%= f.label :password %>
     <%= f.password_field :password %>
     <%= f.label :password_confirmation %>
