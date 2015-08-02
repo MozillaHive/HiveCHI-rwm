@@ -24,6 +24,56 @@
     <div class="pictures">
       <img src="/assets/default_image.jpg" class="default_image"/>
     </div>
+    <% if @in_nudge %>
+           <div class="align-left">
+           <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
+           <button>Let's Go (dummy)</button>
+           <button>Let's Not (dummy)</button>
+           </div>
+         <% elsif @out_nudge %>
+           <div class="align-left">
+           <%= "You have nudged #{@out_nudge.nudgee.username} and response is pending" %>
+           </div>
+         <% elsif !@attend %>
+           <div class="align-left" id="buttons">
+             <%= form_tag(new_event_attendance_path(@event), method: "get") do %>
+               <%= submit_tag("Join") %>
+             <% end %>
+             <%= form_tag(event_attendances_path(@event), method: "post") do %>
+               <%= hidden_field_tag(:commitment_status, "Maybe") %>
+               <%= submit_tag("Watch") %>
+             <% end %>
+             <form method="GET" action="/events/<%=params[:id]%>/nudge">
+               <input type="submit" id="igiyg" value="Nudge"></input>
+             </form>
+           </div>
+         <% elsif @attend.commitment_status == "Yes"%>
+           <div class="align-left" id = "status">
+           You are going to this event
+           </div>
+           <%= form_tag(event_attendance_path(@event, @attend), method: "delete") do %>
+             <%= submit_tag("Back Out") %>
+           <% end %>
+       <% elsif @attend.commitment_status == "No"%>
+         <div class="align-left" id = "status">
+         You backed out of this event
+         </div>
+         <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" data-ajax="false">Show Directions</a>
+         <%= form_tag(edit_event_attendance_path(@event, @attend), method: "get") do %>
+           <%= submit_tag("Commit") %>
+         <% end %>
+     <% else %>
+       <div class="align-left" id = "status">
+       You might be going to this event
+       </div>
+         <%= form_tag(edit_event_attendance_path(@event, @attend), method: "get") do %>
+           <%= submit_tag("Commit") %>
+         <% end %>
+     <%= form_tag(event_attendance_path(@event, @attend), method: "delete") do %>
+       <%= submit_tag("Back Out") %>
+     <% end %>
+   </form>
+ <% end %>
     <div class="align-left">
     <p><%="Description: " + @event.description %></p>
     </div>
@@ -43,68 +93,6 @@
           <div id = "BICYCLING"></div>
           <div id = "WALKING"></div>
           </div>
-          <% if @in_nudge %>
-                 <div class="align-left">
-                 <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
-                 <button>Let's Go (dummy)</button>
-                 <button>Let's Not (dummy)</button>
-                 </div>
-               <% elsif @out_nudge %>
-                 <div class="align-left">
-                 <%= "You have nudged #{@out_nudge.nudgee.username} and response is pending" %>
-                 </div>
-               <% elsif !@attend %>
-                 <div class="align-left" id="buttons">
-                 <form method="GET" action="/events/<%=params[:id]%>/store_user_commitment" data-ajax="false">
-                 <input type = "hidden" name = "commitment" value = "Yes" />
-                 <input type="submit" id="going" value="Join"></input>
-                 </form>
-                 <form method="GET" action="/events/<%=params[:id]%>/store_user_commitment" data-ajax="false">
-                 <input type = "hidden" name = "commitment" value = "Maybe" />
-                 <input type="submit" id="maybe" value="Watch"></input>
-                 </form>
-                 <form method="GET" action="/events/<%=params[:id]%>/nudge">
-                 <input type="submit" id="igiyg" value="Nudge"></input>
-                 </form>
-                 </div>
-               <% elsif @attend.commitment_status == "Yes"%>
-                 <div class="align-left" id = "status">
-                 You are going to this event
-                 <br>
-                 <img src="/assets/google-map.jpg" class="google_map"/>
-                 <br>
-                 <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" data-ajax="false">Show Directions</a>
-                 </div>
-                 <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
-               <input type = "hidden" name = "update_commit_status" value = "No" />
-               <input type="submit" class="margin-right" value="Back Out"></input>
-               </form>
-             <% elsif @attend.commitment_status == "No"%>
-               <div class="align-left" id = "status">
-               You backed out of this event
-               </div>
-               <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" data-ajax="false">Show Directions</a>
-               <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
-             <input type = "hidden" name = "update_commit_status" value = "Yes" />
-             <input type="submit" value="Commit"></input>
-             </form>
-           <% else %>
-             <div class="align-left" id = "status">
-             You might be going to this event
-             <br>
-             <img src="/assets/google-map.jpg" class="google_map"/>
-             <br>
-             <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" data-ajax="false">Show Directions</a>
-             </div>
-             <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
-           <input type = "hidden" name = "update_commit_status" value = "Yes" />
-           <input type="submit" value="Commit"></input>
-           </form>
-           <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
-           <input type = "hidden" name = "update_commit_status" value = "No" />
-           <input type="submit" class="margin-right" value="Back Out"></input>
-         </form>
-       <% end %>
      <% else %>
     <div id = "login">
       Login or register to join this event
@@ -123,6 +111,11 @@
       </div>
     </div>
     <%end%>
+           <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" class="align-left" data-ajax="false">Show Directions</a>
+       <br>
+       <div class="pictures">
+       <img src="/assets/google-map.jpg" class="google_map"/>
+       </div>
 
   </div><!-- body -->
 
