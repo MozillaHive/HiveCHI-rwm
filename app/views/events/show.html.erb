@@ -12,17 +12,24 @@
 </script>
 <% end %>
 <%= javascript_include_tag "travel_times.js" %>
+  <title>@event.name</title>
+  <script src="/assets/events.js"></script>
 </head>
 <body>
 
 <div data-role="page">
-
-  <div data-role="header">
-    <h1>Show</h1>
-  </div><!-- /header -->
   <div id="body">
     <div id = "name">
       <%= @event.name %>
+    </div>
+    <div class="pictures">
+      <img src="/assets/default_image.jpg" class="default_image"/>
+      <img src="/assets/google-map.jpg" class="google_map"/>
+    </div>
+    <div class="attendees">
+      <% @event.attendances.each do %>
+        <img src="/assets/default_person.jpg">
+      <%end %>
     </div>
     <div id="location">
       <%="Location: " + @event.address %>

@@ -2,10 +2,31 @@
 	margin-top: 2em;
 	margin-left: auto;
 	margin-right: auto;
-	width: 85%;
+	width: 100%;
 	text-align: center;
 }
 
+#name {
+    background-color: #1AB23D;
+    font-family: sans-serif;
+    font-size: -webkit-xxx-large;
+    font-variant: small-caps;
+    color: whitesmoke;
+}
+
+.pictures img{
+    width: 41%;
+    height: 162px;
+    padding: 27px 22px 23px 31px;
+}
+.attendees{
+    text-align: -webkit-left;
+    margin-left: 50px;
+}
+.attendees img{
+    width: 5%;
+    height: 100px;
+}
 #event {
 	text-align: center;
 }
