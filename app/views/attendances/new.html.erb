@@ -158,6 +158,7 @@
       document.getElementById("early-time").innerHTML = "Early: "+attendence[tmode][0]+"<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
       document.getElementById("ontime-time").innerHTML = "On Time: "+attendence[tmode][1]+"<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
       document.getElementById("late-time").innerHTML = "Late: "+attendence[tmode][2]+"<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes());
+    }
 </script>
 </head>
 <body>
@@ -178,7 +179,7 @@
         <h4>Method of Transit</h4>
     <input type = "radio" id = "transit" name = "method" value = 'transit' onclick = "transitChange('transit')"/> CTA
     <input type = "radio"  id = "walking" name = "method" value = "walking" onclick = "transitChange('walking')" /> Walking
-    <input type = "radio" id = "bicycling" name ="method" value = "bicycling" onclick = "transitChange('bicycling')"> Biking
+    <input type = "radio" id = "bicycling" name ="method" value = "bicycling" onclick = "transitChange('bicycling')" /> Biking
   <div id ="time_selections" hidden>
     <h4>Arrival Time</h4>
     <input type = "radio" id = "early" name = "departure" value = "Early" onclick="timeChange(0)" /><span id = "early-time"></span></button>

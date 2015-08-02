@@ -18,6 +18,8 @@
             <li><%= e %></li>
           <%end%>
         </ul>
+      <% else %>
+        Password and Parent Password must both be 10 charachters or more
       <%end%>
     </div>
   <%= form_for @user, url: { action: "create" } do |f| %>
