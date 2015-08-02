@@ -1,0 +1,14 @@
+#footer{
+    background:black;
+    z-index: 10;
+    margin-top:35px;
+}
+
+.footer-layout{
+    background: black;
+    width: 1600px;
+}
+
+#footer > div > div > div{
+    color: white;
+}
