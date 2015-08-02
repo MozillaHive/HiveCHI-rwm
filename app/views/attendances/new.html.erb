@@ -154,6 +154,7 @@
     function updateDisplay (){
       document.getElementById("time_selections").hidden = false
       document.getElementById("tansit-mode-field").value = tmode;
+      document.getElementById("method_of_transit").value = tmode;
       document.getElementById("departure_time_field").value = leaveTime[tmode][leaveTimeIndex].toISOString()
       document.getElementById("early-time").innerHTML = attendence[tmode][0]+" people are leaving early<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
       document.getElementById("ontime-time").innerHTML = attendence[tmode][1]+" people are leaving on time<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
@@ -188,11 +189,11 @@
   </div>
     <input type = "hidden" id = "tansit-mode-field" name = "method_of_transit" value = "" />
     <input type = "hidden" name = "departure_time" value = ""  id = "departure_time_field"/>
-  <form method = "POST" action = "./create">
-    <input type = "hidden" id = "tansit-mode-field" name = "method_of_transit" value = "transit" />
-    <input type = "hidden" name = "commitment_status" value = "<%=flash[:commitment]%>" />
-    <input  type = "submit" value ="Let's Go!" />
-  </form>
+  <%= form_tag(event_attendances_path(@event), method: "post") do %>
+    <%= hidden_field_tag(:commitment_status, "Yes") %>
+    <%= hidden_field_tag(:method_of_transit) %>
+    <%= submit_tag("Let's Go!") %>
+  <% end %>
 </div>
 </div>
   </div><!-- /page -->

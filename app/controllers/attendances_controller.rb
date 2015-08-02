@@ -2,16 +2,14 @@ class AttendancesController < ApplicationController
   before_filter :require_verified_user
 
   def new
-    unless session[:commitment]
-      flash[:redirect_url] = "/events/"+params[:event_id]
-      redirect_to "/redirect"
-    end
     @event = Event.find(params[:event_id])
-
+    if (@attendance = Attendance.find_by(user: current_user, event: @event))
+      redirect_to edit_attendance_path(@event, @attendance)
+    end
   end
 
   def create
-  	event = Event.find(params[:event_id])
+  	event = Event.find(params[:id])
   	Attendance.create(user: current_user, event: event,
   		departure_type: params[:departure_type],
   		method_of_transit: params[:method_of_transit],
