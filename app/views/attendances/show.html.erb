@@ -8,8 +8,6 @@
 
   <!-- jquery library -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" ></script>
-
-
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>"></script>
   <style>
     .ui-content#map-canvas{
@@ -204,15 +202,6 @@
   </div>
 </div>
 </div>
-  <div data-role="footer" data-id="foo1" data-position="fixed">
-  <div data-role="navbar">
-    <ul>
-      <li><%= link_to 'Back', :back %></li>
-        <li><a href="/dashboard.html">Home</a></li>
-        <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
-    </ul>
-  </div><!-- /navbar -->
-</div><!-- /footer -->
   </div><!-- /page -->
 
 </body>
