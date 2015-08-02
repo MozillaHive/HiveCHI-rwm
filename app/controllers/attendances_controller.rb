@@ -3,7 +3,11 @@ class AttendancesController < ApplicationController
 
   def new
     @event = Event.find(params[:event_id])
-    if (@attendance = Attendance.find_by(user: current_user, event: @event))
+    @user = current_user
+    # We currently don't need this if/then because events#show renders a
+    # different button depending on commitment. However, we might want to change
+    # that later.
+    if (@attendance = Attendance.find_by(user: @user, event: @event))
       redirect_to edit_attendance_path(@event, @attendance)
     else
       @attendance = Attendance.new
@@ -11,26 +15,40 @@ class AttendancesController < ApplicationController
   end
 
   def create
-  	event = Event.find(params[:event_id])
-  	Attendance.create(user: current_user, event: event,
+  	@event = Event.find(params[:event_id])
+  	Attendance.create(user: current_user, event: @event,
   		departure_type: params[:departure_type],
   		method_of_transit: params[:method_of_transit],
   		commitment_status: params[:commitment_status])
-  	flash[:notice] = "You signed up for #{event.name}"
-    redirect_to event
+  	flash[:notice] = "You signed up for #{@event.name}"
+    redirect_to @event
   end
 
   def edit
+    @event = Event.find(params[:event_id])
+    @attendance = Attendance.find_by(user: current_user, event: @event)
   end
 
   def update
-    Attendance.find(flash[:attendance]).update(commitment_status: params[:update_commit_status])
-    flash[:notice] = "Your attendance has been updated"
-    client_redirect "/dashboard"
+    @event = Event.find(params[:event_id])
+    @attendance = Attendance.find_by(user: current_user, event: @event)
+    @attendance.update(
+      departure_type: params[:departure_type],
+      method_of_transit: params[:method_of_transit],
+      commitment_status: params[:commitment_status])
+    flash[:notice] = "You signed up for #{@event.name}"
+    redirect_to @event
   end
 
   def show
   	event = Event.find(params[:event_id])
     @attendance = Attendance.find(params[:id])
   end
+
+  private
+
+  def attendance_params
+    params.require(:attendance).permit(:user_id, :event_id)
+  end
+
 end
