@@ -11,14 +11,13 @@ class AttendancesController < ApplicationController
   end
 
   def create
-  	event = Event.find(params[:id])
+  	event = Event.find(params[:event_id])
   	Attendance.create(user: current_user, event: event,
   		departure_type: params[:departure_type],
   		method_of_transit: params[:method_of_transit],
-  		commitment_status: session[:commitment])
+  		commitment_status: params[:commitment_status])
   	flash[:notice] = "You signed up for #{event.name}"
-    session[:commitment] = nil
-    client_redirect "/dashboard"
+    redirect_to event
   end
 
   def update

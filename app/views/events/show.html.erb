@@ -9,7 +9,7 @@
   leaveaddr = "<%=current_user.school.address %>"
   arriveaddr = "<%=@event.address %>"
   arrivetime = new Date("<%=@event.start_date_and_time %>")
-</script>  
+</script>
 <% end %>
 <%= javascript_include_tag "travel_times.js" %>
 </head>
@@ -60,10 +60,10 @@
             <input type = "hidden" name = "commitment" value = "Yes" />
             <input type="submit" id="going" value="Join"></input>
           </form>
-          <form method="GET" action="/events/<%=params[:id]%>/store_user_commitment" data-ajax="false">
-            <input type = "hidden" name = "commitment" value = "Maybe" />
-            <input type="submit" id="maybe" value="Watch"></input>
-          </form>
+          <%= form_tag(event_attendances_path(@event), method: "post") do %>
+            <%= hidden_field_tag(:commitment_status, "Maybe") %>
+            <%= submit_tag("Watch") %>
+          <% end %>
           <form method="GET" action="/events/<%=params[:id]%>/nudge">
             <input type="submit" id="igiyg" value="Nudge"></input>
           </form>
