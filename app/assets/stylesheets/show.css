@@ -3,7 +3,6 @@
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
-	text-align: center;
 }
 
 #name {
@@ -14,10 +13,26 @@
     color: whitesmoke;
 }
 
+.align-left {
+  text-align: left;
+  margin-left: 98px;
+}
+.align-left-padding {
+  text-align: left;
+  padding-left: 49px;
+}
+
+.no-bottom-margin {
+  margin-bottom: 0px;
+}
+
+.margin-right {
+  margin-right: 98px;
+}
+
 .pictures img{
-    width: 41%;
-    height: 162px;
-    padding: 27px 22px 23px 31px;
+  max-height: 400px;
+  padding: 27px 22px 23px 98px;
 }
 .attendees{
     text-align: -webkit-left;
@@ -31,6 +46,21 @@
 	text-align: center;
 }
 
+#text_box {
+    font-size: large;
+    width: 24%;
+    margin-left: 98px;
+    color: black;
+    background-color: #47F634;
+}
+
+#info{
+    margin-top: 7px;
+    width: 36%;
+    text-align: -webkit-center;
+    font-size: 11px;
+    display: inline;
+}
 #location {
 	text-align: center;
 }
