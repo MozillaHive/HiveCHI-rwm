@@ -16,6 +16,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to dashboard_path
+    else
+      render 'edit'
+    end
+  end
+
   def verification
     @user = current_user
     redirect_to dashboard_path if @user.verified?
