@@ -1,0 +1,27 @@
+/*
+Welcome to Custom CSS!
+
+To learn how this works, see http://wp.me/PEmnE-Bt
+*/
+/* Placing site logo and title inline */
+.site-logo-link {
+  display: inline;
+  float: left;
+}
+
+.site-title {
+  clear: none;
+  display: inline;
+  float: left;
+  margin-left: 10px;
+}
+
+/* font changes */
+.entry-content {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* change nav bar color */
+nav#site-navigation {
+  background-color: #FFDE2F;
+}
