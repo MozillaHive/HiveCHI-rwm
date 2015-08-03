@@ -9,7 +9,7 @@
 <div data-role="page">
 
   <div data-role="header" data-theme="b">
-    <h1>Reset Password</h1>
+    <h1>Set new password</h1>
   </div><!-- /header -->
   <div id = "rwm">
     <h1>Ride W/Me</h1>
@@ -21,7 +21,6 @@
     <%= form_tag(password_reset_path, method: "delete") do %>
       <% if @user.errors.any? %>
         <div id="error_explanation">
-          <p><%= pluralize(@user.errors.count, "error") %> prohibited this article from being saved:</p>
           <ul>
           <% @user.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
