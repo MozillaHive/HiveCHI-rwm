@@ -8,6 +8,7 @@ class PasswordResetsController < ApplicationController
     flash[:notice] = "Your password has been reset. Please follow the " \
                      "instructions in the email we sent you."
     @user.reset_password! if @user
+    reset_session
     redirect_to login_path
   end
 
