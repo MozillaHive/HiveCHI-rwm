@@ -336,7 +336,16 @@
       }
       var output = '';
       $.each(filteredEvents, function (index, value) {
-        output += '<li><a href="events/' + filteredIds[index] + '" data-ajax="false">' + value + '</a></li>';
+        output +=
+          '<li>' +
+
+            '<a href="events/' + filteredIds[index] + '" data-ajax="false">' +
+              '<span>' +
+                '<img src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/icons/' + eventsJson[index].event_type + '.png">' +
+              '</span>' +
+              value +
+            '</a>' +
+          '</li>';
       });
       $('#event-list').html(output).listview().listview("refresh");
       console.log(filteredEvents);
