@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'users/verify-email' => 'users#verify_email'
   get 'users/edit' => 'users#edit'
   resources :users, only: [:create, :update, :destroy]
+  resource :password_reset, except: [:index, :show, :update]
 
   resources :events do
     resources :attendances
