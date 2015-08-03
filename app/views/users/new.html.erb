@@ -12,6 +12,35 @@
   <div data-role="header">
     <h1>Create an Account</h1>
   </div><!-- /header -->
+    <div id = "notices" class="error">
+      <% if flash[:reg_errors] %>
+        <ul>
+          <% flash[:reg_errors].each do |e|%>
+            <li><%= e %></li>
+          <%end%>
+        </ul>
+      <%end%>
+    </div>
+  <%= form_for @user, url: { action: "create" } do |f| %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+    <%= f.label "School" %>
+    <%= collection_select(:user, :school_id, School.all, :id, :name) %>
+    <div style = "padding: 10px;" id = "password_notice">Password and Parent Password must both be 10 characters or more</div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+    <%= f.label :parent_password %>
+    <%= f.password_field :parent_password %>
+    <%= f.label :parent_password_confirmation %>
+    <%= f.password_field :parent_password_confirmation %>
+    <%= f.submit %>
+  <% end %>
   <%= render partial: "form" %>
   <!-- footer navigator -->
   <div data-role="footer" data-id="foo1" data-position="fixed">
