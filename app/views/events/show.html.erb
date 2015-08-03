@@ -95,22 +95,12 @@
      <% else %>
     <div id = "login">
       Login or register to join this event
-        <div id="form">
-          <%= form_for :user, url: '/login', html: {id: "login_form"} do |f| %>
-
-          <%= f.label :username %>
-          <%= f.text_field :username %>
-
-          <%= f.label :password %>
-          <%= f.password_field :password %>
-
-          <%= f.submit "Log in", :class => "button" %>
-        <% end %>
-        <%= link_to 'Register', register_path, class: 'centered', "data-role" => "button" %>
-      </div>
+        <%= render "session/login" %>
     </div>
     <%end%>
+          <%if @attend %>
            <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" class="align-left" data-ajax="false">Show Directions</a>
+           <%end%>
        <br>
        <div class="pictures">
        <img src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/google-map.jpg" class="google_map"/>
