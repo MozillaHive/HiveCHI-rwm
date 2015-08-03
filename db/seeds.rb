@@ -1,3 +1,4 @@
+#encoding: utf-8
 School.create(name: "ALPHA OMEGA MINISTRIES", address: "1251 N PARKSIDE AVE")
 School.create(name: "AUSTIN CAREER EDUCATION CENTER", address: "5352 W CHICAGO AVE")
 School.create(name: "Acad of Comm & Technology", address: "4319 W Washington Bl")
