@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
 
   def reset_password!
     self.update(inactive: true, password_reset_token: SecureRandom.hex(10))
-    url = "http://#{ENV['hostname']}/password_reset?token=#{self.password_reset_token}"
+    url = "http://#{ENV['HOSTNAME']}/password_reset/edit?token=#{self.password_reset_token}"
     UserMailer.password_reset_email(url, self).deliver_now
   end
 
