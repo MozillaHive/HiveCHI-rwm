@@ -1,4 +1,4 @@
-class PasswordResetController < ApplicationController
+class PasswordResetsController < ApplicationController
 
   def new
   end
