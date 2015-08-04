@@ -327,13 +327,13 @@ Event.create(name: "Learn to Swim at West Pullman", address: "401 W. 123rd St.",
 Event.create(name: "Sports Camp at Wildwood", address: "6950 N. Hiawatha Ave.", start_date_and_time: "2015-08-10T9:00:00-05:00", duration: 4.0, description: "In this active and fun-filled camp,children will learn the basic skills of a number of sports,with a concentration on exercise,sportsmanship,and friendly competition. Sports and activities commonly covered in camp include basketball,biking,fitness,floor hockey,gymnastics,in-line skating,soccer,tennis and volleyball.", organization_id: 1, event_type: "Camp")
 Event.create(name: "POST Youth Swim at Wrightwood", address: "2534 N. Greenview Ave.", start_date_and_time: "2015-08-10T11:00:00-05:00", duration: 3.0, description: "Social fun swim. Some may chose to work on their strokes,while others just float around.", organization_id: 1, event_type: "Aquatic")
 
-User.create(email: "example@example.com", username: "Mr.E", password: "password1234", parent_password: BCrypt::Password.create("parent_pass"), phone: "+18475448375", phone_verified: true, email_verified: true, home_address: "1215 W Randolph St", school_id: 12, preference_1: "Other", preference_2: "Camp", preference_3: "Tennis")
+User.create(email: "example@example.com", username: "Test User", password: "password1234", parent_password: BCrypt::Password.create("parent_pass"), phone: "+18475448375", phone_verified: true, email_verified: true, home_address: "1215 W Randolph St", school_id: 1, preference_1: "Other", preference_2: "Camp", preference_3: "Tennis")
 
-User.create(email: "chrisrbohl@gmail.com", username: "cbohl", password: "password1234", parent_password: BCrypt::Password.create("parent_pass"), phone: "+14146517245", phone_verified: true, email_verified: true, school_id: 12, preference_1: "Other", preference_2: "Camp", preference_3: "Tennis")
+User.create(email: "chrisrbohl@gmail.com", username: "cbohl", password: "password1234", parent_password: BCrypt::Password.create("parent_pass"), phone: "+14146517245", phone_verified: true, email_verified: true, school_id: 2, preference_1: "Other", preference_2: "Camp", preference_3: "Tennis")
 
-User.create(email: "robert@mozillafoundation.org", username: "omnignorant", password: "password1234", parent_password: BCrypt::Password.create("parent_pass"), phone: "+17733492687", phone_verified: true, email_verified: true, school_id: 12, preference_1: "Other", preference_2: "Camp", preference_3: "Tennis" )
+User.create(email: "robert@mozillafoundation.org", username: "omnignorant", password: "password1234", parent_password: BCrypt::Password.create("parent_pass"), phone: "+17733492687", phone_verified: true, email_verified: true, school_id: 3, preference_1: "Other", preference_2: "Camp", preference_3: "Tennis" )
 
-User.create(email: "jas477@case.edu", username: "jsub", password: "password1234", parent_password: BCrypt::Password.create("parent_pass"), phone: "+18475448375", phone_verified: true, email_verified: true, school_id: 12, preference_1: "Other", preference_2: "Camp", preference_3: "Tennis")
+User.create(email: "jas477@case.edu", username: "jsub", password: "password1234", parent_password: BCrypt::Password.create("parent_pass"), phone: "+18475448375", phone_verified: true, email_verified: true, school_id: 4, preference_1: "Other", preference_2: "Camp", preference_3: "Tennis")
 
 #Extra Users
 # User.create(email: "oliviad61457@cps.ed", username: "od61457", password: "password1234", parent_password: BCrypt::Password.create("parent_pass"), phone: "+18475448375", phone_verified: true, email_verified: true, home_address: "1215 W Randolph St", school_id: 10, preference_1: "Gymnastics", preference_2: "Recreational", preference_3: "Fitness")
@@ -985,9 +985,9 @@ User.create(email: "jas477@case.edu", username: "jsub", password: "password1234"
 #Attendance.create(event_id: 98, user_id: 75, departure_type: "Early", commitment_status: "Maybe", method_of_transit: "transit")
 #Attendance.create(event_id: 98, user_id: 41, departure_type: "Early", commitment_status: "I'm in if you're in", method_of_transit: "transit")
 #Attendance.create(event_id: 98, user_id: 67, departure_type: "Early", commitment_status: "Yes", method_of_transit: "bicycling")
-#Attendance.create(event_id: 98, user_id: 53, departure_type: "Early", commitment_status: "I'm in if you're in", method_of_transit: "walking")
-#Attendance.create(event_id: 98, user_id: 45, departure_type: "Early", commitment_status: "I'm in if you're in", method_of_transit: "transit")
-#Attendance.create(event_id: 98, user_id: 48, departure_type: "Early", commitment_status: "Yes", method_of_transit: "walking")
+Attendance.create(event_id: 120, user_id: User.first.id, departure_type: "Early", commitment_status: "Yes", method_of_transit: "bicycling")
+Attendance.create(event_id: 125, user_id: User.first.id, departure_type: nil, commitment_status: "Maybe", method_of_transit: nil)
+Attendance.create(event_id: 130, user_id: User.first.id, departure_type: "Early", commitment_status: "Yes", method_of_transit: "walking")
 Event.create(name: "Develpment Event 7/22", address: "222 Merchandise Mart Plaza", start_date_and_time: "2015-07-22T21:00:00-05:00", duration: 3.0, description: "Test for development 7/22 9pm", organization_id: 2, event_type: "Other")
 Event.create(name: "Develpment Event 7/23", address: "222 Merchandise Mart Plaza", start_date_and_time: "2015-07-23T21:00:00-05:00", duration: 3.0, description: "Test for development 7/23 9pm", organization_id: 2, event_type: "Other")
 Event.create(name: "Develpment Event 7/24", address: "222 Merchandise Mart Plaza", start_date_and_time: "2015-07-24T21:00:00-05:00", duration: 3.0, description: "Test for development 7/24 9pm", organization_id: 2, event_type: "Other")
