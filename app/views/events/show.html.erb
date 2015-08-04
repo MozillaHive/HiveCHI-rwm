@@ -36,7 +36,7 @@
            </div>
          <% elsif !@attend %>
            <div class="align-left" id="buttons">
-             <%= form_tag(new_event_attendance_path(@event), method: "get") do %>
+             <%= form_tag(new_event_attendance_path(@event), method: "get", "data-ajax" => "false") do %>
                <%= submit_tag("Join") %>
              <% end %>
              <%= form_tag(event_attendances_path(@event), method: "post") do %>
@@ -55,15 +55,15 @@
            You are going to this event
            </div>
        <% elsif @attend.commitment_status == "No"%>
-         <%= form_tag(edit_event_attendance_path(@event, @attend), method: "get") do %>
+         <%= form_tag(edit_event_attendance_path(@event, @attend), method: "get", "data-ajax" => "false") do %>
            <%= submit_tag("Commit") %>
          <% end %>
          <div class="notice" id = "status">
          You backed out of this event
          </div>
      <% else %>
-       <%= form_tag(edit_event_attendance_path(@event, @attend), method: "get") do %>
-         <%= submit_tag("Commit") %>
+       <%= form_tag(edit_event_attendance_path(@event, @attend), method: "get", "data-ajax" => "false") do %>
+         <%= submit_tag("Join") %>
        <% end %>
        <%= form_tag(event_attendance_path(@event, @attend), method: "delete") do %>
          <%= submit_tag("Back Out") %>
