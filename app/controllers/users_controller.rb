@@ -65,7 +65,7 @@ class UsersController < ApplicationController
       end
     else
       flash[:errors] = @user.errors.full_messages
-      render "verification"
+      redirect_to method: :verification
     end
   end
 
