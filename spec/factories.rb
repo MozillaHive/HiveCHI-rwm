@@ -4,8 +4,10 @@ FactoryGirl.define do
     email { Faker::Internet.email}
     phone { "555#{Array.new(7) { rand(10).to_s }.join}"}
     school_id { create(:school).id }
-    password "hellohello"
-    password_confirmation "hellohello"
+    password "password1234"
+    password_confirmation "password1234"
+    parent_password "hellohello"
+    parent_password_confirmation "hellohello"
   end
 
   factory :school do
