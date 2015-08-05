@@ -3,7 +3,6 @@
   <head>
   <title>@event.name</title>
   <script src="/assets/events.js"></script>
-<link rel="stylesheet" type="text/css" href="show.css">
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>"></script>
 <script>
 arriveaddr = "<%=@event.address + ' Chicago, IL' %>"
@@ -27,43 +26,43 @@ event_show()
       <img src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/demo_event_pic.jpg" class="default_image"/>
     </div>
     <% if current_user and current_user.verified? %>
-      <% if @in_nudge %>
-        <div class="notice">
-          <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
-          <button>Let's Go (dummy)</button>
-          <button>Let's Not (dummy)</button>
-        </div>
-      <% elsif @out_nudge %>
-        <div class="notice">
-          <%= "You have nudged #{@out_nudge.nudgee.username} and response is pending" %>
-        </div>
-      <% end %>
-      <div class="align-left" id="buttons">
-        <% unless @attend && @attend.commitment_status == "Yes" %>
-          <%= form_tag(new_event_attendance_path(@event), method: "get", "data-ajax" => "false") do %>
-            <%= submit_tag("Join") %>
-          <% end %>
-        <% end %>
-        <% unless @attend && ["Yes", "Maybe"].include?(@attend.commitment_status) %>
-          <%= form_tag(event_attendances_path(@event), method: "post") do %>
-            <%= hidden_field_tag(:commitment_status, "Maybe") %>
-            <%= submit_tag("Watch") %>
-          <% end %>
-        <% end %>
-        <% if @attend && @attend.commitment_status == "Yes" %>
-          <%= form_tag(event_attendance_path(@event, @attend), method: "delete") do %>
-            <%= submit_tag("Back Out") %>
-          <% end %>
-        <% end %>
-        <form method="GET" action="/events/<%=params[:id]%>/nudge">
-          <input type="submit" id="igiyg" value="Nudge"></input>
-        </form>
+    <% if @in_nudge %>
+      <div class="notice">
+        <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
+        <button>Let's Go (dummy)</button>
+        <button>Let's Not (dummy)</button>
       </div>
-      <% if @attend %>
-        <div class="notice" id="status">
-          <%= @attend.description %>
-        </div>
+    <% elsif @out_nudge %>
+      <div class="notice">
+        <%= "You have nudged #{@out_nudge.nudgee.username} and response is pending" %>
+      </div>
+    <% end %>
+    <div class="align-left" id="buttons">
+      <% unless @attend && @attend.commitment_status == "Yes" %>
+        <%= form_tag(new_event_attendance_path(@event), method: "get", "data-ajax" => "false") do %>
+          <%= submit_tag("Join") %>
+        <% end %>
       <% end %>
+      <% unless @attend && ["Yes", "Maybe"].include?(@attend.commitment_status) %>
+        <%= form_tag(event_attendances_path(@event), method: "post") do %>
+          <%= hidden_field_tag(:commitment_status, "Maybe") %>
+          <%= submit_tag("Watch") %>
+        <% end %>
+      <% end %>
+      <% if @attend && @attend.commitment_status == "Yes" %>
+        <%= form_tag(event_attendance_path(@event, @attend), method: "delete") do %>
+          <%= submit_tag("Back Out") %>
+        <% end %>
+      <% end %>
+      <form method="GET" action="/events/<%=params[:id]%>/nudge">
+        <input type="submit" id="igiyg" value="Nudge"></input>
+      </form>
+    </div>
+    <% if @attend %>
+      <div class="notice" id="status">
+        <%= @attend.description %>
+      </div>
+    <% end %>
     <% end %>
     <div class="align-left">
     <p><%="Description: " + @event.description %></p>
@@ -84,10 +83,10 @@ event_show()
           <div id = "BICYCLING"></div>
           <div id = "WALKING"></div>
           </div>
-     <% else %>
-    <div id = "login">
-      Login or register to join this event
-        <%= render "session/login" %>
+    <% else %>
+    <div id = "login" class="align-left margin-right">
+      <p>Login or register to join this event:</p>
+      <%= render partial: "shared/login" %>
     </div>
     <%end%>
           <%if @attend %>
