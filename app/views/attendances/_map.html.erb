@@ -142,10 +142,30 @@
     function updateDisplay (){
       document.getElementById("time_selections").hidden = false
       document.getElementById("method_of_transit").value = tmode;
-      document.getElementById("early-time").innerHTML = attendence[tmode][0]+" people are leaving early<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
-      document.getElementById("ontime-time").innerHTML = attendence[tmode][1]+" people are leaving on time<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
-      document.getElementById("late-time").innerHTML = attendence[tmode][2]+" people are leaving late<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes());
+      document.getElementById("early-time").innerHTML = attendence[tmode][0]+" people are leaving early<br />Leave at: "+printTime(leaveTime[tmode][0]);
+      document.getElementById("ontime-time").innerHTML = attendence[tmode][1]+" people are leaving on time<br />Leave at: "+printTime(leaveTime[tmode][1]);
+      document.getElementById("late-time").innerHTML = attendence[tmode][2]+" people are leaving late<br />Leave at: "+printTime(leaveTime[tmode][2])
       document.getElementById("departure_type").value = $("input[name='departuretype']:checked").val()
+    }
+    function printTime(date){
+       m = date.getMinutes().toString()
+        h = date.getHours()
+        if (h > 12){
+          h = (h-12).toString()
+          ampm = " pm."
+        }
+        else if (h == 0){
+          h = "12"
+          ampm = " am."
+        }
+        else{
+          h = h.toString()
+          ampm = " am."
+        }
+        if (m.length == 1){
+          m = "0" + m;
+        }
+        return h+":"+m+ampm;
     }
 </script>
 
@@ -172,7 +192,7 @@
       </div>
     <form>
       <div id  = "buttons">
-        <h4>Method of Transit</h4>
+        <h4>Choose your transportation option:</h4>
 
         <input type="radio" id="radio1" name="method" value="transit" onclick="transitChange('transit')"><label for="radio1"><img style="padding: 0px 10px 0px 5px;" height="30" width="30"src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Icons/transit.png">
         <span id = "transit">CTA</span></label>
@@ -183,7 +203,7 @@
     <input type = "radio"  id = "walking" name = "method" value = "walking" onclick = "transitChange('walking')" /> Walking
     <input type = "radio" id = "bicycling" name ="method" value = "bicycling" onclick = "transitChange('bicycling')" /> Biking
  -->  <div id ="time_selections" hidden>
-    <h4>Arrival Time</h4>
+    <h4>Choose your departure time:</h4>
     <input type = "radio" id = "early" name = "departure_type" value = "Early" onclick="timeChange(0)" />
     <label for="early"><span id = "early-time"></span></label>
     <input type = "radio" id = "onTime" name = "departure_type" value = "On Time" onclick="timeChange(1)" /><label for="onTime"><span id = "ontime-time"></span></label>
