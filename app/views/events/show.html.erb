@@ -83,7 +83,7 @@ event_show()
     <h2 class="align-left no-bottom-margin">Location</h2>
     <hr class="align-left">
     <h4 class="align-left no-bottom-margin"><%=@event.address %></h4>
-    <div class="align-left"><%=@event.start_date_and_time.strftime("%A, %B %d, %Y %l%p") + " to " + (@event.start_date_and_time+@event.duration.hours).strftime("%l%p")%></div>
+    <div class="align-left"><%=@event.start_date_and_time.strftime("%A, %B %d, %Y %l%p") + " to " + (@event.start_date_and_time+@event.duration.hours).strftime("%l%p")%>
     </div>
     <hr class="align-left">
     <%if current_user and  current_user.verified?%>
