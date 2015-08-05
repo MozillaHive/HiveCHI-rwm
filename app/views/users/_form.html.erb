@@ -1,6 +1,6 @@
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
-    <div id="error_explanation">
+    <div class="error">
       <p><%= pluralize(@user.errors.count, "error") %> prevented your profile from being saved:</p>
       <ul>
       <% @user.errors.full_messages.each do |msg| %>
