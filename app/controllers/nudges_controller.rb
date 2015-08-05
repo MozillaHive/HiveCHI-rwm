@@ -2,9 +2,8 @@ class NudgesController < ApplicationController
 	before_filter :require_verified_user
 
 	def new
-		user = User.find(session[:user_id])
-		@menu_options = user.school.students
-		@menu_options = @menu_options.select{|s| s != user}
+		@menu_options = User.all
+		@menu_options = @menu_options.select{|s| s != current_user}
 	end
 
 	def create
