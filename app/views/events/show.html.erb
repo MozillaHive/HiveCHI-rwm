@@ -26,19 +26,19 @@ event_show()
       <img src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Events/event<%=@rand_image_number%>.jpg" class="default_image"/>
     </div>
     <% if current_user and current_user.verified? %>
-    <% if @in_nudge %>
+    <% if @in_nudge && !session[:is_parent?] %> 
       <div class="notice">
         <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
-        <button>Let's Go (dummy)</button>
-        <button>Let's Not (dummy)</button>
+        <button>Accept Nudge (Inactive)</button>
+        <button>Decline Nudge (Inactive)</button>
       </div>
-    <% elsif @out_nudge %>
+    <% elsif @out_nudge && !session[:is_parent?]%>
       <div class="notice">
         <%= "You have nudged #{@out_nudge.nudgee.username} and response is pending" %>
       </div>
     <% end %>
     <div class="align-left" id="buttons">
-      <% unless @attend && @attend.commitment_status == "Yes" %>
+      <% unless (@attend && @attend.commitment_status == "Yes") || session[:is_parent?] %>
         <%= form_tag(new_event_attendance_path(@event), method: "get", "data-ajax" => "false") do %>
           <%= submit_tag("Join") %>
         <% end %>
@@ -49,14 +49,16 @@ event_show()
           <%= submit_tag("Watch") %>
         <% end %>
       <% end %>
-      <% if @attend && @attend.commitment_status == "Yes" %>
+      <% if @attend && @attend.commitment_status == "Yes"  && !session[:is_parent?]%>
         <%= form_tag(event_attendance_path(@event, @attend), method: "delete") do %>
           <%= submit_tag("Back Out") %>
         <% end %>
       <% end %>
+      <% unless session[:is_parent?]%>
       <form method="GET" action="/events/<%=params[:id]%>/nudge">
         <input type="submit" id="igiyg" value="Nudge"></input>
       </form>
+      <%end%>
     </div>
     <% if @attend %>
       <div class="notice" id="status">

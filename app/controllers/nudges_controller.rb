@@ -4,6 +4,7 @@ class NudgesController < ApplicationController
 	def new
 		@menu_options = User.all
 		@menu_options = @menu_options.select{|s| s != current_user}
+		@event = Event.find(params[:id])
 	end
 
 	def create
@@ -30,7 +31,7 @@ class NudgesController < ApplicationController
 		client.account.messages.create(
     		:from => from,
     		:to => nudge.nudgee.phone,
-    		:body => "Hey #{nudge.nudgee.username}, #{nudge.nudger.username} wants to go to #{nudge.event.name} with you. Visit #{request.base_url+"/events/"+params[:id]}."
+    		:body => "Hey #{nudge.nudgee.username}, #{nudge.nudger.username} wants to go to #{nudge.event.name} if you'll go too! Reply at #{request.base_url+"/events/"+params[:id]}"
   		)
 	end
 

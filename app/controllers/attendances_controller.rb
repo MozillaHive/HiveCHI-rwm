@@ -27,6 +27,9 @@ class AttendancesController < ApplicationController
   		method_of_transit: params[:method_of_transit],
   		commitment_status: params[:commitment_status])
   	flash[:notice] = "You signed up for #{@event.name}"
+    if (params[:commitment_status] == "Maybe" && session[:is_parent?])
+      text_student
+    end
     redirect_to controller: :welcome, action: :dashboard
   end
 
@@ -49,6 +52,9 @@ class AttendancesController < ApplicationController
       method_of_transit: params[:method_of_transit],
       commitment_status: params[:commitment_status])
     flash[:notice] = "You signed up for #{@event.name}"
+    if (params[:commitment_status] == "Maybe" && session[:is_parent?])
+      text_student
+    end
     redirect_to controller: :welcome, action: :dashboard
   end
 
@@ -72,6 +78,20 @@ class AttendancesController < ApplicationController
     @attendance = Attendance.find(params[:id])
     @event = Event.find(params[:event_id])
     @attendance.update(commitment_status: "No")
-    redirect_to @event
+    redirect_to controller: :welcome, action: :dashboard
+  end
+
+  private
+  def text_student
+    account_sid = Rails.application.secrets.twilio_sid
+    auth_token = Rails.application.secrets.twilio_auth_token
+    client = Twilio::REST::Client.new account_sid, auth_token
+    from = "+18443117433" # Your Twilio number\
+
+    client.account.messages.create(
+        :from => from,
+        :to => current_user.phone,
+        :body => "Hey #{current_user.username}, your parent/guardian wants you to check out #{@event.name}. Reply at #{request.base_url+"/events/"+@event.id.to_s}"
+      )
   end
 end
