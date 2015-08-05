@@ -103,7 +103,7 @@ class User < ActiveRecord::Base
     if self.phone_changed? && !(new_record? && phone_verified)
       self.phone_verified = false
       self.phone_token = SecureRandom.hex(4)
-   #   send_verification_text
+      send_verification_text
     end
   end
 
