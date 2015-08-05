@@ -1,7 +1,10 @@
 module Features
   module ApplicationHelpers
 
-    def log_in(user)
+    def log_in(user = nil)
+      if user.nil?
+        user = create(:user, phone_verified: true, email_verified: true)
+      end
       visit login_path
       fill_in 'Username', with: user.username
       fill_in 'Password', with: user.password

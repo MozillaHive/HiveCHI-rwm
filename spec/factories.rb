@@ -14,4 +14,18 @@ FactoryGirl.define do
     name { "#{Faker::Company.name} High School" }
     address { "#{Faker::Address.street_address}, Chicago, IL" }
   end
+
+  factory :event do
+    name { "Test Event #{SecureRandom.hex(10)}" }
+    address "875 N Michigan Ave, Chicago, IL"
+    start_date_and_time { Date.tomorrow.midday }
+    duration { rand(4) + 1 }
+    description "This is an automatically generated test event."
+    event_type "Soccer"
+  end
+
+  factory :attendance do
+    event { create(:event) }
+    user { create(:user) }
+  end
 end
