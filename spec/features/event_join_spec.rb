@@ -28,6 +28,7 @@ RSpec.feature 'User interacts with an event', js: true do
       expect(page).to have_button("Watch")
       expect(page).to have_button("Nudge")
       expect(page).not_to have_button("Back Out")
+      expect(page).to have_content(@event.name)
       expect(page).to have_content("Number attending from your school")
       expect(page).to have_css("div.gm-style")
       expect(page).not_to have_button("Log in")
@@ -48,10 +49,11 @@ RSpec.feature 'User interacts with an event', js: true do
       visit event_path(@event)
       click_button "Join"
       expect(page).to have_css("div.gm-style")
-      expect(page).to have_content("Method of Transit")
+      expect(page).to have_content("Choose your transportation option:")
       # ChromeDriver does not recognize JQuery Mobile radio buttons as clickable
       # because of their z-index. This is a workaround:
       execute_script("transitChange('transit')")
+      expect(page).to have_content("Choose your departure time:")
       execute_script("timeChange(1)")
       click_button "Let's Go!"
       expect(page).to have_content("You signed up for #{@event.name}")
