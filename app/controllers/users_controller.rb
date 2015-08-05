@@ -34,9 +34,10 @@ class UsersController < ApplicationController
     redirect_to dashboard_path if @user.verified?
     unless @user.email_verified
       flash[:errors] ||= []
-      flash[:errors] << "Your email address has not been verified. Please " \
+      msg = "Your email address has not been verified. Please " \
                         "click on the link in the confirmation email we sent" \
                         " you."
+      flash[:errors] << msg unless flash[:errors].include? msg
     end
   end
 
@@ -64,9 +65,19 @@ class UsersController < ApplicationController
         client_redirect "/dashboard"
       end
     else
-      flash[:errors] = @user.errors.full_messages
-      redirect_to method: :verification
+      render "verification"
     end
+  end
+
+  def resend_confirmation_email
+    unless current_user.email_verified?
+      current_user.send_verification_email 
+      flash[:errors] ||= []
+      flash[:errors] << "Your verification email has been sent. It may take a few minutes to arrive. Please " \
+                        "click on the link in the confirmation email we sent" \
+                        " you."
+    end
+    redirect_to method: :verify
   end
 
   private
@@ -75,4 +86,5 @@ class UsersController < ApplicationController
       :username, :email, :password, :password_confirmation, :phone, :school_id, :parent_password, :parent_password_confirmation
      )
   end
+
 end
