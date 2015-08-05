@@ -12,7 +12,7 @@
     <h1>Nudge a Friend</h1>
   </div><!-- /header -->
   <div id="form">
-    Select a friend to nudge. They will recieve a text message telling that you will go to <%=@event.name%> if they will.
+    Select a friend to nudge. They will receive a text message saying you will go to <%=@event.name%> if they will.
     <form method = "post" action = "./nudge">
       <select name = "nudgee">
         <% @menu_options.each do |tar| %>
