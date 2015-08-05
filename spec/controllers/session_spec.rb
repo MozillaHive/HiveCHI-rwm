@@ -13,9 +13,7 @@ RSpec.describe SessionController do
       before do
         post :create, user: { username: user.username, password: user.password }
       end
-      # This should probably redirect to dashboard_path, but this is what it
-      # currently does:
-      specify { expect(response).to redirect_to(redirect_path) }
+      specify { expect(response).to redirect_to(dashboard_path) }
       specify { expect(session[:user_id]).to eq(user.id) }
     end
 
@@ -23,7 +21,7 @@ RSpec.describe SessionController do
       before do
         post :create, user: { username: "doesntexist", password: user.password }
       end
-      specify { expect(response).to redirect_to(login_path) }
+      specify { expect(response).to render_template('login') }
       specify { expect(session[:user_id]).to be_nil }
     end
 
