@@ -4,7 +4,6 @@
   <title>My Page</title>
 </head>
 <body>
-<link rel="stylesheet" type="text/css" href="login.css">
 
 <div data-role="page">
 
@@ -17,7 +16,7 @@
       <div class = "nudge">
         <%="#{n.nudger.username} wants to go to #{n.event.name} with you"%>
       </div>
-      <%end%> 
+      <%end%>
       <%= "You have no incoming nudges" unless @nudges_in.length > 0 %>
     </div>
     <div id = "outgoing_nudges">
