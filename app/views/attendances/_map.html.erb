@@ -142,10 +142,30 @@
     function updateDisplay (){
       document.getElementById("time_selections").hidden = false
       document.getElementById("method_of_transit").value = tmode;
-      document.getElementById("early-time").innerHTML = attendence[tmode][0]+" people are leaving early<br />Leave at: "+leaveTime[tmode][0].getHours()+":"+printMin(leaveTime[tmode][0].getMinutes());
-      document.getElementById("ontime-time").innerHTML = attendence[tmode][1]+" people are leaving on time<br />Leave at: "+leaveTime[tmode][1].getHours()+":"+printMin(leaveTime[tmode][1].getMinutes());
-      document.getElementById("late-time").innerHTML = attendence[tmode][2]+" people are leaving late<br />Leave at: "+leaveTime[tmode][2].getHours()+":"+printMin(leaveTime[tmode][2].getMinutes());
+      document.getElementById("early-time").innerHTML = attendence[tmode][0]+" people are leaving early<br />Leave at: "+printTime(leaveTime[tmode][0]);
+      document.getElementById("ontime-time").innerHTML = attendence[tmode][1]+" people are leaving on time<br />Leave at: "+printTime(leaveTime[tmode][1]);
+      document.getElementById("late-time").innerHTML = attendence[tmode][2]+" people are leaving late<br />Leave at: "+printTime(leaveTime[tmode][2])
       document.getElementById("departure_type").value = $("input[name='departuretype']:checked").val()
+    }
+    function printTime(date){
+       m = date.getMinutes().toString()
+        h = date.getHours()
+        if (h > 12){
+          h = (h-12).toString()
+          ampm = " pm."
+        }
+        else if (h == 0){
+          h = "12"
+          ampm = " am."
+        }
+        else{
+          h = h.toString()
+          ampm = " am."
+        }
+        if (m.length == 1){
+          m = "0" + m;
+        }
+        return h+":"+m+ampm;
     }
 </script>
 
