@@ -6,10 +6,10 @@
 <link rel="stylesheet" type="text/css" href="show.css">
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>"></script>
 <script>
-arriveaddr = "<%=@event.address %>"
+arriveaddr = "<%=@event.address + ' Chicago, IL' %>"
 user = false
 <% if current_user and current_user.verified? %>
-  leaveaddr = "<%=current_user.school.address %>"
+  leaveaddr = "<%=current_user.school.address + ' Chicago, IL' %>"
   arrivetime = new Date("<%=@event.start_date_and_time %>")
   user = true
 <% end %>

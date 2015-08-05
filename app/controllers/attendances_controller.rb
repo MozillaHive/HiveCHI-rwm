@@ -27,7 +27,7 @@ class AttendancesController < ApplicationController
   		method_of_transit: params[:method_of_transit],
   		commitment_status: params[:commitment_status])
   	flash[:notice] = "You signed up for #{@event.name}"
-    redirect_to @event
+    redirect_to controller: :welcome, action: :dashboard
   end
 
   def edit
@@ -49,7 +49,7 @@ class AttendancesController < ApplicationController
       method_of_transit: params[:method_of_transit],
       commitment_status: params[:commitment_status])
     flash[:notice] = "You signed up for #{@event.name}"
-    redirect_to @event
+    redirect_to controller: :welcome, action: :dashboard
   end
 
   def show

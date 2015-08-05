@@ -13,8 +13,8 @@ var aspect_ratio = Math.min(1,$(window).height()/$(window).width()-.1)
 function calcRoute(selectedMode,directionsService) {
 
   var request = {
-      origin: leaveaddr.concat(" Chicago, IL"),
-      destination: arriveaddr.concat(" Chicago, IL"),
+      origin: leaveaddr,
+      destination: arriveaddr,
       travelMode: google.maps.TravelMode[selectedMode],
       transitOptions:{
       	arrivalTime: arrivetime
