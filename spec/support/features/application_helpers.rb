@@ -9,6 +9,7 @@ module Features
       fill_in 'Username', with: user.username
       fill_in 'Password', with: user.password
       click_button 'Log in'
+      sleep(1)
     end
 
     def register(user, school)
