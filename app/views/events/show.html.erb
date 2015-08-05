@@ -13,8 +13,8 @@ user = false
   arrivetime = new Date("<%=@event.start_date_and_time %>")
   user = true
 <% end %>
+event_show()
 </script>
-<%= javascript_include_tag "travel_times.js" %>
 </head>
 <body>
 
@@ -83,7 +83,7 @@ user = false
     <h2 class="align-left no-bottom-margin">Location</h2>
     <hr class="align-left">
     <h4 class="align-left no-bottom-margin"><%=@event.address %></h4>
-    <div class="align-left"><%=@event.start_date_and_time.strftime("%A, %B %d, %Y %l%p") + " to " + (@event.start_date_and_time+@event.duration.hours).strftime("%l%p")%></div>
+    <div class="align-left"><%=@event.start_date_and_time.strftime("%A, %B %d, %Y %l%p") + " to " + (@event.start_date_and_time+@event.duration.hours).strftime("%l%p")%>
     </div>
     <hr class="align-left">
     <%if current_user and  current_user.verified?%>
