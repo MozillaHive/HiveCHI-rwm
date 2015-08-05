@@ -38,7 +38,8 @@ class SessionController < ApplicationController
 
   def destroy
     session.clear
-    redirect_to login_path
+    flash[:redirect_url] = login_path
+    redirect_to "/redirect"
   end
 
   def store_user_time_preference

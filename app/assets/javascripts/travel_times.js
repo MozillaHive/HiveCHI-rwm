@@ -9,11 +9,12 @@ shown = {
 	WALKING: false
 }
 
+var aspect_ratio = Math.min(1,$(window).height()/$(window).width()-.1)
 function calcRoute(selectedMode,directionsService) {
 
   var request = {
-      origin: leaveaddr.concat(" Chicago, IL"),
-      destination: arriveaddr.concat(" Chicago, IL"),
+      origin: leaveaddr,
+      destination: arriveaddr,
       travelMode: google.maps.TravelMode[selectedMode],
       transitOptions:{
       	arrivalTime: arrivetime
@@ -30,8 +31,39 @@ function calcRoute(selectedMode,directionsService) {
  });
 }
 setTimeout(function(){
-	directionsService = new google.maps.DirectionsService()
-	calcRoute("TRANSIT",directionsService)
-	calcRoute("BICYCLING",directionsService)
-	calcRoute("WALKING",directionsService)
+  if(user){
+	   directionsService = new google.maps.DirectionsService()
+	   calcRoute("TRANSIT",directionsService)
+	   calcRoute("BICYCLING",directionsService)
+	   calcRoute("WALKING",directionsService)
+   }
+   initialize()
+   codeAddress()
 },1)
+var geocoder;
+var map;
+
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  var latlng = new google.maps.LatLng(42, 1-87);
+  var mapOptions = {
+    zoom: 15,
+    center: latlng
+  }
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  $("#map-canvas").height($("#map-canvas").width()*aspect_ratio)
+}
+
+function codeAddress() {
+  geocoder.geocode( { 'address': arriveaddr}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      $("#map-canvas").innerHTML = ('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
