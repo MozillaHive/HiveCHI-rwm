@@ -2,7 +2,6 @@
 <html>
   <head>
   <title>Dashboard</title>
-  <link rel="stylesheet" type="text/css" href="dashboard.css">
 </head>
 <body>
 <div data-role="page" id="dashboard">
@@ -19,7 +18,7 @@
       <h4>My Events</h4>
         <ul data-role="listview">
           <% @user_events.each do |a| %>
-            <li><a href="<%="/events/#{a.event.id}"%>"><%="#{a.event.name}\tAttendance Status: #{a.commitment_status}"%></a></li>
+            <li><a href="<%="/events/#{a.event.id}"%>" data-ajax = "false"><%="#{a.event.name}\tAttendance Status: #{a.commitment_status}"%></a></li>
           <%end%>
           <%= "You have no events"  unless @user_events.length > 0 %>
       </ul>
@@ -29,7 +28,7 @@
       <h4>Trending</h4>
       <ul data-role="listview">
         <% @trending_events.each do |event| %>
-          <li><%= link_to "#{event.name}: #{event.attendees.count} people going", event %></li>
+          <li><%= link_to "#{event.name}: #{event.attendees.count} people going", event, data: {ajax: "false"} %></li>
         <% end %>
       </ul>
     </div>
@@ -80,11 +79,6 @@
   </div><!-- /footer -->
 
 </div><!-- /page -->
-
-
-
-
-
 
 <div data-role="page" id="topicList" data-quicklinks="true">
 
