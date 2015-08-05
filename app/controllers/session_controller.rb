@@ -32,6 +32,7 @@ class SessionController < ApplicationController
       end
     else
       flash.now[:notice] = "Invalid username or password"
+      flash[:uname] = params[:user][:username]
       render "login"
     end
   end

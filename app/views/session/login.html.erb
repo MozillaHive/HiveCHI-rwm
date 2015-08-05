@@ -21,8 +21,11 @@
   <%= form_for :user, url: '/login', html: {id: "login_form"} do |f| %>
 
     <%= f.label :username %>
-    <%= f.text_field :username %>
-
+    <% if flash[:uname] %>
+      <%= f.text_field :username, value: flash[:uname] %>
+    <% else %>
+      <%= f.text_field :username %>
+    <% end %>
     <%= f.label :password %>
     <%= f.password_field :password %>
 
