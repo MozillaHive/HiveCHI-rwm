@@ -4,6 +4,7 @@ class NudgesController < ApplicationController
 	def new
 		@menu_options = User.all
 		@menu_options = @menu_options.select{|s| s != current_user}
+		@event = Event.find(params[:id])
 	end
 
 	def create

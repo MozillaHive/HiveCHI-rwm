@@ -9,10 +9,10 @@
 <div data-role="page">
 
   <div data-role="header" data-theme="b">
-    <h1>IGYIG</h1>
+    <h1>Nudge a Friend</h1>
   </div><!-- /header -->
   <div id="form">
-    Select a user to nudge
+    Select a friend to nudge. They will recieve a text message telling that you will go to <%=@event.name%> if they will.
     <form method = "post" action = "./nudge">
       <select name = "nudgee">
         <% @menu_options.each do |tar| %>
