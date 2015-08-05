@@ -66,6 +66,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @rand_image_number = rand(1..10)
     unless current_user and current_user.verified?
       session[:redirect_url] = "/events/#{params[:id]}"
     end

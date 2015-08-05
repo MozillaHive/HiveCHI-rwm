@@ -24,7 +24,7 @@ event_show()
       <%= @event.name %>
     </div>
     <div class="pictures">
-      <img src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/demo_event_pic.jpg" class="default_image"/>
+      <img src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Events/event<%=@rand_image_number%>.jpg" class="default_image"/>
     </div>
     <% if current_user and current_user.verified? %>
     <% if @in_nudge %>
