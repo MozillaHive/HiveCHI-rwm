@@ -17,30 +17,23 @@
     <div data-role="collapsible" data-collapsed="true">
       <h4>My Events</h4>
         <ul data-role="listview">
+          <% now = DateTime.now().in_time_zone(@zone) %>
           <% @user_events.each do |a| %>
-            <li><%=link_to "#{a.event.name}: #{a.commitment_status}", a.event, data:{ajax: "false"} %></li>
+            <% if a.event.start_date_and_time.in_time_zone(@zone) < now %>
+              <li class = "attendance-now">
+            <% elsif a.event.start_date_and_time.in_time_zone(@zone).to_date == now.to_date %>
+              <li class = "attendance-today">
+            <% elsif a.event.start_date_and_time.in_time_zone(@zone).to_date == now.to_date+1.day %>
+              <li class = "attendance-tomorrow">
+            <% else %>
+                <li class = "attendance-future">
+            <% end %>
+              <%=link_to "#{a.event.name}: #{a.commitment_status}", a.event, data:{ajax: "false"} %></li>
           <%end%>
           <%= "You have no events"  unless @user_events.length > 0 %>
       </ul>
     </div>
 
-    <div data-role="collapsible" data-collapsed="false">
-      <h4>Trending</h4>
-      <ul data-role="listview">
-        <% @trending_events.each do |event| %>
-          <li><%= link_to "#{event.name}: #{event.attendees.count} people going", event, data: {ajax: "false"} %></li>
-        <% end %>
-      </ul>
-    </div>
-
-    <div data-role="collapsible" data-collapsed="true">
-      <h4>Find Events</h4>
-        <ul data-role="listview">
-          <li><a href="events?time=today", data-ajax="false">Today</a></li>
-          <li><a href="events?time=tomorrow", data-ajax="false">Tomorrow</a></li>
-          <li><a href="events?time=this_week", data-ajax="false">This Week</a></li>
-      </ul>
-    </div>
 
     <% unless session[:is_parent?] %>
     <div data-role="collapsible" data-collapsed="true">
@@ -65,9 +58,28 @@
       <%end%>
     </ul>
     </div>
-
     </div>
     <% end %>
+
+
+    <div data-role="collapsible" data-collapsed="true">
+      <h4>Trending</h4>
+      <ul data-role="listview">
+        <% @trending_events.each do |event| %>
+          <li><%= link_to "#{event.name}: #{event.attendees.count} people going", event, data: {ajax: "false"} %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div data-role="collapsible" data-collapsed="true">
+      <h4>Find Events</h4>
+        <ul data-role="listview">
+          <li><a href="events?time=today", data-ajax="false">Today</a></li>
+          <li><a href="events?time=tomorrow", data-ajax="false">Tomorrow</a></li>
+          <li><a href="events?time=this_week", data-ajax="false">This Week</a></li>
+      </ul>
+    </div>
+
   <!-- footer navigator -->
   <div data-role="footer" data-id="foo1" data-position="fixed">
     <div data-role="navbar">
