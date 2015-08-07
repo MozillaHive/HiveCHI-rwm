@@ -84,7 +84,7 @@
   <div data-role="footer" data-id="foo1" data-position="fixed">
     <div data-role="navbar">
       <ul>
-        <li><%= link_to 'Back', :back %></li>
+        <li><%= link_to 'Back', :back, data:{ajax: "false"} %></li>
         <li><%= link_to "Home", dashboard_path %></li>
         <li><%= link_to "Profile", users_edit_path %></li>
         <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
