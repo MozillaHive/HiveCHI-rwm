@@ -31,7 +31,7 @@ class SessionController < ApplicationController
         client_redirect "/dashboard"
       end
     else
-      flash.now[:notice] = "Invalid username or password"
+      flash.now[:error] = "Invalid username or password"
       flash[:uname] = params[:user][:username]
       render "login"
     end

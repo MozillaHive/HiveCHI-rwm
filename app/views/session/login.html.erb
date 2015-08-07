@@ -22,10 +22,7 @@
   <div id = "rwm" class="centered">
     <h1 id = "rmwh">Ride W/ Me</h1>
   </div>
-  <div id = "login_error" class = "error_message">
-    <%= flash[:notice] if flash[:notice] %>
-  </div>
-  <div id="form" class="form-partial-container">
+  <div id="main-login-form" class="form-partial-container">
     <%= render partial: "/shared/login" %>
     <%= link_to 'Forgot password?', new_password_reset_path, class: 'centered', "data-role" => "button" %>
   </div>
