@@ -62,7 +62,7 @@ class UsersController < ApplicationController
         session[:redirect_url] = nil
         redirect_to url
       else
-        client_redirect "/dashboard"
+        redirect_to dashboard_path
       end
     else
       render "verification"
