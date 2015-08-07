@@ -21,6 +21,12 @@
   text-align: center;
 }
 
+#rwmh{
+  color: #F7F7F7;
+  font: Arial;
+  font-weight: bold;
+}
+
 li.attendance-now a.ui-btn{
   background-color: #e66;
 }
