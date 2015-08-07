@@ -16,8 +16,8 @@
   <div id = "login_error" class = "error_message">
     <%= flash[:notice] if flash[:notice] %>
   </div>
-  <div id="form">
-  <%= form_for :user, url: '/login', html: {id: "login_form", class: "fixed"} do |f| %>
+  <div id="form" class="fixed-form">
+  <%= form_for :user, url: '/login', html: {id: "login_form"} do |f| %>
 
     <%= f.label :username %>
     <% if flash[:uname] %>
