@@ -4,12 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def require_login
-    redirect_to "/login" unless current_user
+    if current_user.nil?
+      redirect_to login_path
+    elsif current_user.inactive
+      redirect_inactive_user
+    end
   end
 
   def require_verified_user
     if current_user.nil?
-      redirect_to "/login"
+      redirect_to login_path
+    elsif current_user.inactive
+      redirect_inactive_user
     elsif !current_user.verified?
       redirect_to "/users/verify"
     end
@@ -24,6 +30,16 @@ class ApplicationController < ActionController::Base
   def client_redirect (redirect_url)
   		flash[:redirect_url] = redirect_url
     	redirect_to "/redirect"
+  end
+
+  private
+
+  def redirect_inactive_user
+    reset_session
+    flash[:notice] = "Your password has been reset. Please follow the " \
+                     "instructions in the email we sent you to choose a new " \
+                     "password."
+    redirect_to login_path
   end
 
 end

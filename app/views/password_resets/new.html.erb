@@ -10,13 +10,13 @@
   <div data-role="header" data-theme="b">
     <h1>Reset Password</h1>
   </div><!-- /header -->
-  <div id = "rwm">
+  <div id = "rwm" class="centered">
     <h1>Ride W/Me</h1>
   </div>
   <div id = "login_error" class = "error_message">
     <%= flash[:notice] if flash[:notice] %>
   </div>
-  <div id="form">
+  <div id="form" class="form-partial-container">
   <%= form_tag(password_reset_path, method: "post") do %>
     <%= label_tag :email, "Enter your email address to reset your password." %>
     <%= text_field_tag :email %>
