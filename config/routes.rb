@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   get 'login' => 'session#login'
   get 'dashboard' => 'welcome#dashboard'
-  get 'pdashboard' => 'welcome#parent_dashboard'
 
   get 'redirect' => 'session#redirect'
 

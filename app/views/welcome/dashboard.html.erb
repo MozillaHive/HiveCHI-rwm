@@ -14,11 +14,11 @@
   </div>
 <% end %>
   <div data-role="collapsible-set">
-    <div data-role="collapsible" data-collapsed="false">
+    <div data-role="collapsible" data-collapsed="true">
       <h4>My Events</h4>
         <ul data-role="listview">
           <% @user_events.each do |a| %>
-            <li><a href="<%="/events/#{a.event.id}"%>" data-ajax = "false"><%="#{a.event.name}\tAttendance Status: #{a.commitment_status}"%></a></li>
+            <li><%=link_to "#{a.event.name}: #{a.commitment_status}", a.event, data:{ajax: "false"} %></li>
           <%end%>
           <%= "You have no events"  unless @user_events.length > 0 %>
       </ul>
@@ -33,7 +33,7 @@
       </ul>
     </div>
 
-    <div data-role="collapsible" data-collapsed="false">
+    <div data-role="collapsible" data-collapsed="true">
       <h4>Find Events</h4>
         <ul data-role="listview">
           <li><a href="events?time=today", data-ajax="false">Today</a></li>
@@ -42,30 +42,32 @@
       </ul>
     </div>
 
-    <div data-role="collapsible" data-collapsed="false">
+    <% unless session[:is_parent?] %>
+    <div data-role="collapsible" data-collapsed="true">
       <h4>My Nudges</h4>
         <ul data-role="listview">
-    <div id = "incoming_nudges">
-      <h2>Incoming Nudges</h2>
+    <div data-role="collapsible" data-collapsed="false" id = "incoming_nudges">
+      <h4>Incoming Nudges (<%=@nudges_in.length%>)</h4>
+      <ul data-role="listview">
       <% @nudges_in.each do |n| %>
-      <div class = "nudge">
-        <%="#{n.nudger.username} wants to go to #{n.event.name} with you"%>
-      </div>
+      <li>
+        <%=link_to "#{n.nudger.username} wants to go to #{n.event.name} with you", n.event, data: {ajax: "false"}%>
+      </li>
       <%end%>
-      <%= "You have no incoming nudges" unless @nudges_in.length > 0 %>
     </div>
-    <div id = "outgoing_nudges">
-      <h2>Outgoing Nudges</h2>
+    <div data-role="collapsible" data-collapsed="false" id = "outgoing_nudges">
+      <h4>Outgoing Nudges (<%=@nudges_out.length%>)</h4>
+      <ul data-role="listview">
       <% @nudges_out.each do |n| %>
-      <div class = "nudge">
-        <%="You want to go to #{n.event.name} with #{n.nudgee.username}"%>
-      </div>
+      <li>
+        <%=link_to "You want to go to #{n.event.name} with #{n.nudgee.username}",  n.event, data: {ajax: "false"}%>
+      </li>
       <%end%>
-      <%= "You have no outgoing nudges" unless @nudges_out.length > 0 %>
+    </ul>
     </div>
 
     </div>
-
+    <% end %>
   <!-- footer navigator -->
   <div data-role="footer" data-id="foo1" data-position="fixed">
     <div data-role="navbar">

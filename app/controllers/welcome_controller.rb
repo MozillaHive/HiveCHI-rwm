@@ -12,7 +12,6 @@ class WelcomeController < ApplicationController
   end
 
   def dashboard
-    redirect_to :action => "parent_dashboard", :controller => "welcome" if session[:is_parent?]
     active_attends = current_user.attendances.select {|a| a.commitment_status != "No"}
 		@school = current_user.school
     @user_events = []
@@ -25,26 +24,6 @@ class WelcomeController < ApplicationController
 
     @nudges_in = current_user.recieved_nudges
     @nudges_out = current_user.sent_nudges
-  end
-
-
-  def parent_dashboard
-    redirect_to :action => "dashboard", :controller => "welcome" unless session[:is_parent?]
-    attends = current_user.attendances.select {|a| a.commitment_status != "No"}
-    @today_events = []
-    @future_events = []
-    @past_events = []
-    now = DateTime.now
-    attends.each do |a|
-      e = a.event
-      if e.start_date_and_time+e.duration.hours < now
-        @past_events.push(e)
-      elsif e.start_date_and_time.to_date() == now.to_date()
-        @today_events.push(e)
-      else
-        @future_events.push(e)
-      end
-    end
   end
 
 end
