@@ -12,5 +12,5 @@
  *
  *= require_self
  *= require_jquery.mobile
- *= require_tree
+ *= require_tree .
  */
