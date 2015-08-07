@@ -21,10 +21,15 @@
     <% end %>
   </div>
   <% unless @user.phone_verified %>
-    <%= form_tag(action: "verify", method: "post") do %>
+    <%= form_tag(action: "verify") do %>
       <%= label_tag "Phone verification code" %>
       <%= text_field_tag :phone_token %>
       <%= submit_tag "Verify" %>
+    <% end %>
+  <% end %>
+  <% unless @user.email_verified %>
+    <%= form_tag(action: "resend_confirmation_email") do %>
+      <%= submit_tag "Resend Email" %>
     <% end %>
   <% end %>
   <!-- footer navigator -->

@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   get 'login' => 'session#login'
   get 'dashboard' => 'welcome#dashboard'
-  get 'pdashboard' => 'welcome#parent_dashboard'
 
   get 'redirect' => 'session#redirect'
 
@@ -27,6 +26,7 @@ Rails.application.routes.draw do
   get 'users/verify' => 'users#verification'
   post 'users/verify' => 'users#verify'
   get 'users/verify-email' => 'users#verify_email'
+  post 'users/verify-email' => 'users#resend_confirmation_email'
   get 'users/edit' => 'users#edit'
   resources :users, only: [:create, :update, :destroy]
   resource :password_reset, except: [:index, :show, :update]
