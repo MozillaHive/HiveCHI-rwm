@@ -54,10 +54,10 @@ class EventsController < ApplicationController
   end
 
   def all
-    events = Event.all
+    events = Event.future_events
 
     @events_json = events.map do |event|
-        event.as_json.merge(:numberOfAttendees => event.attendances.count)
+        event.as_json.merge(:numberOfAttendees => event.attendances.size)
     end
 
     respond_to do |format|

@@ -4,6 +4,15 @@
     width: 60%;
 }
 
+#main-login-form {
+  top: 70%;
+  left: 50%;
+  width: 60%;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 12px 20px;
+}
+
 .fixed-form {
 	position: fixed;
 	-webkit-transform: translate(-50%, -50%);
@@ -18,8 +27,7 @@
   text-align: center;
 }
 
-.ui-page, body {
-  background-position-x: -150px;
-  background-size: 500px;
-  background-image: url("https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Icons/ridewitme_2000x1500.jpg");
+.error-message {
+  color: red;
+  margin-bottom: 10px;
 }

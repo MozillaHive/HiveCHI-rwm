@@ -24,13 +24,7 @@
 
   <!-- footer navigator -->
   <div data-role="footer" id="footer" data-position="fixed">
-  <div data-role="navbar">
-    <ul>
-      <li><%= link_to 'Back', :back %></li>
-        <li><a href="/dashboard.html">Home</a></li>
-        <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
-    </ul>
-  </div><!-- /navbar -->
+<%= render "shared/navbar" %>
 </div><!-- /footer -->
 
 </div><!-- /page -->
