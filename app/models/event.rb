@@ -11,13 +11,18 @@ class Event < ActiveRecord::Base
   end
 
   def self.popular_events(number)
-    Event.future_events.sort_by { |event| -event.attendees.count }[0...number]
+    Event.select('events.*, count(attendances.id) AS attendance_count')
+      .joins(:attendances)
+      .group("events.id")
+      .where('events.start_date_and_time > ?', Time.now)
+      .order("attendance_count DESC")
+      .limit(number)
   end
 
   def self.future_events
-    Event.all.select do |event|
-      (event.start_date_and_time + event.duration).future?
-    end
+    Event.where("start_date_and_time > ?", Date.today.beginning_of_day)
+      .includes(:attendances)
+      .select { |event| (event.start_date_and_time + event.duration).future? }
   end
 
   def attendees_by_school(school)
