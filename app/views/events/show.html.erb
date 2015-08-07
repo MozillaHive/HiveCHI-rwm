@@ -9,7 +9,7 @@ arriveaddr = "<%=@event.address + ' Chicago, IL' %>"
 user = false
 <% if current_user and current_user.verified? %>
   leaveaddr = "<%=current_user.school.address + ' Chicago, IL' %>"
-  arrivetime = new Date("<%=@event.start_date_and_time %>")
+  arrivetime = new Date(<%=@event.start_date_and_time.to_i * 1000 %>)
   user = true
 <% end %>
 event_show()
@@ -26,7 +26,7 @@ event_show()
       <img src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Events/event<%=@rand_image_number%>.jpg" class="default_image"/>
     </div>
     <% if current_user and current_user.verified? %>
-    <% if @in_nudge && !session[:is_parent?] %> 
+    <% if @in_nudge && !session[:is_parent?] %>
       <div class="notice">
         <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
         <button>Accept Nudge (Inactive)</button>
@@ -86,7 +86,7 @@ event_show()
           <div id = "WALKING"></div>
           </div>
     <% else %>
-    <div id = "login" class="align-left margin-right">
+    <div id="form" class="form-partial-container">
       <p>Login or register to join this event:</p>
       <%= render partial: "shared/login" %>
     </div>

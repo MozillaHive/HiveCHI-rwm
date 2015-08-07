@@ -1,4 +1,3 @@
-<div id="form">
 <%= form_for :user, url: '/login', html: {id: "login_form"} do |f| %>
 
   <%= f.label :username %>
@@ -10,4 +9,3 @@
   <%= f.submit "Log in", :class => "button" %>
 <% end %>
 <%= link_to 'Register', register_path, class: 'centered', "data-role" => "button" %>
-</div>

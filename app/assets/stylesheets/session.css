@@ -1,10 +1,17 @@
 #form {
-	position: fixed;
     top: 70%;
     left: 50%;
     width: 60%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+}
+
+.fixed-form {
+	position: fixed;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.form-partial-container {
+	margin: 0 auto;
 }
 
 .centered {
