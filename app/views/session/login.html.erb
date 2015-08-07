@@ -17,7 +17,7 @@
     <%= flash[:notice] if flash[:notice] %>
   </div>
   <div id="form">
-  <%= form_for :user, url: '/login', html: {id: "login_form"} do |f| %>
+  <%= form_for :user, url: '/login', html: {id: "login_form", class: "fixed"} do |f| %>
 
     <%= f.label :username %>
     <% if flash[:uname] %>
