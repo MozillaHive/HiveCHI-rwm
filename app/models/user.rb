@@ -100,7 +100,9 @@ class User < ActiveRecord::Base
   end
 
   def require_phone_verification
-    if self.phone_changed? && !(new_record? && phone_verified)
+    if ENV['PHONE_VERIFICATION'] == 'DISABLED'
+      self.phone_verified = true
+    elsif self.phone_changed? && !(new_record? && phone_verified)
       self.phone_verified = false
       self.phone_token = SecureRandom.hex(4)
       send_verification_text
@@ -108,7 +110,9 @@ class User < ActiveRecord::Base
   end
 
   def require_email_verification
-    if self.email_changed? && !(new_record? && email_verified)
+    if ENV['EMAIL_VERIFICATION'] == 'DISABLED'
+      self.email_verified = true
+    elsif self.email_changed? && !(new_record? && email_verified)
       self.email_verified = false
       self.email_token = SecureRandom.hex(10)
       send_verification_email
