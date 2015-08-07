@@ -19,10 +19,13 @@
   -webkit-border-radius: 6px;
   background-color: yellowgreen;
   text-align: center;
+  margin-bottom: 10px;
+  text-shadow: none;
 }
 
-#rwmh{
+#rwmh {
   color: #F7F7F7;
-  font: Arial;
+  font-family: Helvetica, Arial, sans-serif;
   font-weight: bold;
+  text-shadow: none;
 }
