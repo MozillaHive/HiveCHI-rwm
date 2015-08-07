@@ -1,4 +1,14 @@
 <%= form_for :user, url: '/login', html: {id: "login_form"} do |f| %>
+  <% if flash[:error] %>
+  <div id = "login_error" class = "error-message">
+    <%= flash[:error] %>
+  </div>
+  <% end %>
+  <% if flash[:notice] %>
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+  <% end %>
   <%= f.label :username %>
   <% if flash[:uname] %>
     <%= f.text_field :username, value: flash[:uname] %>
