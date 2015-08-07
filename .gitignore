@@ -39,3 +39,6 @@ bower.json
 .powenv
 # Ignore application configuration
 /config/application.yml
+
+#Ignore public assets
+/public/assets
