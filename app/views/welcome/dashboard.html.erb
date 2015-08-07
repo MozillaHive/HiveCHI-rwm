@@ -86,7 +86,7 @@
       <ul>
         <li><%= link_to 'Back', :back %></li>
         <li><%= link_to "Home", dashboard_path %></li>
-        <li><%= link_to "Edit Profile", users_edit_path %></li>
+        <li><%= link_to "Profile", users_edit_path %></li>
         <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
       </ul>
     </div><!-- /navbar -->
@@ -118,20 +118,7 @@
       <ul data-role="listview" data-inset="true" id="event-list" data-autodividers="true" data-filter="true" data-filter-placeholder="Search events..."></ul>
   </div> <!-- /content -->
 
-  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
-    <div data-role="navbar">
-      <ul>
-        <li><%= link_to 'Back', :back %></li>
-        <li><%= link_to "Home", dashboard_path %></li>
-        <li><%= link_to "Edit Profile", users_edit_path %></li>
-        <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
-      </ul>
-    </div><!-- /navbar -->
-  </div><!-- /footer -->
-
-
-
-  <!-- Here are a bunch of panels at the end, just before the close page tag  -->
+<!-- Here are a bunch of panels at the end, just before the close page tag  -->
 
   <!-- leftpanel1  -->
   <div data-role="panel" id="myPanel" data-position="left" data-display="reveal" data-theme="a">
