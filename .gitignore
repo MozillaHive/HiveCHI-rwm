@@ -41,4 +41,4 @@ bower.json
 /config/application.yml
 
 #Ignore public assets
-/public/assets
+/public/assets/*
