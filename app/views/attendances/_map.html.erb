@@ -107,7 +107,7 @@
       }
       document.getElementById("transit").innerHTML = (attendence.transit[0]+attendence.transit[1]+attendence.transit[2])+" people taking the CTA";
       document.getElementById("walking").innerHTML = (attendence.walking[0]+attendence.walking[1]+attendence.walking[2])+" people walking";
-      document.getElementById("bicycling").innerHTML = (attendence.bicycling[0]+attendence.bicycling[1]+attendence.bicycling[2])+" people bycling";
+      document.getElementById("bicycling").innerHTML = (attendence.bicycling[0]+attendence.bicycling[1]+attendence.bicycling[2])+" people bicycling";
     }
     google.maps.event.addDomListener(window, 'load', initialize);
     function transitChange(mode){
