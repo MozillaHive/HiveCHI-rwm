@@ -17,9 +17,3 @@
 .centered {
   text-align: center;
 }
-
-.ui-page, body {
-  background-position-x: -150px;
-  background-size: 500px;
-  background-image: url("login_background.jpg");
-}
