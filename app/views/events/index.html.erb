@@ -7,21 +7,16 @@
 <div data-role="page" data-quicklinks="true">
 
   <div data-role="header" class="jqm-header">
-  <h1>Index</h1>
+  <h1><%=params[:time][0].upcase + params[:time].slice[1..-1]%>'s Events</h1>
   <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext"></a>
   </div><!-- /header -->
 
   <div role="main" class="ui-content jqm-content">
-
     <<ul data-role="listview" type="a" id="options">
       <li></li>
     </ul>
-
   </div><!-- /panel -->
 
-  <div data-role="header" data-theme="a">
-       <h1>Events</h1>
-  </div>
     <!-- Header -->
   <div data-role="content">
       <ul data-role="listview" data-inset="true" id="event-list"></ul>
