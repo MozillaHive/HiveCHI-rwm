@@ -26,19 +26,3 @@
   font: Arial;
   font-weight: bold;
 }
-
-li.attendance-now a.ui-btn{
-  background-color: #e66;
-}
-
-li.attendance-today a.ui-btn{
-  background-color: #fb4;
-}
-
-li.attendance-tomorrow a.ui-btn{
-  background-color: #ff8;
-}
-
-li.attendance-future a.ui-btn{
-  background-color: #8f8;
-}
