@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     elsif current_user.inactive
       redirect_inactive_user
     elsif !current_user.verified?
-      redirect_to "/users/verify"
+      redirect_to users_verify_path
     end
   end
 
