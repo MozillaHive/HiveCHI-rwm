@@ -1,0 +1,7 @@
+<div data-role="navbar">
+    <ul>
+      <li><%= link_to 'Back', :back, data:{ajax: "false"} %></li>
+        <li><a href="/dashboard.html">Home</a></li>
+        <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
+    </ul>
+ </div>
