@@ -16,7 +16,7 @@
     var start = "<%=current_user.school.address + ' Chicago, IL' %>";
     var end = "<%=@event.address + ' Chicago, IL'%>";
     var tmode = "walking";
-    var startTime = new Date("<%=@event.start_date_and_time%>");
+    var startTime = new Date(<%=@event.start_date_and_time.to_i * 1000%>);
     var earlyTime = new Date(startTime.getTime()-15*60*1000);
     var lateTime = new Date(startTime.getTime()+15*60*1000);
     var arriveTimeArray = [earlyTime,startTime,lateTime];
