@@ -7,8 +7,11 @@
 <div data-role="page" data-quicklinks="true">
 
   <div data-role="header" class="jqm-header">
-  <h1><%=params[:time][0].upcase + params[:time].slice[1..-1]%>'s Events</h1>
-  <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext"></a>
+      <% if params[:time] == "this_week" %>
+        <% params[:time] = "this Week" %>
+      <% end %>
+    <h1><%=params[:time][0].upcase + params[:time].slice(1..-1)%>'s Events</h1>
+    <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext"></a>
   </div><!-- /header -->
 
   <div role="main" class="ui-content jqm-content">
