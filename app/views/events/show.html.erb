@@ -9,7 +9,7 @@ arriveaddr = "<%=@event.address + ' Chicago, IL' %>"
 user = false
 <% if current_user and current_user.verified? %>
   leaveaddr = "<%=current_user.school.address + ' Chicago, IL' %>"
-  arrivetime = new Date("<%=@event.start_date_and_time %>")
+  arrivetime = new Date(<%=@event.start_date_and_time.to_i * 1000 %>)
   user = true
 <% end %>
 event_show()
