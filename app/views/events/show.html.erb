@@ -91,8 +91,8 @@ event_show()
       <%= render partial: "shared/login" %>
     </div>
     <%end%>
-          <%if @attend %>
-           <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" class="align-left" data-ajax="false">Show Directions</a>
+          <%if @attend && @attend.commitment_status == "Yes" %>
+           <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" class="align-left" data-ajax="false" data-role = "button">Show Directions</a>
            <%end%>
        <br>
        <div id="map-canvas">
