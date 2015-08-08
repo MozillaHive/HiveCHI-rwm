@@ -31,6 +31,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = current_user
+    @user.destroy
+    reset_session
+    flash[:notice] = "Your account has been deleted."
+    redirect_to login_path
+  end
+
   def verification
     @user = current_user
     redirect_to dashboard_path if @user.verified?
