@@ -13,10 +13,15 @@ class NudgesController < ApplicationController
 	end
 
 	def create
-		nudge = Nudge.create(nudger: User.find(session[:user_id]), nudgee: User.find(params[:nudgee]),event: Event.find(params[:id]))
-		text_message(nudge)
-		flash[:notice] = "You nudged #{nudge.nudgee.username} to go to #{nudge.event.name}"
-		nudge.save
+		if ENV["DISABLE_NUDGE_TEXTS"] != "TRUE"
+			nudge = Nudge.create(nudger: User.find(session[:user_id]), nudgee: User.find(params[:nudgee]),event: Event.find(params[:id]))
+			text_message(nudge)
+			flash[:notice] = "You nudged #{nudge.nudgee.username} to go to #{nudge.event.name}"
+			nudge.save
+		else
+			flash[:notice] = "We’re sorry, but we have temporarily disabled nudges for all users while we correct an issue with the system. Please try your nudge again later."
+		end
+
 		client_redirect "/dashboard"
 	end
 
