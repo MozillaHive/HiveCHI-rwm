@@ -1,6 +1,6 @@
 <div data-role="navbar">
     <ul>
-      <li><%= link_to 'Back', :back, data:{ajax: "false"} %></li>
+      <li><%= link_to 'Back', :back, data: {ajax: "false"} %></li>
         <% if current_user && current_user.verified? %>
         <li><%= link_to("Home", dashboard_path, "data-ajax" => "false") %></li>
         <li><%= link_to("Profile", users_edit_path, "data-ajax" => "false") %></li>
