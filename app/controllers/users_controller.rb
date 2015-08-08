@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_filter :require_login, except: [:new, :create, :verify_email]
 
   def new
-    if ENV["DISABLE_REGISTRATIONS" == "TRUE"]
-      @errors = "We’re sorry, but we have temporarily disabled nudges for all users while we investigate an issue with the system. Please try your nudge again later."
+    if ENV["DISABLE_REGISTRATIONS"] == "TRUE"
+      @error = "We’re sorry, but we have temporarily disabled nudges for all users while we investigate an issue with the system. Please try your nudge again later."
       redirect_to login_path
     end
     @user = User.new
