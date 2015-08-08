@@ -9,7 +9,7 @@ class NudgesController < ApplicationController
 
 	def create
 		@nudge = Nudge.new(
-			nudger: User.find(session[:user_id]),
+			nudger: current_user,
 			nudgee: User.find(params[:nudgee]),
 			event: Event.find(params[:id])
 		)
@@ -23,15 +23,14 @@ class NudgesController < ApplicationController
 	end
 
 	def show
-		user = User.find(session[:user_id])
-		@nudges_in = user.recieved_nudges
-		@nudges_out = user.sent_nudges
+		@nudges_in = current_user.recieved_nudges
+		@nudges_out = current_user.sent_nudges
 	end
 
 	private
 
 	def nudges_enabled_globally?
-		if ENV["DISABLE_NUDGE_TEXTS"] != "TRUE"
+		if ENV["DISABLE_NUDGE_TEXTS"] == "TRUE"
 			@event = Event.find(params[:id])
 			flash[:notice] = "We’re sorry, but we have temporarily disabled nudges for all users while we correct an issue with the system. Please try your nudge again later."
 			redirect_to @event
@@ -41,5 +40,5 @@ class NudgesController < ApplicationController
 			redirect_to @event
 		end
 	end
-	
+
 end
