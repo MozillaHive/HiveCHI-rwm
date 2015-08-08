@@ -8,6 +8,7 @@ FactoryGirl.define do
     password_confirmation "password1234"
     parent_password "hellohello"
     parent_password_confirmation "hellohello"
+    nudges_enabled true
   end
 
   factory :school do
