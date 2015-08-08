@@ -12,18 +12,18 @@
   </div><!-- /header -->
   
   <div id="form">
-    <%if @can_nudge %>
-    Select a friend to nudge. They will receive a text message saying you will go to <%=@event.name%> if they will.
-    <form method = "post" action = "./nudge">
-      <select name = "nudgee">
-        <% @menu_options.each do |tar| %>
-        <option value = "<%= tar.id %>"><%= tar.username %></option>
-        <%end%>
-      </select>
-      <input type = "submit" value = "Nudge">
-    </form>
+    <%if @error%>
+      <%= @error %>
     <% else %>
-    You are currently unable to nudge
+      Select a friend to nudge. They will receive a text message saying you will go to <%=@event.name%> if they will.
+      <form method = "post" action = "./nudge">
+        <select name = "nudgee">
+          <% @menu_options.each do |tar| %>
+          <option value = "<%= tar.id %>"><%= tar.username %></option>
+          <%end%>
+        </select>
+        <input type = "submit" value = "Nudge">
+     </form>
     <% end %>
   </div>
  
