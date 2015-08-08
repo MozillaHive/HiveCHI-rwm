@@ -2,8 +2,7 @@ class NudgesController < ApplicationController
 	before_filter :require_verified_user
 
 	def new
-		@menu_options = User.all
-		@menu_options = @menu_options.select{|s| s != current_user}
+		@menu_options = User.where(nudges_enabled: true).where.not(id: current_user.id)
 		@event = Event.find(params[:id])
 		if (ENV["DISABLE_NUDGE_TEXTS"] == "TRUE")
 			@error = "We’re sorry, but we have temporarily disabled nudges for all users while we investigate an issue with the system. Please try your nudge again later."
