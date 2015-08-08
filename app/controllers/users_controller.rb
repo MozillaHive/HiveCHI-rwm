@@ -7,7 +7,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    if ENV["DISABLE_REGISTRATIONS"] == "TRUE"
+      render 'new'
+    elsif @user.save
       session[:user_id] = @user.id
       redirect_to users_verify_path
     else
@@ -27,6 +29,14 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @user = current_user
+    @user.destroy
+    reset_session
+    flash[:notice] = "Your account has been deleted."
+    redirect_to login_path
   end
 
   def verification
@@ -71,7 +81,7 @@ class UsersController < ApplicationController
 
   def resend_confirmation_email
     unless current_user.email_verified?
-      current_user.send_verification_email 
+      current_user.send_verification_email
       flash[:errors] ||= []
       flash[:errors] << "Your verification email has been sent. It may take a few minutes to arrive. Please " \
                         "click on the link in the confirmation email we sent" \
