@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   def new
     if ENV["DISABLE_REGISTRATIONS"] == "TRUE"
       @error = "We’re sorry, but we have temporarily disabled nudges for all users while we investigate an issue with the system. Please try your nudge again later."
-      redirect_to login_path
+      flash[:reg_errors]
+      render 'new'
     end
     @user = User.new
   end
