@@ -29,6 +29,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = current_user
+    @user.destroy
+    reset_session
+    flash[:notice] = "Your account has been deleted."
+    redirect_to login_path
+  end
+
   def verification
     @user = current_user
     redirect_to dashboard_path if @user.verified?
@@ -71,7 +79,7 @@ class UsersController < ApplicationController
 
   def resend_confirmation_email
     unless current_user.email_verified?
-      current_user.send_verification_email 
+      current_user.send_verification_email
       flash[:errors] ||= []
       flash[:errors] << "Your verification email has been sent. It may take a few minutes to arrive. Please " \
                         "click on the link in the confirmation email we sent" \
