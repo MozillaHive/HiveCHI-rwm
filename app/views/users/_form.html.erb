@@ -29,5 +29,5 @@
   <%= f.hidden_field :nudges_enabled, value: false %>
   <%= f.check_box :nudges_enabled, { checked: @user.nudges_enabled != false }, true, false %>
   <%= f.label :nudges_enabled, "Allow other users to send me text message notifications" %>
-  <%= f.submit "Update your profile" %>
+  <%= f.submit "Submit" %>
 <% end %>
