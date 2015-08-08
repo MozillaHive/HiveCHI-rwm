@@ -26,5 +26,7 @@
   <%= f.password_field :parent_password %>
   <%= f.label :parent_password_confirmation %>
   <%= f.password_field :parent_password_confirmation %>
+  <%= f.check_box :nudges_enabled, {}, true, false %>
+  <%= f.label :nudges_enabled, "Allow other users to send me text message notifications" %>
   <%= f.submit %>
 <% end %>

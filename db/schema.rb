@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150802234922) do
+ActiveRecord::Schema.define(version: 20150808021935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150802234922) do
     t.boolean  "phone_verified"
     t.boolean  "inactive"
     t.string   "password_reset_token"
+    t.boolean  "nudges_enabled"
   end
 
   add_index "users", ["username", "email"], name: "index_users_on_username_and_email", unique: true, using: :btree
