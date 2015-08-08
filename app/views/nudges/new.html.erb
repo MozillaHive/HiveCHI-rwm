@@ -10,17 +10,23 @@
   <div data-role="header" data-theme="b">
     <h1>Nudge a Friend</h1>
   </div><!-- /header -->
+  
   <div id="form">
-    Select a friend to nudge. They will receive a text message saying you will go to <%=@event.name%> if they will.
-    <form method = "post" action = "./nudge">
-      <select name = "nudgee">
-        <% @menu_options.each do |tar| %>
-        <option value = "<%= tar.id %>"><%= tar.username %></option>
-        <%end%>
-      </select>
-      <input type = "submit" value = "Nudge">
-    </form>
+    <%if @error%>
+      <%= @error %>
+    <% else %>
+      Select a friend to nudge. They will receive a text message saying you will go to <%=@event.name%> if they will.
+      <form method = "post" action = "./nudge">
+        <select name = "nudgee">
+          <% @menu_options.each do |tar| %>
+          <option value = "<%= tar.id %>"><%= tar.username %></option>
+          <%end%>
+        </select>
+        <input type = "submit" value = "Nudge">
+     </form>
+    <% end %>
   </div>
+ 
 
   <!-- footer navigator -->
   <div data-role="footer" id="footer" data-position="fixed">
