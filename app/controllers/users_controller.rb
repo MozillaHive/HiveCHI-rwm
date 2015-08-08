@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_filter :require_login, except: [:new, :create, :verify_email]
 
   def new
+    if ENV["DISABLE_REGISTRATIONS" == "TRUE"]
+      redirect_to login_path
+      flash[:error] = "We’re sorry, but we have temporarily disabled nudges for all users while we investigate an issue with the system. Please try your nudge again later."
+    end
     @user = User.new
   end
 
@@ -71,7 +75,7 @@ class UsersController < ApplicationController
 
   def resend_confirmation_email
     unless current_user.email_verified?
-      current_user.send_verification_email 
+      current_user.send_verification_email
       flash[:errors] ||= []
       flash[:errors] << "Your verification email has been sent. It may take a few minutes to arrive. Please " \
                         "click on the link in the confirmation email we sent" \
