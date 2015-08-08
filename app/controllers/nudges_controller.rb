@@ -1,26 +1,17 @@
 class NudgesController < ApplicationController
 	before_filter :require_verified_user
+	before_filter :nudges_enabled_globally?, only: [:new, :create]
 
 	def new
 		@menu_options = User.where(nudges_enabled: true).where.not(id: current_user.id)
 		@event = Event.find(params[:id])
-		if (ENV["DISABLE_NUDGE_TEXTS"] == "TRUE")
-			@error = "We’re sorry, but we have temporarily disabled nudges for all users while we investigate an issue with the system. Please try your nudge again later."
-		elsif (current_user == User.first)
-			@error = "This example user has had nudging disabled"
-		end
 	end
 
 	def create
-		if ENV["DISABLE_NUDGE_TEXTS"] != "TRUE"
-			nudge = Nudge.create(nudger: User.find(session[:user_id]), nudgee: User.find(params[:nudgee]),event: Event.find(params[:id]))
-			text_message(nudge)
-			flash[:notice] = "You nudged #{nudge.nudgee.username} to go to #{nudge.event.name}"
-			nudge.save
-		else
-			flash[:notice] = "We’re sorry, but we have temporarily disabled nudges for all users while we correct an issue with the system. Please try your nudge again later."
-		end
-
+		nudge = Nudge.create(nudger: User.find(session[:user_id]), nudgee: User.find(params[:nudgee]),event: Event.find(params[:id]))
+		text_message(nudge)
+		flash[:notice] = "You nudged #{nudge.nudgee.username} to go to #{nudge.event.name}"
+		nudge.save
 		client_redirect "/dashboard"
 	end
 
@@ -31,6 +22,19 @@ class NudgesController < ApplicationController
 	end
 
 	private
+
+	def nudges_enabled_globally?
+		if ENV["DISABLE_NUDGE_TEXTS"] != "TRUE"
+			@event = Event.find(params[:id])
+			flash[:notice] = "We’re sorry, but we have temporarily disabled nudges for all users while we correct an issue with the system. Please try your nudge again later."
+			redirect_to @event
+		elsif current_user == User.first
+			@event = Event.find(params[:id])
+			flash[:notice] = "This example user has had nudging disabled."
+			redirect_to @event
+		end
+	end
+
 	def text_message(nudge)
 		account_sid = Rails.application.secrets.twilio_sid
 		auth_token = Rails.application.secrets.twilio_auth_token
