@@ -44,13 +44,13 @@ event_show()
         <% end %>
       <% end %>
       <% unless @attend && ["Yes", "Maybe"].include?(@attend.commitment_status) %>
-        <%= form_tag(event_attendances_path(@event), method: "post") do %>
+        <%= form_tag(event_attendances_path(@event), method: "post", "data-ajax" => "false") do %>
           <%= hidden_field_tag(:commitment_status, "Maybe") %>
           <%= submit_tag("Watch") %>
         <% end %>
       <% end %>
       <% if @attend && @attend.commitment_status == "Yes"  && !session[:is_parent?]%>
-        <%= form_tag(event_attendance_path(@event, @attend), method: "delete") do %>
+        <%= form_tag(event_attendance_path(@event, @attend), method: "delete", "data-ajax" => "false") do %>
           <%= submit_tag("Back Out") %>
         <% end %>
       <% end %>
