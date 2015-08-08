@@ -2,17 +2,14 @@ class UsersController < ApplicationController
   before_filter :require_login, except: [:new, :create, :verify_email]
 
   def new
-    if ENV["DISABLE_REGISTRATIONS"] == "TRUE"
-      @error = "We’re sorry, but we have temporarily disabled nudges for all users while we investigate an issue with the system. Please try your nudge again later."
-      flash[:reg_errors]
-      render 'new'
-    end
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    if ENV["DISABLE_REGISTRATIONS"] == "TRUE"
+      render 'new'
+    elsif @user.save
       session[:user_id] = @user.id
       redirect_to users_verify_path
     else
