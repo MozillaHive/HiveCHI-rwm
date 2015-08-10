@@ -14,7 +14,6 @@ class NudgesController < ApplicationController
 			event: Event.find(params[:id])
 		)
 		if @nudge.save
-			@nudge.send_text!
 			flash[:notice] = "You nudged #{nudge.nudgee.username} to go to #{nudge.event.name}"
 			redirect_to dashboard_path
 		else
