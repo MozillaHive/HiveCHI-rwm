@@ -13,9 +13,9 @@ RSpec.feature "Visitor signs up" do
 
   scenario "With invalid information" do
     visit register_path
-    click_button "Create User"
+    click_button "Submit"
     expect(page).to have_content("error")
-    expect(page).to have_button("Create User")
+    expect(page).to have_button("Submit")
     expect(page).not_to have_button("Verify")
   end
 end
