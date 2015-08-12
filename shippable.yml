@@ -1,0 +1,20 @@
+# language setting
+language: ruby
+
+#version numbers
+rvm:
+  - 2.1.4
+
+services:
+  - postgres
+
+env:
+  - CI_REPORTS=shippable/testresults COVERAGE_REPORTS=shippable/codecoverage DATABASE_URL=postgres://postgres@localhost/ride_with_me_development
+
+before_script:
+  - mkdir -p shippable/testresults
+  - mkdir -p shippable/codecoverage
+  - RAILS_ENV=test bundle exec rake db:create
+
+script:
+  "bundle exec rspec"
