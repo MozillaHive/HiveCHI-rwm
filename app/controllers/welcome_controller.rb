@@ -23,7 +23,7 @@ class WelcomeController < ApplicationController
 		@trending_events = Event.popular_events(5)
     @nudges_in = current_user.recieved_nudges
     @nudges_out = current_user.sent_nudges
-    @zone = ActiveSupport::TimeZone.new("Central Time (US & Canada)")
+    @zone = current_user.get_time_zone
   end
 
 end

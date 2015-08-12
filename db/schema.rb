@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150808021935) do
     t.string   "preference_1"
     t.string   "preference_2"
     t.string   "preference_3"
+    t.string   "time_zone"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.string   "email_token"

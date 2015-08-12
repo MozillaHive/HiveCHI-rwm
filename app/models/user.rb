@@ -82,6 +82,14 @@ class User < ActiveRecord::Base
     UserMailer.password_reset_email(url, self).deliver_now
   end
 
+  def get_time_zone
+    if self.time_zone
+      return ActiveSupport::TimeZone.new(self.time_zone)
+    else
+      return ActiveSupport::TimeZone.new("Central Time (US & Canada)")
+    end
+  end
+
   private
 
   def real_phone_number?
