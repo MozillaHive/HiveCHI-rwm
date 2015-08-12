@@ -86,7 +86,7 @@ class AttendancesController < ApplicationController
     account_sid = Rails.application.secrets.twilio_sid
     auth_token = Rails.application.secrets.twilio_auth_token
     client = Twilio::REST::Client.new account_sid, auth_token
-    from = "+18443117433" # Your Twilio number\
+    from = Rails.application.secrets.twilio_originating_number
 
     client.account.messages.create(
         :from => from,
