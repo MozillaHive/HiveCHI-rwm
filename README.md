@@ -29,39 +29,61 @@ When you merge a pull request:
 
 ### Setup:
 
-To run the site locally, follow these steps:
+#### Prerequisites
+
+This guide will assume you are using [rbenv](https://github.com/sstephenson/rbenv#installation) for Ruby. You could use [rvm](https://rvm.io/rvm/install) instead.
+
+To quickly set up rbenv on OS X with [Homebrew](http://brew.sh), first pour with
+
+        brew update && brew install rbenv ruby-install
+
+   Then to your `.bash_profile` add the line
+
+        if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+   and reload your profile
+
+        source ~/.bash_profile
+
+
+ You will also need to have [Postgres](http://www.postgresql.org) instealled and running.
+
+ On OS X, you can just download Postgres.app from http://postgresapp.com and run it.
+
+#### Instructions
 
 1. Clone the repository locally, and change to the working directory.
 
         git clone https://github.com/MozillaHive/HiveCHI-rwm.git
         cd HiveCHI-rwm
 
-2. Make sure [Ruby](https://www.ruby-lang.org/) and [RubyGems](https://rubygems.org/) are installed. They should be installed automatically on OS X. Typing `gem` at the console should print a help message.
+2. Install the correct version of Ruby. Using rbenv:
 
-3. Install [Bundler](http://bundler.io). On OS X:
+        rbenv install
+        rbenv rehash
 
-        sudo gem install bundler
+3. Install [Bundler](http://bundler.io).
 
-3. Install and start [Postgres](http://www.postgresql.org). On OS X, you can use can download Postgres.app from http://postgresapp.com and run it.
+        gem install bundler
+        rbenv rehash
 
-4. Install the Ruby Postgres interface. On OS X:
+5. Use Bundler to set up the required gems.
 
-        sudo env ARCHFLAGS="-arch x86_64" gem install pg
+        bundle install
+        rbenv rehash
 
-5. Run `bundle install`.
-
-6. Set up the database (if this doesn't work, there are detailed instructions for configuring Postgres [here](https://ridewithmeapp.slack.com/files/kyaroch/F089ZSBJ7/Configuring_Postgres_on_your_local_machine)):
+6. Now set up the database (if this doesn't work, there are detailed instructions for configuring Postgres [here](https://ridewithmeapp.slack.com/files/kyaroch/F089ZSBJ7/Configuring_Postgres_on_your_local_machine)).
 
         rake db:create
         rake db:migrate
 
-7. Seed the database with test data:
+7. Seed the database with test data.
 
         rake db:seed
 
 8. Fill in `config/application.yml`. Twilio test credentials should be available [here](https://ridewithmeapp.slack.com/files/omnignorant/F08V5JH2P/Twilio_Test_Credentials). If you encounter issues with these, set `PHONE_VERIFICATION` to `DISABLED` and you will still be able to register new user accounts.
 
-9. Now start the server:
+9. Finally, start the server.
 
         rails s
 
