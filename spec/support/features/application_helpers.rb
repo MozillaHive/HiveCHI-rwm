@@ -22,7 +22,7 @@ module Features
       fill_in "Password confirmation", with: user.password_confirmation
       fill_in "Parent password", with: user.parent_password
       fill_in "Parent password confirmation", with: user.parent_password_confirmation
-      click_button "Create User"
+      click_button "Submit"
     end
 
   end
