@@ -46,7 +46,7 @@ To quickly set up rbenv on OS X with [Homebrew](http://brew.sh), first pour with
         source ~/.bash_profile
 
 
- You will also need to have [Postgres](http://www.postgresql.org) instealled and running.
+ You will also need to have [Postgres](http://www.postgresql.org) installed and running.
 
  On OS X, you can just download Postgres.app from http://postgresapp.com and run it.
 
