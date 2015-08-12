@@ -59,7 +59,7 @@ RSpec.describe UsersController do
     let(:user) { create(:user) }
     context "with correct phone token when email is verified" do
       before do
-        user.verify_email!(user.email_token)
+        get :verify_email, { token: user.email_token }
         post :verify, { phone_token: user.phone_token }, { user_id: user.id }
       end
       specify { expect(response).to redirect_to(dashboard_path) }
