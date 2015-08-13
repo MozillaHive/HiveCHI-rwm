@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
       self.email_token = nil
       self.save
     else
-      self.errors.add(:base, "Email verification code is incorrect")
+      self.errors.add(:base, I18n.t(:email_verification_code_incorrect))
     end
   end
 
@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
       self.phone_token = nil
       self.save
     else
-      self.errors.add(:base, "Phone verification code is incorrect")
+      self.errors.add(:base, I18n.t(:phone_verification_code_incorrect))
     end
   end
 
