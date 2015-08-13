@@ -1,8 +1,8 @@
 # HiveCHI-rwm
 The home of Ride With Me, a youth, point-to-point, peer-to-peer, transportation solution.
 
-
-### Contributing:
+## Contributing:
+---
 
 When you begin working on an issue:
 
@@ -25,3 +25,45 @@ When you merge a pull request:
 
 1. remove the In Progress label;
 2. close the issue.
+
+## Local Development Setup
+
+----
+###Try an IDE in the cloud
+We recommend [Cloud 9](https://ide.c9.io/).
+
+When creating a new workspace, copy this url into the "Clone from Git or Mercurial" text box:
+git@github.com:MozillaHive/HiveCHI-rwm.git
+###Try using [Vagrant](https://www.vagrantup.com/)
+**Note** Vagrant setup is completely optional.  If you are having trouble setting up locally, this may be a valid option.
+
+
+This Vagrant config was set up using [railsbox](https://railsbox.io/boxes/66312daa6dfc).
+
+
+###Requirements
+You will need VirtualBox, vagrant and ansible to be installed. ansible also requires Python and some Python modules to be installed.
+
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+* [Vagrant](http://www.vagrantup.com/downloads)
+* [Ansible](http://docs.ansible.com/ansible/intro_installation.html#installation) (Mac users: `brew install ansible`)
+
+###Setup
+
+`cd /path/to/rails/project/railsbox/development`
+
+`vagrant up`
+
+vagrant will download the base box and provision it with ansible using your configuration (this will take ~15-20 minutes if this is your first time using vagrant).
+
+Note that vagrant may ask for a sudo password. That's required when you're using NFS for folder synchronization.
+
+Once it's done, you'll be able to login into it using `vagrant ssh` command. 
+The application is stored in /HiveCHI-rwm directory.
+
+To start the app,
+
+`rails s -b0.0.0.0`
+
+The app can be hit locally on your machine at 192.168.20.50:3000/
+
