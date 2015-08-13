@@ -1,8 +1,43 @@
 # HiveCHI-rwm
 The home of Ride With Me, a youth, point-to-point, peer-to-peer, transportation solution.
 
-## To Set Up Your Machine (using [Vagrant](https://www.vagrantup.com/))
+## Contributing:
 ---
+
+When you begin working on an issue:
+
+1. make sure nobody else is already working on it;
+2. assign the issue to yourself;
+2. add the In Progress label;
+3. create a new branch and name it with the issue number in front of it (eg. 110-css-work).
+
+If you are no longer working on an issue:
+
+1. immediately remove the In Progress label, so that someone else can work on it;
+2. if you have partial changes committed and pushed to the branch, add a comment to the issue explaining what's done and what's still missing.
+
+When you complete your work on the issue:
+
+1. commit and push your branch;
+2. create a pull request.
+
+When you merge a pull request:
+
+1. remove the In Progress label;
+2. close the issue.
+
+## Local Development Setup
+
+----
+###Try an IDE in the cloud
+We recommend [Cloud 9](https://ide.c9.io/).
+
+When creating a new workspace, copy this url into the "Clone from Git or Mercurial" text box:
+git@github.com:MozillaHive/HiveCHI-rwm.git
+###Try using [Vagrant](https://www.vagrantup.com/)
+**Note** Vagrant setup is completely optional.  If you are having trouble setting up locally, this may be a valid option.
+
+
 This Vagrant config was set up using [railsbox](https://railsbox.io/boxes/66312daa6dfc).
 
 
@@ -32,27 +67,3 @@ To start the app,
 
 The app can be hit locally on your machine at 192.168.20.50:3000/
 
-## Contributing:
----
-
-When you begin working on an issue:
-
-1. make sure nobody else is already working on it;
-2. assign the issue to yourself;
-2. add the In Progress label;
-3. create a new branch and name it with the issue number in front of it (eg. 110-css-work).
-
-If you are no longer working on an issue:
-
-1. immediately remove the In Progress label, so that someone else can work on it;
-2. if you have partial changes committed and pushed to the branch, add a comment to the issue explaining what's done and what's still missing.
-
-When you complete your work on the issue:
-
-1. commit and push your branch;
-2. create a pull request.
-
-When you merge a pull request:
-
-1. remove the In Progress label;
-2. close the issue.
