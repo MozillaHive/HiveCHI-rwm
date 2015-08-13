@@ -26,7 +26,7 @@ FactoryGirl.define do
   end
 
   factory :attendance do
-    event { create(:event) }
-    user { create(:user) }
+    event
+    user
   end
 end

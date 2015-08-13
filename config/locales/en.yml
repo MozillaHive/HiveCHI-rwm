@@ -20,4 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  user_going_to_event: "You are going to this event"
+  user_watching_event: "You are watching this event"
+  user_backed_out_of_event: "You backed out of this event"
+  phone_verification_code_incorrect: "Phone verification code is incorrect"
+  email_verification_code_incorrect: "Email verification code is incorrect"
