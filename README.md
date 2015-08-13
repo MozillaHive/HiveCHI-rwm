@@ -9,12 +9,9 @@ This Vagrant config was set up using [railsbox](https://railsbox.io/boxes/66312d
 ###Requirements
 You will need VirtualBox, vagrant and ansible to be installed. ansible also requires Python and some Python modules to be installed.
 
-Fast way to install VirtualBox and vagrant is to use brew cask. ansible can be installed with homebrew as well:
-
-	brew install caskroom/cask/brew-cask
-	brew cask install virtualbox
-	brew cask install vagrant
-	brew install ansible
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+* [Vagrant](http://www.vagrantup.com/downloads)
+* [Ansible](http://docs.ansible.com/ansible/intro_installation.html#installation) (Mac users: `brew install ansible`)
 
 ###Setup
 
