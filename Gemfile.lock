@@ -50,6 +50,10 @@ GEM
     childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
     cliver (0.3.2)
+<<<<<<< HEAD
+=======
+    coderay (1.1.0)
+>>>>>>> 5d2141d80eaf68c012f7fe6b2b8de3180f3934fb
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -94,6 +98,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    method_source (0.8.2)
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.8.0)
@@ -106,6 +111,13 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
+<<<<<<< HEAD
+=======
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+>>>>>>> 5d2141d80eaf68c012f7fe6b2b8de3180f3934fb
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -173,6 +185,7 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
+    slop (3.6.0)
     sprockets (3.2.0)
       rack (~> 1.0)
     sprockets-rails (2.3.2)
@@ -220,6 +233,7 @@ DEPENDENCIES
   jquery_mobile_rails
   pg
   poltergeist
+  pry
   rails (= 4.2.1)
   rails_12factor
   rspec-rails (~> 3.0)
