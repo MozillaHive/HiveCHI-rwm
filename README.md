@@ -1,8 +1,42 @@
 # HiveCHI-rwm
 The home of Ride With Me, a youth, point-to-point, peer-to-peer, transportation solution.
 
+## To Set Up Your Machine (using [Vagrant](https://www.vagrantup.com/))
+---
+This Vagrant config was set up using [railsbox](https://railsbox.io/boxes/66312daa6dfc).
 
-### Contributing:
+
+###Requirements
+You will need VirtualBox, vagrant and ansible to be installed. ansible also requires Python and some Python modules to be installed.
+
+Fast way to install VirtualBox and vagrant is to use brew cask. ansible can be installed with homebrew as well:
+
+	brew install caskroom/cask/brew-cask
+	brew cask install virtualbox
+	brew cask install vagrant
+	brew install ansible
+
+###Setup
+
+`cd /path/to/rails/project/railsbox/development`
+
+`vagrant up`
+
+vagrant will download the base box and provision it with ansible using your configuration (this will take ~15-20 minutes if this is your first time using vagrant).
+
+Note that vagrant may ask for a sudo password. That's required when you're using NFS for folder synchronization.
+
+Once it's done, you'll be able to login into it using `vagrant ssh` command. 
+The application is stored in /HiveCHI-rwm directory.
+
+To start the app,
+
+`rails s -b0.0.0.0`
+
+The app can be hit locally on your machine at 192.168.20.50:3000/
+
+## Contributing:
+---
 
 When you begin working on an issue:
 
