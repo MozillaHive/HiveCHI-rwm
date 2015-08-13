@@ -50,7 +50,10 @@ GEM
     childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
     cliver (0.3.2)
+<<<<<<< HEAD
+=======
     coderay (1.1.0)
+>>>>>>> 5d2141d80eaf68c012f7fe6b2b8de3180f3934fb
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -108,10 +111,13 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
+<<<<<<< HEAD
+=======
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+>>>>>>> 5d2141d80eaf68c012f7fe6b2b8de3180f3934fb
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -204,7 +210,7 @@ GEM
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
     websocket (1.2.2)
-    websocket-driver (0.5.4)
+    websocket-driver (0.6.2)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     xpath (2.0.0)
