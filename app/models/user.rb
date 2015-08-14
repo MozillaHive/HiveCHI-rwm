@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 10 }, allow_blank: true
   validates :parent_password, length: { minimum: 10 }, allow_blank: true, confirmation: true
   validates :phone, length: { is: 12 }
-  validate :no_password_collision?, :real_phone_number?
+  validate :no_password_collision?, :real_phone_number?, :editable?
   before_save :require_phone_verification, :require_email_verification, :hash_parent_pass
 
   def verified?
@@ -73,6 +73,12 @@ class User < ActiveRecord::Base
   def no_password_collision?
     if attribute_present?(:parent_password) && self.parent_password == self.password
       errors.add(:parent_password, "and password must be different")
+    end
+  end
+
+  def editable?
+    if ENV["EDIT_EXAMPLE_PROFILE"] == "DISABLED" && self == User.first
+      self.errors.add(:base,"Editing of the example user profile is disabled")
     end
   end
 
