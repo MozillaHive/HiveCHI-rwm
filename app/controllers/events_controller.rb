@@ -16,7 +16,7 @@ class EventsController < ApplicationController
 
   def today
     puts "TODAY"
-    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).all
+    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now, DateTime.now.in_time_zone(current_user.get_time_zone).end_of_day).all
 
     @events_json = events.map do |event|
         event.as_json.merge(:numberOfAttendees => event.attendances.count)
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
 
   def tomorrow
     puts "TOMORROW"
-    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day + 1.days, DateTime.now.end_of_day + 1.days).all
+    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.in_time_zone(current_user.get_time_zone).beginning_of_day + 1.days, DateTime.now.in_time_zone(current_user.get_time_zone).end_of_day + 1.days).all
 
     @events_json = events.map do |event|
         event.as_json.merge(:numberOfAttendees => event.attendances.count)
@@ -42,7 +42,7 @@ class EventsController < ApplicationController
 
   def this_week
     puts "THISWEEK"
-    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day + 6.days).all
+    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now, DateTime.now.in_time_zone(current_user.get_time_zone).end_of_day + 6.days).all
 
     @events_json = events.map do |event|
         event.as_json.merge(:numberOfAttendees => event.attendances.count)
