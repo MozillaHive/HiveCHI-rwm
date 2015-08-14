@@ -94,7 +94,7 @@ class UsersController < ApplicationController
   def user_params
      params.require(:user).permit(
       :username, :email, :password, :password_confirmation, :phone, :school_id,
-      :parent_password, :parent_password_confirmation, :nudges_enabled
+      :parent_password, :parent_password_confirmation, :nudges_enabled, :time_zone
      )
   end
 

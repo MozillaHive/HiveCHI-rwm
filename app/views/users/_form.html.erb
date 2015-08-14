@@ -29,5 +29,9 @@
   <%= f.hidden_field :nudges_enabled, value: false %>
   <%= f.check_box :nudges_enabled, { checked: @user.nudges_enabled != false }, true, false %>
   <%= f.label :nudges_enabled, "Allow other users to send me text message notifications" %>
+  <%= f.hidden_field :time_zone%>
+  <script>
+  $('#user_time_zone').val(getTimeZone())
+  </script>
   <%= f.submit "Submit" %>
 <% end %>
