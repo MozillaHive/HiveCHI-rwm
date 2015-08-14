@@ -2,63 +2,17 @@ class EventsController < ApplicationController
   before_filter :require_verified_user, except: :show
 
   def index
-    # time = params[:time]
-    # respond_to do |format|
-    #   format.js { render :js => "my_function();" }
-    # end
-    # respond_to do |format|
-      # format.html
-      # format.js
-      # render :js => "eventsRequest(" + time + ");"
-    # end
-    # render '../layouts/events_list.html.erb'
-  end
-
-  def today
-    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).all
-
-    @events_json = events.map do |event|
-        event.as_json.merge(:numberOfAttendees => event.attendances.count)
+    if params[:start_time] && params[:end_time]
+      @events = Event.where('start_date_and_time BETWEEN ? AND ?', params[:start_time], params[:end_time])
+                     .includes(:attendances)
+    else
+      @events = Event.future_events
     end
-
     respond_to do |format|
-      format.json {render json: @events_json, :status => :ok}
-    end
-  end
-
-  def tomorrow
-    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day + 1.days, DateTime.now.end_of_day + 1.days).all
-
-    @events_json = events.map do |event|
-        event.as_json.merge(:numberOfAttendees => event.attendances.count)
-    end
-
-    respond_to do |format|
-      format.json {render json: @events_json, :status => :ok}
-    end
-  end
-
-  def this_week
-    events = Event.where('start_date_and_time BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day + 6.days).all
-
-    @events_json = events.map do |event|
-        event.as_json.merge(:numberOfAttendees => event.attendances.count)
-    end
-
-    respond_to do |format|
-      format.json {render json: @events_json, :status => :ok}
-    end
-  end
-
-  def all
-    events = Event.future_events
-
-    @events_json = events.map do |event|
-        event.as_json.merge(:numberOfAttendees => event.attendances.size)
-    end
-
-    respond_to do |format|
-      format.json {render json: @events_json, :status => :ok}
+      format.html
+      format.json do
+        render json: @events.as_json.merge(number_of_attendees: event.attendances.size)
+      end
     end
   end
 
