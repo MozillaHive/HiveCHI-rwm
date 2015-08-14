@@ -19,6 +19,15 @@ class Event < ActiveRecord::Base
       .limit(number)
   end
 
+  def self.by_time(start_time, end_time)
+    if end_time
+      Event.where("start_date_and_time BETWEEN ? AND ?", start_time, end_time)
+           .includes(:attendances)
+    else
+      Event.where(start_date_and_time: start_time).includes(:attendances)
+    end
+  end
+
   def self.future_events
     Event.where("start_date_and_time > ?", Date.today.beginning_of_day)
       .includes(:attendances)

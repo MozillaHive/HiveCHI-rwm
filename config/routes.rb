@@ -16,10 +16,6 @@ Rails.application.routes.draw do
   get 'login' => 'session#new'
   post 'login' => 'session#create'
 
-  post 'events/today' => 'events#today'
-  post 'events/tomorrow' => 'events#tomorrow'
-  post 'events/this_week' => 'events#this_week'
-
   delete 'logout' => 'session#destroy'
 
   get 'register' => 'users#new'

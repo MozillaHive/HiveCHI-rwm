@@ -2,16 +2,15 @@ class EventsController < ApplicationController
   before_filter :require_verified_user, except: :show
 
   def index
-    if params[:start_time] && params[:end_time]
-      @events = Event.where('start_date_and_time BETWEEN ? AND ?', params[:start_time], params[:end_time])
-                     .includes(:attendances)
+    if params[:start_time]
+      @events = Events.by_time(params[:start_time], params[:end_time])
     else
       @events = Event.future_events
     end
     respond_to do |format|
       format.html
       format.json do
-        render json: @events.as_json.merge(number_of_attendees: event.attendances.size)
+        render json: @events.as_json.merge(numberOfAttendees: event.attendances.size)
       end
     end
   end
