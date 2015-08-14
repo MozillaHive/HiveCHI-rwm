@@ -11,7 +11,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string  :preference_1
       t.string  :preference_2
       t.string  :preference_3
-      t.string :time_zone
 
       t.timestamps null: false
     end
