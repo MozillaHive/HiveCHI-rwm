@@ -83,10 +83,10 @@
 
     <div data-role="collapsible" data-collapsed="true">
       <h4>Find Events</h4>
-        <ul data-role="listview">
-          <li><a href="events?time=today", data-ajax="false">Today</a></li>
-          <li><a href="events?time=tomorrow", data-ajax="false">Tomorrow</a></li>
-          <li><a href="events?time=this_week", data-ajax="false">This Week</a></li>
+      <ul data-role="listview">
+        <li><%= link_to "Today", events_path(start_time: Date.today), data: {ajax: "false"} %></li>
+        <li><%= link_to "Tomorrow", events_path(start_time: Date.tomorrow), data: {ajax: "false"} %></li>
+        <li><%= link_to "This Week", events_path(start_time: Date.today, end_time: Date.today + 6.days), data: {ajax: "false"} %></li>
       </ul>
     </div>
 
@@ -126,7 +126,7 @@
   <!-- leftpanel1  -->
   <div data-role="panel" id="myPanel" data-position="left" data-display="reveal" data-theme="a">
 
-        <h2>Catagories</h2>
+        <h2>Categories</h2>
 
       <div>
         <div class="toggle-option" id="football">
@@ -195,207 +195,6 @@
 
       </div>
   </div><!-- /leftpanel1 -->
-
-<script>
-
-proper_url = window.location.origin.concat("/dashboard")
-if (window.location.href != proper_url){
-  window.location.replace(proper_url)
-}
-
-var eventsJson = null
-$.ajax({
-  method: "get",
-  url: "/events/all",
-  dataType: "json",
-  success: function(data) {
-    eventsJson = data;
-    refresh();
-  }
-})
-
-
-var footballVal = 'on', campVal = 'on', recreationalVal = 'on', gymnasticsVal = "on", basketballVal = "on", tennisVal = "on", aquaticVal = "on", fitnessVal = "on", otherVal = "on", filteredIds = [];
-
-var eventsType = ['Football', 'Camp', 'Recreational', 'Basketball', 'Gymnastics', 'Tennis', 'Aquatic', 'Fitness', 'Other'];
-var filteredEvents = [];
-setTimeout(refresh, 1000);
-setTimeout(refresh, 3000);
-setTimeout(refresh, 2000);
-setTimeout(refresh, 2000);
-
-// refresh()
-// var fixedJson = JSON.parse(originalJson);
-// var eventsJson = originalJson.events;
-
-//football
-$('#football').change(function(){
-  if(footballVal==('on')) {
-    for(var i = 0; i < eventsType.length; i++){
-      if (eventsType[i] === "Football") {
-        eventsType.splice(i, 1);
-      }
-    }
-    footballVal = 'off'
-  } else {
-    eventsType.push("Football");
-    footballVal = 'on'
-  }
-  refresh();
-});
-
-//camp
-$('#camp').change(function(){
-  if(campVal==('on')) {
-    for(var i = 0; i < eventsType.length; i++){
-      if (eventsType[i] === "Camp") {
-        eventsType.splice(i, 1);
-      }
-    }
-    campVal = 'off'
-  } else {
-    eventsType.push("Camp");
-    campVal = 'on'
-  }
-  refresh();
-});
-
-//recreational
-$('#recreational').change(function(){
-  if(recreationalVal==('on')) {
-    for(var i = 0; i < eventsType.length; i++){
-      if (eventsType[i] === "Recreational") {
-        eventsType.splice(i, 1);
-      }
-    }
-    recreationalVal = 'off'
-  } else {
-    eventsType.push("Recreational");
-    recreationalVal = 'on'
-  }
-  refresh();
-});
-
-//basketball
-$('#basketball').change(function(){
-  if(basketballVal==('on')) {
-    for(var i = 0; i < eventsType.length; i++){
-      if (eventsType[i] === "Basketball") {
-        eventsType.splice(i, 1);
-      }
-    }
-    basketballVal = 'off'
-  } else {
-    eventsType.push("Basketball");
-    basketballVal = 'on'
-  }
-  refresh();
-});
-
-//tennis
-$('#tennis').change(function(){
-  if(tennisVal==('on')) {
-    for(var i = 0; i < eventsType.length; i++){
-      if (eventsType[i] === "Tennis") {
-        eventsType.splice(i, 1);
-      }
-    }
-    tennisVal = 'off'
-  } else {
-    eventsType.push("Tennis");
-    tennisVal = 'on'
-  }
-  refresh();
-});
-
-//aquatic
-$('#aquatic').change(function(){
-  if(aquaticVal==('on')) {
-    for(var i = 0; i < eventsType.length; i++){
-      if (eventsType[i] === "Aquatic") {
-        eventsType.splice(i, 1);
-      }
-    }
-    aquaticVal = 'off'
-  } else {
-    eventsType.push("Aquatic");
-    aquaticVal = 'on'
-  }
-  refresh();
-});
-
-//gymnastics
-$('#gymnastics').change(function(){
-  if(gymnasticsVal==('on')) {
-    for(var i = 0; i < eventsType.length; i++){
-      if (eventsType[i] === "Gymnastics") {
-        eventsType.splice(i, 1);
-      }
-    }
-    gymnasticsVal = 'off'
-  } else {
-    eventsType.push("Gymnastics");
-    gymnasticsVal = 'on'
-  }
-  refresh();
-});
-
-//fitness
-$('#fitness').change(function(){
-  if(fitnessVal==('on')) {
-    for(var i = 0; i < eventsType.length; i++){
-      if (eventsType[i] === "Fitness") {
-        eventsType.splice(i, 1);
-      }
-    }
-    fitnessVal = 'off'
-  } else {
-    eventsType.push("Fitness");
-    fitnessVal = 'on'
-  }
-  refresh();
-});
-
-//other
-$('#other').change(function(){
-  if(otherVal==('on')) {
-    for(var i = 0; i < eventsType.length; i++){
-      if (eventsType[i] === "Other") {
-        eventsType.splice(i, 1);
-      }
-    }
-    otherVal = 'off'
-  } else {
-    eventsType.push("Other");
-    otherVal = 'on'
-  }
-  refresh();
-});
-
-function refresh() {
-  filteredEvents = [];
-  for (var i = 0; i < eventsType.length; i++)
-    {
-      for (var j = 0; j < eventsJson.length; j++)
-      {
-        if (eventsType[i] === eventsJson[j].event_type)
-        {
-          filteredEvents.push(eventsJson[j].name);
-          filteredIds.push(eventsJson[j].id);
-        }
-      }
-    }
-
-    filteredEvents.sort();
-
-    var output = '';
-    $.each(filteredEvents, function (index, value) {
-      output += '<li><a href="events/' + filteredIds[index] + '">' + value + '</a></li>';
-    });
-    $('#event-list').html(output).listview().listview("refresh");
-}
-</script>
-
 </div><!-- /page -->
 </body>
 

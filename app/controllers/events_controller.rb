@@ -3,15 +3,13 @@ class EventsController < ApplicationController
 
   def index
     if params[:start_time]
-      @events = Events.by_time(params[:start_time], params[:end_time])
+      @events = Event.by_time(params[:start_time], params[:end_time])
     else
       @events = Event.future_events
     end
     respond_to do |format|
       format.html
-      format.json do
-        render json: @events.as_json.merge(numberOfAttendees: event.attendances.size)
-      end
+      format.json { render json: @events }
     end
   end
 

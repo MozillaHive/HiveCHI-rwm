@@ -17,10 +17,10 @@
 <div data-role="page" data-quicklinks="true">
 
   <div data-role="header" class="jqm-header">
-      <% if params[:time] == "this_week" %>
+      <!--<% if params[:time] == "this_week" %>
         <% params[:time] = "this Week" %>
-      <% end %>
-    <h1><%=params[:time][0].upcase + params[:time].slice(1..-1)%>'s Events</h1>
+      <% end %>-->
+    <h1>Events</h1>
     <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext"></a>
   </div><!-- /header -->
 
@@ -131,14 +131,21 @@
       return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
 
+  function eventsRequestURL(startTime, endTime) {
+    var url = "/events?start_time=" + startTime;
+    if (endTime) { url += "&end_time=" + endTime; };
+    return url;
+  }
 
+  var startTime = getParameterByName("start_time");
+  var endTime = getParameterByName("end_time");
+  var url = eventsRequestURL(startTime, endTime)
+  var eventsJson = null;
 
-  var time = getParameterByName("time")
-  var eventsJson = null
 
   $.ajax({
-    method: "post",
-    url: "/events/" + time,
+    method: "get",
+    url: url,
     dataType: "json",
     success: function(data) {
       eventsJson = data;
