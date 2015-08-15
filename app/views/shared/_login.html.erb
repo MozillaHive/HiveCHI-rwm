@@ -17,8 +17,7 @@
 <% end %>
 <%= link_to 'Register', register_path, class: 'centered', "data-role" => "button", "data-ajax" => "false" %>
 <%= form_for :user, url: '/login', html: {id: "login_form_example"} do |f| %>
-  <%= f.hidden_field :username, value: User.first.username %>
+  <%= f.hidden_field :username, value: User.first.username if User.first %>
   <%= f.hidden_field :password, value: "password1234" %>
   <%= f.submit "Use Example Account", class: "button" %>
 <% end %>
-
