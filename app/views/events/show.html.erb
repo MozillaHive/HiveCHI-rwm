@@ -72,7 +72,7 @@ event_show()
     <h2 class="align-left no-bottom-margin">Location</h2>
     <hr class="align-left">
     <h4 class="align-left no-bottom-margin"><%=@event.address %></h4>
-    <div class="align-left"><%=@event.start_date_and_time.in_time_zone(current_user.get_time_zone).strftime("%A, %B %d, %Y %l:%M%p") + " to " + (@event.start_date_and_time+@event.duration.hours).in_time_zone(current_user.get_time_zone).strftime("%l:%M%p")%>
+    <div class="align-left"><%=@event.start_date_and_time.in_time_zone(get_time_zone).strftime("%A, %B %d, %Y %l:%M%p") + " to " + (@event.start_date_and_time+@event.duration.hours).in_time_zone(get_time_zone).strftime("%l:%M%p")%>
     </div>
     <hr class="align-left">
     <%if current_user and  current_user.verified?%>
