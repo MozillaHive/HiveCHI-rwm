@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 10 }, allow_blank: true
   validates :parent_password, length: { minimum: 10 }, allow_blank: true, confirmation: true
   validates :phone, length: { is: 12 }
-  validate :no_password_collision?, :real_phone_number?
+  validate :no_password_collision?, :real_phone_number?, :editable?
   before_save :require_phone_verification, :require_email_verification, :hash_parent_pass
 
   def verified?
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
       self.email_token = nil
       self.save
     else
-      self.errors.add(:base, "Email verification code is incorrect")
+      self.errors.add(:base, I18n.t(:email_verification_code_incorrect))
     end
   end
 
@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
       self.phone_token = nil
       self.save
     else
-      self.errors.add(:base, "Phone verification code is incorrect")
+      self.errors.add(:base, I18n.t(:phone_verification_code_incorrect))
     end
   end
 
@@ -76,10 +76,24 @@ class User < ActiveRecord::Base
     end
   end
 
+  def editable?
+    if ENV["EDIT_EXAMPLE_PROFILE"] == "DISABLED" && self == User.first
+      self.errors.add(:base,"Editing of the example user profile is disabled")
+    end
+  end
+
   def reset_password!
     self.update(inactive: true, password_reset_token: SecureRandom.hex(10))
     url = "http://#{ENV['HOSTNAME']}/password_reset/edit?token=#{self.password_reset_token}"
     UserMailer.password_reset_email(url, self).deliver_now
+  end
+
+  def get_time_zone
+    if self.time_zone
+      zone =  ActiveSupport::TimeZone.new(self.time_zone)
+    end
+    zone ||= ActiveSupport::TimeZone.new("Central Time (US & Canada)")
+    return
   end
 
   private

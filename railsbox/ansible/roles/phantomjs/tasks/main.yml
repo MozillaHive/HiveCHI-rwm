@@ -1,0 +1,26 @@
+---
+  - name: phantom js dependencies
+    apt: pkg={{item}} state=present
+    with_items:
+      - stow
+      - chrpath 
+      - git-core 
+      - libssl-dev 
+      - libfontconfig1-dev
+
+  - name: ensure destination stow exists
+    file: path=/usr/local/stow state=directory owner=root group=root
+
+  - name: get the package
+    get_url:
+      url: http://phantomjs.googlecode.com/files/phantomjs-1.9.1-linux-x86_64.tar.bz2
+      dest: /tmp/phantomjs-1.9.1-linux-x86_64.tar.bz2
+      force: no
+      owner: root
+      group: root
+
+  - name: untar the package
+    shell: tar -xjvf /tmp/phantomjs-1.9.1-linux-x86_64.tar.bz2 -C /usr/local/stow creates=/usr/local/stow/phantomjs-1.9.1-linux-x86_64
+
+  - name: stow phantomjs
+    shell: stow -R -d /usr/local/stow -t /usr/local phantomjs-1.9.1-linux-x86_64 

@@ -1,21 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <title>My Page</title>
-
- <%= render "map" %>
-    <%= form_tag(event_attendance_path(@event, @attendance), method: "patch") do %>
+<div>
+  <%= render "map" %>
+  <%= form_tag(event_attendance_path(@event, @attendance), method: "patch") do %>
     <%= hidden_field_tag(:commitment_status, "Yes") %>
     <%= hidden_field_tag(:method_of_transit) %>
     <%= hidden_field_tag(:departure_type)%>
     <%= submit_tag("Let's Go!") %>
   <% end %>
 </div>
-</div>
-  <div data-role="footer" id="footer" data-position="fixed">
- <%= render "shared/navbar" %>
+<div data-role="footer" id="footer" data-position="fixed">
+  <%= render "shared/navbar" %>
 </div><!-- /footer -->
-  </div><!-- /page -->
-
-</body>
-</html>

@@ -89,6 +89,12 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
 
+  config.before(:each) do
+    Twilio::REST.__send__(:remove_const, :Client)
+    Twilio::REST::Client = double(new: double(account: double(messages: double(create: true))))
+    allow_any_instance_of(UserMailer).to receive(:verification_email).and_return(double(deliver_now: true))
+  end
+
   config.before(:suite) do
    DatabaseCleaner.clean_with(:truncation)
   end
@@ -109,8 +115,4 @@ RSpec.configure do |config|
    DatabaseCleaner.clean
   end
 
-  config.before(:each) do
-    allow_any_instance_of(User).to receive(:send_verification_text).and_return(true)
-    allow_any_instance_of(User).to receive(:send_verification_email).and_return(true)
-  end
 end
