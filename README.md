@@ -26,11 +26,9 @@ When you merge a pull request:
 1. remove the In Progress label;
 2. close the issue.
 
-=======
 ## Local Development Setup
 
 ----
-
 ###Try an IDE in the cloud
 We recommend [Cloud 9](https://ide.c9.io/).
 
