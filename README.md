@@ -1,6 +1,9 @@
 # HiveCHI-rwm
 The home of Ride With Me, a youth, point-to-point, peer-to-peer, transportation solution.
 
+#### Current Build Status:
+[![Build Status](https://snap-ci.com/MozillaHive/HiveCHI-rwm/branch/master/build_image)](https://snap-ci.com/MozillaHive/HiveCHI-rwm/branch/master)
+
 ## Contributing:
 ---
 
