@@ -21,9 +21,10 @@ ActiveRecord::Schema.define(version: 20150818152539) do
     t.integer  "user_id"
     t.string   "commitment_status"
     t.string   "method_of_transit"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "departure_type"
+    t.integer  "departue_location_id"
   end
 
   create_table "events", force: :cascade do |t|

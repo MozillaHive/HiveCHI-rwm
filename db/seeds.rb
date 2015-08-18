@@ -2,7 +2,7 @@ Location.create(name: "ALPHA OMEGA MINISTRIES", address: "1251 N Parkside Ave", 
 Location.create(name: "AUSTIN CAREER EDUCATION CENTER", address: "5352 W Chicago Ave", city: "Chicago", state: "IL", zipcode: 60651, latitude: 41.8951327, longitude: -87.7603286, is_public: true)
 Location.create(name: "Ada Park", address: "11250 S Ada St", city: "Chicago", state: "IL", zipcode: 60651, latitude: 41.6889725, longitude: -87.6558402, is_public: true)
 Location.create(name: "Altgeld Park", address: "515 S Washtenaw Ave", city: "Chicago", state: "IL", zipcode: 60612, latitude: 41.8747358, longitude: -87.693715, is_public: true)
-Location.create(name: "", address: "1215 W Randolph St", city: "Chicago", state: "IL", zipcode: 60607, latitude: 41.8841453, longitude: -87.6572829, is_public: false)
+Location.create(address: "1215 W Randolph St", city: "Chicago", state: "IL", zipcode: 60607, latitude: 41.8841453, longitude: -87.6572829, is_public: false)
 
 
 
