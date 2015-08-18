@@ -25,7 +25,9 @@ class AttendancesController < ApplicationController
   	Attendance.create(user: current_user, event: @event,
   		departure_type: params[:departure_type],
   		method_of_transit: params[:method_of_transit],
-  		commitment_status: params[:commitment_status])
+  		commitment_status: params[:commitment_status],
+      departure_location_id: params[:departure_location]
+      )
   	flash[:notice] = "You signed up for #{@event.name}"
     if (params[:commitment_status] == "Maybe" && session[:is_parent?])
       text_student
@@ -50,7 +52,8 @@ class AttendancesController < ApplicationController
     @attendance.update(
       departure_type: params[:departure_type],
       method_of_transit: params[:method_of_transit],
-      commitment_status: params[:commitment_status])
+      commitment_status: params[:commitment_status],
+      departure_location_id: params[:departure_location])
     flash[:notice] = "You signed up for #{@event.name}"
     if (params[:commitment_status] == "Maybe" && session[:is_parent?])
       text_student

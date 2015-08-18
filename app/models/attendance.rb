@@ -1,7 +1,7 @@
 class Attendance < ActiveRecord::Base
   belongs_to  :user
   belongs_to  :event
-  belongs_to :departue_location, class_name: "Location"
+  belongs_to :departure_location, class_name: "Location"
   validates_uniqueness_of :user_id, scope: :event_id
   validates_presence_of :user_id, :event_id
   YES = "Yes"

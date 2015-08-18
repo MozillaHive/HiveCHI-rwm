@@ -13,8 +13,10 @@
     var aspect_ratio = .4
     var directionsService = new google.maps.DirectionsService();
     var map;
-    var start = "<%=current_user.school.address + ' Chicago, IL' %>";
-    var end = "<%=@event.address + ' Chicago, IL'%>";
+    var startLoc;
+    var start;
+    var endLoc = JSON.parse('<%=@event.location.to_json.html_safe%>');
+    var end = new google.maps.LatLng(endLoc.latitude, endLoc.longitude)
     var tmode = "walking";
     var startTime = new Date(<%=@event.start_date_and_time.to_i * 1000%>);
     var earlyTime = new Date(startTime.getTime()-15*60*1000);
@@ -44,7 +46,6 @@
      }
      map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
      directionsDisplay.setMap(map);
-     calcTime();
      directionsDisplay.setPanel(document.getElementById("directions"));
    }
     function calcRoute(mode,arriveDate) {
@@ -101,6 +102,7 @@
              l++;
              if (l ==3){
               leaveTime.transit.sort(function(a,b){return a.getTime()-b.getTime()})
+              updateDisplay()
              }
          }
        })
@@ -123,6 +125,7 @@
       }
       updateDisplay()
       calcRoute(gmMode,arriveTimeArray[leaveTimeIndex]);
+      document.getElementById("time_selections").hidden = false
     }
     function timeChange(index){
       leaveTimeIndex = index;
@@ -140,32 +143,44 @@
       }
     }
     function updateDisplay (){
-      document.getElementById("time_selections").hidden = false
       document.getElementById("method_of_transit").value = tmode;
       document.getElementById("early-time").innerHTML = attendence[tmode][0]+" people are leaving early<br />Leave at: "+printTime(leaveTime[tmode][0]);
       document.getElementById("ontime-time").innerHTML = attendence[tmode][1]+" people are leaving on time<br />Leave at: "+printTime(leaveTime[tmode][1]);
       document.getElementById("late-time").innerHTML = attendence[tmode][2]+" people are leaving late<br />Leave at: "+printTime(leaveTime[tmode][2])
       document.getElementById("departure_type").value = $("input[name='departuretype']:checked").val()
+      document.getElementById("departure_location").value = startLoc.id
     }
     function printTime(date){
        m = date.getMinutes().toString()
         h = date.getHours()
         if (h > 12){
           h = (h-12).toString()
-          ampm = " pm."
+          ampm = " AM"
         }
         else if (h == 0){
           h = "12"
-          ampm = " am."
+          ampm = " AM"
         }
         else{
           h = h.toString()
-          ampm = " am."
+          ampm = " PM"
         }
         if (m.length == 1){
           m = "0" + m;
         }
         return h+":"+m+ampm;
+    }
+    function changeDepartureLocation(){
+      $("#leave_loc").children()[0].disabled = true
+      $("#leave_loc").children()[0].style["display"] = "none"
+      startLoc = JSON.parse($("#leave_loc").val())
+      start = new google.maps.LatLng(startLoc.latitude, startLoc.longitude)
+      calcTime()
+      document.getElementById("buttons").hidden = false
+      if ($("#method_of_transit").val() != undefined){
+        transitChange(tmode)
+      }
+
     }
 </script>
 
@@ -191,7 +206,11 @@
         <!-- map loads here... -->
       </div>
     <form>
-      <div id  = "buttons">
+      <div>
+          <%= label_tag :leave_loc, "Select a depatrure location to see approximate travel times" %>
+          <%= select_tag :leave_loc, options_for_select(current_user.departure_locations_select_array), include_blank: "Select A Location", onchange: "changeDepartureLocation()" %>
+      </div>
+      <div id  = "buttons" hidden>
         <h4>Choose your transportation option:</h4>
 
         <input type="radio" id="radio1" name="method" value="transit" onclick="transitChange('transit')"><label for="radio1"><img style="padding: 0px 10px 0px 5px;" height="30" width="30"src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Icons/transit.png">
