@@ -1,21 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <title>@event.name</title>
-  <script src="/assets/events.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>"></script>
 <script>
   arriveLocation = JSON.parse('<%=@event.location.to_json.html_safe%>')
-  user = false
   <% if current_user and current_user.verified? %>
     arrivetime = new Date(<%=@event.start_date_and_time.to_i * 1000 %>)
     user = true
   <% end %>
   event_show()
 </script>
-</head>
-<body>
-
 <div data-role="page">
   <div id="body">
     <div class="align-left-padding" id = "name">
@@ -66,7 +57,7 @@
     <% end %>
     <% end %>
     <div class="align-left">
-    <p><%="Description: " + @event.description %></p>
+      <p><%="Description: " + @event.description %></p>
     </div>
     <h2 class="align-left no-bottom-margin">Location</h2>
     <hr class="align-left">
@@ -94,21 +85,16 @@
       <%= render partial: "shared/login" %>
     </div>
     <%end%>
-          <%if @attend && @attend.commitment_status == "Yes" %>
-           <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" class="align-left" data-ajax="false" data-role = "button">Show Directions</a>
-           <%end%>
-       <br>
-       <div id="map-canvas">
-       </div>
-
+    <%if @attend && @attend.commitment_status == "Yes" %>
+      <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" class="align-left" data-ajax="false" data-role = "button">Show Directions</a>
+    <%end%>
+    <br>
+    <div id="map-canvas">
+    </div>
   </div><!-- body -->
 
   <!-- footer navigator -->
   <div data-role="footer" data-id="foo1" data-position="fixed">
-  <%= render "shared/navbar" %>
-</div><!-- /footer -->
-
+    <%= render "shared/navbar" %>
+  </div><!-- /footer -->
 </div><!-- /page -->
-
-</body>
-</html>

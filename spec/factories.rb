@@ -29,4 +29,10 @@ FactoryGirl.define do
     event
     user
   end
+
+  factory :nudge do
+    nudger_id { create(:user).id }
+    nudgee_id { create(:user).id }
+    event_id { create(:event).id }
+  end
 end
