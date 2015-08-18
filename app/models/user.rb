@@ -92,6 +92,17 @@ class User < ActiveRecord::Base
     return
   end
 
+  def departure_locations_select_array()
+    locs = []
+    home = self.home
+    locs << home.menu_opts(self) if home
+    locs << self.school.location.menu_opts(self)
+  #  other_user_locs = self.locations
+   # other_user_locs.each do |l|
+  #    locs <<l.menu_opts(self)
+   # end
+  end
+
   private
 
   def real_phone_number?
