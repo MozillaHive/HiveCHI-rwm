@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814194925) do
+ActiveRecord::Schema.define(version: 20150818152539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20150814194925) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
-    t.string   "address"
     t.datetime "start_date_and_time"
     t.float    "duration"
     t.string   "description"
@@ -36,6 +35,20 @@ ActiveRecord::Schema.define(version: 20150814194925) do
     t.string   "event_type"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "location_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zipcode"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "is_public"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "nudges", force: :cascade do |t|
@@ -55,9 +68,9 @@ ActiveRecord::Schema.define(version: 20150814194925) do
 
   create_table "schools", force: :cascade do |t|
     t.string   "name"
-    t.string   "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "location_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,7 +78,6 @@ ActiveRecord::Schema.define(version: 20150814194925) do
     t.string   "username"
     t.string   "password_digest"
     t.string   "parent_password"
-    t.string   "home_address"
     t.string   "phone"
     t.integer  "school_id"
     t.string   "preference_1"
@@ -81,6 +93,7 @@ ActiveRecord::Schema.define(version: 20150814194925) do
     t.string   "password_reset_token"
     t.boolean  "nudges_enabled"
     t.string   "time_zone"
+    t.integer  "home_id"
   end
 
   add_index "users", ["username", "email"], name: "index_users_on_username_and_email", unique: true, using: :btree

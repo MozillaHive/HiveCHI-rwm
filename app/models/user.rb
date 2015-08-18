@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :events_attended, through: :attendances, source: :event
   has_many :sent_nudges, class_name: "Nudge", foreign_key: :nudger_id, dependent: :destroy
   has_many :recieved_nudges, class_name: "Nudge", foreign_key: :nudgee_id, dependent: :destroy
+  belongs_to :home, class_name: "Location"
+  has_and_belongs_to_many :locations
   # TODO: TOS acceptance, password strength checks
   before_validation do
     self.phone = self.phone.gsub(/[^\d]/, '') unless self.phone.blank?
