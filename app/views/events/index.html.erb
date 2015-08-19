@@ -108,8 +108,13 @@
   }
 
   function eventsRequestURL(startTime, endTime) {
-    var url = "/events?start_time=" + startTime;
-    if (endTime) { url += "&end_time=" + endTime; };
+    var url;
+    if (startTime) {
+      url = "/events?start_time=" + startTime;
+      if (endTime) { url += "&end_time=" + endTime; };
+    } else {
+      url = "/events";
+    }
     return url;
   }
 
