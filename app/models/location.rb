@@ -14,12 +14,7 @@ class Location < ActiveRecord::Base
 
 	def menu_opts(user)
 		opts = []
-		opts[1] = self.to_json
-		if user.home && self.id == user.home.id
-			opts[0] = "My Home"
-		elsif self.id == user.school.location.id
-			opts[0] = "My School"
-		elsif self.name
+		if self.name
 			opts[0] = self.name
 		else
 			opts[0] = self.address

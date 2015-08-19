@@ -101,8 +101,8 @@ class User < ActiveRecord::Base
   def departure_locations_select_array()
     locs = []
     home = self.home
-    locs << home.menu_opts(self) if home
-    locs << self.school.location.menu_opts(self)
+    locs << ["My Home", home.to_json] if home
+    locs << ["My School", self.school.location.to_json]
   #  other_user_locs = self.locations
    # other_user_locs.each do |l|
   #    locs <<l.menu_opts(self)

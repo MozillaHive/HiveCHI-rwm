@@ -133,6 +133,7 @@
       if (tmode == "transit"){
         calcRoute(google.maps.TravelMode.TRANSIT,arriveTimeArray[index]);
       }
+      $("#selection_form")[0].hidden = false
     }
     function  printMin(min){
       if (min > 9){
