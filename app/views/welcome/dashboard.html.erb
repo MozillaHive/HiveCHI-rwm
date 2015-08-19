@@ -78,7 +78,7 @@
       <ul data-role="listview">
         <li><%= link_to "Today", events_path(start_time: Date.today), data: {ajax: "false"} %></li>
         <li><%= link_to "Tomorrow", events_path(start_time: Date.tomorrow), data: {ajax: "false"} %></li>
-        <li><%= link_to "This Week", events_path(start_time: Date.today, end_time: Date.today + 6.days), data: {ajax: "false"} %></li>
+        <li><%= link_to "This Week", events_path(start_time: Date.today, end_time: Date.today + 6.days), data: {ajax: "false"} %></li>
       </ul>
     </div>
 
