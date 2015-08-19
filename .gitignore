@@ -1,5 +1,6 @@
 *.rbc
 capybara-*.html
+config/unicorn.development.rb
 .rspec
 /log
 /tmp

@@ -13,7 +13,6 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to users_verify_path
     else
-      flash[:reg_errors] = @user.errors.full_messages
       render 'new'
     end
   end
@@ -32,11 +31,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = current_user
-    @user.destroy
-    reset_session
-    flash[:notice] = "Your account has been deleted."
-    redirect_to login_path
+    if current_user.destroy
+      reset_session
+      flash[:notice] = "Your account has been deleted."
+      redirect_to login_path
+    else
+      render 'edit'
+    end
   end
 
   def verification
@@ -94,7 +95,7 @@ class UsersController < ApplicationController
   def user_params
      params.require(:user).permit(
       :username, :email, :password, :password_confirmation, :phone, :school_id,
-      :parent_password, :parent_password_confirmation, :nudges_enabled
+      :parent_password, :parent_password_confirmation, :nudges_enabled, :time_zone
      )
   end
 

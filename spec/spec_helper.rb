@@ -115,6 +115,4 @@ RSpec.configure do |config|
    DatabaseCleaner.clean
   end
 
-  config.before(:each) do
-  end
 end

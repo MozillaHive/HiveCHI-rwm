@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <title>Nudge a User</title>
-</head>
-<body>
-
 <div data-role="page">
-
   <div data-role="header" data-theme="b">
     <h1>Nudge a Friend</h1>
   </div><!-- /header -->
-  
   <div id="form">
     <%if @error%>
       <%= @error %>
@@ -19,21 +10,15 @@
       <form method = "post" action = "./nudge">
         <select name = "nudgee">
           <% @menu_options.each do |tar| %>
-          <option value = "<%= tar.id %>"><%= tar.username %></option>
-          <%end%>
+            <option value = "<%= tar.id %>"><%= tar.username %></option>
+          <% end %>
         </select>
         <input type = "submit" value = "Nudge">
-     </form>
+      </form>
     <% end %>
   </div>
- 
-
   <!-- footer navigator -->
   <div data-role="footer" id="footer" data-position="fixed">
-<%= render "shared/navbar" %>
-</div><!-- /footer -->
-
+    <%= render "shared/navbar" %>
+  </div><!-- /footer -->
 </div><!-- /page -->
-
-</body>
-</html>
