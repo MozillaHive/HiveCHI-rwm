@@ -35,4 +35,14 @@ FactoryGirl.define do
     nudgee_id { create(:user).id }
     event_id { create(:event).id }
   end
+
+  factory :location do
+    name "ALPHA OMEGA MINISTRIES"
+    address "1251 N Parkside Ave"
+    city "Chicago"
+    state "IL"
+    zipcode 60651
+    latitude 41.90363
+    longitude -87.766557
+    is_public true)
 end
