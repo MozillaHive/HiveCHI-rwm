@@ -28,8 +28,10 @@
         "EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Icons/biking.png'>"+
         "<span id = 'bicycling'>Bicycling</span></label>"
    <% end %>
-     leaveaddr = "<%=@attendance.event.address%>" + " Chicago, IL"
-     arriveaddr = "<%=@attendance.user.school.address%>" + " Chicago, IL"
+      leave = JSON.parse('<%=@attendance.event.location.to_json.html_safe%>')
+      arrive = JSON.parse('<%=@attendance.departure_location.to_json.html_safe%>')
+     leaveaddr = new google.maps.LatLng(leave.latitude, leave.longitude)
+     arriveaddr = new google.maps.LatLng(arrive.latitude, arrive.longitude)
    <% if @attendance.departure_type == "Early" %>
       arriveTime =  new Date(<%=(@attendance.event.start_date_and_time.to_i - 15 * 60) * 1000%>)
    <% elsif @attendance.departure_type == "On Time" %>

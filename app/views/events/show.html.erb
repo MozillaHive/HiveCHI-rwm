@@ -1,9 +1,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>"></script>
 <script>
-  arriveaddr = "<%=@event.address + ' Chicago, IL' %>"
-  user = false
+  arriveLocation = JSON.parse('<%=@event.location.to_json.html_safe%>')
   <% if current_user and current_user.verified? %>
-    leaveaddr = "<%=current_user.school.address + ' Chicago, IL' %>"
     arrivetime = new Date(<%=@event.start_date_and_time.to_i * 1000 %>)
     user = true
   <% end %>
@@ -63,20 +61,24 @@
     </div>
     <h2 class="align-left no-bottom-margin">Location</h2>
     <hr class="align-left">
-    <h4 class="align-left no-bottom-margin"><%=@event.address %></h4>
+    <h4 class="align-left no-bottom-margin"><%=@event.location.print_full.gsub(/\n/,"<br />").html_safe %></h4>
     <div class="align-left"><%=@event.start_date_and_time.in_time_zone(get_time_zone).strftime("%A, %B %d, %Y %l:%M%p") + " to " + (@event.start_date_and_time+@event.duration.hours).in_time_zone(get_time_zone).strftime("%l:%M%p")%>
     </div>
     <hr class="align-left">
     <%if current_user and  current_user.verified?%>
-      <% user_school = current_user.school %>
-      <div class="align-left">
-        <%="Number attending from your school: " + @event.attendees.where(school: user_school).length.to_s %>
-      </div>
-      <div class="align-left" id = "travel_times">
-      <div id = "TRANSIT"></div>
-      <div id = "BICYCLING"></div>
-      <div id = "WALKING"></div>
-      </div>
+          <% user_school = current_user.school %>
+          <div class="align-left">
+          <%="Number attending from your school: " + @event.attendees.where(school: user_school).length.to_s %>
+          </div>
+          <div class="align-left" id = "travel_times">
+          <div>
+          <%= label_tag :leave_loc, "Select a depatrure location to see approximate travel times" %>
+          <%= select_tag :leave_loc, options_for_select(current_user.departure_locations_select_array), include_blank: "Select A Location", onchange: "calcTravelTimes()" %>
+          </div>
+          <div id = "TRANSIT"></div>
+          <div id = "BICYCLING"></div>
+          <div id = "WALKING"></div>
+          </div>
     <% else %>
     <div id="form" class="form-partial-container">
       <p>Login or register to join this event:</p>

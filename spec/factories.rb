@@ -4,6 +4,7 @@ FactoryGirl.define do
     email { Faker::Internet.email}
     phone { "555#{Array.new(7) { rand(10).to_s }.join}"}
     school_id { create(:school).id }
+    home_id{create(:location).id}
     password "password1234"
     password_confirmation "password1234"
     parent_password "hellohello"
@@ -13,12 +14,12 @@ FactoryGirl.define do
 
   factory :school do
     name { "#{Faker::Company.name} High School" }
-    address { "#{Faker::Address.street_address}, Chicago, IL" }
+    location_id{create(:location).id}
   end
 
   factory :event do
     name { "Test Event #{SecureRandom.hex(10)}" }
-    address "875 N Michigan Ave, Chicago, IL"
+    location_id{create(:location).id}
     start_date_and_time { Date.tomorrow.midday }
     duration { rand(4) + 1 }
     description "This is an automatically generated test event."
@@ -34,5 +35,16 @@ FactoryGirl.define do
     nudger_id { create(:user).id }
     nudgee_id { create(:user).id }
     event_id { create(:event).id }
+  end
+
+  factory :location do
+    name "ALPHA OMEGA MINISTRIES"
+    address "1251 N Parkside Ave"
+    city "Chicago"
+    state "IL"
+    zipcode 60651
+    latitude 41.90363
+    longitude -87.766557
+    is_public true
   end
 end

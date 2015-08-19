@@ -14,68 +14,67 @@ function event_show(){
 	TRANSIT: "Time by CTA: ",
 	WALKING: "Time by walking: "
 }
-shown = {
-	BICYCLING: false,
-	TRANSIT: false,
-	WALKING: false
+calcedTimes = {
 }
+arriveLatLng = new google.maps.LatLng(arriveLocation.latitude, arriveLocation.longitude);
 
 var aspect_ratio = Math.min(1,$(window).height()/$(window).width()-.1)
-function calcRoute(selectedMode,directionsService) {
 
+
+setTimeout(function(){
+   initializeMap()
+   $("#map-canvas").height($("#map-canvas").width()*aspect_ratio)
+},1)
+
+}
+
+function calcRoute(selectedMode,directionsService,depLatLng) {
+  if (!calcedTimes[JSON.parse($("#leave_loc").val()).id.toString()]){
+    calcedTimes[JSON.parse($("#leave_loc").val()).id.toString()] = {}
+  }
+  if (calcedTimes[JSON.parse($("#leave_loc").val()).id.toString()][selectedMode]){
+    printTime (calcedTimes[JSON.parse($("#leave_loc").val()).id.toString()][selectedMode],selectedMode)
+  }
+  else{
   var request = {
-      origin: leaveaddr,
-      destination: arriveaddr,
+      origin: depLatLng,
+      destination: arriveLatLng,
       travelMode: google.maps.TravelMode[selectedMode],
       transitOptions:{
-      	arrivalTime: arrivetime
+        arrivalTime: arrivetime
       }
   }
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
-    	if (!shown[selectedMode]){
-     		time = response.routes[0].legs[0].duration.text
-      		document.getElementById(selectedMode).innerHTML = modePrefix[selectedMode].concat(time)
-      		shown[selectedMode] = true
-      	}
+        calcedTimes[JSON.parse($("#leave_loc").val()).id.toString()][selectedMode] = response.routes[0].legs[0].duration.text
+        printTime (calcedTimes[JSON.parse($("#leave_loc").val()).id.toString()][selectedMode],selectedMode)
    }
  });
 }
-setTimeout(function(){
-  if(user){
-	   directionsService = new google.maps.DirectionsService()
-	   calcRoute("TRANSIT",directionsService)
-	   calcRoute("BICYCLING",directionsService)
-	   calcRoute("WALKING",directionsService)
-   }
-   initialize()
-   codeAddress()
-},1)
-var geocoder;
-var map;
+}
 
-function initialize() {
+function calcTravelTimes(){
+     leaveLoc = JSON.parse($("#leave_loc").val())
+     $("#leave_loc").children()[0].disabled = true
+     $("#leave_loc").children()[0].style["display"] = "none"
+     var departureLatLng =  new google.maps.LatLng(leaveLoc.latitude, leaveLoc.longitude);
+     directionsService = new google.maps.DirectionsService()
+     calcRoute("TRANSIT",directionsService,departureLatLng)
+     calcRoute("BICYCLING",directionsService,departureLatLng)
+     calcRoute("WALKING",directionsService,departureLatLng)
+ }
+function initializeMap() {
   geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(42, 1-87);
   var mapOptions = {
     zoom: 15,
-    center: latlng
+    center: arriveLatLng
   }
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  $("#map-canvas").height($("#map-canvas").width()*aspect_ratio)
-}
-
-function codeAddress() {
-  geocoder.geocode( { 'address': arriveaddr}, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
+  var marker = new google.maps.Marker({
           map: map,
-          position: results[0].geometry.location
+          position: arriveLatLng
       });
-    } else {
-      $("#map-canvas").innerHTML = ('Geocode was not successful for the following reason: ' + status);
-    }
-  });
 }
+function printTime(text,tmode){
+  document.getElementById(tmode).innerHTML = modePrefix[tmode].concat(text)
 }

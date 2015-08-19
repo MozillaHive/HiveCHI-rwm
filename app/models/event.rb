@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   belongs_to  :organization
   has_many    :attendances
   has_many    :attendees , through: :attendances, source: :user
+  belongs_to :location
 
   def self.popular_events_by_school(school, number)
     popular_events = Event.future_events.sort_by do |event|

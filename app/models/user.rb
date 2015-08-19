@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :events_attended, through: :attendances, source: :event
   has_many :sent_nudges, class_name: "Nudge", foreign_key: :nudger_id, dependent: :destroy
   has_many :recieved_nudges, class_name: "Nudge", foreign_key: :nudgee_id, dependent: :destroy
+  belongs_to :home, class_name: "Location"
+  has_and_belongs_to_many :locations
   # TODO: TOS acceptance, password strength checks
   before_validation do
     self.phone = self.phone.gsub(/[^\d]/, '') unless self.phone.blank?
@@ -94,6 +96,17 @@ class User < ActiveRecord::Base
     end
     zone ||= ActiveSupport::TimeZone.new("Central Time (US & Canada)")
     return
+  end
+
+  def departure_locations_select_array()
+    locs = []
+    home = self.home
+    locs << ["My Home", home.to_json] if home
+    locs << ["My School", self.school.location.to_json]
+  #  other_user_locs = self.locations
+   # other_user_locs.each do |l|
+  #    locs <<l.menu_opts(self)
+   # end
   end
 
   private
