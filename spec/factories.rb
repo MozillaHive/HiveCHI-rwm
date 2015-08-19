@@ -44,5 +44,6 @@ FactoryGirl.define do
     zipcode 60651
     latitude 41.90363
     longitude -87.766557
-    is_public true)
+    is_public true
+  end
 end
