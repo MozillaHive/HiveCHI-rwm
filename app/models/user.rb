@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
       Rails.application.secrets.twilio_auth_token
     )
     client.account.messages.create(
-      from: "+18443117433",
+      from: Rails.application.secrets.twilio_originating_number,
       to: self.phone,
       body: "Your RideW/Me verification code is #{self.phone_token}"
     )
