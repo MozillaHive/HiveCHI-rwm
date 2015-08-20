@@ -3,6 +3,9 @@ class Event < ActiveRecord::Base
   has_many    :attendances
   has_many    :attendees , through: :attendances, source: :user
 
+  TYPES = %w(football camp recreational bastketball tennis aquatic gymnastics
+             fitness other)
+
   def self.popular_events_by_school(school, number)
     popular_events = Event.future_events.sort_by do |event|
       -event.attendees.select { |attendee| attendee.school == school }.size
