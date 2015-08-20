@@ -11,15 +11,8 @@
   <div data-role="header" class="jqm-header">
     <h1>Events</h1>
     <a href="#event-type-toggles" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext"></a>
-  </div><!-- /header -->
+  </div>
 
-  <div role="main" class="ui-content jqm-content">
-    <ul data-role="listview" type="a" id="options">
-      <li></li>
-    </ul>
-  </div><!-- /panel -->
-
-    <!-- Header -->
   <div data-role="content">
     <ul data-role="listview" data-filter="true" data-inset="true" id="event-list">
       <% @events.each do |event| %>
@@ -32,9 +25,8 @@
 
   <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
    <%= render "shared/navbar" %>
-  </div><!-- /footer -->
+  </div>
 
-  <!-- leftpanel1  -->
   <div data-role="panel" id="event-type-toggles" data-position="left" data-display="reveal" data-theme="a">
     <h2>Categories</h2>
     <fieldset>
@@ -47,5 +39,5 @@
         </div>
       <% end %>
     </fieldset>
-  </div><!-- /leftpanel1 -->
-</div><!-- /page -->
+  </div>
+</div>
