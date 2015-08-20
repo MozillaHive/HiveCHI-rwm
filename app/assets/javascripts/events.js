@@ -79,3 +79,14 @@ function codeAddress() {
   });
 }
 }
+
+$( document ).ready(function() {
+	$( "#event-type-toggles input[type=checkbox]" ).change(function() {
+    	var eventsOfThisType = $( "#event-list li." + this.name );
+        if ($( this ).is(":checked")) {
+            eventsOfThisType.slideDown(100);
+        } else {
+            eventsOfThisType.slideUp(100);
+        }
+    });
+});

@@ -3,8 +3,8 @@ class Event < ActiveRecord::Base
   has_many    :attendances
   has_many    :attendees , through: :attendances, source: :user
 
-  TYPES = %w(football camp recreational bastketball tennis aquatic gymnastics
-             fitness other)
+  TYPES = %w(Football Camp Recreational Basketball Tennis Aquatic Gymnastics
+             Fitness Other)
 
   def self.popular_events_by_school(school, number)
     popular_events = Event.future_events.sort_by do |event|
