@@ -61,6 +61,10 @@ To quickly set up rbenv on OS X with [Homebrew](http://brew.sh), first pour with
 
         source ~/.bash_profile
 
+To run some tests, you will need [phantomjs](http://phantomjs.org). With [Homebrew](http://brew.sh):
+
+        brew install phantomjs
+
 
 #### Instructions
 
@@ -95,11 +99,21 @@ To quickly set up rbenv on OS X with [Homebrew](http://brew.sh), first pour with
 
 8. Fill in `config/application.yml`. Twilio test credentials should be available [here](https://ridewithmeapp.slack.com/files/omnignorant/F08V5JH2P/Twilio_Test_Credentials). If you encounter issues with these, set `PHONE_VERIFICATION` to `DISABLED` and you will still be able to register new user accounts.
 
+9. Now you can run the tests with
+
+        bundle exec rspec
+
 9. Finally, start the server.
 
         rails s
 
 10. If everything went right, the application should now be running locally at [http://localhost:3000/](http://localhost:3000/).
+
+11. If the ruby version is ever updated, rerun these steps to install the new version:
+
+        rbenv install
+        gem install bundler
+        bundle install
 
 ###Try using [Vagrant](https://www.vagrantup.com/)
 **Note** Vagrant setup is completely optional.  If you are having trouble setting up locally, this may be a valid option.
