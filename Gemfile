@@ -32,6 +32,8 @@ gem 'rails_12factor', group: :production
 gem 'bcrypt', '~> 3.1.7'
 gem 'figaro'
 gem 'pry'
+gem 'cane'
+gem 'simplecov'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
