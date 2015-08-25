@@ -1,5 +1,7 @@
 # PostgreSQL. Versions 8.2 and up are supported.
 #
+# changed adapter from postgresql to sqlite3
+
 # Install the pg driver:
 #   gem install pg
 # On OS X with Homebrew:
@@ -15,11 +17,12 @@
 # gem 'pg'
 #
 default: &default
-  adapter: postgresql
-  encoding: unicode
+  adapter: sqlite3
+  # encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
+  timeout: 5000
 
 development:
   <<: *default
