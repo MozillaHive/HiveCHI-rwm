@@ -11,19 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715145744) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20150814194925) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "event_id"
     t.integer  "user_id"
-    t.datetime "departure_time"
     t.string   "commitment_status"
     t.string   "method_of_transit"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "departure_type"
   end
 
   create_table "events", force: :cascade do |t|
@@ -71,14 +68,18 @@ ActiveRecord::Schema.define(version: 20150715145744) do
     t.string   "preference_1"
     t.string   "preference_2"
     t.string   "preference_3"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "email_token"
     t.string   "phone_token"
     t.boolean  "email_verified"
     t.boolean  "phone_verified"
+    t.boolean  "inactive"
+    t.string   "password_reset_token"
+    t.boolean  "nudges_enabled"
+    t.string   "time_zone"
   end
 
-  add_index "users", ["username", "email"], name: "index_users_on_username_and_email", unique: true, using: :btree
+  add_index "users", ["username", "email"], name: "index_users_on_username_and_email", unique: true
 
 end

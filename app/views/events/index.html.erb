@@ -1,127 +1,107 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <title>Events</title>
-</head>
-<body>
+<style>
+  .ui-page, body {
+    background-position-x: -150px;
+    background-size: 500px;
+    background-image: url(<%= asset_path 'login_background.jpg' %>);
+    background-attachment: fixed;
+  }
+</style>
 <div data-role="page" data-quicklinks="true">
 
   <div data-role="header" class="jqm-header">
-  <h1>Index</h1>
-  <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext"></a>
+    <% if params[:time] == "this_week" %>
+      <% params[:time] = "this Week" %>
+    <% end %>
+    <h1><%=params[:time][0].upcase + params[:time].slice(1..-1)%>'s Events</h1>
+    <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext"></a>
   </div><!-- /header -->
 
   <div role="main" class="ui-content jqm-content">
-
-    <<ul data-role="listview" type="a" id="options">
+    <ul data-role="listview" type="a" id="options">
       <li></li>
     </ul>
-
   </div><!-- /panel -->
 
-  <div data-role="header" data-theme="a">
-       <h1>Events</h1>
-  </div>
     <!-- Header -->
   <div data-role="content">
-      <ul data-role="listview" data-inset="true" id="event-list"></ul>
+    <ul data-role="listview" data-filter="true" data-inset="true" id="event-list"></ul>
   </div>
 
   <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
-    <div data-role="navbar">
-      <ul>
-        <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
-        <li><a href="b.html">Friends</a></li>
-        <li><a href="c.html">Albums</a></li>
-        <li><a href="d.html">Emails</a></li>
-      </ul>
-    </div><!-- /navbar -->
+   <%= render "shared/navbar" %>
   </div><!-- /footer -->
 
-
-
   <!-- Here are a bunch of panels at the end, just before the close page tag  -->
-
   <!-- leftpanel1  -->
   <div data-role="panel" id="myPanel" data-position="left" data-display="reveal" data-theme="a">
-
-        <h2>Catagories</h2>
-
-      <div>
-        <div class="toggle-option" id="football">
-          <label class="switch-label" for="flip-3">Football</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
-            <option value="off">Off</option>
-            <option value="on" selected="selected">On</option>
-         </select>
-        </div>
-        <div class="toggle-option" id="camp">
-          <label class="switch-label" for="flip-3">Camp</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
-            <option value="off">Off</option>
-            <option value="on" selected="selected">On</option>
-          </select>
-        </div>
-        <div class="toggle-option" id="recreational">
-          <label class="switch-label" for="flip-3">Recreational</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
-            <option value="off">Off</option>
-            <option value="on" selected="selected">On</option>
-          </select>
-        </div>
-        <div class="toggle-option" id="basketball">
-          <label class="switch-label" for="flip-3">Basketball</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
-            <option value="off">Off</option>
-            <option value="on" selected="selected">On</option>
-          </select>
-        </div>
-        <div class="toggle-option" id="tennis">
-          <label class="switch-label" for="flip-3">Tennis</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
-            <option value="off">Off</option>
-            <option value="on" selected="selected">On</option>
-          </select>
-        </div>
-        <div class="toggle-option" id="aquatic">
-          <label class="switch-label" for="flip-3">Aquatic</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
-            <option value="off">Off</option>
-            <option value="on" selected="selected">On</option>
-          </select>
-        </div>
-        <div class="toggle-option" id="gymnastics">
-          <label class="switch-label" for="flip-3">Gymnastics</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
-            <option value="off">Off</option>
-            <option value="on" selected="selected">On</option>
-          </select>
-        </div>
-        <div class="toggle-option" id="fitness">
-          <label class="switch-label" for="flip-3">Fitness</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
-            <option value="off">Off</option>
-            <option value="on" selected="selected">On</option>
-          </select>
-        </div>
-        <div class="toggle-option" id="other">
-          <label class="switch-label" for="flip-3">Other</label>
-          <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
-            <option value="off">Off</option>
-            <option value="on" selected="selected">On</option>
-          </select>
-        </div>
-
+    <h2>Categories</h2>
+    <div>
+      <div class="toggle-option" id="football">
+        <label class="switch-label" for="flip-3">Football</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+          <option value="off">Off</option>
+          <option value="on" selected="selected">On</option>
+       </select>
       </div>
+      <div class="toggle-option" id="camp">
+        <label class="switch-label" for="flip-3">Camp</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+          <option value="off">Off</option>
+          <option value="on" selected="selected">On</option>
+        </select>
+      </div>
+      <div class="toggle-option" id="recreational">
+        <label class="switch-label" for="flip-3">Recreational</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+          <option value="off">Off</option>
+          <option value="on" selected="selected">On</option>
+        </select>
+      </div>
+      <div class="toggle-option" id="basketball">
+        <label class="switch-label" for="flip-3">Basketball</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+          <option value="off">Off</option>
+          <option value="on" selected="selected">On</option>
+        </select>
+      </div>
+      <div class="toggle-option" id="tennis">
+        <label class="switch-label" for="flip-3">Tennis</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+          <option value="off">Off</option>
+          <option value="on" selected="selected">On</option>
+        </select>
+      </div>
+      <div class="toggle-option" id="aquatic">
+        <label class="switch-label" for="flip-3">Aquatic</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+          <option value="off">Off</option>
+          <option value="on" selected="selected">On</option>
+        </select>
+      </div>
+      <div class="toggle-option" id="gymnastics">
+        <label class="switch-label" for="flip-3">Gymnastics</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+          <option value="off">Off</option>
+          <option value="on" selected="selected">On</option>
+        </select>
+      </div>
+      <div class="toggle-option" id="fitness">
+        <label class="switch-label" for="flip-3">Fitness</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+          <option value="off">Off</option>
+          <option value="on" selected="selected">On</option>
+        </select>
+      </div>
+      <div class="toggle-option" id="other">
+        <label class="switch-label" for="flip-3">Other</label>
+        <select name="flip-3" id="flip-3" data-role="flipswitch" data-mini="false">
+          <option value="off">Off</option>
+          <option value="on" selected="selected">On</option>
+        </select>
+      </div>
+    </div>
   </div><!-- /leftpanel1 -->
-
 </div><!-- /page -->
-
-
-</body>
-</html>
-
-
 <script>
   function getParameterByName(name) {
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -142,7 +122,6 @@
     success: function(data) {
       eventsJson = data;
       refresh();
-      debugger;
     }
   })
 
@@ -338,12 +317,18 @@
       }
       var output = '';
       $.each(filteredEvents, function (index, value) {
-        output += '<li><a href="events/' + filteredIds[index] + '">' + value + '</a></li>';
+        output +=
+          '<li>' +
+
+            '<a href="events/' + filteredIds[index] + '" data-ajax="false">' +
+              '<span>' +
+                '<img height=20em width=20em src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/icons/' + eventsJson[index].event_type + '.png">' +
+              '</span>' +
+              value +
+            '</a>' +
+          '</li>';
       });
       $('#event-list').html(output).listview().listview("refresh");
       console.log(filteredEvents);
     }
-
-
-
 </script>

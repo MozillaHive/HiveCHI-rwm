@@ -1,0 +1,4 @@
+--gte coverage/covered_percent,75
+--abc-max 25
+--no-style
+--no-doc

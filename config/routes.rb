@@ -3,11 +3,10 @@ Rails.application.routes.draw do
 
   get 'login' => 'session#login'
   get 'dashboard' => 'welcome#dashboard'
-  get 'pdashboard' => 'welcome#parent_dashboard'
 
   get 'redirect' => 'session#redirect'
 
-  get 'events/:id/store_user_commitment' => 'session#store_user_commitment'
+  get 'events/:id/store_user_commitment' => 'events#store_user_commitment'
 
   get 'mynudges' => 'nudges#show'
   get 'events/:id/nudge' => 'nudges#new'
@@ -27,11 +26,11 @@ Rails.application.routes.draw do
   get 'users/verify' => 'users#verification'
   post 'users/verify' => 'users#verify'
   get 'users/verify-email' => 'users#verify_email'
-  resources :users, only: [:create, :show, :destroy]
+  post 'users/verify-email' => 'users#resend_confirmation_email'
+  get 'users/edit' => 'users#edit'
+  resources :users, only: [:create, :update, :destroy]
+  resource :password_reset, except: [:index, :show, :update]
 
-  post 'events/:id/attendances/create' => 'attendances#create'
-  post 'events/:event_id/attendances/update' => 'attendances#update'
-  get 'events/:event_id/attendances/show' => 'attendances#show'
   resources :events do
     resources :attendances
   end

@@ -1,0 +1,13 @@
+<div data-role="page">
+  <div data-role="header">
+    <h1>Edit your Profile</h1>
+  </div><!-- /header -->
+  <%= render partial: "form" %>
+  <%= link_to 'Delete your account', user_path(@user), method: "delete",
+        data: { confirm: "Are you sure you want to delete your account? This cannot be undone."},
+        class: 'centered', "data-role" => "button", "data-ajax" => "false" %>
+  <!-- footer navigator -->
+  <div data-role="footer" data-id="foo1" data-position="fixed">
+    <%= render "shared/navbar" %><!-- /navbar -->
+  </div><!-- /footer -->
+</div><!-- /page -->

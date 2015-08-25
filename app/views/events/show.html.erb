@@ -1,106 +1,98 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <title>Show</title>
-<link rel="stylesheet" type="text/css" href="show.css">
-</head>
-<body>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>"></script>
+<script>
+  arriveaddr = "<%=@event.address + ' Chicago, IL' %>"
+  user = false
+  <% if current_user and current_user.verified? %>
+    leaveaddr = "<%=current_user.school.address + ' Chicago, IL' %>"
+    arrivetime = new Date(<%=@event.start_date_and_time.to_i * 1000 %>)
+    user = true
+  <% end %>
+  event_show()
+</script>
 <div data-role="page">
-
-  <div data-role="header">
-    <h1>Show</h1>
-  </div><!-- /header -->
   <div id="body">
-    <div id = "name">
+    <div class="align-left-padding" id = "name">
       <%= @event.name %>
     </div>
-    <div id="location">
-      <%="Location: " + @event.address %>
+    <div class="pictures">
+      <img src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Events/event<%=@rand_image_number%>.jpg" class="default_image"/>
     </div>
-    <div id="dt">
-      <%="Date and time: " + @event.start_date_and_time.strftime("%A, %B %d, %Y %l%p") + " to " + (@event.start_date_and_time+@event.duration.hours).strftime("%l%p")%>
-    </div>
-    <div id="desc">
-      <%="Description: " + @event.description %>
-    </div>
-    <div id="user">
-      <% current_user = User.find_by(id: session[:user_id]) %>
-    </div>
-    <div id="school">
-      <% user_school = current_user.school %>
-    </div>
-    <div id="attendee">
-    <%="Total number attending: " + @event.attendees.length.to_s %><br />
-    <%="Number attending from your school: " + @event.attendees.where(school: user_school).length.to_s %>
-    </div>
-    <% if @in_nudge %>
-      <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
-      <button>Let's Go (dummy)</button>
-      <button>Let's Not (dummy)</button>
-    <% elsif @out_nudge %>
-      <%= "You have nudged #{@out_nudge.nudgee.username} and response is pending" %>
-    <% elsif !@attend %>
-        <div id="buttons">
-          <form method="GET" action="/events/<%=params[:id]%>/store_user_commitment" data-ajax="false">
-            <input type = "hidden" name = "commitment" value = "Yes" />
-            <input type="submit" id="going" value="Join"></input>
-          </form>
-          <form method="GET" action="/events/<%=params[:id]%>/store_user_commitment" data-ajax="false">
-            <input type = "hidden" name = "commitment" value = "Maybe" />
-            <input type="submit" id="maybe" value="Watch"></input>
-          </form>
-          <form method="GET" action="/events/<%=params[:id]%>/nudge">
-            <input type="submit" id="igiyg" value="Nudge"></input>
-          </form>
-        </div>
-    <% elsif @attend.commitment_status == "Yes"%>
-      <div id = "status">
-       You are going to this event
+    <% if current_user and current_user.verified? %>
+    <% if @in_nudge && !session[:is_parent?] %>
+      <div class="notice">
+        <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
+        <button>Accept Nudge (Inactive)</button>
+        <button>Decline Nudge (Inactive)</button>
       </div>
-      <a href = "<%=params[:id]%>/attendances/show">Show Directions</a>
-      <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
-        <input type = "hidden" name = "update_commit_status" value = "No" />
-        <input type="submit" value="Back Out"></input>
-      </form>
-    <% elsif @attend.commitment_status == "No"%>
-      <div id = "status">
-        You backed out of this event
+    <% elsif @out_nudge && !session[:is_parent?]%>
+      <div class="notice">
+        <%= "You have nudged #{@out_nudge.nudgee.username} and response is pending" %>
       </div>
-      <a href = "<%=params[:id]%>/attendances/show">Show Directions</a>
-      <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
-        <input type = "hidden" name = "update_commit_status" value = "Yes" />
-        <input type="submit" value="Commit"></input>
-      </form>
-    <% else %>
-      <div id = "status">
-        You might be going to this event
-      </div>
-      <a href = "<%=params[:id]%>/attendances/show">Show Directions</a>
-      <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
-        <input type = "hidden" name = "update_commit_status" value = "Yes" />
-        <input type="submit" value="Commit"></input>
-      </form>
-      <form method="POST" action="/events/<%=params[:id]%>/attendances/update"%>
-        <input type = "hidden" name = "update_commit_status" value = "No" />
-        <input type="submit" value="Back Out"></input>
-      </form>
     <% end %>
+    <div class="align-left" id="buttons">
+      <% unless (@attend && @attend.commitment_status == "Yes") || session[:is_parent?] %>
+        <%= form_tag(new_event_attendance_path(@event), method: "get", "data-ajax" => "false") do %>
+          <%= submit_tag("Join") %>
+        <% end %>
+      <% end %>
+      <% unless @attend && ["Yes", "Maybe"].include?(@attend.commitment_status) %>
+        <%= form_tag(event_attendances_path(@event), method: "post", "data-ajax" => "false") do %>
+          <%= hidden_field_tag(:commitment_status, "Maybe") %>
+          <%= submit_tag("Watch") %>
+        <% end %>
+      <% end %>
+      <% if @attend && @attend.commitment_status == "Yes"  && !session[:is_parent?]%>
+        <%= form_tag(event_attendance_path(@event, @attend), method: "delete", "data-ajax" => "false") do %>
+          <%= submit_tag("Back Out") %>
+        <% end %>
+      <% end %>
+      <% unless session[:is_parent?]%>
+      <form method="GET" action="/events/<%=params[:id]%>/nudge">
+        <input type="submit" id="igiyg" value="Nudge"></input>
+      </form>
+      <%end%>
+    </div>
+    <% if @attend %>
+      <div class="notice" id="status">
+        <%= @attend.description %>
+      </div>
+    <% end %>
+    <% end %>
+    <div class="align-left">
+      <p><%="Description: " + @event.description %></p>
+    </div>
+    <h2 class="align-left no-bottom-margin">Location</h2>
+    <hr class="align-left">
+    <h4 class="align-left no-bottom-margin"><%=@event.address %></h4>
+    <div class="align-left"><%=@event.start_date_and_time.in_time_zone(get_time_zone).strftime("%A, %B %d, %Y %l:%M%p") + " to " + (@event.start_date_and_time+@event.duration.hours).in_time_zone(get_time_zone).strftime("%l:%M%p")%>
+    </div>
+    <hr class="align-left">
+    <%if current_user and  current_user.verified?%>
+      <% user_school = current_user.school %>
+      <div class="align-left">
+        <%="Number attending from your school: " + @event.attendees.where(school: user_school).length.to_s %>
+      </div>
+      <div class="align-left" id = "travel_times">
+      <div id = "TRANSIT"></div>
+      <div id = "BICYCLING"></div>
+      <div id = "WALKING"></div>
+      </div>
+    <% else %>
+    <div id="form" class="form-partial-container">
+      <p>Login or register to join this event:</p>
+      <%= render partial: "shared/login" %>
+    </div>
+    <%end%>
+    <%if @attend && @attend.commitment_status == "Yes" %>
+      <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" class="align-left" data-ajax="false" data-role = "button">Show Directions</a>
+    <%end%>
+    <br>
+    <div id="map-canvas">
+    </div>
   </div><!-- body -->
 
   <!-- footer navigator -->
   <div data-role="footer" data-id="foo1" data-position="fixed">
-  <div data-role="navbar">
-    <ul>
-      <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
-      <li><a href="b.html">Friends</a></li>
-      <li><a href="c.html">Albums</a></li>
-      <li><a href="d.html">Emails</a></li>
-    </ul>
-  </div><!-- /navbar -->
-</div><!-- /footer -->
-
+    <%= render "shared/navbar" %>
+  </div><!-- /footer -->
 </div><!-- /page -->
-
-</body>
-</html>
