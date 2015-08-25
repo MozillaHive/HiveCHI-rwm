@@ -1,0 +1,17 @@
+# The following environment variables must be present in application.yml for the
+# app to work:
+
+TWILIO_SID:
+TWILIO_AUTH_TOKEN:
+TWILIO_ORIGINATING_NUMBER:
+GOOGLE_API_KEY: AIzaSyAcZ1NrRFt8hQ9k6fbf-H2VhKDSwlmi-g8 # This is publicly exposed
+HOSTNAME: localhost:3000
+
+# The following environment variables don't need to be present, but may be useful:
+
+SENDGRID_USERNAME:
+SENDGRID_PASSWORD:
+EMAIL_VERIFICATION: # Set to 'DISABLED' to disable email verification
+PHONE_VERIFICATION: # Set to 'DISABLED' to disable phone verification
+DISABLE_NUDGE_TEXTS: # Set to 'TRUE' to disable nudges globally
+DISABLE_REGISTRATIONS: # Set to 'TRUE' to disable new user registrations

@@ -1,32 +1,18 @@
-<!DOCTYPE html> 
-<html> 
-  <head> 
-  <title>My Page</title> 
-</head>
-<body>
-
-
 <div data-role="page">
-
   <div data-role="header">
-    <h1>Weclome Index</h1>
+    <h1>Welcome Index</h1>
   </div><!-- /header -->
     <script>
     window.location.replace(window.location.origin.concat("<%= @url%>"))
     </script>
   <!-- footer navigator -->
   <div data-role="footer" data-id="foo1" data-position="fixed">
-  <div data-role="navbar">
-    <ul>
-      <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
-      <li><a href="b.html">Friends</a></li>
-      <li><a href="c.html">Albums</a></li>
-      <li><a href="d.html">Emails</a></li>
-    </ul>
-  </div><!-- /navbar -->
-</div><!-- /footer -->
-
+    <div data-role="navbar">
+      <ul>
+        <li><%= link_to 'Back', :back %></li>
+          <li><a href="/dashboard.html">Home</a></li>
+          <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
+      </ul>
+    </div><!-- /navbar -->
+  </div><!-- /footer -->
 </div><!-- /page -->
-
-</body>
-</html>

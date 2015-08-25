@@ -1,30 +1,115 @@
-<!DOCTYPE html> 
-<html> 
-  <head> 
-  <title>My Page</title> 
-</head>
-<body>
 
-
+  <!-- google fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_api_key %>"></script>
+  <script>
+   /* jQuery.getJSON("/addresses.json",function(data){start = data.schoolAddress+", Chicago, IL";
+      end = data.eventAddress+", Chicago, IL";
+    });*/
+    setTimeout(function(){
+    aspect_ratio = Math.min(1,$(window).height()/$(window).width()-.15)
+   <%if @attendance.method_of_transit == "transit" %>
+    tmode = "TRANSIT"
+    $("#transit-selection")[0].innerHTML = "<label><img style='padding: 0px 10px 0px 5px;' height='30' width='30'"+
+        "src='https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-"+
+        "EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Icons/transit.png'>"+
+        "<span id = 'transit'>CTA</span></label>";
+   <% elsif @attendance.method_of_transit == "walking" %>
+      tmode = "WALKING"
+      $("#transit-selection")[0].innerHTML = "<label ><img style='padding: 0px 10px 0px 5px;' height='30'"+
+        "width='30'src='https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-"+
+        "EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Icons/walking.png'>"+
+        "<span id = 'walking'>Walking</span></label>";
+   <% else %>
+      tmode = "BICYCLING"
+      mode = "WALKING"
+      $("#transit-selection")[0].innerHTML = "<label><img style='padding: 0px 10px 0px 5px;' height='30'"+
+        "width='30'src='https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-"+
+        "EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Icons/biking.png'>"+
+        "<span id = 'bicycling'>Bicycling</span></label>"
+   <% end %>
+     leaveaddr = "<%=@attendance.event.address%>" + " Chicago, IL"
+     arriveaddr = "<%=@attendance.user.school.address%>" + " Chicago, IL"
+   <% if @attendance.departure_type == "Early" %>
+      arriveTime =  new Date(<%=(@attendance.event.start_date_and_time.to_i - 15 * 60) * 1000%>)
+   <% elsif @attendance.departure_type == "On Time" %>
+        arriveTime =  new Date(<%=@attendance.event.start_date_and_time.to_i * 1000%>)
+   <% else %>
+        arriveTime =  new Date(<%=(@attendance.event.start_date_and_time.to_i + 15*60) * 1000 %>)
+   <% end %>
+   initialize()
+ },1)
+  function initialize() {
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        $( "#map-canvas" ).height($( "#map-canvas" ).width()*aspect_ratio)
+        var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+        var mapOptions = {
+        zoom: 10,
+        center: chicago
+     }
+     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+     directionsDisplay.setMap(map);
+     getDirections(new google.maps.DirectionsService());
+   }
+  function getDirections(directionsService){
+    var request = {
+        origin:leaveaddr,
+        destination:arriveaddr,
+        travelMode: google.maps.TravelMode[tmode],
+        transitOptions:{arrivalTime: arriveTime}
+      };
+      directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+           directionsDisplay.setDirections(result);
+           printTime(directionsDisplay.getDirections().routes[0].legs[0]);
+         }
+      });
+    }
+    function printTime(leg){
+      if (typeof leg.dedeparture_time != 'undefined'){
+        $("#departue-time-selection")[0].innerHTML = "Leave at: "+leg.departure_time.text
+      }
+      else{
+        leaveTime = new Date(arriveTime.getTime() - leg.duration.value*1000)
+        m = leaveTime.getMinutes().toString()
+        h = leaveTime.getHours()
+        if (h > 12){
+          h = (h-12).toString()
+          ampm = " pm."
+        }
+        else if (h == 0){
+          h = "12"
+          ampm = " am."
+        }
+        else{
+          h = h.toString()
+          ampm = " am."
+        }
+        if (m.length == 1){
+          m = "0" + m;
+        }
+        $("#departure-time-selection")[0].innerHTML = "Leave at: " + h + ":" + m + ampm
+      }
+    }
+</script>
 <div data-role="page">
-
   <div data-role="header">
-    <h1></h1>
+    <h1>Directions</h1>
   </div><!-- /header -->
-  Map Implementation is coming.
-  <!-- footer navigator -->
-  <div data-role="footer" data-id="foo1" data-position="fixed">
-  <div data-role="navbar">
-    <ul>
-      <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
-      <li><a href="b.html">Friends</a></li>
-      <li><a href="c.html">Albums</a></li>
-      <li><a href="d.html">Emails</a></li>
-    </ul>
-  </div><!-- /navbar -->
-</div><!-- /footer -->
+  <div role = "main" id = "main">
+    <div class="ui-content" id="map-canvas">
+    <!-- map loads here... -->
+    </div>
+    <div id = "Attendance Info">
+    <div id = "transit-selection">
+    </div>
+    <div id = "departure-time-selection">
+    </div>
+    </div>
+    <%= link_to "Change travel options", [:edit, @attendance.event, @attendance], data:{ajax: "false", role: "button"} %>
+  </div>
+</div>
 
-</div><!-- /page -->
-
-</body>
-</html>
+<div data-role="footer" data-id="foo1" data-position="fixed">
+  <%= render "shared/navbar" %>
+</div><!--/footer-->
