@@ -1188,4 +1188,3 @@ Attendance.create(event: Event.find_by(name: "Chicago Southside Mini Maker Faire
 Attendance.create(event: Event.find_by(name: "Chicago Southside Mini Maker Faire"), user: User.find_by(username: "cbohl"), departure_type: "Early", commitment_status: "Yes", method_of_transit: "bicycling")
 Attendance.create(event: Event.find_by(name: "Chicago Southside Mini Maker Faire"), user: User.find_by(username: "omnignorant"), departure_type: "Early", commitment_status: "Yes", method_of_transit: "bicycling")
 Attendance.create(event: Event.find_by(name: "Chicago Southside Mini Maker Faire"), user: User.find_by(username: "jsub"), departure_type: "On Time", commitment_status: "Yes", method_of_transit: "transit")
-
