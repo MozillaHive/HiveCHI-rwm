@@ -1,7 +1,16 @@
 #form {
 	position: fixed;
-    top: 70%;
+    top: 60%;
     left: 50%;
+    width: 60%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#RWM-header {
+	position: fixed;
+    top: 25%;
+    left: 55%;
     width: 60%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -9,4 +18,16 @@
 
 .centered {
   text-align: center;
+}
+
+.form-group {
+	height: 25%;
+}
+
+.form-control {
+	height: 3.5em;
+}
+
+.form-control placeholder {
+	left: 50%;
 }

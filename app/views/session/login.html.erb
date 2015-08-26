@@ -11,19 +11,26 @@
   <div data-role="header" data-theme="b">
     <h1>Welcome</h1>
   </div><!-- /header -->
+  <div id="RWM-header">
+    <h1>
+      Ride W/Me
+    </h1>
+  </div>
   <div id = "login_error" class = "error_message">
     <%= flash[:notice] if flash[:notice] %>
   </div>
   <div id="form">
   <%= form_for :user, url: '/login', html: {id: "login_form"} do |f| %>
-
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-
-    <%= f.submit "Log in", :class => "button" %>
+    
+    <div class="form-group">
+      <%= f.text_field :username, class: "form-control", placeholder: "username" %>
+    </div>
+    <div class="form-group">
+      <%= f.password_field :password, class: "form-control", placeholder: "password" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Log in", :class => "button" %>
+    </div>
   <% end %>
   <%= link_to 'Register', register_path, class: 'centered' %>
   </div>
