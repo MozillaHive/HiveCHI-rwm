@@ -12,43 +12,18 @@ class WelcomeController < ApplicationController
   end
 
   def dashboard
-      redirect_to :action => "parent_dashboard", :controller => "welcome" if session[:is_parent?]
-      active_attends = User.find(session[:user_id]).attendances.select {|a| a.commitment_status != "No"}
-      @user_events = []
-      now = DateTime.now
-      active_attends.each do |a|
-        @user_events.push(a) unless (a.event.start_date_and_time + a.event.duration.hours) - now < 0
-      end
-      @user_events.sort_by! {|a| a.event.start_date_and_time}
-      school = User.find(session[:user_id]).school
-      @hot_events = Hash.new(0)
-      school.students.each do |s|
-        s.events_attended.each do |e|
-          @hot_events[e] +=1 unless (e.start_date_and_time + e.duration.hours) - now < 0
-        end
-      end
-      @events_arr = @hot_events.sort_by{|e,n| n}
-      @events_arr.reverse!
-      @hot_events_num = [5,@events_arr.length].min
-  end
-
-  def parent_dashboard
-      redirect_to :action => "dashboard", :controller => "welcome" unless session[:is_parent?]
-      attends = current_user.attendances.select {|a| a.commitment_status != "No"}
-      @today_events = []
-      @future_events = []
-      @past_events = []
-      now = DateTime.now
-      attends.each do |a|
-        e = a.event
-        if e.start_date_and_time+e.duration.hours < now
-          @past_events.push(e)
-        elsif e.start_date_and_time.to_date() == now.to_date()
-          @today_events.push(e)
-        else
-          @future_events.push(e)
-        end
-      end
+    active_attends = current_user.attendances.where.not(commitment_status: "No").includes(:event)
+		@school = current_user.school
+    @user_events = []
+    now = DateTime.now
+    active_attends.each do |a|
+      @user_events.push(a) unless (a.event.start_date_and_time + a.event.duration.hours) - now < 0
     end
+    @user_events.sort_by! {|a| a.event.start_date_and_time}
+		@trending_events = Event.popular_events(5)
+    @nudges_in = current_user.recieved_nudges
+    @nudges_out = current_user.sent_nudges
+    @zone = current_user.get_time_zone
+  end
 
 end

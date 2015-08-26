@@ -1,41 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <title>Nudge a User</title>
-</head>
-<body>
-<link rel="stylesheet" type="text/css" href="login.css">
-
 <div data-role="page">
-
   <div data-role="header" data-theme="b">
-    <h1>IGYIG</h1>
+    <h1>Nudge a Friend</h1>
   </div><!-- /header -->
   <div id="form">
-    Select a user to nudge
-    <form method = "post" action = "./nudge">
-      <select name = "nudgee">
-        <% @menu_options.each do |tar| %>
-        <option value = "<%= tar.id %>"><%= tar.username %></option>
-        <%end%>
-      </select>
-      <input type = "submit" value = "Nudge">
-    </form>
+    <%if @error%>
+      <%= @error %>
+    <% else %>
+      Select a friend to nudge. They will receive a text message saying you will go to <%=@event.name%> if they will.
+      <form method = "post" action = "./nudge">
+        <select name = "nudgee">
+          <% @menu_options.each do |tar| %>
+            <option value = "<%= tar.id %>"><%= tar.username %></option>
+          <% end %>
+        </select>
+        <input type = "submit" value = "Nudge">
+      </form>
+    <% end %>
   </div>
-
   <!-- footer navigator -->
   <div data-role="footer" id="footer" data-position="fixed">
-  <div data-role="navbar">
-    <ul>
-      <li><a href="a.html">Info</a></li>
-      <li><a href="b.html">Friends</a></li>
-      <li><a href="c.html">Albums</a></li>
-      <li><a href="d.html">Emails</a></li>
-    </ul>
-  </div><!-- /navbar -->
-</div><!-- /footer -->
-
+    <%= render "shared/navbar" %>
+  </div><!-- /footer -->
 </div><!-- /page -->
-
-</body>
-</html>

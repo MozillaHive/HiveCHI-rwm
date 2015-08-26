@@ -1,0 +1,37 @@
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error">
+      <p><%= pluralize(@user.errors.count, "error") %> prevented your profile from being saved:</p>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <%= f.label :phone %>
+  <%= f.text_field :phone %>
+  <%= f.label "School" %>
+  <%= collection_select(:user, :school_id, School.all, :id, :name) %>
+   <div style = "padding: 10px;" id = "password_notice">Password and Parent Password must both be 10 characters or more</div>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.label :parent_password %>
+  <%= f.password_field :parent_password %>
+  <%= f.label :parent_password_confirmation %>
+  <%= f.password_field :parent_password_confirmation %>
+  <%= f.hidden_field :nudges_enabled, value: false %>
+  <%= f.check_box :nudges_enabled, { checked: @user.nudges_enabled != false }, true, false %>
+  <%= f.label :nudges_enabled, "Allow other users to send me text message notifications" %>
+  <%= f.hidden_field :time_zone%>
+  <script>
+  $('#user_time_zone').val(getTimeZone())
+  </script>
+  <%= f.submit "Submit" %>
+<% end %>

@@ -1,0 +1,23 @@
+<%= form_for :user, url: '/login', html: {id: "login_form"} do |f| %>
+  <% if flash[:error] %>
+  <div id = "login_error" class = "error-message">
+    <%= flash[:error] %>
+  </div>
+  <% end %>
+  <%= f.label :username %>
+  <% if flash[:uname] %>
+    <%= f.text_field :username, value: flash[:uname] %>
+  <% else %>
+    <%= f.text_field :username %>
+  <% end %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "Log in", :class => "button" %>
+<% end %>
+<%= link_to 'Register', register_path, class: 'centered', "data-role" => "button", "data-ajax" => "false" %>
+<%= form_for :user, url: '/login', html: {id: "login_form_example"} do |f| %>
+  <%= f.hidden_field :username, value: User.first.username if User.first %>
+  <%= f.hidden_field :password, value: "password1234" %>
+  <%= f.submit "Demo", class: "button" %>
+<% end %>

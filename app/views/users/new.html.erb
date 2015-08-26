@@ -1,57 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <title>My Page</title>
-</head>
-<body>
-
-
 <div data-role="page">
-
   <div data-role="header">
-    <h1>Welcome Index</h1>
+    <h1>Create an Account</h1>
   </div><!-- /header -->
-    <div id = "notices">
-      <% if flash[:reg_errors] %>
-        <ul>
-          <% flash[:reg_errors].each do |e|%>
-            <li><%= e %></li>
-          <%end%>
-        </ul>
-      <%end%>
-    </div>
-  <%= form_for @user, url: { action: "create" } do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.label :phone %>
-  <%= f.text_field :phone %>
-  <%= f.label "School" %>
-  <%= collection_select(:user, :school_id, School.all, :id, :name) %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-  <%= f.label :parent_password %>
-  <%= f.password_field :parent_password %>
-  <%= f.label :parent_password_confirmation %>
-  <%= f.password_field :parent_password_confirmation %>
-  <%= f.submit %>
+  <% if ENV["DISABLE_REGISTRATIONS"] == "TRUE" %>
+  We’re sorry, but we have temporarily disabled registration for new users while we investigate an issue with the system. Please try registering again later.
+  <% else %>
+  <%= render partial: "form" %>
   <% end %>
   <!-- footer navigator -->
   <div data-role="footer" data-id="foo1" data-position="fixed">
-  <div data-role="navbar">
-    <ul>
-      <li><a href="login/login">Login</a></li>
-      <li><a href="b.html">Friends</a></li>
-      <li><a href="c.html">Albums</a></li>
-      <li><a href="d.html">Emails</a></li>
-    </ul>
-  </div><!-- /navbar -->
-</div><!-- /footer -->
-
+    <div data-role="navbar">
+      <ul>
+        <li><%= link_to 'Back', :back, data:{ajax: "false"} %></li>
+        <li><a href="/dashboard.html">Home</a></li>
+        <li><%= link_to("Logout", logout_path, :method => :delete) %></li>
+      </ul>
+    </div><!-- /navbar -->
+  </div><!-- /footer -->
 </div><!-- /page -->
-
-</body>
-</html>

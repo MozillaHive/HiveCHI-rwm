@@ -1,38 +1,43 @@
 class NudgesController < ApplicationController
 	before_filter :require_verified_user
+	before_filter :nudges_enabled_globally?, only: [:new, :create]
 
 	def new
-		user = User.find(session[:user_id])
-		@menu_options = user.school.students
-		@menu_options = @menu_options.select{|s| s != user}
+		@menu_options = User.where(nudges_enabled: true).where.not(id: current_user.id)
+		@event = Event.find(params[:id])
 	end
 
 	def create
-		nudge = Nudge.create(nudger: User.find(session[:user_id]), nudgee: User.find(params[:nudgee]),event: Event.find(params[:id]))
-		text_message(nudge)
-		flash[:notice] = "You nudged #{nudge.nudgee.username} to go to #{nudge.event.name}"
-		nudge.save
-		client_redirect "/dashboard"
+		@nudge = Nudge.new(
+			nudger: current_user,
+			nudgee: User.find(params[:nudgee]),
+			event: Event.find(params[:id])
+		)
+		if @nudge.save
+			flash[:notice] = "You nudged #{nudge.nudgee.username} to go to #{nudge.event.name}"
+			redirect_to dashboard_path
+		else
+			render 'new'
+		end
 	end
 
 	def show
-		user = User.find(session[:user_id])
-		@nudges_in = user.recieved_nudges
-		@nudges_out = user.sent_nudges
+		@nudges_in = current_user.recieved_nudges
+		@nudges_out = current_user.sent_nudges
 	end
 
 	private
-	def text_message(nudge)
-		account_sid = Rails.application.secrets.twilio_sid
-		auth_token = Rails.application.secrets.twilio_auth_token
-		client = Twilio::REST::Client.new account_sid, auth_token
-		from = "+18443117433" # Your Twilio number\
 
-		client.account.messages.create(
-    		:from => from,
-    		:to => nudge.nudgee.phone,
-    		:body => "Hey #{nudge.nudgee.username}, #{nudge.nudger.username} wants to go to #{nudge.event.name} with you. Log into your RideW/Me account to confirm."
-  		)
+	def nudges_enabled_globally?
+		if ENV["DISABLE_NUDGE_TEXTS"] == "TRUE"
+			@event = Event.find(params[:id])
+			flash[:notice] = "We’re sorry, but we have temporarily disabled nudges for all users while we correct an issue with the system. Please try your nudge again later."
+			redirect_to @event
+		elsif current_user == User.first
+			@event = Event.find(params[:id])
+			flash[:notice] = "This example user has had nudging disabled."
+			redirect_to @event
+		end
 	end
 
 end

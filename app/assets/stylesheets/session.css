@@ -1,0 +1,33 @@
+#form {
+    top: 70%;
+    left: 50%;
+    width: 60%;
+}
+
+#main-login-form {
+  top: 70%;
+  left: 50%;
+  width: 60%;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 12px 20px;
+}
+
+.fixed-form {
+	position: fixed;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.form-partial-container {
+	margin: 0 auto;
+}
+
+.centered {
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
