@@ -4,14 +4,12 @@
     <%= flash[:error] %>
   </div>
   <% end %>
-  <%= f.label :username %>
   <% if flash[:uname] %>
     <%= f.text_field :username, value: flash[:uname] %>
   <% else %>
-    <%= f.text_field :username %>
+    <%= f.text_field :username, class: "form-group", placeholder: "Username" %>
   <% end %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.password_field :password, class: "form-group", placeholder: "Password" %>
 
   <%= f.submit "Log in", :class => "button" %>
 <% end %>

@@ -7,32 +7,6 @@
   }
 </style>
 <div data-role="page">
-<<<<<<< HEAD
-
-  <div data-role="header" data-theme="b">
-    <h1>Welcome</h1>
-  </div><!-- /header -->
-  <div id="RWM-header">
-    <h1>
-      Ride W/Me
-    </h1>
-  </div>
-  <div id = "login_error" class = "error_message">
-    <%= flash[:notice] if flash[:notice] %>
-  </div>
-  <div id="form">
-  <%= form_for :user, url: '/login', html: {id: "login_form"} do |f| %>
-    
-    <div class="form-group">
-      <%= f.text_field :username, class: "form-control", placeholder: "username" %>
-    </div>
-    <div class="form-group">
-      <%= f.password_field :password, class: "form-control", placeholder: "password" %>
-    </div>
-    <div class="form-group">
-      <%= f.submit "Log in", :class => "button" %>
-    </div>
-=======
   <div id = "rwm" class="centered">
     <h1 id = "rwmh">RIDEW/ME</h1>
   </div>
@@ -40,7 +14,6 @@
   <div class="notice">
     <%= flash[:notice] %>
   </div>
->>>>>>> upstream/master
   <% end %>
   <div id="main-login-form" class="form-partial-container">
     <%= render partial: "/shared/login" %>
