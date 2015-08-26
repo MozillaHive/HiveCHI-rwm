@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814194925) do
+ActiveRecord::Schema.define(version: 20150826004331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "event_id"
@@ -53,12 +58,33 @@ ActiveRecord::Schema.define(version: 20150814194925) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "parents", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "schools", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "service_providers", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string   "username"
+    t.integer  "school_id"
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "students", ["username"], name: "index_students_on_username", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
@@ -81,6 +107,8 @@ ActiveRecord::Schema.define(version: 20150814194925) do
     t.string   "password_reset_token"
     t.boolean  "nudges_enabled"
     t.string   "time_zone"
+    t.integer  "role_id"
+    t.string   "role_type"
   end
 
   add_index "users", ["username", "email"], name: "index_users_on_username_and_email", unique: true, using: :btree
