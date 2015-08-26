@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826004331) do
+ActiveRecord::Schema.define(version: 20150826005519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,8 +80,9 @@ ActiveRecord::Schema.define(version: 20150826004331) do
     t.string   "username"
     t.integer  "school_id"
     t.string   "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.boolean  "nudges_enabled"
   end
 
   add_index "students", ["username"], name: "index_students_on_username", unique: true, using: :btree
