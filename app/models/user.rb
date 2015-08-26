@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   @@email_format = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   has_secure_password
   belongs_to :school
+  belongs_to :role, polymorphic: true
   has_many :attendances, dependent: :destroy
   has_many :events_attended, through: :attendances, source: :event
   has_many :sent_nudges, class_name: "Nudge", foreign_key: :nudger_id, dependent: :destroy
