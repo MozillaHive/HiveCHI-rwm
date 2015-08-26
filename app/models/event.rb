@@ -19,14 +19,33 @@ class Event < ActiveRecord::Base
       .limit(number)
   end
 
+  def self.by_time(start_time, end_time)
+    if end_time
+      Event.where("start_date_and_time BETWEEN ? AND ?", start_time, end_time)
+        .includes(:attendances)
+        .order("start_date_and_time")
+        .select(&:not_over?)
+    else
+      Event.where(start_date_and_time: start_time)
+        .includes(:attendances)
+        .order("start_date_and_time")
+        .select(&:not_over?)
+    end
+  end
+
   def self.future_events
     Event.where("start_date_and_time > ?", Date.today.beginning_of_day)
       .includes(:attendances)
-      .select { |event| (event.start_date_and_time + event.duration).future? }
+      .order("start_date_and_time")
+      .select(&:not_over?)
   end
 
   def attendees_by_school(school)
-    self.attendees.select { |attendee| attendee.school == school }.count
+    attendees.select { |attendee| attendee.school == school }.count
+  end
+
+  def not_over?
+    (start_date_and_time + duration).future?
   end
 
 end

@@ -5,20 +5,13 @@ Rails.application.routes.draw do
   get 'dashboard' => 'welcome#dashboard'
 
   get 'redirect' => 'session#redirect'
-
-  get 'events/:id/store_user_commitment' => 'events#store_user_commitment'
-
+  
   get 'mynudges' => 'nudges#show'
   get 'events/:id/nudge' => 'nudges#new'
   post 'events/:id/nudge' => 'nudges#create'
-  get 'events/all' => 'events#all'
 
   get 'login' => 'session#new'
   post 'login' => 'session#create'
-
-  post 'events/today' => 'events#today'
-  post 'events/tomorrow' => 'events#tomorrow'
-  post 'events/this_week' => 'events#this_week'
 
   delete 'logout' => 'session#destroy'
 
