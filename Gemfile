@@ -34,7 +34,6 @@ gem 'figaro'
 gem 'pry'
 gem 'cane'
 gem 'simplecov'
-gem 'simple_form'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

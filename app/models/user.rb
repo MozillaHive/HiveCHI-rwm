@@ -2,6 +2,12 @@ class User < ActiveRecord::Base
   @@email_format = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   has_secure_password
   belongs_to :role, polymorphic: true
+
+  has_many :attendances, dependent: :destroy
+  has_many :events_attended, through: :attendances, source: :event
+  has_many :sent_nudges, class_name: "Nudge", foreign_key: :nudger_id, dependent: :destroy
+  has_many :recieved_nudges, class_name: "Nudge", foreign_key: :nudgee_id, dependent: :destroy
+  
   # TODO: TOS acceptance, password strength checks
   before_validation do
     self.phone = self.phone.gsub(/[^\d]/, '') unless self.phone.blank?
@@ -12,9 +18,12 @@ class User < ActiveRecord::Base
             format: { with: @@email_format }
   validates :password, length: { minimum: 10 }, allow_blank: true
   validates :phone, presence: true, length: { is: 12 }
-  validates :role_id, presence: true
   validate :real_phone_number?, :editable?
   before_save :require_phone_verification, :require_email_verification
+
+  def student?
+    role_type == "Student"
+  end
 
   def verified?
     self.email_verified && self.phone_verified
