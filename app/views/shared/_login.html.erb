@@ -11,11 +11,11 @@
   <% end %>
   <%= f.password_field :password, class: "form-group", placeholder: "Password" %>
 
-  <%= f.submit "Log in", :class => "button" %>
+  <%= f.submit "Log in", "data-role" => "button"%>
 <% end %>
 <%= link_to 'Register', register_path, class: 'centered', "data-role" => "button", "data-ajax" => "false" %>
 <%= form_for :user, url: '/login', html: {id: "login_form_example"} do |f| %>
   <%= f.hidden_field :username, value: User.first.username if User.first %>
   <%= f.hidden_field :password, value: "password1234" %>
-  <%= f.submit "Demo", class: "button" %>
+  <%= f.submit "Demo", "data-role" => "button"%>
 <% end %>
