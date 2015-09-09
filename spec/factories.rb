@@ -11,6 +11,7 @@ FactoryGirl.define do
     username { Faker::Internet.user_name }
     school_id { create(:school).id }
     address { "#{Faker::Address.street_address}, Chicago, IL" }
+    user_attributes { FactoryGirl.attributes_for(:user) }
   end
 
   factory :school do
