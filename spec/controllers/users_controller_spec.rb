@@ -20,7 +20,7 @@ RSpec.describe UsersController do
   end
 
   describe "GET #verify_email" do
-    let(:user) { create(:user) }
+    let(:user) { create(:student).user }
     context "with correct token" do
       before { get :verify_email, { token: user.email_token } }
       specify { expect(response).to redirect_to(users_verify_path) }
