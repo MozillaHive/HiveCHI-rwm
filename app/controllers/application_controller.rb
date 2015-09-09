@@ -32,6 +32,14 @@ class ApplicationController < ActionController::Base
     	redirect_to "/redirect"
   end
 
+  def current_student
+    if current_user.student?
+      current_user.role
+    else
+      raise TypeError, "Current user is not a student"
+    end
+  end
+
   private
 
   def redirect_inactive_user

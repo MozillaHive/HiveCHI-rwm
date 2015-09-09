@@ -1,26 +1,29 @@
 class User < ActiveRecord::Base
   @@email_format = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   has_secure_password
-  belongs_to :school
+  belongs_to :role, polymorphic: true
+
   has_many :attendances, dependent: :destroy
   has_many :events_attended, through: :attendances, source: :event
   has_many :sent_nudges, class_name: "Nudge", foreign_key: :nudger_id, dependent: :destroy
   has_many :recieved_nudges, class_name: "Nudge", foreign_key: :nudgee_id, dependent: :destroy
+  
   # TODO: TOS acceptance, password strength checks
   before_validation do
     self.phone = self.phone.gsub(/[^\d]/, '') unless self.phone.blank?
     self.phone = "1" + self.phone unless self.phone[0] == "1"
     self.phone = "+" + self.phone
   end
-  validates_presence_of :email, :username, :phone, :school_id
-  validates_uniqueness_of :email, :username # :phone
-  validates :email, format: { with: @@email_format }
-  validates :username, format: { without: @@email_format }
+  validates :email, presence: true, uniqueness: true,
+            format: { with: @@email_format }
   validates :password, length: { minimum: 10 }, allow_blank: true
-  validates :parent_password, length: { minimum: 10 }, allow_blank: true, confirmation: true
-  validates :phone, length: { is: 12 }
-  validate :no_password_collision?, :real_phone_number?, :editable?
-  before_save :require_phone_verification, :require_email_verification, :hash_parent_pass
+  validates :phone, presence: true, length: { is: 12 }
+  validate :real_phone_number?, :editable?
+  before_save :require_phone_verification, :require_email_verification
+
+  def student?
+    role_type == "Student"
+  end
 
   def verified?
     self.email_verified && self.phone_verified
@@ -61,19 +64,6 @@ class User < ActiveRecord::Base
       to: self.phone,
       body: "Your RideW/Me verification code is #{self.phone_token}"
     )
-  end
-
-  def hash_parent_pass
-    if attribute_present?(:parent_password) && !BCrypt::Password.valid_hash?(self.parent_password)
-      self.parent_password = BCrypt::Password.create(self.parent_password)
-    end
-  end
-
-  #This is simple password collision detection that will need changing when we add the ability to change passwords
-  def no_password_collision?
-    if attribute_present?(:parent_password) && self.parent_password == self.password
-      errors.add(:parent_password, "and password must be different")
-    end
   end
 
   def editable?

@@ -13,7 +13,7 @@ class WelcomeController < ApplicationController
 
   def dashboard
     active_attends = current_user.attendances.where.not(commitment_status: "No").includes(:event)
-		@school = current_user.school
+		@school = current_student.school
     @user_events = []
     now = DateTime.now
     active_attends.each do |a|

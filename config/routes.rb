@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'dashboard' => 'welcome#dashboard'
 
   get 'redirect' => 'session#redirect'
-  
+
   get 'mynudges' => 'nudges#show'
   get 'events/:id/nudge' => 'nudges#new'
   post 'events/:id/nudge' => 'nudges#create'
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'users/edit' => 'users#edit'
   resources :users, only: [:create, :update, :destroy]
   resource :password_reset, except: [:index, :show, :update]
+  resources :students, only: [:new, :create]
 
   resources :events do
     resources :attendances
