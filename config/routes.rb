@@ -20,8 +20,6 @@ Rails.application.routes.draw do
   post 'users/verify' => 'users#verify'
   get 'users/verify-email' => 'users#verify_email'
   post 'users/verify-email' => 'users#resend_confirmation_email'
-  get 'users/edit' => 'users#edit'
-  resources :users, only: [:create, :update, :destroy]
   resource :password_reset, except: [:index, :show, :update]
   resources :students, only: [:new, :create]
 
