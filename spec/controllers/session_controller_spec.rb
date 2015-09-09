@@ -15,7 +15,7 @@ RSpec.describe SessionController do
   describe "POST #create" do
     context "with valid username and password" do
       before do
-        post :create, user: { username: user.role.username, password: user.password }
+        post :create, user: { username: user.role.username, password: "password1234" }
       end
       specify { expect(response).to redirect_to(dashboard_path) }
       specify { expect(session[:user_id]).to eq(user.id) }
@@ -23,21 +23,24 @@ RSpec.describe SessionController do
 
     context "with invalid username" do
       before do
-        post :create, user: { username: "doesntexist", password: user.password }
+        post :create, user: { username: "doesntexist", password: "password1234" }
       end
       specify { expect(response).to render_template('login') }
       specify { expect(session[:user_id]).to be_nil }
     end
 
     context "with invalid password" do
-     specify { expect(response).to redirect_to(login_path) }
+     before do
+       post :create, user: { username: user.role.username, password: "badpassword" }
+     end
+     specify { expect(response).to render_template('login') }
      specify { expect(session[:user_id]).to be_nil }
     end
   end
 
   describe "DELETE #destroy" do
     before do
-      post :create, user: { username: user.role.username, password: user.password }
+      post :create, user: { username: user.role.username, password: "password1234" }
       delete :destroy
     end
     specify { expect(session[:user_id]).to be_nil }
