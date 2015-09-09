@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150908200711) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -85,7 +82,7 @@ ActiveRecord::Schema.define(version: 20150908200711) do
     t.boolean  "nudges_enabled"
   end
 
-  add_index "students", ["username"], name: "index_students_on_username", unique: true, using: :btree
+  add_index "students", ["username"], name: "index_students_on_username", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
@@ -105,6 +102,6 @@ ActiveRecord::Schema.define(version: 20150908200711) do
     t.string   "role_type"
   end
 
-  add_index "users", ["username", "email"], name: "index_users_on_username_and_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_username_and_email", unique: true
 
 end

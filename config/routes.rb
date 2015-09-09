@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :update, :destroy]
   resource :password_reset, except: [:index, :show, :update]
   resources :students, only: [:new, :create]
+  resources :parents, only: [:new, :create]
 
   resources :events do
     resources :attendances

@@ -1,0 +1,19 @@
+<%= form_for @service_provider do |f| %>
+  <%= f.fields_for :user do |u| %>
+    <%= u.label :email %>
+    <%= u.text_field :email %>
+    <%= u.label :phone %>
+    <%= u.text_field :phone %>
+    <%= u.label :password %>
+    <%= u.password_field :password %>
+    <%= u.label :password_confirmation %>
+    <%= u.password_field :password_confirmation %>
+    <%= u.hidden_field :time_zone %>
+    <script>
+    $('#user_time_zone').val(getTimeZone())
+    </script>
+  <% end %>
+  <%= f.label :organization_id %>
+  <%= f.text_field :organization_id %>
+  <%= f.submit "Submit" %>
+<% end %>

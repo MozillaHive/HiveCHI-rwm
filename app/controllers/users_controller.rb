@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   before_filter :require_login, except: [:new, :create, :verify_email]
 
   def new
-    @user = User.new
+    @student = Student.new
+    @parent = Parent.new
+    @service_provider = ServiceProvider.new
+    p "Student: #{@student}"
+    p "Parent: #{@parent}"
   end
 
   def create
