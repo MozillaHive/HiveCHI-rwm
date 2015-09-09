@@ -1,0 +1,26 @@
+<%= form_for @student do |f| %>
+  <%= f.fields_for :user do |u| %>
+    <%= u.label :email %>
+    <%= u.text_field :email %>
+    <%= u.label :phone %>
+    <%= u.text_field :phone %>
+    <%= u.label :password %>
+    <%= u.password_field :password %>
+    <%= u.label :password_confirmation %>
+    <%= u.password_field :password_confirmation %>
+    <%= u.hidden_field :time_zone %>
+    <script>
+    $('#user_time_zone').val(getTimeZone())
+    </script>
+  <% end %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label "School" %>
+  <%= collection_select(:student, :school_id, School.all, :id, :name) %>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+  <%= f.hidden_field :nudges_enabled, value: false %>
+  <%= f.check_box :nudges_enabled, { checked: @student.nudges_enabled != false }, true, false %>
+  <%= f.label :nudges_enabled, "Allow other users to send me text message notifications" %>
+  <%= f.submit "Submit" %>
+<% end %>

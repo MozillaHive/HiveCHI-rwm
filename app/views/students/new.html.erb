@@ -1,0 +1,14 @@
+<div data-role="page">
+  <div data-role="header">
+    <h1>Create an Account</h1>
+  </div><!-- /header -->
+  <% if ENV["DISABLE_REGISTRATIONS"] == "TRUE" %>
+  We’re sorry, but we have temporarily disabled registration for new users while we investigate an issue with the system. Please try registering again later.
+  <% else %>
+  <%= render partial: "form" %>
+  <% end %>
+  <!-- footer navigator -->
+  <div data-role="footer" data-id="foo1" data-position="fixed">
+    <%= render "shared/navbar" %>
+  </div><!-- /footer -->
+</div><!-- /page -->
