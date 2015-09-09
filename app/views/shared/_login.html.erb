@@ -11,11 +11,14 @@
   <% end %>
   <%= f.password_field :password, class: "form-group", placeholder: "Password" %>
 
-  <%= f.submit "Log in", "data-role" => "button"%>
+  <%= f.submit "Log in", "data-role" => "button", id: "login_button"%>
 <% end %>
-<%= link_to 'Register', register_path, class: 'centered', "data-role" => "button", "data-ajax" => "false" %>
-<%= form_for :user, url: '/login', html: {id: "login_form_example"} do |f| %>
+<%= link_to 'Forgot password?', new_password_reset_path, class: 'centered', "data-role" => "button", id: "forgot_password_button" %>
+
+<%= link_to 'Register', register_path, class: 'ui-btn ui-btn-inline', "data-role" => "button", "data-ajax" => "false", id: "register_button" %>
+
+<%= form_for :user, url: '/login', html: {id: "login_form_example", class: "ui-btn ui-btn-inline"} do |f| %>
   <%= f.hidden_field :username, value: User.first.username if User.first %>
   <%= f.hidden_field :password, value: "password1234" %>
-  <%= f.submit "Demo", "data-role" => "button"%>
+  <%= f.submit "Demo", "data-role" => "button", id: "demo_button"%>
 <% end %>
