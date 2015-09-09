@@ -5,8 +5,6 @@ class UsersController < ApplicationController
     @student = Student.new
     @parent = Parent.new
     @service_provider = ServiceProvider.new
-    p "Student: #{@student}"
-    p "Parent: #{@parent}"
   end
 
   def create
