@@ -1,24 +1,18 @@
-<%= form_for :user, url: '/login', html: {id: "login_form"} do |f| %>
+<%= form_for :session, url: '/login', html: {id: "login_form"} do |f| %>
   <% if flash[:error] %>
   <div id = "login_error" class = "error-message">
     <%= flash[:error] %>
   </div>
   <% end %>
-  <% if flash[:uname] %>
-    <%= f.text_field :username, value: flash[:uname] %>
-  <% else %>
-    <%= f.text_field :username, class: "form-group", placeholder: "Username" %>
-  <% end %>
-  <%= f.password_field :password, class: "form-group", placeholder: "Password" %>
-
+  <%= f.text_field :username, class: "form-group", placeholder: "Username"  %>
+  <%= f.label :password %>
+  <%= f.password_field :password, class: "form-group", placeholder: "Password"  %>
   <%= f.submit "Log in", "data-role" => "button", id: "login_button"%>
 <% end %>
 <%= link_to 'Forgot password?', new_password_reset_path, class: 'centered', "data-role" => "button", id: "forgot_password_button" %>
-
 <%= link_to 'Register', register_path, class: 'ui-btn ui-btn-inline', "data-role" => "button", "data-ajax" => "false", id: "register_button" %>
-
-<%= form_for :user, url: '/login', html: {id: "login_form_example", class: "ui-btn ui-btn-inline"} do |f| %>
-  <%= f.hidden_field :username, value: User.first.username if User.first %>
+<%= form_for :session, url: '/login', html: {id: "login_form_example", class: "ui-btn ui-btn-inline"} do |f| %>
+  <%= f.hidden_field :username, value: Student.first.username if Student.first %>
   <%= f.hidden_field :password, value: "password1234" %>
   <%= f.submit "Demo", "data-role" => "button", id: "demo_button"%>
 <% end %>

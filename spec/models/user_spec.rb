@@ -13,17 +13,8 @@ RSpec.describe User, type: :model do
     it "is invalid with invalid email address" do
       expect(build(:user, email: "invalid@email")).not_to be_valid
     end
-
-    it "is invalid with no username" do
-      expect(build(:user, username: "")).not_to be_valid
-    end
-
     it "is invalid with no phone number" do
       expect(build(:user, phone: "")).not_to be_valid
-    end
-
-    it "is invalid with no school ID" do
-      expect(build(:user, school_id: nil)).not_to be_valid
     end
 
     it "is invalid when password and password confirmation don't match" do
@@ -47,11 +38,6 @@ RSpec.describe User, type: :model do
       expect(build(:user, phone: "223-456-7890")).to be_valid
       expect(build(:user, phone: "(223) 456-7890")).to be_valid
       expect(build(:user, phone: "1-223-456-7890")).to be_valid
-    end
-    it "is invalid with non-unique username" do
-
-      create(:user, username: "username1")
-      expect(build(:user, username: "username1")).not_to be_valid
     end
 
     it "is invalid with non-unique email" do
