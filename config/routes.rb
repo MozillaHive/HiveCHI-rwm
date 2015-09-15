@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'users/verify-email' => 'users#verify_email'
   post 'users/verify-email' => 'users#resend_confirmation_email'
   resource :password_reset, except: [:index, :show, :update]
-  resources :students, only: [:new, :create]
+  resources :students, only: [:new, :create, :edit, :update]
 
   resources :events do
     resources :attendances

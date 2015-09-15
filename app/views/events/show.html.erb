@@ -3,7 +3,7 @@
   arriveaddr = "<%=@event.address + ' Chicago, IL' %>"
   user = false
   <% if current_user and current_user.verified? %>
-    leaveaddr = "<%=current_user.school.address + ' Chicago, IL' %>"
+    leaveaddr = "<%=current_student.school.address + ' Chicago, IL' %>"
     arrivetime = new Date(<%=@event.start_date_and_time.to_i * 1000 %>)
     user = true
   <% end %>
@@ -18,19 +18,19 @@
       <img src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Events/event<%=@rand_image_number%>.jpg" class="default_image"/>
     </div>
     <% if current_user and current_user.verified? %>
-    <% if @in_nudge && !session[:is_parent?] %>
+    <% if @in_nudge %>
       <div class="notice">
         <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
         <button>Accept Nudge (Inactive)</button>
         <button>Decline Nudge (Inactive)</button>
       </div>
-    <% elsif @out_nudge && !session[:is_parent?]%>
+    <% elsif @out_nudge %>
       <div class="notice">
         <%= "You have nudged #{@out_nudge.nudgee.username} and response is pending" %>
       </div>
     <% end %>
     <div class="align-left" id="buttons">
-      <% unless (@attend && @attend.commitment_status == "Yes") || session[:is_parent?] %>
+      <% unless (@attend && @attend.commitment_status == "Yes") %>
         <%= form_tag(new_event_attendance_path(@event), method: "get", "data-ajax" => "false") do %>
           <%= submit_tag("Join") %>
         <% end %>
@@ -41,7 +41,7 @@
           <%= submit_tag("Watch") %>
         <% end %>
       <% end %>
-      <% if @attend && @attend.commitment_status == "Yes"  && !session[:is_parent?]%>
+      <% if @attend && @attend.commitment_status == "Yes" %>
         <%= form_tag(event_attendance_path(@event, @attend), method: "delete", "data-ajax" => "false") do %>
           <%= submit_tag("Back Out") %>
         <% end %>
@@ -67,10 +67,10 @@
     <div class="align-left"><%=@event.start_date_and_time.in_time_zone(get_time_zone).strftime("%A, %B %d, %Y %l:%M%p") + " to " + (@event.start_date_and_time+@event.duration.hours).in_time_zone(get_time_zone).strftime("%l:%M%p")%>
     </div>
     <hr class="align-left">
-    <%if current_user and  current_user.verified?%>
-      <% user_school = current_user.school %>
+    <%if current_student && current_user.verified? %>
       <div class="align-left">
-        <%="Number attending from your school: " + @event.attendees.where(school: user_school).length.to_s %>
+        <!-- Add this again when attendance relation is transferred to Student model -->
+        <%= "Number attending from your school: " %>
       </div>
       <div class="align-left" id = "travel_times">
       <div id = "TRANSIT"></div>

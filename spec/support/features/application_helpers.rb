@@ -1,12 +1,13 @@
 module Features
   module ApplicationHelpers
 
-    def log_in(user = nil)
+    def log_in_as_student(user = nil)
       if user.nil?
-        user = create(:user, phone_verified: true, email_verified: true)
+        user = create(:student).user
+        user.update(phone_verified: true, email_verified: true)
       end
       visit login_path
-      fill_in 'Username', with: user.username
+      fill_in 'Username', with: user.role.username
       fill_in 'Password', with: user.password
       click_button 'Log in'
       sleep(1)

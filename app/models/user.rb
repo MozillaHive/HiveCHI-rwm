@@ -7,12 +7,14 @@ class User < ActiveRecord::Base
   has_many :events_attended, through: :attendances, source: :event
   has_many :sent_nudges, class_name: "Nudge", foreign_key: :nudger_id, dependent: :destroy
   has_many :recieved_nudges, class_name: "Nudge", foreign_key: :nudgee_id, dependent: :destroy
-  
+
   # TODO: TOS acceptance, password strength checks
   before_validation do
-    self.phone = self.phone.gsub(/[^\d]/, '') unless self.phone.blank?
-    self.phone = "1" + self.phone unless self.phone[0] == "1"
-    self.phone = "+" + self.phone
+    unless phone.blank?
+      self.phone = self.phone.gsub(/[^\d]/, '')
+      self.phone = "1" + self.phone unless self.phone[0] == "1"
+      self.phone = "+" + self.phone
+    end
   end
   validates :email, presence: true, uniqueness: true,
             format: { with: @@email_format }
