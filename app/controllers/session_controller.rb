@@ -4,35 +4,21 @@ class SessionController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: params[:user][:username])
-    @user ||= User.find_by(email: params[:user][:username])
+    @user = find_user_by_username(params[:session][:username])
+    @user ||= User.find_by(email: params[:session][:username])
     if @user && @user.inactive
       flash.now[:notice] = "Your password has been reset. Please follow the link" \
                            " in the email we sent you to set a new password."
       render "login"
-    elsif @user && @user.authenticate(params[:user][:password])
+    elsif @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      session[:is_parent?] = false
       if session[:redirect_url]
-        flash[:redirect_url] = session[:redirect_url]
-        session[:redirect_url] = nil
-        redirect_to "/redirect"
+        redirect_to session[:redirect_url]
       else
         redirect_to dashboard_path
       end
-    elsif @user && BCrypt::Password.new(@user.parent_password) == params[:user][:password]
-      session[:user_id] = @user.id
-      session[:is_parent?] = true
-      if session[:redirect_url]
-        flash[:redirect_url] = session[:redirect_url]
-        session[:redirect_url] = nil
-        redirect_to "/redirect"
-      else
-        client_redirect "/dashboard"
-      end
     else
       flash.now[:error] = "Invalid username or password"
-      flash[:uname] = params[:user][:username]
       render "login"
     end
   end
@@ -42,18 +28,16 @@ class SessionController < ApplicationController
     redirect_to login_path
   end
 
-  def store_user_time_preference
-    #session[time_preference: "#{params[:time_preference]}"]
-    redirect_to "/events"
-  end
-
-  def redirect
-    @url = flash[:redirect_url]
-    flash[:notice] = flash[:notice]
-  end
-
   private
     def user_params
      params.require(:user).permit(:email, :password)
+    end
+
+    def find_user_by_username(username)
+      if (student = Student.find_by(username: username))
+        student.user
+      else
+        nil
+      end
     end
 end

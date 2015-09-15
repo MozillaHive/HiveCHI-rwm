@@ -2,6 +2,7 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @student.build_user
+    p "Student: #{@student}"
   end
 
   def create
@@ -20,7 +21,7 @@ class StudentsController < ApplicationController
 
   def student_params
     params.require(:student).permit(
-      :username, :school_id, :address, :nudges_enabled,
+      :username, :school_id, :home_address, :nudges_enabled,
       user_attributes: [:id, :email, :phone, :password, :password_confirmation,
       :time_zone])
   end

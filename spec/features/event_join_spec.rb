@@ -20,7 +20,7 @@ RSpec.feature 'User interacts with an event', js: true do
   end
 
   context "When user is logged in" do
-    before { log_in }
+    before { log_in_as_student }
 
     scenario "user visits events page" do
       visit event_path(@event)
