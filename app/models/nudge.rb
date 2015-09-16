@@ -1,6 +1,6 @@
 class Nudge < ActiveRecord::Base
-	belongs_to :nudger, class_name: "User", foreign_key: "nudger_id"
-	belongs_to :nudgee, class_name: "User", foreign_key: "nudgee_id"
+	belongs_to :nudger, class_name: "Student", foreign_key: "nudger_id"
+	belongs_to :nudgee, class_name: "Student", foreign_key: "nudgee_id"
 	belongs_to :event
 	validates_presence_of :nudger, :nudgee, :event
 	validate :allowed_to_nudge?
@@ -14,7 +14,7 @@ class Nudge < ActiveRecord::Base
 		from = "+18443117433"
 		client.account.messages.create(
 				:from => from,
-				:to => self.nudgee.phone,
+				:to => self.nudgee.user.phone,
 				:body => "Hey #{self.nudgee.username}, #{self.nudger.username} wants to go to #{self.event.name} if you'll go too! Reply at http://#{ENV['HOSTNAME']}/events/#{self.event.id}"
 			)
 	end

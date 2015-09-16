@@ -3,21 +3,22 @@ class NudgesController < ApplicationController
 	before_filter :nudges_enabled_globally?, only: [:new, :create]
 
 	def new
-		@menu_options = User.where(nudges_enabled: true).where.not(id: current_user.id)
+		@nudgeable_students = Student.where(nudges_enabled: true).where.not(id: current_user.id)
 		@event = Event.find(params[:id])
 	end
 
 	def create
 		@nudge = Nudge.new(
-			nudger: current_user,
-			nudgee: User.find(params[:nudgee]),
+			nudger: current_student,
+			nudgee: Student.find(params[:nudgee]),
 			event: Event.find(params[:id])
 		)
 		if @nudge.save
 			flash[:notice] = "You nudged #{@nudge.nudgee.username} to go to #{@nudge.event.name}"
 			redirect_to dashboard_path
 		else
-			render 'new'
+			puts "ERROR"
+			redirect_to "/events/#{event.id}/nudge"
 		end
 	end
 

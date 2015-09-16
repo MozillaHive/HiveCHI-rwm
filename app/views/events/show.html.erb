@@ -84,7 +84,8 @@
     </div>
     <%end%>
     <%if @attend && @attend.commitment_status == "Yes" %>
-      <a href ="<%="#{params[:id]}/attendances/#{@attend.id}"%>" class="align-left" data-ajax="false" data-role = "button">Show Directions</a>
+
+      <%= link_to "Show Directions", event_attendance_path(@event, @attend), class: "align-left", data: { ajax: false, role: "button" } %>
     <%end%>
     <br>
     <div id="map-canvas">

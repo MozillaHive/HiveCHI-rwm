@@ -3,11 +3,6 @@ class User < ActiveRecord::Base
   has_secure_password
   belongs_to :role, polymorphic: true
 
-  has_many :attendances, dependent: :destroy
-  has_many :events_attended, through: :attendances, source: :event
-  has_many :sent_nudges, class_name: "Nudge", foreign_key: :nudger_id, dependent: :destroy
-  has_many :recieved_nudges, class_name: "Nudge", foreign_key: :nudgee_id, dependent: :destroy
-
   # TODO: TOS acceptance, password strength checks
   before_validation do
     unless phone.blank?
