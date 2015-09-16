@@ -327,13 +327,13 @@ Event.create(name: "Learn to Swim at West Pullman", address: "401 W. 123rd St.",
 Event.create(name: "Sports Camp at Wildwood", address: "6950 N. Hiawatha Ave.", start_date_and_time: "2015-08-10T9:00:00-05:00", duration: 4.0, description: "In this active and fun-filled camp,children will learn the basic skills of a number of sports,with a concentration on exercise,sportsmanship,and friendly competition. Sports and activities commonly covered in camp include basketball,biking,fitness,floor hockey,gymnastics,in-line skating,soccer,tennis and volleyball.", organization_id: 1, event_type: "Camp")
 Event.create(name: "POST Youth Swim at Wrightwood", address: "2534 N. Greenview Ave.", start_date_and_time: "2015-08-10T11:00:00-05:00", duration: 3.0, description: "Social fun swim. Some may chose to work on their strokes,while others just float around.", organization_id: 1, event_type: "Aquatic")
 
-Student.create(user_attributes: {email: "example@example.com", password: "password1234", phone: "+18475448375", phone_verified: true, email_verified: true, nudges_enabled: false}, home_address: "1215 W Randolph St", school_id: 1, username: "Test User")
+Student.create(user_attributes: {email: "example@example.com", password: "password1234", phone: "+18475448375", phone_verified: true, email_verified: true}, nudges_enabled: false, home_address: "1215 W Randolph St", school_id: 1, username: "Test User")
 
-Student.create(user_attributes: {email: "chrisrbohl@gmail.com", password: "password1234", phone: "+14146517245", phone_verified: true, email_verified: true, nudges_enabled: true}, school_id: 2, username: "cbohl")
+Student.create(user_attributes: {email: "chrisrbohl@gmail.com", password: "password1234", phone: "+14146517245", phone_verified: true, email_verified: true}, nudges_enabled: true, school_id: 2, username: "cbohl")
 
-Student.create(user_attributes: {email: "robert@mozillafoundation.org", password: "password1234", phone: "+17733492687", phone_verified: true, email_verified: true, nudges_enabled: true}, school_id: 3, username: "omnignorant")
+Student.create(user_attributes: {email: "robert@mozillafoundation.org", password: "password1234", phone: "+17733492687", phone_verified: true, email_verified: true}, nudges_enabled: true, school_id: 3, username: "omnignorant")
 
-Student.create(user_attributes: {email: "jas477@case.edu", password: "password1234", phone: "+18475448375", phone_verified: true, email_verified: true, nudges_enabled: true}, school_id: 4, username: "jsub")
+Student.create(user_attributes: {email: "jas477@case.edu", password: "password1234", phone: "+18475448375", phone_verified: true, email_verified: true}, nudges_enabled: true, school_id: 4, username: "jsub")
 
 101.times do |i|
   Event.create(name: "Learn to Swim at Ada", address: "11250 S Ada St", start_date_and_time: DateTime.iso8601("2015-08-15T11:00:00-05:00")+(7*i).days, duration: 1.0, description: "Participants will be introduced to aquatic activities through water exploration. Individuals will learn basic swimming techniques,advanced breathing techniques and mechanics of the four basic strokes (freestyle,backstroke,butterfly and breaststroke). Participants will be grouped according to skill level.", organization_id: 1, event_type: "Aquatic")
