@@ -1,9 +1,7 @@
 class WelcomeController < ApplicationController
 	before_filter :require_verified_user, except: :index
 
-  #layout false
   def index
-  #  sleep(2.0)
     if session[:user_id]
       redirect_to :action => "dashboard", :controller => "welcome"
     else
@@ -13,8 +11,6 @@ class WelcomeController < ApplicationController
 
   def dashboard
     active_attends = current_student.attendances.where.not(commitment_status: "No").includes(:event)
-    p "ACTIVE ATTENDS"
-    p active_attends
 		@school = current_student.school
     @user_events = []
     now = DateTime.now

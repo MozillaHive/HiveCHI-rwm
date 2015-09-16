@@ -14,8 +14,8 @@ RSpec.describe WelcomeController do
     end
 
     context "when user is logged in and verified" do
-      let(:user) { create(:student, user: create(:user, email_verified: true, phone_verified: true)).user }
-      before { get :index, nil, { user_id: user.id } }
+      let(:student) { create(:student, user: create(:user, email_verified: true, phone_verified: true)) }
+      before { get :index, nil, { user_id: student.user.id } }
       specify { expect(response).to redirect_to(dashboard_path) }
     end
   end
@@ -33,8 +33,8 @@ RSpec.describe WelcomeController do
     end
 
     context "when user is logged in and verified" do
-      let(:user) { create(:student, user: create(:user, email_verified: true, phone_verified: true)).user }
-      before { get :dashboard, nil, { user_id: user.id } }
+      let(:student) { create(:student, user: create(:user, email_verified: true, phone_verified: true)) }
+      before { get :dashboard, nil, { user_id: student.user.id } }
       specify { expect(response).to render_template("dashboard") }
     end
   end

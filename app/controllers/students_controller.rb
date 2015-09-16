@@ -2,7 +2,6 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @student.build_user
-    p "Student: #{@student}"
   end
 
   def create
