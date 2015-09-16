@@ -3,7 +3,9 @@ class UsersController < ApplicationController
 
   def new
     @student = Student.new
+    @student.build_user
     @parent = Parent.new
+    @parent.build_user
     @service_provider = ServiceProvider.new
   end
 
