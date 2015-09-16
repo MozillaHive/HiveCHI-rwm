@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true,
             format: { with: @@email_format }
   validates :password, length: { minimum: 10 }, allow_blank: true
-  validates :phone, presence: true, length: { is: 12 }
+  validates :phone, presence: true, length: { is: 12, message: "must be 10 digits" }
   validate :real_phone_number?, :editable?
   before_save :require_phone_verification, :require_email_verification
 

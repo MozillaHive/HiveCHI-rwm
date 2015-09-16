@@ -14,6 +14,10 @@ FactoryGirl.define do
     user_attributes { FactoryGirl.attributes_for(:user) }
   end
 
+  factory :parent do
+    user_attributes { FactoryGirl.attributes_for(:user) }
+  end
+
   factory :school do
     name { "#{Faker::Company.name} High School" }
     address { "#{Faker::Address.street_address}, Chicago, IL" }

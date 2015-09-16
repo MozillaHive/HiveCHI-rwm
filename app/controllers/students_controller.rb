@@ -13,7 +13,9 @@ class StudentsController < ApplicationController
       session[:user_id] = @student.user.id
       redirect_to users_verify_path
     else
-      render 'new'
+      @parent = Parent.new
+      @parent.build_user
+      render 'users/new'
     end
   end
 
