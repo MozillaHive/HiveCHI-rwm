@@ -3,18 +3,18 @@ class AttendancesController < ApplicationController
 
   def new
     @event = Event.find(params[:event_id])
-    @user = current_user
+    @student = current_student
     # We currently don't need this if/then because events#show renders a
     # different button depending on commitment. However, we might want to change
     # that later.
-    if (@attendance = Attendance.find_by(user: @user, event: @event))
+    if (@attendance = Attendance.find_by(student: @student, event: @event))
       redirect_to edit_event_attendance_path(@event, @attendance)
     else
       @attendance = Attendance.new
     end
     @attend_hash = {transit: [0,0,0], walking: [0,0,0], bicycling: [0,0,0]}
     @event.attendances.each do |a|
-      if (a.commitment_status == "Yes" and a.user.school_id == current_user.school_id)
+      if (a.commitment_status == "Yes" and a.student.school_id == current_student.school_id)
         @attend_hash[a.method_of_transit.to_sym()][index_from_dep_time(a.departure_type)] += 1
       end
     end
@@ -22,7 +22,7 @@ class AttendancesController < ApplicationController
 
   def create
   	@event = Event.find(params[:event_id])
-  	Attendance.create(user: current_user, event: @event,
+  	Attendance.create(student: current_student, event: @event,
   		departure_type: params[:departure_type],
   		method_of_transit: params[:method_of_transit],
   		commitment_status: params[:commitment_status])
@@ -35,10 +35,10 @@ class AttendancesController < ApplicationController
 
   def edit
     @event = Event.find(params[:event_id])
-    @attendance = Attendance.find_by(user: current_user, event: @event)
+    @attendance = Attendance.find_by(student: current_student, event: @event)
     @attend_hash = {transit: [0,0,0], walking: [0,0,0], bicycling: [0,0,0]}
     @event.attendances.each do |a|
-      if (a.commitment_status == "Yes" and a.user.school_id == current_user.school_id)
+      if (a.commitment_status == "Yes" and a.student.school_id == current_student.school_id)
         @attend_hash[a.method_of_transit.to_sym()][index_from_dep_time(a.departure_type)] += 1
       end
     end
@@ -46,7 +46,7 @@ class AttendancesController < ApplicationController
 
   def update
     @event = Event.find(params[:event_id])
-    @attendance = Attendance.find_by(user: current_user, event: @event)
+    @attendance = Attendance.find_by(student: current_student, event: @event)
     @attendance.update(
       departure_type: params[:departure_type],
       method_of_transit: params[:method_of_transit],
@@ -91,7 +91,7 @@ class AttendancesController < ApplicationController
     client.account.messages.create(
         :from => from,
         :to => current_user.phone,
-        :body => "Hey #{current_user.username}, your parent/guardian wants you to check out #{@event.name}. Reply at #{request.base_url+"/events/"+@event.id.to_s}"
+        :body => "Hey #{current_student.username}, your parent/guardian wants you to check out #{@event.name}. Reply at #{request.base_url+"/events/"+@event.id.to_s}"
       )
   end
 end

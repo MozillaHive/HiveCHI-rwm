@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to  :organization
   has_many    :attendances
-  has_many    :attendees , through: :attendances, source: :user
+  has_many    :attendees , through: :attendances, source: :student
 
   TYPES = %w(Football Camp Recreational Basketball Tennis Aquatic Gymnastics
              Fitness Other)

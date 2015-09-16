@@ -11,7 +11,7 @@
   <%= f.submit "Log in", :class => "button" %>
 <% end %>
 <%= link_to 'Register', register_path, class: 'centered', "data-role" => "button", "data-ajax" => "false" %>
-<%= form_for :user, url: '/login', html: {id: "login_form_example"} do |f| %>
+<%= form_for :session, url: '/login', html: {id: "login_form_example"} do |f| %>
   <%= f.hidden_field :username, value: Student.first.username if Student.first %>
   <%= f.hidden_field :password, value: "password1234" %>
   <%= f.submit "Demo", class: "button" %>
