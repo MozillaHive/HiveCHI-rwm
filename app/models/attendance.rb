@@ -1,8 +1,8 @@
 class Attendance < ActiveRecord::Base
-  belongs_to  :user
+  belongs_to  :student
   belongs_to  :event
-  validates_uniqueness_of :user_id, scope: :event_id
-  validates_presence_of :user_id, :event_id
+  validates_uniqueness_of :student_id, scope: :event_id
+  validates_presence_of :student_id, :event_id
   YES = "Yes"
   NO = "No"
   MAYBE = "Maybe"

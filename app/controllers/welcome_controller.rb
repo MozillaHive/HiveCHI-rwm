@@ -12,7 +12,9 @@ class WelcomeController < ApplicationController
   end
 
   def dashboard
-    active_attends = current_user.attendances.where.not(commitment_status: "No").includes(:event)
+    active_attends = current_student.attendances.where.not(commitment_status: "No").includes(:event)
+    p "ACTIVE ATTENDS"
+    p active_attends
 		@school = current_student.school
     @user_events = []
     now = DateTime.now
@@ -21,8 +23,8 @@ class WelcomeController < ApplicationController
     end
     @user_events.sort_by! {|a| a.event.start_date_and_time}
 		@trending_events = Event.popular_events(5)
-    @nudges_in = current_user.recieved_nudges
-    @nudges_out = current_user.sent_nudges
+    @nudges_in = current_student.recieved_nudges
+    @nudges_out = current_student.sent_nudges
     @zone = current_user.get_time_zone
   end
 
