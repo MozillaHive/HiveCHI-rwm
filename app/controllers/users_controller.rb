@@ -1,6 +1,14 @@
 class UsersController < ApplicationController
   before_filter :require_login, except: [:new, :create, :verify_email]
 
+  def new
+    @student = Student.new
+    @student.build_user
+    @parent = Parent.new
+    @parent.build_user
+    @service_provider = ServiceProvider.new
+  end
+
   def verification
     @user = current_user
     redirect_to dashboard_path if @user.verified?

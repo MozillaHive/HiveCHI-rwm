@@ -4,13 +4,17 @@ FactoryGirl.define do
     phone { "555#{Array.new(7) { rand(10).to_s }.join}"}
     password "password1234"
     password_confirmation "password1234"
-    nudges_enabled true
   end
 
   factory :student do
     username { Faker::Internet.user_name }
     school_id { create(:school).id }
-    address { "#{Faker::Address.street_address}, Chicago, IL" }
+    home_address { "#{Faker::Address.street_address}, Chicago, IL" }
+    user_attributes { FactoryGirl.attributes_for(:user) }
+    nudges_enabled true
+  end
+
+  factory :parent do
     user_attributes { FactoryGirl.attributes_for(:user) }
   end
 
@@ -30,12 +34,12 @@ FactoryGirl.define do
 
   factory :attendance do
     event_id { create(:event).id }
-    user_id { create(:user).id }
+    student_id { create(:student).id }
   end
 
   factory :nudge do
-    nudger_id { create(:user).id }
-    nudgee_id { create(:user).id }
+    nudger_id { create(:student).id }
+    nudgee_id { create(:student).id }
     event_id { create(:event).id }
   end
 end

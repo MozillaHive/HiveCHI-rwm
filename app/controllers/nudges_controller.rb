@@ -17,7 +17,6 @@ class NudgesController < ApplicationController
 			flash[:notice] = "You nudged #{@nudge.nudgee.username} to go to #{@nudge.event.name}"
 			redirect_to dashboard_path
 		else
-			puts "ERROR"
 			redirect_to "/events/#{event.id}/nudge"
 		end
 	end

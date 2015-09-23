@@ -1,4 +1,14 @@
-<%= form_for @student do |f| %>
+<%= form_for @student, html: { "data-ajax" => false } do |f| %>
+  <% if @student.errors.any? %>
+    <div class="error">
+      <p><%= pluralize(@student.errors.count, "error") %> prevented your profile from being saved:</p>
+      <ul>
+      <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= f.fields_for :user do |u| %>
     <%= u.label :email %>
     <%= u.text_field :email %>
@@ -17,8 +27,8 @@
   <%= f.text_field :username %>
   <%= f.label "School" %>
   <%= collection_select(:student, :school_id, School.all, :id, :name) %>
-  <%= f.label :address %>
-  <%= f.text_field :address %>
+  <%= f.label :home_address %>
+  <%= f.text_field :home_address %>
   <%= f.hidden_field :nudges_enabled, value: false %>
   <%= f.check_box :nudges_enabled, { checked: @student.nudges_enabled != false }, true, false %>
   <%= f.label :nudges_enabled, "Allow other users to send me text message notifications" %>

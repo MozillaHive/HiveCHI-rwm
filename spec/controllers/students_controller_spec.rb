@@ -14,6 +14,7 @@ RSpec.describe StudentsController, type: :controller do
       specify { expect(User.count).to eq(1) }
       specify { expect(session[:user_id]).not_to be_nil }
     end
+    
     context "with invalid attributes" do
       before do
         post :create, student: FactoryGirl.attributes_for(:student)
