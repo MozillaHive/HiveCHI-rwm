@@ -28,13 +28,19 @@
   </div>
 
   <div data-role="panel" id="event-type-toggles" data-position="left" data-display="reveal" data-theme="a">
+
+    <div class="toggle_categories">
+      <a href="#" class="select_all" onclick="checkAllCategories(true)">Check All</a>
+      <a href="#" class="deselect_all" onclick="checkAllCategories(false)">Uncheck All</a>
+    </div>
+
     <h2>Categories</h2>
     <fieldset>
       <% Event::TYPES.each do |event_type| %>
         <div data-role="fieldcontain">
           <%= form_tag do %>
             <%= label_tag event_type, event_type, class: "switch-label" %>
-            <%= check_box_tag event_type, "on", true, "data-role" => "flipswitch" %>
+            <%= check_box_tag event_type, "on", true, "data-role" => "flipswitch"%>
           <% end %>
         </div>
       <% end %>
