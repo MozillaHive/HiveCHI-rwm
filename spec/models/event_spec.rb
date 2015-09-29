@@ -40,4 +40,18 @@ RSpec.describe Event, type: :model do
       expect(Event.future_events).to eq([@event2, @event3, @event4, @event5, @event6])
     end
   end
+
+  describe "#not_over?" do
+    it "returns true if an event is in progress" do
+      expect(@event2.not_over?).to be true
+    end
+
+    it "returns true if an event has not yet started" do
+      expect(@event6.not_over?).to be true
+    end
+
+    it "returns false if an event has ended" do
+      expect(@event1.not_over?).to be false
+    end
+  end
 end

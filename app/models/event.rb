@@ -32,12 +32,9 @@ class Event < ActiveRecord::Base
 
   def self.future_events
     Event.where("start_date_and_time > ?", Date.today.beginning_of_day)
+      .order("start_date_and_time")
       .includes(:attendances)
       .select(&:not_over?)
-  end
-
-  def attendees_by_school(school)
-    attendees.select { |attendee| attendee.school == school }.count
   end
 
   def not_over?
