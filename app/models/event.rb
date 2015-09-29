@@ -3,6 +3,8 @@ class Event < ActiveRecord::Base
   has_many    :attendances
   has_many    :attendees , through: :attendances, source: :student
 
+  default_scope { order("start_date_and_time") }
+
   TYPES = %w(Football Camp Recreational Basketball Tennis Aquatic Gymnastics
              Fitness Other)
 
@@ -26,12 +28,11 @@ class Event < ActiveRecord::Base
     if end_time
       Event.where("start_date_and_time BETWEEN ? AND ?", start_time, end_time)
         .includes(:attendances)
-        .order("start_date_and_time")
         .select(&:not_over?)
     else
-      Event.where(start_date_and_time: start_time)
+      Event.where("start_date_and_time BETWEEN ? AND ?",
+            start_time.to_date.beginning_of_day, start_time.to_date.end_of_day)
         .includes(:attendances)
-        .order("start_date_and_time")
         .select(&:not_over?)
     end
   end
@@ -39,7 +40,6 @@ class Event < ActiveRecord::Base
   def self.future_events
     Event.where("start_date_and_time > ?", Date.today.beginning_of_day)
       .includes(:attendances)
-      .order("start_date_and_time")
       .select(&:not_over?)
   end
 

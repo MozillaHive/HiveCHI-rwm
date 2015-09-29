@@ -6,6 +6,7 @@ RSpec.describe EventsController do
     student.user.update(phone_verified: true, email_verified: true)
     student
   end
+  let(:event) { create(:event) }
 
   describe "GET #index" do
     before do
@@ -15,16 +16,48 @@ RSpec.describe EventsController do
       @event4 = create(:event, start_date_and_time: 10.days.from_now)
     end
 
-    context "with no parameters" do
-      #before { get :index }
-      #specify { expect(assigns(:events).size).to eq(3) }
+    context "when not logged in" do
+      before { get :index }
+      specify { expect(response).to redirect_to(login_path) }
     end
 
-    context "with start time parameter" do
-      before { get :index, { start_time: "2015-09-30 00:00:00 -0500" }, user_id: student.user.id }
+    context "with no parameters" do
+      before { get :index, nil, user_id: student.user.id }
       specify { expect(response).to render_template('index') }
-      specify { expect(assigns(:events)).to eq(@event2) }
-      specify { expect(assigns(:events)).to include(@event2) }
+      specify { expect(assigns(:events)).to eq([@event2, @event3, @event4]) }
+    end
+
+    context "with start time parameter only" do
+      before do
+        get :index, { start_time: Date.tomorrow.beginning_of_day },
+            user_id: student.user.id
+      end
+      specify { expect(response).to render_template('index') }
+      specify { expect(assigns(:events)).to eq([@event2]) }
+    end
+
+    context "with start and end time parameters" do
+      before do
+        get :index, { start_time: Date.today.beginning_of_day,
+            end_time: Date.today.beginning_of_day + 7.days },
+            user_id: student.user.id
+      end
+      specify { expect(response).to render_template('index') }
+      specify { expect(assigns(:events)).to eq([@event2, @event3]) }
+    end
+  end
+
+  describe "GET #show" do
+    context "when logged in" do
+      before { get :show, { id: event.id }, user_id: student.user.id }
+      specify { expect(response).to render_template('show') }
+      specify { expect(assigns(:event)).to eq(event) }
+    end
+
+    context "when not logged in" do
+      before { get :show, { id: event.id } }
+      specify { expect(response).to render_template('show') }
+      specify { expect(assigns(:event)).to eq(event) }
     end
   end
 end
