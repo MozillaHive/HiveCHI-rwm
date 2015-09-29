@@ -14,7 +14,7 @@ module Features
     end
 
     def register_as_student(student = nil)
-      student = create(:student) if student.nil?
+      student = build(:student) if student.nil?
       visit register_path
       fill_in "Username", with: student.username
       fill_in "Email", with: student.user.email
@@ -26,7 +26,7 @@ module Features
     end
 
     def register_as_parent(parent = nil)
-      parent = create(:parent) if parent.nil?
+      parent = build(:parent) if parent.nil?
       visit register_path
       click_link "Parent"
       fill_in "Email", with: parent.user.email
