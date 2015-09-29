@@ -6,13 +6,6 @@ class Event < ActiveRecord::Base
   TYPES = %w(Football Camp Recreational Basketball Tennis Aquatic Gymnastics
              Fitness Other)
 
-  def self.popular_events_by_school(school, number)
-    popular_events = Event.future_events.sort_by do |event|
-      -event.attendees.select { |attendee| attendee.school == school }.size
-    end
-    popular_events[0...number]
-  end
-
   def self.popular_events(number)
     Event.select('events.*, count(attendances.id) AS attendance_count')
       .joins(:attendances)
