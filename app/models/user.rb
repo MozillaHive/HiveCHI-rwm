@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     role_type == "Student"
   end
 
+  def service_provider?
+    role_type == "ServiceProvider"
+  end
+
   def verified?
     self.email_verified && self.phone_verified
   end

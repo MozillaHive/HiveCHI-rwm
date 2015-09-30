@@ -34,6 +34,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_service_provider
+    if current_user.service_provider?
+      current_user.role
+    else
+      raise TypeError, "Current user is not a service provider"
+    end
+  end
+
   helper_method :client_redirect
   def client_redirect (redirect_url)
   		flash[:redirect_url] = redirect_url
