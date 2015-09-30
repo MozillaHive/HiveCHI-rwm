@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  validates :name, presence: true
+
   belongs_to  :organization
   has_many    :attendances
   has_many    :attendees , through: :attendances, source: :student

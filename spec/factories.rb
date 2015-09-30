@@ -32,7 +32,12 @@ FactoryGirl.define do
   end
 
   factory :service_provider do
+    organization_id { create(:organization).id }
     user_attributes { FactoryGirl.attributes_for(:user) }
+
+    factory :verified_service_provider do
+      user_attributes { FactoryGirl.attributes_for(:verified_user) }
+    end
   end
 
   factory :admin do
@@ -51,6 +56,7 @@ FactoryGirl.define do
     duration { rand(4) + 1 }
     description "This is an automatically generated test event."
     event_type "Soccer"
+    organization_id { create(:organization).id }
   end
 
   factory :attendance do
@@ -63,5 +69,9 @@ FactoryGirl.define do
     nudger_id { create(:verified_student).id }
     nudgee_id { create(:verified_student).id }
     event_id { create(:event).id }
+  end
+
+  factory :organization do
+    name { Faker::Company.name }
   end
 end
