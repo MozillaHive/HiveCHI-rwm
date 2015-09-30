@@ -80,6 +80,19 @@ function codeAddress() {
 }
 }
 
+function checkAllCategories(val) {
+
+  var onOrOff = (val) ? "on" : "off"
+  $('.ui-flipswitch-input').val(onOrOff).flipswitch('refresh')
+
+  if (val) {
+    $('.ui-flipswitch').addClass('ui-flipswitch-active')
+  } else {
+    $('.ui-flipswitch').removeClass('ui-flipswitch-active')
+  }
+
+}
+
 $( document ).ready(function() {
 	$( "#event-type-toggles input[type=checkbox]" ).change(function() {
     var eventsOfThisType = $( "#event-list li." + this.name );
