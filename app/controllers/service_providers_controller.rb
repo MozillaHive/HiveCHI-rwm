@@ -27,6 +27,14 @@ class ServiceProvidersController < ApplicationController
     end
   end
 
+  def destroy
+    if current_service_provider.destroy
+      reset_session
+      flash[:notice] = "Your account has been deleted."
+      redirect_to login_path
+    end
+  end
+
   private
 
   def service_provider_params

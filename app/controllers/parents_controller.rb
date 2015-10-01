@@ -13,6 +13,14 @@ class ParentsController < ApplicationController
     end
   end
 
+  def destroy
+    if current_parent.destroy
+      reset_session
+      flash[:notice] = "Your account has been deleted."
+      redirect_to login_path
+    end
+  end
+
   private
 
   def parent_params

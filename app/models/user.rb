@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
     role_type == "ServiceProvider"
   end
 
+  def parent?
+    role_type = "Parent"
+  end
+
   def verified?
     self.email_verified && self.phone_verified
   end

@@ -32,6 +32,14 @@ class StudentsController < ApplicationController
     end
   end
 
+  def destroy
+    if current_student.destroy
+      reset_session
+      flash[:notice] = "Your account has been deleted."
+      redirect_to login_path
+    end
+  end
+
   private
 
   def student_params
