@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  helper_method :client_redirect, :current_user, :home_path, :edit_profile_path
 
   def require_login
     if current_user.nil?
@@ -33,9 +34,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :current_user
   def current_user
-      @current_user ||= User.find_by_id(session[:user_id])
+    @current_user ||= User.find_by_id(session[:user_id])
   end
 
   def current_student
@@ -54,10 +54,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :client_redirect
   def client_redirect (redirect_url)
-  		flash[:redirect_url] = redirect_url
-    	redirect_to "/redirect"
+		flash[:redirect_url] = redirect_url
+  	redirect_to "/redirect"
   end
 
   def home_path
@@ -70,6 +69,7 @@ class ApplicationController < ActionController::Base
   def edit_profile_path
     case current_user.role_type
     when "Student" then edit_student_path
+    when "Parent" then edit_parent_path
     when "ServiceProvider" then edit_service_provider_path
     end
   end

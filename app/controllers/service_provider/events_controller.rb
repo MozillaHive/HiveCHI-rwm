@@ -1,5 +1,5 @@
 class ServiceProvider::EventsController < ApplicationController
-  before_filter :require_service_provider
+  before_filter :require_verified_user, :require_service_provider
   before_filter :require_ownership, except: [:index, :new, :create]
 
   def index

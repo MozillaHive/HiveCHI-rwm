@@ -1,9 +1,4 @@
 class ParentsController < ApplicationController
-  def new
-    @parent = Parent.new
-    @parent.build_user
-  end
-
   def create
     @parent = Parent.new(parent_params)
     if ENV["DISABLE_REGISTRATIONS"] == "TRUE"

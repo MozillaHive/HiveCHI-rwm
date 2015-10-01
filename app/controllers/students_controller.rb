@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_filter :require_student, except: :create
+  before_filter :require_login, :require_student, except: :create
 
   def create
     @student = Student.new(student_params)
@@ -15,7 +15,12 @@ class StudentsController < ApplicationController
   end
 
   def edit
-    @student = current_student
+    if current_user.email == "example@example.com"
+      flash[:notice] = "You cannot edit the demo user's profile."
+      redirect_to home_path
+    else
+      @student = current_student
+    end
   end
 
   def update

@@ -1,5 +1,5 @@
 class ServiceProvidersController < ApplicationController
-  before_filter :require_service_provider, except: :create
+  before_filter :require_login, :require_service_provider, except: :create
 
   def create
     @service_provider = ServiceProvider.new(service_provider_params)

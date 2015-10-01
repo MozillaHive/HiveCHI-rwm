@@ -2,7 +2,12 @@ class UsersController < ApplicationController
   before_filter :require_login, except: [:new, :verify_email]
 
   def new
-    assign_all_role_types
+    if ENV["DISABLE_REGISTRATIONS"] == "TRUE"
+      flash[:notice] = "We're sorry, but registration is temporarily disabled."
+      redirect_to login_path
+    else
+      assign_all_role_types
+    end
   end
 
   def verification
