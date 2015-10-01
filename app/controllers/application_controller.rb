@@ -48,6 +48,13 @@ class ApplicationController < ActionController::Base
     	redirect_to "/redirect"
   end
 
+  def home_path
+    case current_user.role_type
+    when "Student" then dashboard_path
+    when "ServiceProvider" then service_provider_root_path
+    end
+  end
+
   private
 
   def redirect_inactive_user
