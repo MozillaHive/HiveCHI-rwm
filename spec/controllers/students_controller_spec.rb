@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe StudentsController, type: :controller do
+  let(:student) { create(:verified_student) }
+
   describe "POST #create" do
     context "with valid attributes" do
       before { post :create, student: FactoryGirl.attributes_for(:student) }
@@ -22,4 +24,9 @@ RSpec.describe StudentsController, type: :controller do
     end
   end
 
+  describe "GET #edit" do
+    before { get :edit, nil, user_id: student.user.id }
+    specify { expect(response).to render_template("edit") }
+    specify { expect(assigns(:student)).to eq(student) }
+  end
 end

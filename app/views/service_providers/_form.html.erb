@@ -1,4 +1,4 @@
-<%= form_for @service_provider do |f| %>
+<%= form_for @service_provider, url: service_provider_path, html: { "data-ajax" => false } do |f| %>
   <%= f.fields_for :user do |u| %>
     <%= u.label :email %>
     <%= u.text_field :email %>
