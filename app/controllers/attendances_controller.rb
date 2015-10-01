@@ -1,5 +1,5 @@
 class AttendancesController < ApplicationController
-  before_filter :require_verified_user
+  before_filter :require_verified_user, :require_student
 
   def new
     @event = Event.find(params[:event_id])

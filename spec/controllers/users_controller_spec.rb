@@ -2,6 +2,14 @@ require 'rails_helper'
 
 RSpec.describe UsersController do
 
+  describe "GET #new" do
+    before { get :new }
+    specify { expect(response).to render_template("new") }
+    specify { expect(assigns(:student)).to be_a_new(Student) }
+    specify { expect(assigns(:parent)).to be_a_new(Parent) }
+    specify { expect(assigns(:service_provider)).to be_a_new(ServiceProvider) }
+  end
+
   describe "GET #verification" do
     context "with no logged in user" do
       before { get :verification }

@@ -21,6 +21,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_service_provider
+    unless current_user && current_user.service_provider?
+      redirect_to root_path
+    end
+  end
+
+  def require_student
+    unless current_user && current_user.student?
+      redirect_to root_path
+    end
+  end
+
   helper_method :current_user
   def current_user
       @current_user ||= User.find_by_id(session[:user_id])
@@ -53,6 +65,22 @@ class ApplicationController < ActionController::Base
     when "Student" then dashboard_path
     when "ServiceProvider" then service_provider_root_path
     end
+  end
+
+  def edit_profile_path
+    case current_user.role_type
+    when "Student" then edit_student_path
+    when "ServiceProvider" then edit_service_provider_path
+    end
+  end
+
+  def assign_all_role_types
+    @parent ||= Parent.new
+    @parent.build_user unless @parent.user
+    @student ||= Student.new
+    @student.build_user unless @student.user
+    @service_provider ||= ServiceProvider.new
+    @service_provider.build_user unless @service_provider.user
   end
 
   private
