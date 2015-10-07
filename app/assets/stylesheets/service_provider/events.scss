@@ -1,3 +1,43 @@
 // Place all the styles related to the service_provider/events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#service-provider-event-description {
+  text-overflow: initial !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  font-size: 1em;
+}
+
+#service-provider-event-image {
+  max-height: 300px;
+}
+
+.sp-event-attendance-breakpoint {
+  max-width: 500px;
+}
+
+.sp-event-attendance-breakpoint th:first-child {
+  width: 300px;
+}
+
+.sp-event-attendance-breakpoint td:first-child {
+  width: 300px;
+}
+
+@media ( min-width: 40em ) {
+	/* Show the table header rows and set all cells to display: table-cell */
+	.sp-event-attendance-breakpoint td,
+	.sp-event-attendance-breakpoint th,
+	.sp-event-attendance-breakpoint tbody th,
+	.sp-event-attendance-breakpoint tbody td,
+	.sp-event-attendance-breakpoint thead td,
+	.sp-event-attendance-breakpoint thead th {
+		display: table-cell;
+		margin: 0;
+	}
+	/* Hide the labels in each cell */
+	.sp-event-attendance-breakpoint td .ui-table-cell-label,
+	.sp-event-attendance-breakpoint th .ui-table-cell-label {
+		display: none;
+	}
+}
