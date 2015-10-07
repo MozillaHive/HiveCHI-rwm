@@ -1,16 +1,4 @@
 module ApplicationHelper
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
-  end
-
-  def current_student
-    if current_user && current_user.role_type == "Student"
-      current_user.role
-    else
-      nil
-    end
-  end
-
   def get_time_zone
     if current_user
       current_user.get_time_zone

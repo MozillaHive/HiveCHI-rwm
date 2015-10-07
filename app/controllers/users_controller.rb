@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
-  before_filter :require_login, except: [:new, :create, :verify_email]
+  before_filter :require_login, except: [:new, :verify_email]
 
   def new
-    @student = Student.new
-    @student.build_user
-    @parent = Parent.new
-    @parent.build_user
-    @service_provider = ServiceProvider.new
+    if ENV["DISABLE_REGISTRATIONS"] == "TRUE"
+      flash[:notice] = "We're sorry, but registration is temporarily disabled."
+      redirect_to login_path
+    else
+      assign_all_role_types
+    end
   end
 
   def verification

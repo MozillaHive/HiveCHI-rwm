@@ -1,12 +1,8 @@
 class WelcomeController < ApplicationController
-	before_filter :require_verified_user, except: :index
+	before_filter :require_verified_user, :require_student, except: :index
 
   def index
-    if session[:user_id]
-      redirect_to :action => "dashboard", :controller => "welcome"
-    else
-      redirect_to :action => "login", :controller => "session"
-    end
+		redirect_to current_user ? home_path : login_path
   end
 
   def dashboard

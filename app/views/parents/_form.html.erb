@@ -1,4 +1,4 @@
-<%= form_for @parent, html: { "data-ajax" => false } do |f| %>
+<%= form_for @parent, url: parent_path, html: { "data-ajax" => false } do |f| %>
   <% if @parent.errors.any? %>
     <div class="error">
       <p><%= pluralize(@parent.errors.count, "error") %> prevented your profile from being saved:</p>

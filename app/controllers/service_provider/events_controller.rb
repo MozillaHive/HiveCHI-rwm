@@ -1,6 +1,6 @@
 class ServiceProvider::EventsController < ApplicationController
-  before_filter :verify_service_provider
-  before_filter :verify_ownership, except: [:index, :new, :create]
+  before_filter :require_verified_user, :require_service_provider
+  before_filter :require_ownership, except: [:index, :new, :create]
 
   def index
     @events = current_service_provider.organization.events
@@ -54,13 +54,7 @@ class ServiceProvider::EventsController < ApplicationController
     )
   end
 
-  def verify_service_provider
-    unless current_user && current_user.service_provider?
-      redirect_to root_path
-    end
-  end
-
-  def verify_ownership
+  def require_ownership
     unless Event.find(params[:id]).organization == current_service_provider.organization
       redirect_to service_provider_root_path
     end

@@ -18,12 +18,24 @@ class User < ActiveRecord::Base
   validate :real_phone_number?, :editable?
   before_save :require_phone_verification, :require_email_verification
 
+  def self.find_by_username(username)
+    if (student = Student.find_by(username: username))
+      student.user
+    else
+      nil
+    end
+  end
+
   def student?
     role_type == "Student"
   end
 
   def service_provider?
     role_type == "ServiceProvider"
+  end
+
+  def parent?
+    role_type = "Parent"
   end
 
   def verified?
