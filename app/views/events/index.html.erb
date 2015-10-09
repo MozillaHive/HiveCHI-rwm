@@ -14,9 +14,9 @@
   </div>
 
   <div data-role="content">
-    <ul data-role="listview" data-filter="true" data-inset="true" id="event-list">
+    <ul data-role="listview" data-filter="true" data-inset="true" data-autodividers="true" id="event-list">
       <% @events.each do |event| %>
-        <%= content_tag :li, class: event.event_type do %>
+        <%= content_tag :li, class: event.event_type, data: { date: format_date(event) } do %>
           <%= link_to event_type_image_tag(event.event_type) + event.name, event_path(event), data: { ajax: false } %>
         <% end %>
       <% end %>

@@ -3,7 +3,7 @@ class ServiceProvider::EventsController < ApplicationController
   before_filter :require_ownership, except: [:index, :new, :create]
 
   def index
-    @events = current_service_provider.organization.events
+    @events = current_service_provider.organization.events.future
   end
 
   def show

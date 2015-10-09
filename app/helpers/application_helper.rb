@@ -12,4 +12,8 @@ module ApplicationHelper
     when "Student" then edit_student_path(current_user.role)
     end
   end
+
+  def format_date(event)
+    event.start_date_and_time.in_time_zone(get_time_zone).strftime("%A, %B %-d")
+  end
 end
