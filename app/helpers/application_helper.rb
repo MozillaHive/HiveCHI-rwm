@@ -16,4 +16,8 @@ module ApplicationHelper
   def format_date(event)
     event.start_date_and_time.in_time_zone(get_time_zone).strftime("%A, %B %-d")
   end
+
+  def format_time(event)
+    event.start_date_and_time.in_time_zone(get_time_zone).strftime("%l:%M %p")
+  end
 end
