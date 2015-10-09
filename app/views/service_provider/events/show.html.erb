@@ -101,22 +101,22 @@
     <ul data-role="listview">
       <li data-role="list-divider" class="section-heading">Attendees</li>
       <li>
-        <table data-role="table" data-mode="columntoggle" class="sp-event-attendance-breakpoint table-stroke">
+        <table data-role="table" data-mode="columntoggle" class="sp-event-attendance-breakpoint attendance-main-table table-stroke">
           <thead>
             <tr>
               <th>Username</th>
-              <th data-priority="1">School</th>
-              <th data-priority="1">Status</th>
+              <th>Status</th>
+              <th data-priority="2">School</th>
               <th data-priority="1">Transportation</th>
               <th data-priority="1">Timing</th>
             </tr>
           </thead>
           <tbody>
-            <% @event.attendances.each do |attendance| %>
+            <% @event.attendances.includes(:student).each do |attendance| %>
               <tr>
                 <td><%= attendance.student.username %></td>
+                <td class="<%= attendance.commitment_status.downcase %>"><%= attendance.short_description %></td>
                 <td><%= attendance.student.school.name %></td>
-                <td><%= attendance.commitment_status %></td>
                 <td><%= attendance.method_of_transit.capitalize %></td>
                 <td><%= attendance.departure_type %></td>
               </tr>

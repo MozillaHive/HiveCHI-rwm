@@ -1,6 +1,8 @@
 // Place all the styles related to the service_provider/events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "colors";
+
 #sp-event-show {
   background-color: #fff;
   .ui-block:first-child {
@@ -22,6 +24,17 @@
     }
     td:first-child {
       width: 300px;
+    }
+  }
+  .attendance-main-table {
+    .yes {
+      background-color: $bg-success;
+    }
+    .maybe {
+      background-color: $bg-warning;
+    }
+    .no {
+      background-color: $bg-danger;
     }
   }
 }
