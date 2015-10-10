@@ -80,14 +80,14 @@ function codeAddress() {
 }
 }
 
-$( document ).on("pageinit", function() {
+$( document ).on("pageinit", "#event-list-page", function() {
   $("#event-list").listview({
     autodividers: true,
     autodividersSelector: function(li) {
       return li.attr("data-date");
     }
   }).listview("refresh");
-  
+
 	$( "#event-type-toggles input[type=checkbox]" ).change(function() {
     var eventsOfThisType = $( "#event-list li." + this.name );
     if ($( this ).is(":checked")) {
