@@ -1,7 +1,7 @@
 <div data-role="page" id="event-list-page">
   <div data-role="header">
     <h1><%= current_service_provider.organization.name %>: Events</h1>
-    <%= link_to "New", new_service_provider_event_path, "data-icon" => "plus", "data-ajax" => "false", class: "ui-btn-right"%>
+    <%= link_to "New", new_service_provider_event_path, data: { icon: "plus", ajax: false, theme: "c" }, class: "ui-btn-right" %>
   </div>
   <div data-role="content">
     <ul data-role="listview" data-filter="true" data-inset="true" data-autodividers="true" id="event-list">
