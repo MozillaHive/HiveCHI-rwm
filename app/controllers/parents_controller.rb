@@ -7,8 +7,7 @@ class ParentsController < ApplicationController
       session[:user_id] = @parent.user.id
       redirect_to users_verify_path
     else
-      @student = Student.new
-      @student.build_user
+      assign_all_role_types
       render 'users/new'
     end
   end
