@@ -1,4 +1,14 @@
 <%= form_for @service_provider, url: service_provider_path, html: { "data-ajax" => false } do |f| %>
+  <% if @service_provider.errors.any? %>
+    <div class="error">
+      <p><%= pluralize(@service_provider.errors.count, "error") %> prevented your profile from being saved:</p>
+      <ul>
+      <% @service_provider.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= f.fields_for :user do |u| %>
     <%= u.label :email %>
     <%= u.text_field :email %>

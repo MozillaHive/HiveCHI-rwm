@@ -2,13 +2,19 @@ module Features
   module ApplicationHelpers
 
     def log_in_as_student(student = nil)
-      if student.nil?
-        student = create(:student)
-        student.user.update(phone_verified: true, email_verified: true)
-      end
+      student = create(:verified_student) unless student
       visit login_path
       fill_in 'Username', with: student.username
       fill_in 'Password', with: student.user.password
+      click_button 'Log in'
+      sleep(1)
+    end
+
+    def log_in_as_service_provider(service_provider = nil)
+      service_provider = create(:verified_service_provider) unless service_provider
+      visit login_path
+      fill_in "Username", with: service_provider.user.email
+      fill_in 'Password', with: service_provider.user.password
       click_button 'Log in'
       sleep(1)
     end
@@ -25,16 +31,15 @@ module Features
       click_button "Submit"
     end
 
-    def register_as_parent(parent = nil)
-      parent = build(:parent) if parent.nil?
+    def register_as_service_provider(service_provider = nil)
+      service_provider = build(:service_provider) unless service_provider
       visit register_path
-      click_link "Parent"
-      fill_in "Email", with: parent.user.email
-      fill_in "Phone", with: parent.user.phone
-      fill_in "Password", with: parent.user.password
-      fill_in "Password confirmation", with: parent.user.password_confirmation
+      click_link "Service Provider"
+      fill_in "Email", with: service_provider.user.email
+      fill_in "Phone", with: service_provider.user.phone
+      fill_in "Password", with: service_provider.user.password
+      fill_in "Password confirmation", with: service_provider.user.password_confirmation
       click_button "Submit"
     end
-
   end
 end
