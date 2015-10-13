@@ -9,9 +9,13 @@ HOSTNAME: localhost:3000
 
 # The following environment variables don't need to be present, but may be useful:
 
-SENDGRID_USERNAME:
-SENDGRID_PASSWORD:
 EMAIL_VERIFICATION: # Set to 'DISABLED' to disable email verification
 PHONE_VERIFICATION: # Set to 'DISABLED' to disable phone verification
 DISABLE_NUDGE_TEXTS: # Set to 'TRUE' to disable nudges globally
 DISABLE_REGISTRATIONS: # Set to 'TRUE' to disable new user registrations
+SENDGRID_USERNAME:
+SENDGRID_PASSWORD:
+
+# Note: disabling email and phone verification WILL CAUSE SOME SPECS TO FAIL
+# because they are written on the assumption that those features are on. If you
+# set those variables, comment them out before running the test suite.

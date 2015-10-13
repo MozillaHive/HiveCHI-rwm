@@ -35,9 +35,9 @@ RSpec.describe Event, type: :model do
     end
   end
 
-  describe "::future_events" do
+  describe "::future" do
     it "finds all events that have not ended yet" do
-      expect(Event.future_events).to eq([@event2, @event3, @event4, @event5, @event6])
+      expect(Event.future).to eq([@event2, @event3, @event4, @event5, @event6])
     end
   end
 

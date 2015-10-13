@@ -80,13 +80,20 @@ function codeAddress() {
 }
 }
 
-$( document ).ready(function() {
+$( document ).on("pageinit", "#event-list-page", function() {
+  $("#event-list").listview({
+    autodividers: true,
+    autodividersSelector: function(li) {
+      return li.attr("data-date");
+    }
+  }).listview("refresh");
+
 	$( "#event-type-toggles input[type=checkbox]" ).change(function() {
     var eventsOfThisType = $( "#event-list li." + this.name );
     if ($( this ).is(":checked")) {
-        eventsOfThisType.slideDown(100);
+      eventsOfThisType.slideDown(100);
     } else {
-        eventsOfThisType.slideUp(100);
+      eventsOfThisType.slideUp(100);
     }
   });
 });
