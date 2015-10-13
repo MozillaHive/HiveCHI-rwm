@@ -1,3 +1,58 @@
 // Place all the styles related to the service_provider/events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "colors";
+
+#sp-event-show {
+  background-color: #fff;
+  .ui-block:first-child {
+    border-right: 1px solid #ddd;
+  }
+  #event-image {
+    max-height: 300px;
+  }
+  #event-description {
+    text-overflow: initial !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    font-size: 1em;
+  }
+  .attendance-sidebar-table {
+    max-width: 500px;
+    th:first-child {
+      width: 300px;
+    }
+    td:first-child {
+      width: 300px;
+    }
+  }
+  .attendance-main-table {
+    .yes {
+      background-color: $bg-success;
+    }
+    .maybe {
+      background-color: $bg-warning;
+    }
+    .no {
+      background-color: $bg-danger;
+    }
+  }
+}
+
+@media ( min-width: 80em ) {
+	/* Show the table header rows and set all cells to display: table-cell */
+	.sp-event-attendance-breakpoint td,
+	.sp-event-attendance-breakpoint th,
+	.sp-event-attendance-breakpoint tbody th,
+	.sp-event-attendance-breakpoint tbody td,
+	.sp-event-attendance-breakpoint thead td,
+	.sp-event-attendance-breakpoint thead th {
+		display: table-cell;
+		margin: 0;
+	}
+	/* Hide the labels in each cell */
+	.sp-event-attendance-breakpoint td .ui-table-cell-label,
+	.sp-event-attendance-breakpoint th .ui-table-cell-label {
+		display: none;
+	}
+}

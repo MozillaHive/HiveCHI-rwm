@@ -14,6 +14,7 @@ html head + body .ui-btn.ui-btn-c:visited {
 	border-color: #dddddd /*{c-bup-border}*/;
 	color: #f2f2f2 /*{c-bup-color}*/;
   text-shadow: 0 /*{c-bhover-shadow-x}*/ 0px /*{c-bhover-shadow-y}*/ 0 /*{c-bhover-shadow-radius}*/ #f3f3f3 /*{c-bhover-shadow-color}*/;
+	letter-spacing: 0.5px;
 }
 /* Button hover */
 .ui-page-theme-c .ui-btn:hover,
@@ -25,6 +26,7 @@ html head + body .ui-btn.ui-btn-c:hover {
 	border-color: #dddddd /*{c-bhover-border}*/;
 	color: #f2f2f2 /*{c-bhover-color}*/;
 	text-shadow: 0 /*{c-bhover-shadow-x}*/ 0px /*{c-bhover-shadow-y}*/ 0 /*{c-bhover-shadow-radius}*/ #f3f3f3 /*{c-bhover-shadow-color}*/;
+	letter-spacing: 0.5px;
 }
 /* Button down */
 .ui-page-theme-c .ui-btn:active,
@@ -36,4 +38,5 @@ html head + body .ui-btn.ui-btn-c:active {
 	border-color: #dddddd /*{c-bdown-border}*/;
 	color: #333333 /*{c-bdown-color}*/;
 	text-shadow: 0 /*{c-bdown-shadow-x}*/ 0px /*{c-bdown-shadow-y}*/ 0 /*{c-bdown-shadow-radius}*/ #f3f3f3 /*{c-bdown-shadow-color}*/;
+	letter-spacing: 0.5px;
 }
