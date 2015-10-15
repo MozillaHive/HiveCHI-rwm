@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'User logs in' do
+RSpec.feature 'User logs in', js: true do
   context "as student" do
     let(:student) { create(:verified_student) }
 
