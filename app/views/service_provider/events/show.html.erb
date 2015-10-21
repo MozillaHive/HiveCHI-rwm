@@ -117,8 +117,8 @@
                 <td><%= attendance.student.username %></td>
                 <td class="<%= attendance.commitment_status.downcase %>"><%= attendance.short_description %></td>
                 <td><%= attendance.student.school.name %></td>
-                <td><%= attendance.method_of_transit.capitalize %></td>
-                <td><%= attendance.departure_type %></td>
+                <td><%= attendance.method_of_transit.capitalize if attendance.method_of_transit %></td>
+                <td><%= attendance.departure_type if attendance.departure_type %></td>
               </tr>
             <% end %>
           </tbody>
