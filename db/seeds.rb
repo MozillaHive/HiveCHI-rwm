@@ -335,6 +335,8 @@ Student.create(user_attributes: {email: "robert@mozillafoundation.org", password
 
 Student.create(user_attributes: {email: "jas477@case.edu", password: "password1234", phone: "+18475448375", phone_verified: true, email_verified: true}, nudges_enabled: true, school_id: 4, username: "jsub")
 
+ServiceProvider.create(user_attributes: {email: "provider@gmail.com", password: "password1234", phone: "+11111111111", phone_verified: true, email_verified: true}, organization_id: 1)
+
 101.times do |i|
   Event.create(name: "Learn to Swim at Ada", address: "11250 S Ada St", start_date_and_time: DateTime.iso8601("2015-08-15T11:00:00-05:00")+(7*i).days, duration: 1.0, description: "Participants will be introduced to aquatic activities through water exploration. Individuals will learn basic swimming techniques,advanced breathing techniques and mechanics of the four basic strokes (freestyle,backstroke,butterfly and breaststroke). Participants will be grouped according to skill level.", organization_id: 1, event_type: "Aquatic")
   Event.create(name: "Youth Swim at Altgeld", address: "515 S Washtenaw Ave", start_date_and_time: DateTime.iso8601("2015-08-15T13:00:00-05:00")+(7*i).days, duration: 1.75, description: "Social fun swim. Some may chose to work on their strokes,while others just float around.", organization_id: 1, event_type: "Aquatic")
