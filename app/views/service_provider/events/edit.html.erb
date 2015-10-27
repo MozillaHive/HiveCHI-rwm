@@ -1,6 +1,6 @@
 <div data-role="page">
   <div data-role="header">
-    <h1>Edit Event: <%= @event.name %></h1>
+    <h1>Edit Event: <%= @event.reload.name %></h1>
   </div>
   <div data-role="content">
     <%= render "form" %>
