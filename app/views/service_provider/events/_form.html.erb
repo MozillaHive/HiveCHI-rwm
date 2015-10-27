@@ -1,0 +1,43 @@
+<%= form_for @event, url: service_provider_events_path, html: { "data-ajax" => false } do |f| %>
+  <% if @event.errors.any? %>
+    <div class="error">
+      <p><%= pluralize(@event.errors.count, "error") %> prevented this event from being saved:</p>
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div data-role="fieldcontain">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div data-role="fieldcontain">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+  <%= f.label "Date and time" %>
+  <%= f.date_select(
+        :start_date_and_time, default_year: DateTime.now.year,
+        start_year: DateTime.now.year, end_year: DateTime.now.year + 1,
+        default_month: DateTime.now.month, default_day: DateTime.now.day
+      ) %>
+  <%= f.time_select(
+        :start_date_and_time, combined: true, ampm: true,
+        default: Time.now.change(hour: 12, min: 0), time_separator: ""
+      ) %>
+  <div data-role="fieldcontain">
+    <%= f.label :duration, "Duration (hours)" %>
+    <%= f.select :duration, (0.5..10).step(0.5).to_a %>
+  </div>
+  <div data-role="fieldcontain">
+    <%= f.label :event_type, "Type" %>
+    <%= f.select :event_type, Event::TYPES %>
+  </div>
+  <div data-role="fieldcontain">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <%= f.submit "Submit" %>
+<% end %>
