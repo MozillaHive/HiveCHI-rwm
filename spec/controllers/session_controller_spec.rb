@@ -5,8 +5,8 @@ RSpec.describe SessionController do
   let(:service_provider) { create(:verified_service_provider) }
 
   describe "GET #new" do
-    before { get :login }
-    specify { expect(response).to render_template("login") }
+    before { get :new }
+    specify { expect(response).to render_template("new") }
   end
 
   describe "POST #create" do
@@ -23,7 +23,7 @@ RSpec.describe SessionController do
         before do
           post :create, session: { username: "doesntexist", password: "password1234" }
         end
-        specify { expect(response).to render_template('login') }
+        specify { expect(response).to render_template('new') }
         specify { expect(session[:user_id]).to be_nil }
       end
 
@@ -31,7 +31,7 @@ RSpec.describe SessionController do
         before do
           post :create, session: { username: student.username, password: "badpassword" }
         end
-        specify { expect(response).to render_template('login') }
+        specify { expect(response).to render_template('new') }
         specify { expect(session[:user_id]).to be_nil }
       end
     end
