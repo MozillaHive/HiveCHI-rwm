@@ -35,7 +35,11 @@ class User < ActiveRecord::Base
   end
 
   def parent?
-    role_type = "Parent"
+    role_type == "Parent"
+  end
+
+  def admin?
+    role_type == "Admin"
   end
 
   def verified?

@@ -17,6 +17,7 @@ gem 'cane'
 gem 'simplecov'
 gem 'twilio-ruby'
 gem 'combined_time_select', '~> 1.0.1'
+gem 'rails_admin'
 
 group :development, :test do
   gem 'web-console', '~> 2.0'
@@ -30,7 +31,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '2.8.0'
 end
 
 group :production do

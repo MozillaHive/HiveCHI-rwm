@@ -60,6 +60,7 @@ class ApplicationController < ActionController::Base
     case current_user.role_type
     when "Student" then dashboard_path
     when "ServiceProvider" then service_provider_root_path
+    when "Admin" then rails_admin_path
     end
   end
 

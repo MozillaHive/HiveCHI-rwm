@@ -5,7 +5,7 @@ class SessionController < ApplicationController
 
   def create
     @user = User.find_by_username(params[:session][:username])
-    @user ||= User.find_by(email: params[:session][:username])
+    @user ||= User.find_by_email(params[:session][:username])
     if @user && @user.inactive
       flash.now[:notice] = "Your password has been reset. Please follow the link" \
                            " in the email we sent you to set a new password."
@@ -19,7 +19,7 @@ class SessionController < ApplicationController
       end
     else
       flash.now[:error] = "Invalid username or password"
-      render "login"
+      render "new"
     end
   end
 

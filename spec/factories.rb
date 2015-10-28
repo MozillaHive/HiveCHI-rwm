@@ -41,7 +41,7 @@ FactoryGirl.define do
   end
 
   factory :admin do
-    user_attributes { FactoryGirl.attributes_for(:user) }
+    user_attributes { FactoryGirl.attributes_for(:verified_user) }
   end
 
   factory :school do
