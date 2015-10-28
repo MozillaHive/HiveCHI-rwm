@@ -34,7 +34,7 @@ RailsAdmin.config do |config|
   RailsAdmin.config do |config|
     config.authorize_with do
       unless User.find_by_id(session[:user_id]) && User.find_by_id(session[:user_id]).role_type == "Admin"
-        redirect_to "/login"
+        redirect_to "/"
       end
     end
   end
