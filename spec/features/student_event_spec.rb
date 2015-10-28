@@ -3,10 +3,10 @@ require 'rails_helper'
 # The test 'expect(page).to have_css("div.gm-style")' tests whether the map is
 # rendering, since that div is created by the script.
 
-RSpec.feature 'User interacts with an event', js: true do
+RSpec.feature 'Student interacts with an event', js: true do
   before { @event = create(:event) }
 
-  context "When user is not logged in" do
+  context "When student is not logged in" do
     scenario "user visits events page" do
       visit event_path(@event)
       expect(page).not_to have_button("Join")
@@ -19,10 +19,10 @@ RSpec.feature 'User interacts with an event', js: true do
     end
   end
 
-  context "When user is logged in" do
+  context "When student is logged in" do
     before { log_in_as_student }
 
-    scenario "user visits events page" do
+    scenario "student visits events page" do
       visit event_path(@event)
       expect(page).to have_button("Join")
       expect(page).to have_button("Watch")
@@ -34,7 +34,7 @@ RSpec.feature 'User interacts with an event', js: true do
       expect(page).not_to have_button("Log in")
     end
 
-    scenario "user watches an event" do
+    scenario "student watches an event" do
       visit event_path(@event)
       click_button "Watch"
       expect(page).to have_content("Dashboard")
@@ -45,7 +45,7 @@ RSpec.feature 'User interacts with an event', js: true do
       expect(page).to have_content("You are watching this event")
     end
 
-    scenario "user joins an event" do
+    scenario "student joins an event" do
       visit event_path(@event)
       click_button "Join"
       # expect(page).to have_css("div.gm-style")

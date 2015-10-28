@@ -60,6 +60,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    combined_time_select (1.0.1)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
@@ -235,6 +236,7 @@ DEPENDENCIES
   cane
   capybara
   coffee-rails (~> 4.1.0)
+  combined_time_select (~> 1.0.1)
   database_cleaner
   factory_girl_rails (~> 4.0)
   faker

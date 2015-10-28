@@ -55,7 +55,7 @@ FactoryGirl.define do
     start_date_and_time { Date.tomorrow.midday }
     duration { rand(4) + 1 }
     description "This is an automatically generated test event."
-    event_type "Soccer"
+    event_type "Other"
     organization_id { create(:organization).id }
   end
 
