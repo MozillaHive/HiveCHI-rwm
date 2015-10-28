@@ -337,7 +337,7 @@ Student.create(user_attributes: {email: "jas477@case.edu", password: "password12
 
 ServiceProvider.create(user_attributes: {email: "provider@gmail.com", password: "password1234", phone: "+11111111111", phone_verified: true, email_verified: true}, organization_id: 1)
 
-Admin.create!(user_attributes: {email: "admin@ridewit.me", password: "password1234", phone: "+11111111111", phone_verified: true, email_verified: true})
+Admin.create!(user_attributes: {email: "admin@ridewit.me", password: "password1234", phone: "+11111111111", phone_verified: true, email_verified: true}) unless Rails.env.production?
 
 
 101.times do |i|
