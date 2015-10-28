@@ -15,4 +15,12 @@ class Attendance < ActiveRecord::Base
     end
   end
 
+  def short_description
+    case self.commitment_status
+    when YES then "Going"
+    when MAYBE then "Watching"
+    when NO then "Backed out"
+    end
+  end
+
 end

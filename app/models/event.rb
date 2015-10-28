@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   validates :name, presence: true
+  validates :address, presence: true
 
   belongs_to  :organization
   has_many    :attendances
@@ -32,10 +33,9 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def self.future_events
-    Event.where("start_date_and_time > ?", Date.today.beginning_of_day)
+  def self.future
+    where("start_date_and_time > ?", Date.today.beginning_of_day)
       .order("start_date_and_time")
-      .includes(:attendances)
       .select(&:not_over?)
   end
 

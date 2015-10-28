@@ -5,7 +5,7 @@ class EventsController < ApplicationController
     if params[:start_time]
       @events = Event.by_time(params[:start_time], params[:end_time])
     else
-      @events = Event.future_events
+      @events = Event.future
     end
     respond_to do |format|
       format.html
