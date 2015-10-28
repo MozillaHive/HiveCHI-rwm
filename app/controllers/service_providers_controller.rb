@@ -39,8 +39,9 @@ class ServiceProvidersController < ApplicationController
 
   def service_provider_params
     params.require(:service_provider).permit(
-      :organization_id, user_attributes: [:id, :email, :phone, :password,
-      :password_confirmation, :time_zone]
+      user_attributes: [
+        :id, :email, :phone, :password, :password_confirmation, :time_zone
+      ]
     )
   end
 end

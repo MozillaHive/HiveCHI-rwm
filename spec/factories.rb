@@ -32,11 +32,15 @@ FactoryGirl.define do
   end
 
   factory :service_provider do
-    organization_id { create(:organization).id }
-    user_attributes { FactoryGirl.attributes_for(:user) }
+    organization { create(:organization) }
+    user_attributes do
+      FactoryGirl.attributes_for(:user, email: SecureRandom.hex(5) + organization.domain_name)
+    end
 
     factory :verified_service_provider do
-      user_attributes { FactoryGirl.attributes_for(:verified_user) }
+      user_attributes do
+        FactoryGirl.attributes_for(:verified_user, email: SecureRandom.hex(5) + organization.domain_name)
+      end
     end
   end
 
@@ -73,5 +77,6 @@ FactoryGirl.define do
 
   factory :organization do
     name { Faker::Company.name }
+    domain_name { "@#{SecureRandom.hex(10)}.com" }
   end
 end

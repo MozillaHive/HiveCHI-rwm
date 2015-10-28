@@ -33,11 +33,12 @@ RSpec.describe ServiceProvidersController, type: :controller do
   describe "PATCH #update" do
     context "with valid attributes" do
       before do
-        patch :update, { service_provider: { user_attributes: { email: "a@b.com", id: service_provider.user.id } } },
+        @new_email = "new-email" + service_provider.organization.domain_name
+        patch :update, { service_provider: { user_attributes: { email: @new_email, id: service_provider.user.id } } },
           user_id: service_provider.user.id
       end
       specify { expect(response).to redirect_to(service_provider_root_path) }
-      specify { expect(service_provider.user.reload.email).to eq("a@b.com") }
+      specify { expect(service_provider.user.reload.email).to eq(@new_email) }
     end
 
     context "with invalid attributes" do
