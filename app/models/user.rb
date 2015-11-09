@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     end
   end
   validates :email, presence: true, uniqueness: true,
-            format: { with: @@email_format }
+            format: { with: @@email_format }, service_provider_domain: true
   validates :password, length: { minimum: 10 }, allow_blank: true
   validates :phone, presence: true, length: { is: 12, message: "must be 10 digits" }
   validate :real_phone_number?, :editable?
