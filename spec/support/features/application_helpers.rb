@@ -19,6 +19,15 @@ module Features
       sleep(1)
     end
 
+    def log_in_as_admin(admin = nil)
+      admin = create(:admin) unless admin
+      visit login_path
+      fill_in "Username", with: admin.user.email
+      fill_in 'Password', with: admin.user.password
+      click_button 'Log in'
+      sleep(1)
+    end
+
     def register_as_student(student = nil)
       student = build(:student) if student.nil?
       visit register_path
