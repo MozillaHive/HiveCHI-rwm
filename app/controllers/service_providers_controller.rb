@@ -1,16 +1,20 @@
 class ServiceProvidersController < ApplicationController
-  before_filter :require_login, :require_service_provider, except: :create
+  before_filter :require_login, :require_service_provider, except: [:new, :create]
+  before_filter :require_no_login, only: [:new, :create]
+  before_filter :require_registration_enabled, only: [:new, :create]
+
+  def new
+    @service_provider = ServiceProvider.new
+    @service_provider.build_user
+  end
 
   def create
     @service_provider = ServiceProvider.new(service_provider_params)
-    if ENV["DISABLE_REGISTRATIONS"] == "TRUE"
-      render 'new'
-    elsif @service_provider.save
+    if @service_provider.save
       session[:user_id] = @service_provider.user.id
       redirect_to users_verify_path
     else
-      assign_all_role_types
-      render 'users/new'
+      render 'new'
     end
   end
 

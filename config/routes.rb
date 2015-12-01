@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  namespace :service_provider do
+    root 'events#index'
+    resources :events, except: [:index]
+  end
+
   root 'welcome#index'
 
   get 'dashboard' => 'welcome#dashboard'
@@ -20,17 +26,12 @@ Rails.application.routes.draw do
   get 'users/verify-email' => 'users#verify_email'
   post 'users/verify-email' => 'users#resend_confirmation_email'
   resource :password_reset, except: [:index, :show, :update]
-  resource :student, only: [:create, :edit, :update, :destroy]
-  resource :parent, only: [:create, :edit, :update, :destroy]
-  resource :service_provider, only: [:create, :edit, :update, :destroy]
+  resource :student
+  resource :parent
+  resource :service_provider
 
   resources :events do
     resources :attendances
-  end
-
-  namespace :service_provider do
-    root 'events#index'
-    resources :events, except: [:index]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

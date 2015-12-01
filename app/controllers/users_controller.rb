@@ -1,18 +1,14 @@
 class UsersController < ApplicationController
   before_filter :require_login, except: [:new, :verify_email]
+  before_filter :require_no_login, only: :new
+  before_filter :require_registration_enabled, only: :new
 
   def new
-    if ENV["DISABLE_REGISTRATIONS"] == "TRUE"
-      flash[:notice] = "We're sorry, but registration is temporarily disabled."
-      redirect_to login_path
-    else
-      assign_all_role_types
-    end
   end
 
   def verification
     @user = current_user
-    redirect_to dashboard_path if @user.verified?
+    redirect_to home_path if @user.verified?
     unless @user.email_verified
       flash[:errors] ||= []
       msg = "Your email address has not been verified. Please " \

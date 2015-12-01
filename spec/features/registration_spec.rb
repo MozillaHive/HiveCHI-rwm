@@ -12,7 +12,7 @@ RSpec.feature "Visitor signs up", js: true do
     end
 
     scenario "With invalid information" do
-      visit register_path
+      visit new_student_path
       click_button "Submit"
       expect(page).to have_content("error")
       expect(page).to have_button("Submit")
@@ -29,10 +29,8 @@ RSpec.feature "Visitor signs up", js: true do
     end
 
     scenario "with invalid information" do
-      visit register_path
-      click_link "Service Provider"
+      visit new_service_provider_path
       click_button "Submit"
-      click_link "Service Provider"
       expect(page).to have_content("error")
       expect(page).to have_button("Submit")
       expect(page).not_to have_button("Verify")
