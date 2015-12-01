@@ -3,6 +3,12 @@ require 'rails_helper'
 RSpec.describe StudentsController, type: :controller do
   let(:student) { create(:verified_student) }
 
+  describe "GET #new" do
+    specify { expect(response).to render_template("new") }
+    specify { expect(assigns(:student)).to be_a_new(Student) }
+    specify { expect(assigns(:student).user).to be_a_new(User) }
+  end
+
   describe "POST #create" do
     context "with valid attributes" do
       before { post :create, student: FactoryGirl.attributes_for(:student) }

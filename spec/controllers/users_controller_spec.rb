@@ -5,9 +5,6 @@ RSpec.describe UsersController do
   describe "GET #new" do
     before { get :new }
     specify { expect(response).to render_template("new") }
-    specify { expect(assigns(:student)).to be_a_new(Student) }
-    specify { expect(assigns(:parent)).to be_a_new(Parent) }
-    specify { expect(assigns(:service_provider)).to be_a_new(ServiceProvider) }
   end
 
   describe "GET #verification" do
@@ -21,7 +18,7 @@ RSpec.describe UsersController do
       specify { expect(response).to render_template("verification") }
     end
     context "with verified user" do
-      let(:user) { create(:user, phone_verified: true, email_verified: true) }
+      let(:user) { create(:verified_student).user }
       before { get :verification, nil, { user_id: user.id} }
       specify { expect(response).to redirect_to(dashboard_path) }
     end

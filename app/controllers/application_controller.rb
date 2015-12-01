@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_no_login
+    redirect_to home_path unless current_user.nil?
+  end
+
   def require_verified_user
     if current_user.nil?
       redirect_to login_path
@@ -32,6 +36,13 @@ class ApplicationController < ActionController::Base
   def require_student
     unless current_user && current_user.student?
       redirect_to root_path
+    end
+  end
+
+  def require_registration_enabled
+    if ENV["DISABLE_REGISTRATIONS"] == "TRUE"
+      flash[:notice] = "We're sorry, but registration is temporarily disabled."
+      redirect_to login_path
     end
   end
 
@@ -70,15 +81,6 @@ class ApplicationController < ActionController::Base
     when "Parent" then edit_parent_path
     when "ServiceProvider" then edit_service_provider_path
     end
-  end
-
-  def assign_all_role_types
-    @parent ||= Parent.new
-    @parent.build_user unless @parent.user
-    @student ||= Student.new
-    @student.build_user unless @student.user
-    @service_provider ||= ServiceProvider.new
-    @service_provider.build_user unless @service_provider.user
   end
 
   private

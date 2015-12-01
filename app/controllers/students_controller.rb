@@ -1,16 +1,19 @@
 class StudentsController < ApplicationController
-  before_filter :require_login, :require_student, except: :create
+  before_filter :require_login, :require_student, except: [:new, :create]
+  before_filter :require_no_login, only: [:new, :create]
+
+  def new
+    @student = Student.new
+    @student.build_user
+  end
 
   def create
     @student = Student.new(student_params)
-    if ENV["DISABLE_REGISTRATIONS"] == "TRUE"
-      render 'new'
-    elsif @student.save
+    if @student.save
       session[:user_id] = @student.user.id
       redirect_to users_verify_path
     else
-      assign_all_role_types
-      render 'users/new'
+      render 'new'
     end
   end
 

@@ -3,6 +3,12 @@ require 'rails_helper'
 RSpec.describe ServiceProvidersController, type: :controller do
   let(:service_provider) { create(:verified_service_provider) }
 
+  describe "GET #new" do
+    specify { expect(response).to render_template("new") }
+    specify { expect(assigns(:service_provider)).to be_a_new(ServiceProvider) }
+    specify { expect(assigns(:service_provider).user).to be_a_new(User) }
+  end
+
   describe "POST #create" do
     context "with valid attributes" do
       before { post :create, service_provider: FactoryGirl.attributes_for(:service_provider) }
