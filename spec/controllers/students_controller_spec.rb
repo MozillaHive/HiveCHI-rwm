@@ -4,6 +4,7 @@ RSpec.describe StudentsController, type: :controller do
   let(:student) { create(:verified_student) }
 
   describe "GET #new" do
+    before { get :new }
     specify { expect(response).to render_template("new") }
     specify { expect(assigns(:student)).to be_a_new(Student) }
     specify { expect(assigns(:student).user).to be_a_new(User) }

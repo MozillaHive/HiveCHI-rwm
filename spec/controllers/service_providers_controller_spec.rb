@@ -4,6 +4,7 @@ RSpec.describe ServiceProvidersController, type: :controller do
   let(:service_provider) { create(:verified_service_provider) }
 
   describe "GET #new" do
+    before { get :new }
     specify { expect(response).to render_template("new") }
     specify { expect(assigns(:service_provider)).to be_a_new(ServiceProvider) }
     specify { expect(assigns(:service_provider).user).to be_a_new(User) }
