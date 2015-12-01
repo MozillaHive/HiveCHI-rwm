@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe UsersController do
+  before(:all) do
+    if ENV['PHONE_VERIFICATION'] == 'DISABLED' || ENV['EMAIL_VERIFICATION'] == 'DISABLED'
+      warn "WARNING: UsersController specs will not run properly if email or " \
+           "phone verification is disabled."
+    end
+  end
 
   describe "GET #new" do
     before { get :new }
