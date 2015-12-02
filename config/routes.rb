@@ -12,10 +12,6 @@ Rails.application.routes.draw do
 
   get 'redirect' => 'session#redirect'
 
-  get 'mynudges' => 'nudges#show'
-  get 'events/:id/nudge' => 'nudges#new'
-  post 'events/:id/nudge' => 'nudges#create'
-
   get 'login' => 'session#new'
   post 'login' => 'session#create'
   delete 'logout' => 'session#destroy'
@@ -32,6 +28,7 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :attendances
+    resources :nudges, shallow: true
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

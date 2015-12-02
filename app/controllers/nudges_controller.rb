@@ -24,6 +24,16 @@ class NudgesController < ApplicationController
 		end
 	end
 
+	def destroy
+		@nudge = Nudge.find(params[:id])
+		if params[:accept]
+			@nudge.accept!
+			redirect_to new_event_attendance_path(@nudge.event)
+		else
+			@nudge.decline!
+		end
+	end
+
 	private
 
 	def nudges_enabled_globally?
