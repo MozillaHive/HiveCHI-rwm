@@ -11,4 +11,7 @@ class Student < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :school_id, presence: true
 
+  def send_text(body)
+    user.send_text(body)
+  end
 end

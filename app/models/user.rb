@@ -26,6 +26,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def send_text(body)
+    account_sid = Rails.application.secrets.twilio_sid
+    auth_token = Rails.application.secrets.twilio_auth_token
+    client = Twilio::REST::Client.new(account_sid, auth_token)
+    client.account.messages.create(
+      from: Rails.application.secrets.twilio_originating_number,
+      to: phone, body: body
+    )
+  end
+
   def student?
     role_type == "Student"
   end

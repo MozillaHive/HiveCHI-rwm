@@ -7,16 +7,8 @@ class Nudge < ActiveRecord::Base
 	after_create :send_text
 
 	def send_text
-		# If we add a preference setting to disable SMS, check for that here
-		account_sid = Rails.application.secrets.twilio_sid
-		auth_token = Rails.application.secrets.twilio_auth_token
-		client = Twilio::REST::Client.new account_sid, auth_token
-		from = "+18443117433"
-		client.account.messages.create(
-				:from => from,
-				:to => self.nudgee.user.phone,
-				:body => "Hey #{self.nudgee.username}, #{self.nudger.username} wants to go to #{self.event.name} if you'll go too! Reply at http://#{ENV['HOSTNAME']}/events/#{self.event.id}"
-			)
+		body = "Hey #{self.nudgee.username}, #{self.nudger.username} wants to go to #{self.event.name} if you'll go too! Reply at http://#{ENV['HOSTNAME']}/events/#{self.event.id}"
+		nudgee.send_text(body)
 	end
 
 	private
