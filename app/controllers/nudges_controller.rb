@@ -2,6 +2,9 @@ class NudgesController < ApplicationController
 	before_filter :require_verified_user, :require_student
 	before_filter :nudges_enabled_globally?, only: [:new, :create]
 
+	def index
+	end
+
 	def new
 		@nudgeable_students = Student.where(nudges_enabled: true).where.not(id: current_user.id)
 		@event = Event.find(params[:id])
@@ -19,11 +22,6 @@ class NudgesController < ApplicationController
 		else
 			redirect_to "/events/#{event.id}/nudge"
 		end
-	end
-
-	def show
-		@nudges_in = current_user.recieved_nudges
-		@nudges_out = current_user.sent_nudges
 	end
 
 	private
