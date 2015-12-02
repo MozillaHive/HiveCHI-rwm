@@ -11,6 +11,12 @@ class Student < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :school_id, presence: true
 
+  def self.nudgeable(nudger, event)
+    where(nudges_enabled: true)
+      .where.not(id: nudger.id)
+      .where('id NOT IN (SELECT student_id FROM attendances WHERE commitment_status = \'Yes\' AND event_id = ?)', event.id)
+  end
+
   def send_text(body)
     user.send_text(body)
   end

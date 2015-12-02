@@ -6,8 +6,8 @@ class NudgesController < ApplicationController
 	end
 
 	def new
-		@nudgeable_students = Student.where(nudges_enabled: true).where.not(id: current_user.id)
 		@event = Event.find(params[:id])
+		@nudgeable_students = Student.nudgeable(current_student, @event)
 	end
 
 	def create
