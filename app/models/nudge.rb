@@ -6,11 +6,6 @@ class Nudge < ActiveRecord::Base
 	validate :allowed_to_nudge?, :sender_and_recipient_differ?
 	after_create :send_text
 
-	def send_text
-		body = "Hey #{nudgee.username}, #{nudger.username} wants to go to #{event.name} if you'll go too! Reply at http://#{ENV['HOSTNAME']}/events/#{event.id}"
-		nudgee.send_text(body)
-	end
-
 	def accept!
 		body = "Hey #{nudger.username}, #{nudgee.username} accepted your nudge! They're going to #{event.name}."
 		nudger.send_text(body)
@@ -22,6 +17,11 @@ class Nudge < ActiveRecord::Base
 	end
 
 	private
+
+	def send_text
+		body = "Hey #{nudgee.username}, #{nudger.username} wants to go to #{event.name} if you'll go too! Reply at http://#{ENV['HOSTNAME']}/events/#{event.id}"
+		nudgee.send_text(body)
+	end
 
 	def allowed_to_nudge?
 		if nudgee && !nudgee.nudges_enabled
