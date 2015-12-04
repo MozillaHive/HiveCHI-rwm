@@ -3,11 +3,11 @@ class Nudge < ActiveRecord::Base
 	belongs_to :nudgee, class_name: "Student", foreign_key: "nudgee_id"
 	belongs_to :event
 	validates_presence_of :nudger, :nudgee, :event
-	validate :allowed_to_nudge?
+	validate :allowed_to_nudge?, :sender_and_recipient_differ?
 	after_create :send_text
 
 	def send_text
-		body = "Hey #{self.nudgee.username}, #{self.nudger.username} wants to go to #{self.event.name} if you'll go too! Reply at http://#{ENV['HOSTNAME']}/events/#{self.event.id}"
+		body = "Hey #{nudgee.username}, #{nudger.username} wants to go to #{event.name} if you'll go too! Reply at http://#{ENV['HOSTNAME']}/events/#{event.id}"
 		nudgee.send_text(body)
 	end
 
@@ -24,8 +24,14 @@ class Nudge < ActiveRecord::Base
 	private
 
 	def allowed_to_nudge?
-		if self.nudgee && !self.nudgee.nudges_enabled
+		if nudgee && !nudgee.nudges_enabled
 			errors.add(:nudgee, "has chosen not to receive nudges")
+		end
+	end
+
+	def sender_and_recipient_differ?
+		if nudger == nudgee
+			errors.add(:nudgee, "cannot be same as sender")
 		end
 	end
 
