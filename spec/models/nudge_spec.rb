@@ -54,5 +54,5 @@ RSpec.describe Nudge, type: :model do
     it "destroys the nudge" do
       expect(Nudge.count).to eq(0)
     end
-  end 
+  end
 end
