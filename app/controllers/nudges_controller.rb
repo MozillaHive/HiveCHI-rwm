@@ -29,7 +29,7 @@ class NudgesController < ApplicationController
 		@event = @nudge.event
 		if params[:accept]
 			@nudge.accept!
-			redirect_to new_event_attendance_path(@nudge.event)
+			redirect_to new_event_attendance_path(@event)
 		else
 			@nudge.decline!
 			redirect_to @event

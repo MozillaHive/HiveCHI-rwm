@@ -5,8 +5,6 @@ RSpec.describe NudgesController do
   let(:nudgee) { create(:verified_student) }
   let!(:event) { create(:event) }
 
-  before { puts event.id }
-
   describe "GET #new" do
     context "when not logged in" do
       before { get :new, event_id: event.id }

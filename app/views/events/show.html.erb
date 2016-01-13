@@ -21,7 +21,10 @@
     <% if @in_nudge %>
       <div class="notice">
         <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
-        <button>Accept Nudge (Inactive)</button>
+        <%= form_tag(@in_nudge, method: :delete, "data-ajax" => "false") do %>
+          <%= hidden_field_tag(:accept, true) %>
+          <%= submit_tag("Accept") %>
+        <% end %>
         <button>Decline Nudge (Inactive)</button>
       </div>
     <% elsif @out_nudge %>
@@ -84,7 +87,6 @@
     </div>
     <%end%>
     <%if @attend && @attend.commitment_status == "Yes" %>
-
       <%= link_to "Show Directions", event_attendance_path(@event, @attend), class: "align-left", data: { ajax: false, role: "button" } %>
     <%end%>
     <br>

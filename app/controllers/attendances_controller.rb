@@ -4,9 +4,6 @@ class AttendancesController < ApplicationController
   def new
     @event = Event.find(params[:event_id])
     @student = current_student
-    # We currently don't need this if/then because events#show renders a
-    # different button depending on commitment. However, we might want to change
-    # that later.
     if (@attendance = Attendance.find_by(student: @student, event: @event))
       redirect_to edit_event_attendance_path(@event, @attendance)
     else
