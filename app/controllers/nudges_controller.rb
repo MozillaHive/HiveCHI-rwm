@@ -27,9 +27,13 @@ class NudgesController < ApplicationController
 	def destroy
 		@nudge = Nudge.find(params[:id])
 		@event = @nudge.event
+		attendance = Attendance.find_by(
+			event: @event, student: current_student, commitment_status: "Yes"
+		)
 		if params[:accept]
 			@nudge.accept!
-			redirect_to new_event_attendance_path(@event)
+			path = attendance ? event_path(@event) : new_event_attendance_path(@event)
+			redirect_to path
 		else
 			@nudge.decline!
 			redirect_to @event

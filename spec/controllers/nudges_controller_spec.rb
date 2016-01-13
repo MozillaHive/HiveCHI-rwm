@@ -47,7 +47,16 @@ RSpec.describe NudgesController do
       create(:nudge, nudger_id: nudger.id, nudgee_id: nudgee.id, event_id: event.id)
     end
 
-    context "when accepting" do
+    context "when accepting and attendance already exists" do
+      before do
+        create(:attendance, student_id: nudgee.id, event_id: event.id, commitment_status: "Yes")
+        delete :destroy, { id: nudge.id, accept: "true" }, user_id: nudgee.user.id
+      end
+      specify { expect(response).to redirect_to(event_path(event)) }
+      specify { expect(Nudge.count).to eq(0) }
+    end
+
+    context "when accepting and attendance does not exist" do
       before do
         delete :destroy, { id: nudge.id, accept: "true" }, user_id: nudgee.user.id
       end
