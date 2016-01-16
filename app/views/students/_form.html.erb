@@ -27,8 +27,6 @@
   <%= f.text_field :username %>
   <%= f.label "School" %>
   <%= collection_select(:student, :school_id, School.all, :id, :name) %>
-  <%= f.label :home_address %>
-  <%= f.text_field :home_address %>
   <%= f.hidden_field :nudges_enabled, value: false %>
   <%= f.check_box :nudges_enabled, { checked: @student.nudges_enabled != false }, true, false %>
   <%= f.label :nudges_enabled, "Allow other users to send me text message notifications" %>
