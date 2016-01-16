@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_login, except: [:new, :verify_email]
+  before_filter :require_login, except: [:new, :verify_email, :tos]
   before_filter :require_no_login, only: :new
   before_filter :require_registration_enabled, only: :new
 
@@ -57,12 +57,7 @@ class UsersController < ApplicationController
     redirect_to method: :verify
   end
 
-  private
-  def user_params
-     params.require(:user).permit(
-      :username, :email, :password, :password_confirmation, :phone, :school_id,
-      :parent_password, :parent_password_confirmation, :nudges_enabled, :time_zone
-     )
+  def tos
   end
 
 end
