@@ -3,6 +3,10 @@ class Nudge < ActiveRecord::Base
 	belongs_to :nudgee, class_name: "Student", foreign_key: "nudgee_id"
 	belongs_to :event
 	validates_presence_of :nudger, :nudgee, :event
+	validates :nudger_id, presence: true,
+		uniqueness: { scope: [:nudgee_id, :event_id], message: "has already nudged this person to attend this event" }
+	validates :nudgee_id, presence: true
+	validates :event_id, presence: true
 	validate :allowed_to_nudge?, :sender_and_recipient_differ?
 	after_create :send_text
 

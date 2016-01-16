@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Nudge, type: :model do
   context "when validated" do
     let(:student) { create(:verified_student) }
+    let(:student2) { create(:verified_student) }
+    let(:event) { create(:event) }
     let(:student_with_nudges_disabled) { create(:verified_student, nudges_enabled: false) }
 
     it "is valid with valid information" do
@@ -27,6 +29,11 @@ RSpec.describe Nudge, type: :model do
 
     it "is invalid when nudger and nudgee are the same" do
       expect(build(:nudge, nudger: student, nudgee: student)).not_to be_valid
+    end
+
+    it "is invalid when a nudge already exists with same nudger, nudgee, and event" do
+      create(:nudge, nudger: student, nudgee: student2, event: event)
+      expect(build(:nudge, nudger: student, nudgee: student2, event: event)).not_to be_valid
     end
   end
 
