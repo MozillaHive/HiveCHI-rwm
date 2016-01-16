@@ -8,7 +8,7 @@
   -webkit-overflow-scrolling: touch;
   }
 
-.notice {
+.message {
   width: 100%;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -17,10 +17,19 @@
   font-size: 20px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
-  background-color: yellowgreen;
   text-align: center;
   margin-bottom: 10px;
   text-shadow: none;
+}
+
+.notice {
+  @extend .message;
+  background-color: yellowgreen;
+}
+
+.warning {
+  @extend .message;
+  background-color: yellow;
 }
 
 #rwmh {

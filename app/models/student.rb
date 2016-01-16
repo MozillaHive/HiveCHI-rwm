@@ -11,6 +11,8 @@ class Student < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :school_id, presence: true
 
+  before_validation :set_boolean_defaults
+
   def self.nudgeable(nudger, event)
     where(nudges_enabled: true)
       .where.not(id: nudger.id)
@@ -19,5 +21,12 @@ class Student < ActiveRecord::Base
 
   def send_text(body)
     user.send_text(body)
+  end
+
+  private
+
+  def set_boolean_defaults
+    self.can_nudge = can_nudge ? true : false
+    true
   end
 end

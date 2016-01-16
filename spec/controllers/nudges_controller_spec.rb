@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe NudgesController do
   let(:nudger) { create(:verified_student) }
   let(:nudgee) { create(:verified_student) }
+  let(:unauthorized_student) { create(:verified_student, can_nudge: false) }
   let!(:event) { create(:event) }
 
   describe "GET #new" do
@@ -11,12 +12,18 @@ RSpec.describe NudgesController do
       specify { expect(response).to redirect_to(login_path) }
     end
 
-    context "when logged in" do
+    context "when logged in and can nudge" do
       before { get :new, { event_id: event.id }, user_id: nudger.user.id }
       specify { expect(response).to render_template('new') }
       specify { expect(assigns(:nudge)).to be_a_new(Nudge) }
       specify { expect(assigns(:nudge).nudger).to eq(nudger) }
       specify { expect(assigns(:nudge).event).to eq(event) }
+    end
+
+    context "when logged in and not authorized to send nudges" do
+      before { get :new, { event_id: event.id }, user_id: unauthorized_student.user.id }
+      specify { expect(response).to redirect_to(event_path(event)) }
+      specify { expect(assigns(:nudge)).to be_nil }
     end
   end
 
@@ -39,6 +46,16 @@ RSpec.describe NudgesController do
       end
       specify { expect(response).to redirect_to(dashboard_path) }
       specify { expect(Nudge.count).to eq(1) }
+    end
+
+    context "when student is not authorized to send nudges" do
+      before do
+        post :create,
+        { event_id: event.id, nudge: { nudgee_id: nudgee.id, event_id: event.id } },
+        user_id: unauthorized_student.user.id
+      end
+      specify { expect(response).to redirect_to(event_path(event)) }
+      specify { expect(Nudge.count).to eq(0) }
     end
   end
 
