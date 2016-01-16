@@ -1,5 +1,6 @@
 class NudgesController < ApplicationController
 	before_filter :require_verified_user, :require_student
+	before_filter :require_nudger_approval, only: [:new, :create]
 	before_filter :nudges_enabled_globally?, only: [:new, :create]
 
 	def index

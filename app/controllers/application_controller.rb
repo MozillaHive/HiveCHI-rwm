@@ -46,6 +46,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_nudger_approval
+    unless current_student.can_nudge
+      flash[:warning] = "You cannot nudge other users until you have been approved by an administrator."
+      redirect_to Event.find(params[:event_id])
+    end
+  end
+
   def current_user
     @current_user ||= User.find_by_id(session[:user_id])
   end

@@ -20,6 +20,7 @@ FactoryGirl.define do
 
     factory :verified_student do
       user_attributes { FactoryGirl.attributes_for(:verified_user) }
+      can_nudge true
     end
   end
 
