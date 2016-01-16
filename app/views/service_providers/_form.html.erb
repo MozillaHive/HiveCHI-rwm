@@ -22,6 +22,10 @@
     <script>
     $('#user_time_zone').val(getTimeZone())
     </script>
+    <% if @service_provider.new_record? %>
+      <%= u.check_box :tos_accepted %>
+      <%= u.label :tos_accepted, "I have read and accept the ".html_safe + link_to('Terms of Service and Privacy Policy', tos_path, target: "_blank") %>
+    <% end %>
   <% end %>
   <%= f.submit "Submit" %>
 <% end %>

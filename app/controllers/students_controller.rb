@@ -49,7 +49,7 @@ class StudentsController < ApplicationController
     params.require(:student).permit(
       :username, :school_id, :home_address, :nudges_enabled,
       user_attributes: [:id, :email, :phone, :password, :password_confirmation,
-      :time_zone]
+      :time_zone, :tos_accepted]
     )
   end
 

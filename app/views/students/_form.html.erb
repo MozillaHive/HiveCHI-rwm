@@ -32,5 +32,11 @@
   <%= f.hidden_field :nudges_enabled, value: false %>
   <%= f.check_box :nudges_enabled, { checked: @student.nudges_enabled != false }, true, false %>
   <%= f.label :nudges_enabled, "Allow other users to send me text message notifications" %>
+  <% if @student.new_record? %>
+    <%= f.fields_for :user do |u| %>
+      <%= u.check_box :tos_accepted %>
+      <%= u.label :tos_accepted, "I have read and accept the ".html_safe + link_to('Terms of Service and Privacy Policy', tos_path, target: "_blank") %>
+    <% end %>
+  <% end %>
   <%= f.submit "Submit" %>
 <% end %>

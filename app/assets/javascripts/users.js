@@ -13,3 +13,10 @@ function getTimeZone(){
   	tz = /\((\w{3})\)/.exec(s)[1]
   	return map[tz]
 }
+
+$( document ).on("pageinit", function() {
+	$('.ui-btn a').click(function(event) {
+		event.stopPropagation();
+    //$.mobile.changePage($(this).attr('href'));
+	});
+});

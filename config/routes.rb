@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'session#destroy'
 
   get 'register' => 'users#new'
+  get 'tos' => 'users#tos'
   get 'users/verify' => 'users#verification'
   post 'users/verify' => 'users#verify'
   get 'users/verify-email' => 'users#verify_email'
