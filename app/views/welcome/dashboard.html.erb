@@ -78,7 +78,7 @@
       <ul data-role="listview">
         <li><%= link_to "Today", events_path(start_time: Date.today.in_time_zone(get_time_zone)), data: {ajax: "false"} %></li>
         <li><%= link_to "Tomorrow", events_path(start_time: Date.tomorrow.in_time_zone(get_time_zone)), data: {ajax: "false"} %></li>
-        <li><%= link_to "This Week", events_path(start_time: Date.today.in_time_zone(get_time_zone), end_time: Date.today.in_time_zone(get_time_zone) + 6.days), data: {ajax: "false"} %></li>
+        <li><%= link_to "Next Two Weeks", events_path(start_time: Date.today.in_time_zone(get_time_zone), end_time: Date.today.in_time_zone(get_time_zone) + 13.days), data: {ajax: "false"} %></li>
       </ul>
     </div>
 
