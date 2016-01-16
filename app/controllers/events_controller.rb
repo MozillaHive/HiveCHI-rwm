@@ -19,9 +19,9 @@ class EventsController < ApplicationController
       session[:redirect_url] = "/events/#{params[:id]}"
     end
     @event = Event.find(params[:id])
-    @attend = Attendance.find_by(event: @event, student_id: session[:user_id])
-    @out_nudge = Nudge.find_by(event: @event, nudger_id: session[:user_id])
-    @in_nudge = Nudge.find_by(event: @event, nudgee_id: session[:user_id])
+    @attend = Attendance.find_by(event: @event, student: current_student)
+    @out_nudge = Nudge.find_by(event: @event, nudger: current_student)
+    @in_nudge = Nudge.find_by(event: @event, nudgee: current_student)
     flash[:attendance] = @attend.id if @attend
   end
 

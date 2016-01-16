@@ -1,0 +1,34 @@
+<div data-role="page">
+  <div data-role="header" data-theme="b">
+    <h1>Your Nudges</h1>
+  </div><!-- /header -->
+  <div data-role="content">
+    <div id = "incoming_nudges">
+      <h2>Incoming Nudges</h2>
+      <% if current_student.received_nudges.empty? %>
+        <p>You have no incoming nudges<p>
+      <% else %>
+        <% current_student.received_nudges.each do |n| %>
+          <div class = "nudge">
+            <%="#{n.nudger.username} wants to go to #{n.event.name} with you"%>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div id = "outgoing_nudges">
+      <h2>Outgoing Nudges</h2>
+      <% if current_student.sent_nudges.empty? %>
+        <p>You have no outgoing nudges</p>
+      <% else %>
+        <% current_student.sent_nudges.each do |n| %>
+          <div class = "nudge">
+            <%="You want to go to #{n.event.name} with #{n.nudgee.username}"%>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div data-role="footer" id="footer" data-position="fixed">
+    <%= render "shared/navbar" %>
+  </div>
+</div>

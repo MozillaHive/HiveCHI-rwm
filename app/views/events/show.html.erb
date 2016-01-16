@@ -18,15 +18,19 @@
       <img src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Events/event<%=@rand_image_number%>.jpg" class="default_image"/>
     </div>
     <% if current_user and current_user.verified? %>
-    <% if @in_nudge %>
+    <% Nudge.where(event_id: @event.id, nudgee_id: current_student.id).each do |nudge| %>
       <div class="notice">
-        <%= "You have been nudged by #{@in_nudge.nudger.username}" %>
-        <button>Accept Nudge (Inactive)</button>
+        <%= "You have been nudged by #{nudge.nudger.username}" %>
+        <%= form_tag(nudge, method: :delete, "data-ajax" => "false") do %>
+          <%= hidden_field_tag(:accept, true) %>
+          <%= submit_tag("Accept") %>
+        <% end %>
         <button>Decline Nudge (Inactive)</button>
       </div>
-    <% elsif @out_nudge %>
+    <% end %>
+    <% Nudge.where(event_id: @event.id, nudger_id: current_student.id).each do |nudge| %>
       <div class="notice">
-        <%= "You have nudged #{@out_nudge.nudgee.username} and response is pending" %>
+        <%= "You have nudged #{@nudge.nudgee.username} and response is pending" %>
       </div>
     <% end %>
     <div class="align-left" id="buttons">
@@ -84,7 +88,6 @@
     </div>
     <%end%>
     <%if @attend && @attend.commitment_status == "Yes" %>
-
       <%= link_to "Show Directions", event_attendance_path(@event, @attend), class: "align-left", data: { ajax: false, role: "button" } %>
     <%end%>
     <br>

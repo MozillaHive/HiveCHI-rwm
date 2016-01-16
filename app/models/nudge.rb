@@ -3,27 +3,39 @@ class Nudge < ActiveRecord::Base
 	belongs_to :nudgee, class_name: "Student", foreign_key: "nudgee_id"
 	belongs_to :event
 	validates_presence_of :nudger, :nudgee, :event
-	validate :allowed_to_nudge?
+	validates :nudger_id, presence: true,
+		uniqueness: { scope: [:nudgee_id, :event_id], message: "has already nudged this person to attend this event" }
+	validates :nudgee_id, presence: true
+	validates :event_id, presence: true
+	validate :allowed_to_nudge?, :sender_and_recipient_differ?
 	after_create :send_text
 
-	def send_text
-		# If we add a preference setting to disable SMS, check for that here
-		account_sid = Rails.application.secrets.twilio_sid
-		auth_token = Rails.application.secrets.twilio_auth_token
-		client = Twilio::REST::Client.new account_sid, auth_token
-		from = "+18443117433"
-		client.account.messages.create(
-				:from => from,
-				:to => self.nudgee.user.phone,
-				:body => "Hey #{self.nudgee.username}, #{self.nudger.username} wants to go to #{self.event.name} if you'll go too! Reply at http://#{ENV['HOSTNAME']}/events/#{self.event.id}"
-			)
+	def accept!
+		body = "Hey #{nudger.username}, #{nudgee.username} accepted your nudge! They're going to #{event.name}."
+		nudger.send_text(body)
+		destroy
+	end
+
+	def decline!
+		destroy
 	end
 
 	private
 
+	def send_text
+		body = "Hey #{nudgee.username}, #{nudger.username} wants to go to #{event.name} if you'll go too! Reply at http://#{ENV['HOSTNAME']}/events/#{event.id}"
+		nudgee.send_text(body)
+	end
+
 	def allowed_to_nudge?
-		if self.nudgee && !self.nudgee.nudges_enabled
+		if nudgee && !nudgee.nudges_enabled
 			errors.add(:nudgee, "has chosen not to receive nudges")
+		end
+	end
+
+	def sender_and_recipient_differ?
+		if nudger == nudgee
+			errors.add(:nudgee, "cannot be same as sender")
 		end
 	end
 
