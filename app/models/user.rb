@@ -108,10 +108,10 @@ class User < ActiveRecord::Base
 
   def get_time_zone
     if self.time_zone
-      zone =  ActiveSupport::TimeZone.new(self.time_zone)
+      ActiveSupport::TimeZone.new(self.time_zone)
+    else
+      ActiveSupport::TimeZone.new("Central Time (US & Canada)")
     end
-    zone ||= ActiveSupport::TimeZone.new("Central Time (US & Canada)")
-    return
   end
 
   private

@@ -15,6 +15,7 @@ class ServiceProvider::EventsController < ApplicationController
   end
 
   def create
+    params[:event].parse_time_select!(:start_date_and_time)
     @event = current_service_provider.organization.events.build(event_params)
     if @event.save
       redirect_to service_provider_event_path(@event)
@@ -28,6 +29,7 @@ class ServiceProvider::EventsController < ApplicationController
   end
 
   def update
+    params[:event].parse_time_select!(:start_date_and_time)
     @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to service_provider_event_path(@event)
