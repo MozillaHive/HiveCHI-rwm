@@ -51,6 +51,7 @@ RSpec.feature "User verifies email and phone" do
 
     scenario "User verifies phone only" do
       log_in_as_student(student)
+      visit "/users/verify"
       fill_in "phone_token", with: student.user.phone_token
       click_button "Verify"
       expect(page).to have_content("Your email address has not been verified")

@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_filter :require_registration_enabled, only: :new
 
   def new
+    @user = User.new
   end
 
   def verification
@@ -58,6 +59,15 @@ class UsersController < ApplicationController
   end
 
   def tos
+  end
+
+  private
+
+  def user_params
+     params.require(:user).permit(
+      :username, :email, :password, :password_confirmation, :phone, :school_id,
+      :parent_password, :parent_password_confirmation, :nudges_enabled, :time_zone
+     )
   end
 
 end

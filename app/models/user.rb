@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
             format: { with: @@email_format }, service_provider_domain: true
   validates :password, length: { minimum: 10 }, allow_blank: true
   validates :phone, presence: true, length: { is: 12, message: "must be 10 digits" }
+  validates :tos_accepted, acceptance: { message: "must accept Terms of Service"}, on: :create
   validate :real_phone_number?, :editable?
   before_save :require_phone_verification, :require_email_verification
 

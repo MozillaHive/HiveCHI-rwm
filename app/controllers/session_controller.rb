@@ -1,6 +1,7 @@
 class SessionController < ApplicationController
+  before_filter :require_no_login, only: :new
+
   def new
-    @user = User.new
   end
 
   def create

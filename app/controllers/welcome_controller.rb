@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
-	before_filter :require_verified_user, :require_student, except: :index
+	before_filter :require_login, except: :index
+	before_filter :require_student, except: :index
 
   def index
 		redirect_to current_user ? home_path : login_path

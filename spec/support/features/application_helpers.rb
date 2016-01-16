@@ -11,7 +11,7 @@ module Features
     end
 
     def log_in_as_service_provider(service_provider = nil)
-      service_provider = create(:verified_service_provider) unless service_provider
+      service_provider ||= create(:verified_service_provider)
       visit login_path
       fill_in "Username", with: service_provider.user.email
       fill_in 'Password', with: service_provider.user.password
@@ -37,6 +37,7 @@ module Features
       select student.school.name, from: "student_school_id"
       fill_in "Password", with: student.user.password
       fill_in "Password confirmation", with: student.user.password_confirmation
+      find(:css, "#student_user_attributes_tos_accepted").trigger("click")
       click_button "Submit"
     end
 
@@ -47,6 +48,7 @@ module Features
       fill_in "Phone", with: service_provider.user.phone
       fill_in "Password", with: service_provider.user.password
       fill_in "Password confirmation", with: service_provider.user.password_confirmation
+      find(:css, "#service_provider_user_attributes_tos_accepted").trigger("click")
       click_button "Submit"
     end
   end

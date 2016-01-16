@@ -38,10 +38,14 @@ RSpec.feature "Service provider interacts with an event", js: true do
   context "When editing an event" do
     let!(:service_provider) { create(:verified_service_provider) }
     let!(:event) { create(:event, organization_id: service_provider.organization_id) }
-    before { log_in_as_service_provider(service_provider) }
+    before do
+      reset_session!
+      log_in_as_service_provider(service_provider)
+    end
 
     scenario "with invalid information" do
       visit edit_service_provider_event_path(event)
+      save_screenshot
       fill_in "Name", with: ""
       click_button "Submit"
       expect(page).to have_content("error")
