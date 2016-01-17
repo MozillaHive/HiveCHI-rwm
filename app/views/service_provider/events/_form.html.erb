@@ -34,10 +34,10 @@
     <%= f.label :duration, "Duration (hours)" %>
     <%= f.select :duration, (0.5..10).step(0.5).to_a %>
   </div>
-  <div data-role="fieldcontain">
+  <!-- <div data-role="fieldcontain">
     <%= f.label :event_type, "Type" %>
     <%= f.select :event_type, Event::TYPES %>
-  </div>
+  </div> -->
   <div data-role="fieldcontain">
     <%= f.label :description %>
     <%= f.text_area :description %>

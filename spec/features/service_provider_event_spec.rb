@@ -23,7 +23,7 @@ RSpec.feature "Service provider interacts with an event", js: true do
       select event.start_date_and_time.day, from: "event_start_date_and_time_3i"
       select event.start_date_and_time.strftime('%l:%M %p'), from: "event_start_date_and_time_5i"
       select event.duration, from: "event_duration"
-      select event.event_type, from: "event_event_type"
+      #select event.event_type, from: "event_event_type"
       fill_in "Description", with: event.description
       click_button "Submit"
       expect(page).not_to have_content("error")
