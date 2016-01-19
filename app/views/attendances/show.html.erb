@@ -29,13 +29,13 @@
         "<span id = 'bicycling'>Bicycling</span></label>"
    <% end %>
      leaveaddr = "<%=@attendance.event.address%>" + " Chicago, IL"
-     arriveaddr = "<%=@attendance.user.school.address%>" + " Chicago, IL"
+     arriveaddr = "<%=@attendance.student.school.address%>" + " Chicago, IL"
    <% if @attendance.departure_type == "Early" %>
-      arriveTime =  new Date(<%=(@attendance.event.start_date_and_time.to_i - 15 * 60) * 1000%>)
+      arriveTime =  new Date(<%=(@attendance.event.start_date_and_time.in_time_zone(get_time_zone).to_i - 15 * 60) * 1000%>)
    <% elsif @attendance.departure_type == "On Time" %>
-        arriveTime =  new Date(<%=@attendance.event.start_date_and_time.to_i * 1000%>)
+        arriveTime =  new Date(<%=@attendance.event.start_date_and_time.in_time_zone(get_time_zone).to_i * 1000%>)
    <% else %>
-        arriveTime =  new Date(<%=(@attendance.event.start_date_and_time.to_i + 15*60) * 1000 %>)
+        arriveTime =  new Date(<%=(@attendance.event.start_date_and_time.in_time_zone(get_time_zone).to_i + 15*60) * 1000 %>)
    <% end %>
    initialize()
  },1)
