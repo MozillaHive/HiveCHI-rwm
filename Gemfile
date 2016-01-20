@@ -19,6 +19,8 @@ gem 'simplecov'
 gem 'twilio-ruby'
 gem 'combined_time_select', '~> 1.0.1'
 gem 'rails_admin'
+gem 'paperclip'
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'web-console', '~> 2.0'
