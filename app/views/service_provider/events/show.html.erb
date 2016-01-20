@@ -11,7 +11,8 @@
         <li><b>Date and time:</b> <%= @event.start_date_and_time.in_time_zone(get_time_zone).strftime("%A, %B %d, %Y %l:%M %p") %></li>
         <li><b>Duration:</b> <%= @event.duration %> hours</li>
         <li><b>Location:</b> <%= @event.address %></li>
-        <li><b>Type:</b> <%= @event.event_type %></li>
+        <li><b>Minimum age:</b> <%= @event.minimum_age %></li>
+        <!-- <li><b>Type:</b> <%= @event.event_type %></li> -->
         <li>
           <p id="event-description">
             <%= @event.description %>

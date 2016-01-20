@@ -1,10 +1,13 @@
 class Event < ActiveRecord::Base
   validates :name, presence: true
   validates :address, presence: true
+  validates :minimum_age, presence: true, numericality: { greater_than: 0 }
 
   belongs_to  :organization
   has_many    :attendances
   has_many    :attendees , through: :attendances, source: :student
+
+  before_validation { self.minimum_age = 13 if self.minimum_age.blank? }
 
   TYPES = %w(Football Camp Recreational Basketball Tennis Aquatic Gymnastics
              Fitness Other)

@@ -39,6 +39,10 @@
     <%= f.select :event_type, Event::TYPES %>
   </div> -->
   <div data-role="fieldcontain">
+    <%= f.label :minimum_age %>
+    <%= f.select :minimum_age, (13..18) %>
+  </div>
+  <div data-role="fieldcontain">
     <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
