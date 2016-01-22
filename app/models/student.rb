@@ -23,6 +23,10 @@ class Student < ActiveRecord::Base
     user.send_text(body)
   end
 
+  def verified?
+    user.verified?
+  end
+
   private
 
   def set_boolean_defaults
