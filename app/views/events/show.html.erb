@@ -2,7 +2,7 @@
 <script>
   arriveaddr = "<%=@event.address + ' Chicago, IL' %>"
   user = false
-  <% if current_user and current_user.verified? %>
+  <% if current_student && current_user.verified? && current_student.school.address %>
     leaveaddr = "<%=current_student.school.address + ' Chicago, IL' %>"
     arrivetime = new Date(<%=@event.start_date_and_time.to_i * 1000 %>)
     user = true
@@ -22,7 +22,7 @@
         <%= flash[:warning] %>
       </div>
     <% end %>
-    <% if current_user and current_user.verified? %>
+    <% if current_student and current_student.verified? %>
       <% if @attend %>
         <div class="notice" id="status">
           <%= @attend.description %>
@@ -90,7 +90,7 @@
       <div id = "BICYCLING"></div>
       <div id = "WALKING"></div>
       </div>
-    <% else %>
+    <% elsif !current_user %>
     <div id="form" class="form-partial-container">
       <p>Login or register to join this event:</p>
       <%= render partial: "shared/login" %>
