@@ -15,7 +15,7 @@
       <%= @event.name %>
     </div>
     <div class="pictures">
-      <img src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Events/event<%=@rand_image_number%>.jpg" class="default_image"/>
+      <%= image_tag @event.image.url(:medium) %>
     </div>
     <% if flash[:warning] %>
        <div class="warning">

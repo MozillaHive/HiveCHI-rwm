@@ -30,8 +30,8 @@
 }
 
 .pictures img{
-  height: auto;
-  width: 100%;
+	display: block;
+	margin: auto;
   padding: 0px 0px 23px 0px;
 }
 .attendees{
