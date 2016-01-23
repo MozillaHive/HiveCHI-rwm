@@ -8,7 +8,7 @@ class ServiceProvider < ActiveRecord::Base
   private
 
   def populate_organization
-    domain_match = user.email.match(/@.+\z/)
+    domain_match = user.email.match(/@(.+)\z/)[1]
     if domain_match && (organization = Organization.find_by(domain_name: domain_match[0]))
       self.organization = organization
     end
