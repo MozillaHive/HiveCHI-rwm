@@ -316,9 +316,9 @@ Student.create(user_attributes: {email: "example@example.com", password: "passwo
 Student.create(user_attributes: {email: "student@cps.edu", password: "password1234", phone: "+11111111111", phone_verified: true, email_verified: true}, nudges_enabled: true, school_id: 1, username: "cps-student")
 Student.create(user_attributes: {email: "rfriedman81@gmail.com", password: "password1234", phone: "+11111111111", phone_verified: true, email_verified: true}, nudges_enabled: true, school_id: 1, username: "omnignorant")
 
-Admin.create!(user_attributes: {email: "admin@ridewit.me", password: "password1234", phone: "+11111111111", phone_verified: true, email_verified: true}) unless Rails.env.production?
-Admin.create!(user_attributes: {email: "robert@mozillafoundation.org", password: "password1234", phone: "+11111111111", phone_verified: true, email_verified: true}) unless Rails.env.production?
-Admin.create!(user_attributes: {email: "cat@iridescentlearning.org", password: "password1234", phone: "+11111111111", phone_verified: true, email_verified: true}) unless Rails.env.production?
+#Admin.create!(user_attributes: {email: "admin@ridewit.me", password: "password1234", phone: "+11111111111", phone_verified: true, email_verified: true}) unless Rails.env.production?
+#Admin.create!(user_attributes: {email: "robert@mozillafoundation.org", password: "password1234", phone: "+11111111111", phone_verified: true, email_verified: true}) unless Rails.env.production?
+#Admin.create!(user_attributes: {email: "cat@iridescentlearning.org", password: "password1234", phone: "+11111111111", phone_verified: true, email_verified: true}) unless Rails.env.production?
 
 Event.create(name: "Hive Chicago Buzz Hack Day", address: "1647 S. Blue Island Ave.", start_date_and_time: DateTime.iso8601("2016-01-23T11:00:00-06:00"), duration: 1.0, description: "Activate and co-create solutions to transform the learning landscape in Chicago alongside educators and students.", organization_id: 1, minimum_age: 14)
 
