@@ -46,5 +46,9 @@
     <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
+  <div data-role="fieldcontain">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
   <%= f.submit "Submit" %>
 <% end %>

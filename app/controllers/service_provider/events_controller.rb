@@ -52,7 +52,7 @@ class ServiceProvider::EventsController < ApplicationController
   def event_params
     params.require(:event).permit(
       :name, :address, :start_date_and_time, :duration, :description,
-      :event_type, :minimum_age
+      :event_type, :minimum_age, :image
     )
   end
 

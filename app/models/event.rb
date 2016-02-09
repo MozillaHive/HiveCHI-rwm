@@ -3,6 +3,11 @@ class Event < ActiveRecord::Base
   validates :address, presence: true
   validates :minimum_age, presence: true, numericality: { greater_than: 0 }
 
+  has_attached_file :image, default_url: 'images/missing.jpg',
+    styles: { medium: "800x600>" }
+  validates_attachment :image, content_type: { content_type: /\Aimage\/.*\Z/ },
+    size: { less_than: 1.megabyte }
+
   belongs_to  :organization
   has_many    :attendances
   has_many    :attendees , through: :attendances, source: :student

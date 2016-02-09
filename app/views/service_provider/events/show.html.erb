@@ -7,7 +7,7 @@
     <div class="ui-block ui-block-a">
       <ul data-role="listview">
         <li data-role="list-divider" class="section-heading">Details</li>
-        <li><span></span><img id="event-image" src="https://703776390ca6a57878ac07d8581c71c708895809.googledrive.com/host/0B-EZWDUirQ46fjQtUzN1VG80eWdzdERtYjMzcTg3S19VeGlWR3FfUGJpOEFEZmtVQmh4SFk/Assets/Events/event1.jpg" /></li>
+        <li><span></span><%= image_tag @event.image.url(:medium) %></li>
         <li><b>Date and time:</b> <%= @event.start_date_and_time.in_time_zone(get_time_zone).strftime("%A, %B %d, %Y %l:%M %p") %></li>
         <li><b>Duration:</b> <%= @event.duration %> hours</li>
         <li><b>Location:</b> <%= @event.address %></li>
