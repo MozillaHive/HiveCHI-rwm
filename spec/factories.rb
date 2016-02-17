@@ -24,23 +24,15 @@ FactoryGirl.define do
     end
   end
 
-  factory :parent do
-    user_attributes { FactoryGirl.attributes_for(:user) }
-
-    factory :verified_parent do
-      user_attributes { FactoryGirl.attributes_for(:verified_user) }
-    end
-  end
-
   factory :service_provider do
     organization { create(:organization) }
     user_attributes do
-      FactoryGirl.attributes_for(:user, email: SecureRandom.hex(5) + organization.domain_name)
+      FactoryGirl.attributes_for(:user, email: SecureRandom.hex(5) + "@" + organization.domain_name)
     end
 
     factory :verified_service_provider do
       user_attributes do
-        FactoryGirl.attributes_for(:verified_user, email: SecureRandom.hex(5) + organization.domain_name)
+        FactoryGirl.attributes_for(:verified_user, email: SecureRandom.hex(5)+ "@" + organization.domain_name)
       end
     end
   end

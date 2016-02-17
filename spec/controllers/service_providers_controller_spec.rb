@@ -40,7 +40,7 @@ RSpec.describe ServiceProvidersController, type: :controller do
   describe "PATCH #update" do
     context "with valid attributes" do
       before do
-        @new_email = "new-email" + service_provider.organization.domain_name
+        @new_email = "new-email@" + service_provider.organization.domain_name
         patch :update, { service_provider: { user_attributes: { email: @new_email, id: service_provider.user.id } } },
           user_id: service_provider.user.id
       end
