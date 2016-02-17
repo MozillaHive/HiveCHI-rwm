@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   validates :minimum_age, presence: true, numericality: { greater_than: 0 }
 
   has_attached_file :image, default_url: 'default_image.jpg',
-    styles: { medium: "800x600>" }
+    styles: { medium: "1024x768#" }
   validates_attachment :image, content_type: { content_type: /\Aimage\/.*\Z/ },
     size: { less_than: 1.megabyte }
 
