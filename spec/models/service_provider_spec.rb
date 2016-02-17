@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe ServiceProvider, type: :model do
   let(:organization) { create(:organization) }
-  let(:user) { build(:user, email: "example" + organization.domain_name) }
+  let(:user) { build(:user, email: "example@" + organization.domain_name) }
 
   context "validations" do
     subject { build(:service_provider) }
 
     it "is valid when email matches an organization's domain" do
-      user = build(:user, email: "example" + organization.domain_name)
+      user = build(:user, email: "example@" + organization.domain_name)
       expect(build(:service_provider, user: user)).to be_valid
     end
 

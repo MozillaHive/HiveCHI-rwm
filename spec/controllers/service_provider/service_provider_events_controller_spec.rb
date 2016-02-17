@@ -4,7 +4,7 @@ require 'service_provider/events_controller'
 RSpec.describe ServiceProvider::EventsController, type: :controller do
   let!(:organization) { create(:organization) }
   let!(:event) { create(:event, organization_id: organization.id) }
-  let(:user_attributes) { attributes_for(:verified_user, email: SecureRandom.hex(5) + organization.domain_name) }
+  let(:user_attributes) { attributes_for(:verified_user, email: SecureRandom.hex(5) + "@" + organization.domain_name) }
   let(:service_provider) { create(:service_provider, user_attributes: user_attributes) }
   let(:service_provider_2) { create(:verified_service_provider) }
 

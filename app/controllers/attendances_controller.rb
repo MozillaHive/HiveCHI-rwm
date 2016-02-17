@@ -19,11 +19,11 @@ class AttendancesController < ApplicationController
 
   def create
   	@event = Event.find(params[:event_id])
-  	Attendance.create(student: current_student, event: @event,
+  	@attendance = Attendance.create(student: current_student, event: @event,
   		departure_type: params[:departure_type],
   		method_of_transit: params[:method_of_transit],
   		commitment_status: params[:commitment_status])
-  	flash[:notice] = "You signed up for #{@event.name}"
+  	flash[:notice] = @attendance.message
     if (params[:commitment_status] == "Maybe" && session[:is_parent?])
       text_student
     end

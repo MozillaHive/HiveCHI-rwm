@@ -7,6 +7,14 @@ class Attendance < ActiveRecord::Base
   NO = "No"
   MAYBE = "Maybe"
 
+  def message
+    case self.commitment_status
+    when YES then "You signed up for #{event.name}"
+    when MAYBE then "You are now watching #{event.name}"
+    when NO then "You backed out of #{event.name}"
+    end
+  end
+
   def description
     case self.commitment_status
     when YES then "You are going to this event"
